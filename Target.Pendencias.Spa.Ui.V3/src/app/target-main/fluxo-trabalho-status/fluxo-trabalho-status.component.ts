@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit} from '@angular/core';
-import { ModalDirective } from 'ngx-bootstrap/modal';
+
 
 import { FluxoTrabalhoStatusService } from './fluxo-trabalho-status.service';
 
@@ -12,7 +12,7 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
 
     vm: any;
 
-    constructor(private fluxoTrabalhoStatusService: FluxoTrabalhoStatusService, private modalService: ModalDirective) {
+    constructor(private fluxoTrabalhoStatusService: FluxoTrabalhoStatusService) {
 
         this.vm = {};
     }

@@ -1,7 +1,7 @@
 ﻿import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { ModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { routing } from './app.routing';
@@ -22,7 +22,7 @@ import { ApiService } from 'app/common/services/api.service';
         BrowserModule,
         HttpModule,
         routing,
-        ModalModule.forRoot()
+        NgbModule.forRoot()
     ],
     providers: [AuthService, ApiService],
     bootstrap: [AppComponent]
