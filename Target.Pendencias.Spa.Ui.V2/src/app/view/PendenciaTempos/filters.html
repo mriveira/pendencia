@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default" ng-show="vm.mostrarFiltros">
+      <div class="panel-heading">
+        <h3>Filtros</h3>
+      </div>
+      <div class="panel-body" >
+        <form>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.pendenciaTemposId }}</label>
+                    <input type='text' class='form-control' ng-model='vm.crud.ModelFilter.pendenciaTemposId' name='pendenciaTemposId' attributes-c attributes-container='PendenciaTempos' attributes-field='pendenciaTemposId' />
+                </div>
+          </section>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.pendenciaId }}</label>
+                    <make-select model='vm.crud.ModelFilter.pendenciaId' dataitem='Pendencia' label='Todos' name='pendenciaId'></make-select>
+                </div>
+          </section>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.usuarioId }}</label>
+                    <make-select model='vm.crud.ModelFilter.usuarioId' dataitem='Usuario' label='Todos' name='usuarioId'></make-select>
+                </div>
+          </section>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.inicio }}</label><make-Datepicker model='vm.crud.ModelFilter.inicioStart'></make-Datepicker></div>
+          </section>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.inicio }}</label><make-Datepicker model='vm.crud.ModelFilter.inicioEnd'></make-Datepicker></div>
+          </section>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.fim }}</label><make-Datepicker model='vm.crud.ModelFilter.fimStart'></make-Datepicker></div>
+          </section>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.fim }}</label><make-Datepicker model='vm.crud.ModelFilter.fimEnd'></make-Datepicker></div>
+          </section>
+        </form>
+      </div>
+      <div class="panel-footer" ng-show="vm.mostrarFiltros">
+        <button type="button" class="btn btn-primary" ng-click="vm.crud.Filter(vm.crud.ModelFilter)">
+          <span class="fa fa-search"></span>
+          Filtrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

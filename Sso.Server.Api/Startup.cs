@@ -144,8 +144,8 @@ namespace Sso.Server.Api
             var fileCert = Path.Combine(_env.ContentRootPath, "pfx", "ids4smbasic.pfx");
             if (!File.Exists(fileCert))
                 throw new InvalidOperationException("Certificado não encontrado");
-
-            return new X509Certificate2(fileCert, "vm123s456", X509KeyStorageFlags.Exportable);
+            var password = "vm123s456";
+            return new X509Certificate2(fileCert, password, X509KeyStorageFlags.Exportable);
         }
     }
 }
