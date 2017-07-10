@@ -1,0 +1,44 @@
+﻿<table class="table table-bordered table-striped table-condensed has-tickbox table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>
+                <ng-container i18n>Nome</ng-container>
+                <button (click)="filterInstance.OrderBy('Nome')" class="btn btn-xs btn-default no-border pull-right">
+                    <i class="fa fa-arrows-v"></i>
+                </button>
+            </th>
+            <th>#</th>
+            <th>
+                <ng-container i18n>CorFundo</ng-container>
+                <button (click)="filterInstance.OrderBy('CorFundo')" class="btn btn-xs btn-default no-border pull-right">
+                    <i class="fa fa-arrows-v"></i>
+                </button>
+            </th>
+            <th>
+                <ng-container i18n>CorFonte</ng-container>
+                <button (click)="filterInstance.OrderBy('CorFonte')" class="btn btn-xs btn-default no-border pull-right">
+                    <i class="fa fa-arrows-v"></i>
+                </button>
+            </th>
+            <th>#</th>
+
+            <th class="text-center">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of dataList">
+            <td>{{ item.fluxoTrabalhoStatusId }}</td>
+            <td>{{ item.nome }}</td>
+            <td>{{ item.fluxoTrabalhoTipoId }}</td>
+            <td>{{ item.corFundo }}</td>
+            <td>{{ item.corFonte }}</td>
+            <td>{{ item.ordem }}</td>
+
+            <td>
+                <button class="btn btn-xs btn-primary" (click)="saveInstance.ExecuteEdit(item.fluxoTrabalhoStatusId);"><i class="fa fa-pencil"></i></button>
+                <button class="btn btn-xs btn-danger" (click)="deleteInstance.ExecuteDelete(item);"><i class="fa fa-trash-o"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <i class="fa fa-table"></i> Resultado
+      </div>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+                <th>{{ ::vm.Labels.pendenciaId }}</th>
+                <th>{{ ::vm.Labels.resumo }}</th>
+                <th>{{ ::vm.Labels.requisitadoPor }}</th>
+                <th>{{ ::vm.Labels.tempoEstimado }}</th>
+                <th>{{ ::vm.Labels.pontosEstimados }}</th>
+                <th>{{ ::vm.Labels.prazo }}</th>
+                <th>{{ ::vm.Labels.tags }}</th>
+                <th>{{ ::vm.Labels.dataConclusao }}</th>
+                <th style="width:120px;" class="text-center">Ações</th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in vm.FilterResult">
+                <td><p bind-custom-value='item.pendenciaId' bind-custom-type=integer /></td>
+                <td>{{ ::item.resumo }}</td>
+                <td>{{ ::item.requisitadoPor }}</td>
+                <td><p bind-custom-value='item.tempoEstimado' bind-custom-type=integer /></td>
+                <td><span class='label label-success' ng-if='item.pontosEstimados==0'>0 Pontos</span><span class='label label-success' ng-if='item.pontosEstimados==1'>1 Ponto</span><span class='label label-success' ng-if='item.pontosEstimados==2'>2 Pontos</span><span class='label label-success' ng-if='item.pontosEstimados==3'>3 Pontos</span><span class='label label-success' ng-if='item.pontosEstimados==5'>5 Pontos</span><span class='label label-success' ng-if='item.pontosEstimados==8'>8 Pontos</span><span class='label label-success' ng-if='item.pontosEstimados==13'>13 Pontos</span><span class='label label-success' ng-if='item.pontosEstimados==20'>20 Pontos</span><span class='label label-success' ng-if='item.pontosEstimados==40'>40 Pontos</span><span class='label label-success' ng-if='item.pontosEstimados==100'>100 Pontos</span></td>
+                <td><p bind-custom-value='item.prazo' bind-custom-type=date /></td>
+                <td>{{ ::item.tags }}</td>
+                <td><p bind-custom-value='item.dataConclusao' bind-custom-type=date /></td>
+                <td>
+                  <button ng-click="vm.crud.Edit(item.pendenciaId)" tooltip-placement="top" uib-tooltip="Editar" class="btn btn-xs btn-default">
+                      <i class="fa fa-pencil"></i>
+                   </button>
+                  <button ng-click="vm.crud.Details(item.pendenciaId)" tooltip-placement="top" uib-tooltip="Detalhes" class="btn btn-xs btn-sm">
+                      <i class="fa fa-table"></i>
+                  </button>
+                  <button ng-click="vm.crud.Print(item.pendenciaId)" tooltip-placement="top" uib-tooltip="Imprimir" class="btn btn-xs btn-success">
+                      <i class="fa fa-print"></i>
+                  </button>
+                  <button ng-click="vm.crud.Delete({ pendenciaId : item.pendenciaId })" tooltip-placement="top" uib-tooltip="Excluir" class="btn btn-xs btn-danger">
+                    <i class="fa fa-trash-o"></i>
+                  </button>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="text-center">
+      <div-pagination />
+    </div>
+  </div>
+</div>

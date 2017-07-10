@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default" ng-show="vm.mostrarFiltros">
+      <div class="panel-heading">
+        <h3>Filtros</h3>
+      </div>
+      <div class="panel-body" >
+        <form>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.fluxoTrabalhoStatusId }}</label>
+                    <input type='text' class='form-control' ng-model='vm.crud.ModelFilter.fluxoTrabalhoStatusId' name='fluxoTrabalhoStatusId' attributes-c attributes-container='FluxoTrabalhoStatus' attributes-field='fluxoTrabalhoStatusId' />
+                </div>
+          </section>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.nome }}</label>
+                    <input type='text' class='form-control' ng-model='vm.crud.ModelFilter.nome' name='nome' attributes-c attributes-container='FluxoTrabalhoStatus' attributes-field='nome' />
+                </div>
+          </section>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.fluxoTrabalhoTipoId }}</label>
+                    <make-select model='vm.crud.ModelFilter.fluxoTrabalhoTipoId' dataitem='FluxoTrabalhoTipo' label='Todos' name='fluxoTrabalhoTipoId'></make-select>
+                </div>
+          </section>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.corFundo }}</label>
+                    <input type='text' class='form-control' ng-model='vm.crud.ModelFilter.corFundo' name='corFundo' attributes-c attributes-container='FluxoTrabalhoStatus' attributes-field='corFundo' />
+                </div>
+          </section>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.corFonte }}</label>
+                    <input type='text' class='form-control' ng-model='vm.crud.ModelFilter.corFonte' name='corFonte' attributes-c attributes-container='FluxoTrabalhoStatus' attributes-field='corFonte' />
+                </div>
+          </section>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.ordem }}</label>
+                    <input type='text' class='form-control' ng-model='vm.crud.ModelFilter.ordem' name='ordem' attributes-c attributes-container='FluxoTrabalhoStatus' attributes-field='ordem' />
+                </div>
+          </section>
+        </form>
+      </div>
+      <div class="panel-footer" ng-show="vm.mostrarFiltros">
+        <button type="button" class="btn btn-primary" ng-click="vm.crud.Filter(vm.crud.ModelFilter)">
+          <span class="fa fa-search"></span>
+          Filtrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

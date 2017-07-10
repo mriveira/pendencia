@@ -1,0 +1,175 @@
+﻿
+$icon-font-path: '../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
+
+@import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+/*@import "../node_modules/open-sans-fontface/open-sans.scss";*/
+@import "mixins/_mixins.scss";
+@import "mixins/_colors.scss";
+@import "mixins/_layout.scss";
+
+body {
+    background: $color-branco;
+    color: $color-text;
+}
+
+.ui-autocomplete { 
+    text-transform: uppercase;
+}
+
+.font-uppercase {
+    text-transform: uppercase;
+}
+
+fieldset {
+    text-transform: uppercase;
+}
+
+input{
+    text-transform: uppercase;
+}
+
+ select {
+     text-transform: uppercase;
+}
+
+ option {
+     text-transform: uppercase;
+}
+
+ textarea{
+     text-transform: uppercase;
+}
+
+ table td{ 
+     text-transform: uppercase;
+}
+
+ table th{ 
+      text-transform: uppercase;
+}
+
+.label-text-in-uppercase {
+    text-transform: uppercase;
+}
+
+.label {
+    text-transform: uppercase;
+}
+
+label {
+    text-transform: uppercase;
+}
+
+.jarviswidget {
+    overflow: hidden;
+    text-transform: uppercase;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.loader {
+    position: fixed;
+    z-index: 9999;
+    background-color: #fff;
+    opacity: .90;
+    filter: alpha(opacity=90);
+    width: 100%;
+    height: 100%;
+}
+
+.loader img {
+    display: block;
+    width: 300px;
+    height: 131px;
+    margin: 200px auto;
+}
+
+.table.has-tickbox thead tr th:first-child {
+    width: 18px;
+    text-align: center;
+}
+
+.table tbody tr td:last-child {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.table.has-tickbox tbody tr td:first-child {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+
+.no-padding {
+    padding: 0;
+}
+
+.tab-content {
+    margin-top: 10px;
+}
+
+.ng-invalid.ng-touched {
+    border-color: #a94442;
+}
+
+
+.ng-invalid.ng-untouched {
+    border-color: #bd8b8b;
+}
+
+.wrapper-hidden {
+    padding-left: 10px;
+}
+
+.sidebar-wrapper-hidden {
+    width: 10px;
+}
+
+
+.wrapper-hidden {
+    padding-left: 10px;
+}
+
+.sidebar-wrapper-hidden {
+    width: 10px;
+    overflow: hidden;
+}
+
+.sidebar-wrapper-hidden:hover {
+    width: 219px;
+}
+
+.breadcrumb {
+    background-color: inherit;
+}
+
+.panel-footer:before, .panel-footer:after {
+    display: table;
+    content: " ";
+}
+
+.panel-footer:after {
+    clear: both;
+}
+
+.panel-footer button {
+    float: right;
+}
+
+.title-header h2 {
+    margin-top: 0;
+}
+
+.panel-striped .panel-body {
+    padding: 0;
+}
+
+.panel-striped .panel-body .table-responsive table {
+    margin-bottom: 0;
+}
+
+.panel-striped .pagination {
+    margin: 0;
+}

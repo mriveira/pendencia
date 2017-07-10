@@ -1,0 +1,46 @@
+﻿<div class="gc-filter">
+  <div class="panel panel-default">
+        <div class="panel-heading">Filtros</div>
+        <div class="panel-body">
+            <form (ngSubmit)="filter.ExecuteFilter()" (keyup.enter)="filter.ExecuteFilter()" #filterForm="ngForm">
+  					<section class="col-md-6">
+						<div class="form-group">
+							<label for="Nome"><ng-container i18n>Nome</ng-container></label>
+							<input type="text" class="form-control" name="Nome" [(ngModel)]="filter.model.Nome"  />
+						</div>
+					</section>
+					<section class="col-md-6">
+						<div class="form-group">
+							<label for="FluxoTrabalhoTipoId"><ng-container i18n>FluxoTrabalhoTipoId</ng-container></label>
+							<input type="text" class="form-control" name="FluxoTrabalhoTipoId" [(ngModel)]="filter.model.FluxoTrabalhoTipoId"  />
+						</div>
+					</section>
+					<section class="col-md-6">
+						<div class="form-group">
+							<label for="CorFundo"><ng-container i18n>CorFundo</ng-container></label>
+							<input type="text" class="form-control" na  CorFundo" [(ngModel)]="filter.model.CorFundo"  />
+						</div>
+					</section>
+					<section class="col-md-6">
+						<div class="form-group">
+							<label for="CorFonte"><ng-container i18n>CorFonte</ng-container></label>
+							<input type="text" class="form-control" name="CorFonte" [(ngModel)]="filter.model.CorFonte"  />
+						</div>
+					</section>
+					<section class="col-md-6">
+						<div class="form-group">
+							<label for="Ordem"><ng-container i18n>Ordem</ng-container></label>
+							<input type="text" class="form-control" name="Ordem" [(ngModel)]="filter.model.Ordem"  />
+						</div>
+					</section>
+
+            </form>
+        </div>
+        <div class="panel-footer">
+            <button type="button" class="btn btn-primary" (click)="filterForm.ngSubmit.emit()">
+                <span class="fa fa-search"></span>
+                Filtrar
+            </button>
+        </div>
+  </div>
+</div>

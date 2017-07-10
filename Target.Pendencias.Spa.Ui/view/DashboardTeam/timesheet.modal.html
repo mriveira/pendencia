@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ vm.ActionTitle }}</h3>
+    <p>{{ vm.ActionDescription }}</p>
+</div>
+<div class="modal-body">
+    <div class="panel-body">
+        <ng-form name="vm.frmTimeSheet">
+             <section class="col-md-12">
+                 <section class="col-md-12">
+                     <div class='form-group'>
+                         <label>Inicio</label>
+                         <p class='input-group'>
+                             <make-datetime-picker model='vm.Model.inicio' model-isopen='vm.inicioisOpen'></make-datetime-picker>
+                             <span class='input-group-btn'>
+                                 <button type='button' class='btn btn-default' ng-click='vm.openCalendar($event, vm,"inicioisOpen")'><i class='fa fa-calendar'></i></button>
+                             </span>
+                         </p>
+                     </div>
+                 </section>
+                 <section class="col-md-12">
+                     <div class='form-group'>
+                         <label>Fim</label>
+                         <p class='input-group'>
+                             <make-datetime-picker model='vm.Model.fim' model-isopen='vm.fimisOpen'></make-datetime-picker>
+                             <span class='input-group-btn'>
+                                 <button type='button' class='btn btn-default' ng-click='vm.openCalendar($event, vm,"fimisOpen")'><i class='fa fa-calendar'></i></button>
+                             </span>
+                         </p>
+                     </div>
+                 </section>
+                 <section class="col-md-12">
+                     <div class='form-group'>
+                         <label ng-show='vm.frmTimeSheet.nota.$valid || vm.frmTimeSheet.nota.$pristine'>Nota</label>
+                         <label class='alert alert-danger' ng-show='vm.frmTimeSheet.nota.$invalid && vm.frmTimeSheet.nota.$dirty'>Campo Nota é obrigatório</label>
+                         <textArea class='form-control' ng-model='vm.Model.nota' name='nota' rows=10></textArea>
+                     </div>
+                 </section>
+            </section>
+        </ng-form>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-click="vm.ok(vm.Model)" ng-disabled="!vm.frmTimeSheet.$valid">Salvar</button>
+    <button class="btn btn-default" type="button" ng-click="vm.cancel()">Cancelar</button>
+</div>

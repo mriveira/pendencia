@@ -1,0 +1,54 @@
+﻿<div bsModal #saveModal="bs-modal" class="gc-modal modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header alert-success">
+                <h4 class="modal-title pull-left">Manutenção de </h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="saveModal.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="save.ConfirmSave()" (keyup.enter)="save.ConfirmSave()" #createForm="ngForm">
+					<div class="row">
+				<input type="hidden" name="fluxoTrabalhoStatusId" id="fluxoTrabalhoStatusId" [(ngModel)]="save.model.FluxoTrabalhoStatusId" />
+					<section class="col-md-12">
+						<div class="form-group">
+							<label for="Nome"><ng-container i18n>Nome</ng-container></label>
+							<input type="text" class="form-control" name="Nome" [(ngModel)]="save.model.Nome" required />
+						</div>
+					</section>
+					<section class="col-md-12">
+						<div class="form-group">
+							<label for="FluxoTrabalhoTipoId"><ng-container i18n>FluxoTrabalhoTipoId</ng-container></label>
+							<input type="text" class="form-control" name="FluxoTrabalhoTipoId" [(ngModel)]="save.model.FluxoTrabalhoTipoId" required />
+						</div>
+					</section>
+					<section class="col-md-12">
+						<div class="form-group">
+							<label for="CorFundo"><ng-container i18n>CorFundo</ng-container></label>
+							<input type="text" class="form-control" name="CorFundo" [(ngModel)]="save.model.CorFundo"  />
+						</div>
+					</section>
+					<section class="col-md-12">
+						<div class="form-group">
+							<label for="CorFonte"><ng-container i18n>CorFonte</ng-container></label>
+							<input type="text" class="form-control" name="CorFonte" [(ngModel)]="save.model.CorFonte"  />
+						</div>
+					</section>
+					<section class="col-md-12">
+						<div class="form-group">
+							<label for="Ordem"><ng-container i18n>Ordem</ng-container></label>
+							<input type="text" class="form-control" name="Ordem" [(ngModel)]="save.model.Ordem"  />
+						</div>
+					</section>
+
+					</div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" type="button" (click)="saveModal.hide()">Cancelar</button>
+                <button type="submit" class="btn btn-success" [disabled]="!createForm.form.valid" (click)="createForm.ngSubmit.emit()">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

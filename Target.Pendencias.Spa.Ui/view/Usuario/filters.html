@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default" ng-show="vm.mostrarFiltros">
+      <div class="panel-heading">
+        <h3>Filtros</h3>
+      </div>
+      <div class="panel-body" >
+        <form>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.usuarioId }}</label>
+                    <input type='text' class='form-control' ng-model='vm.crud.ModelFilter.usuarioId' name='usuarioId' attributes-c attributes-container='Usuario' attributes-field='usuarioId' />
+                </div>
+          </section>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.nome }}</label>
+                    <input type='text' class='form-control' ng-model='vm.crud.ModelFilter.nome' name='nome' attributes-c attributes-container='Usuario' attributes-field='nome' />
+                </div>
+          </section>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.foto }}</label>
+                    <input type='text' class='form-control' ng-model='vm.crud.ModelFilter.foto' name='foto' attributes-c attributes-container='Usuario' attributes-field='foto' />
+                </div>
+          </section>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.email }}</label>
+                    <input type='text' class='form-control' ng-model='vm.crud.ModelFilter.email' name='email' attributes-c attributes-container='Usuario' attributes-field='email' />
+                </div>
+          </section>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.senha }}</label>
+                    <input type='text' class='form-control' ng-model='vm.crud.ModelFilter.senha' name='senha' attributes-c attributes-container='Usuario' attributes-field='senha' />
+                </div>
+          </section>
+          <section class="col-md-6">
+              <div class='form-group'>
+                    <label>{{ ::vm.Labels.usuarioTipoId }}</label>
+                    <make-select model='vm.crud.ModelFilter.usuarioTipoId' dataitem='UsuarioTipo' label='Todos' name='usuarioTipoId'></make-select>
+                </div>
+          </section>
+          <section class="col-md-6">
+                              <div class='checkbox'>
+                    <label>
+                        <input type='checkbox' ng-model='vm.crud.ModelFilter.ativo' name='ativo' /> {{ ::vm.Labels.ativo }}?
+                    </label>
+                </div>
+          </section>
+        </form>
+      </div>
+      <div class="panel-footer" ng-show="vm.mostrarFiltros">
+        <button type="button" class="btn btn-primary" ng-click="vm.crud.Filter(vm.crud.ModelFilter)">
+          <span class="fa fa-search"></span>
+          Filtrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

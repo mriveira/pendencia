@@ -1,0 +1,86 @@
+        <section class="col-md-12">
+                  <div class='form-group' ng-show='vm.DataItemProjeto.length > 0'>
+                    <label ng-show='vm.formCrud.projetoId.$valid || vm.formCrud.projetoId.$pristine'>{{ ::vm.Labels.projetoId }}</label>
+                    <label class='alert alert-danger' ng-show='vm.formCrud.projetoId.$invalid && vm.formCrud.projetoId.$dirty'>Campo {{ ::vm.Labels.projetoId }} é obrigatório</label>
+                    <ui-select ng-model='vm.selectedProjeto' title='Selecione' on-select='vm.onSelectCallback($item, vm,"projetoId")'>
+                        <ui-select-match placeholder='Digite para pesquisar...'>{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat='item in (vm.DataItemProjeto | filter: $select.search) track by item.id'>
+                            <div ng-bind-html='item.name | highlight: $select.search'></div>
+                        </ui-select-choices>
+                    </ui-select>
+                    <input type='hidden' ng-model='vm.Model.projetoId' name='projetoId'ng-required='true'>
+                </div>        
+        </section>
+        <section class="col-md-12">
+                  <div class='form-group'>
+                    <label ng-show='vm.formCrud.resumo.$valid || vm.formCrud.resumo.$pristine'>{{ ::vm.Labels.resumo }}</label>
+                    <label class='alert alert-danger' ng-show='vm.formCrud.resumo.$invalid && vm.formCrud.resumo.$dirty'>Campo {{ ::vm.Labels.resumo }} é obrigatório</label>
+                    <input type='text' class='form-control' ng-model='vm.Model.resumo' name='resumo' ng-required='true' attributes-c attributes-container='Pendencia' attributes-field='resumo' />
+                </div>        
+        </section>
+        <section class="col-md-12">
+                     <label>{{ ::vm.Labels.descricao}}</label>
+                    <fieldset>
+                        <text-angular ng-model='vm.Model.descricao'></text-angular>
+                    </fieldset>        
+        </section>
+        <section class="col-md-12">
+                  <div class='form-group'>
+                    <label ng-show='vm.formCrud.requisitadoPor.$valid || vm.formCrud.requisitadoPor.$pristine'>{{ ::vm.Labels.requisitadoPor }}</label>
+                    <label class='alert alert-danger' ng-show='vm.formCrud.requisitadoPor.$invalid && vm.formCrud.requisitadoPor.$dirty'>Campo {{ ::vm.Labels.requisitadoPor }} é obrigatório</label>
+                    <input type='text' class='form-control' ng-model='vm.Model.requisitadoPor' name='requisitadoPor'  attributes-c attributes-container='Pendencia' attributes-field='requisitadoPor' />
+                </div>        
+        </section>
+        <section class="col-md-12">
+                  <div class='form-group'>
+                    <label ng-show='vm.formCrud.tempoEstimado.$valid || vm.formCrud.tempoEstimado.$pristine'>{{ ::vm.Labels.tempoEstimado }}</label>
+                    <label class='alert alert-danger' ng-show='vm.formCrud.tempoEstimado.$invalid && vm.formCrud.tempoEstimado.$dirty'>Campo {{ ::vm.Labels.tempoEstimado }} é obrigatório</label>
+                    <input type='text' class='form-control' ng-model='vm.Model.tempoEstimado' name='tempoEstimado'  attributes-c attributes-container='Pendencia' attributes-field='tempoEstimado' />
+                </div>        
+        </section>
+        <section class="col-md-12">
+                  <div class='form-group'>
+                    <label ng-show='vm.formCrud.pontosEstimados.$valid || vm.formCrud.pontosEstimados.$pristine'>{{ ::vm.Labels.pontosEstimados }}</label>
+                    <label class='alert alert-danger' ng-show='vm.formCrud.pontosEstimados.$invalid && vm.formCrud.pontosEstimados.$dirty'>Campo {{ ::vm.Labels.pontosEstimados }} é obrigatório</label>
+                    <div class='radio'><label><input type='radio' name='pontosEstimados' value='0' ng-model='vm.Model.pontosEstimados'>0 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='1' ng-model='vm.Model.pontosEstimados'>1 Ponto</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='2' ng-model='vm.Model.pontosEstimados'>2 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='3' ng-model='vm.Model.pontosEstimados'>3 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='5' ng-model='vm.Model.pontosEstimados'>5 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='8' ng-model='vm.Model.pontosEstimados'>8 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='13' ng-model='vm.Model.pontosEstimados'>13 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='20' ng-model='vm.Model.pontosEstimados'>20 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='40' ng-model='vm.Model.pontosEstimados'>40 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='100' ng-model='vm.Model.pontosEstimados'>100 Pontos</label></div>
+                </div>        
+        </section>
+        <section class="col-md-12">
+                  <div class='form-group'>
+                    <label>{{ ::vm.Labels.prazo }}</label>
+                    <p class='input-group'>
+                        <make-datetime-picker model='vm.Model.prazo' model-isopen='vm.prazoisOpen'></make-datetime-picker>
+                        <span class='input-group-btn'>
+                            <button type='button' class='btn btn-default' ng-click='vm.openCalendar($event, vm,"prazoisOpen")'><i class='fa fa-calendar'></i></button>
+                        </span>
+                    </p>
+                </div>        
+        </section>
+        <section class="col-md-12">
+                  <div class='form-group'>
+                    <label ng-show='vm.formCrud.pendenciaTipoId.$valid || vm.formCrud.pendenciaTipoId.$pristine'>{{ ::vm.Labels.pendenciaTipoId }}</label>
+                    <label class='alert alert-danger' ng-show='vm.formCrud.pendenciaTipoId.$invalid && vm.formCrud.pendenciaTipoId.$dirty'>Campo {{ ::vm.Labels.pendenciaTipoId }} é obrigatório</label>
+                    <make-select model='vm.Model.pendenciaTipoId' dataitem='PendenciaTipo' label='Selecione' name='pendenciaTipoId' ng-required='true'></make-select>
+                </div>        
+        </section>
+        <section class="col-md-12">
+                  <div class='form-group'>
+                    <label ng-show='vm.formCrud.fluxoTrabalhoStatusId.$valid || vm.formCrud.fluxoTrabalhoStatusId.$pristine'>{{ ::vm.Labels.fluxoTrabalhoStatusId }}</label>
+                    <label class='alert alert-danger' ng-show='vm.formCrud.fluxoTrabalhoStatusId.$invalid && vm.formCrud.fluxoTrabalhoStatusId.$dirty'>Campo {{ ::vm.Labels.fluxoTrabalhoStatusId }} é obrigatório</label>
+                    <make-select model='vm.Model.fluxoTrabalhoStatusId' dataitem='FluxoTrabalhoStatus' label='Selecione' name='fluxoTrabalhoStatusId' ng-required='true'></make-select>
+                </div>        
+        </section>
+        <section class="col-md-12">
+                  <div class='form-group'>
+                    <label ng-show='vm.formCrud.pendenciaPrioridadeId.$valid || vm.formCrud.pendenciaPrioridadeId.$pristine'>{{ ::vm.Labels.pendenciaPrioridadeId }}</label>
+                    <label class='alert alert-danger' ng-show='vm.formCrud.pendenciaPrioridadeId.$invalid && vm.formCrud.pendenciaPrioridadeId.$dirty'>Campo {{ ::vm.Labels.pendenciaPrioridadeId }} é obrigatório</label>
+                    <make-select model='vm.Model.pendenciaPrioridadeId' dataitem='PendeciaPrioridade' label='Selecione' name='pendenciaPrioridadeId' ng-required='true'></make-select>
+                </div>        
+        </section>
+        <section class="col-md-12">
+                  <div class='form-group'>
+                    <label ng-show='vm.formCrud.tags.$valid || vm.formCrud.tags.$pristine'>{{ ::vm.Labels.tags }}</label>
+                    <label class='alert alert-danger' ng-show='vm.formCrud.tags.$invalid && vm.formCrud.tags.$dirty'>Campo {{ ::vm.Labels.tags }} é obrigatório</label>
+                    <input type='text' class='form-control' ng-model='vm.Model.tags' name='tags'  attributes-c attributes-container='Pendencia' attributes-field='tags' />
+                </div>        
+        </section>

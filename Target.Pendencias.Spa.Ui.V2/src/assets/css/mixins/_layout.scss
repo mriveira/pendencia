@@ -1,0 +1,112 @@
+﻿$border-1:1px;
+$width-sidebar: (220px - $border-1);
+
+
+.wrapper {
+    padding-left: 0;
+
+    @include media-min-width(768px) {
+        padding-left: $width-sidebar;
+    }
+
+    @include transition(all 0.5s ease);
+}
+
+.sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: $width-sidebar;
+    width: 0;
+    height: 100%;
+    margin-left: -($width-sidebar);
+    overflow-y: auto;
+    background: $color-cinza-claro;
+    @include transition(all 0.5s ease);
+    border-right:$border-1 solid #ddd;
+    width: $width-sidebar;
+
+    /*@include media-min-width(768px) {
+    }*/
+
+    .sidebar-nav {
+        position: absolute;
+        top: 0;
+        width: ($width-sidebar - $border-1);
+        padding: 0;
+        list-style: none;
+
+        li {
+            text-indent: 10px;
+            line-height: 40px;
+
+            a {
+                display: block;
+                text-decoration: none;
+                color: #666666;
+
+                &:hover {
+                    text-decoration: none;
+                    color: #fff;
+                    background: $color-preto-rgba-30;
+                }
+
+                &:active,
+                &:focus {
+                    text-decoration: none;
+                }
+            }
+        }
+
+
+
+        & > .sidebar-brand {
+            text-indent: 20px;
+            padding:15px 0;
+            border-bottom:1px solid #dddddd;
+            padding-bottom:20px;
+            a {
+                img {
+                    width: 100px;
+                }
+
+                &:hover {
+                    color: #fff;
+                    background: none;
+                }
+            }
+        }
+    }
+}
+
+.header{
+    background: $color-cinza-claro;
+    padding:10px 15px;
+    border-bottom:$border-1 solid #ddd;
+    .btn-menu,
+    .btn-sair{
+        font-size:14px;
+        padding:3px 9px;
+        margin:0;
+        &.btn-menu:hover{
+            background:$color-verde;
+            color:#fff;
+        }
+        &.btn-sair:hover{
+            background:$color-vermelho;
+            color:#fff;
+        }
+    }
+}
+
+.page-content-wrapper {
+    width: 100%;
+    position: absolute;
+
+    @include media-min-width(768px) {
+        position: relative;
+    }
+}
+
+.breadcrumb{
+    margin:0 -15px;
+}

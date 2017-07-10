@@ -1,0 +1,30 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title">{{ vm.ActionTitle }}</h3>
+    <p>{{ vm.ActionDescription }}</p>
+</div>
+<div class="modal-body pre-scrollable">
+    <div class="panel-body">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-bell fa-fw"></i> Comenários
+            </div>
+            <div class="panel-body">
+                <div class="list-group" ng-repeat="comentario in vm.Model track by $index">
+                    <div class="list-group-item">
+                        <dl>
+                            <dt><i class="fa fa-comment fa-fw"></i> {{comentario.descricao}}</dt>
+                            <dt>
+                                <span class="pull-right text-muted small">
+                                    <em bind-custom-value="comentario.data" bind-custom-type="datetimeComplete"></em>
+                                </span>
+                            </dt>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" type="button" ng-click="vm.cancel()">fechar</button>
+</div>

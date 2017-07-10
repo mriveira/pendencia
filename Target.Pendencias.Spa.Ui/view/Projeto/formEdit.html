@@ -1,0 +1,57 @@
+        <section class="col-md-12">
+                  <div class='form-group'>
+                    <label ng-show='vm.formCrud.nome.$valid || vm.formCrud.nome.$pristine'>{{ ::vm.Labels.nome }}</label>
+                    <label class='alert alert-danger' ng-show='vm.formCrud.nome.$invalid && vm.formCrud.nome.$dirty'>Campo {{ ::vm.Labels.nome }} é obrigatório</label>
+                    <input type='text' class='form-control' ng-model='vm.Model.nome' name='nome' ng-required='true' attributes-c attributes-container='Projeto' attributes-field='nome' />
+                </div>        
+        </section>
+        <section class="col-md-12">
+                  <div class='form-group'>
+                    <label ng-show='vm.formCrud.descricao.$valid || vm.formCrud.descricao.$pristine'>{{ ::vm.Labels.descricao }}</label>
+                    <label class='alert alert-danger' ng-show='vm.formCrud.descricao.$invalid && vm.formCrud.descricao.$dirty'>Campo {{ ::vm.Labels.descricao }} é obrigatório</label>
+                    <textArea class='form-control' ng-model='vm.Model.descricao' name='descricao' ng-required='true'rows=10 ></textArea>
+                </div>        
+        </section>
+        <section class="col-md-12">
+                  <div class='form-group'>
+                    <label ng-show='vm.formCrud.visao.$valid || vm.formCrud.visao.$pristine'>{{ ::vm.Labels.visao }}</label>
+                    <label class='alert alert-danger' ng-show='vm.formCrud.visao.$invalid && vm.formCrud.visao.$dirty'>Campo {{ ::vm.Labels.visao }} é obrigatório</label>
+                    <textArea class='form-control' ng-model='vm.Model.visao' name='visao' rows=10 ></textArea>
+                </div>        
+        </section>
+        <section class="col-md-12">
+                  <div class='form-group'>
+                    <label ng-show='vm.formCrud.clienteId.$valid || vm.formCrud.clienteId.$pristine'>{{ ::vm.Labels.clienteId }}</label>
+                    <label class='alert alert-danger' ng-show='vm.formCrud.clienteId.$invalid && vm.formCrud.clienteId.$dirty'>Campo {{ ::vm.Labels.clienteId }} é obrigatório</label>
+                    <make-select model='vm.Model.clienteId' dataitem='Cliente' label='Selecione' name='clienteId' ng-required='true'></make-select>
+                </div>        
+        </section>
+        <section class="col-md-12">
+                  <div class='form-group'>
+                    <label ng-show='vm.formCrud.chaveUnica.$valid || vm.formCrud.chaveUnica.$pristine'>{{ ::vm.Labels.chaveUnica }}</label>
+                    <label class='alert alert-danger' ng-show='vm.formCrud.chaveUnica.$invalid && vm.formCrud.chaveUnica.$dirty'>Campo {{ ::vm.Labels.chaveUnica }} é obrigatório</label>
+                    <input type='text' class='form-control' ng-model='vm.Model.chaveUnica' name='chaveUnica' ng-required='true' attributes-c attributes-container='Projeto' attributes-field='chaveUnica' />
+                </div>        
+        </section>
+        <section class="col-md-12">
+                  <div class='form-group'>
+                    <label>{{ ::vm.Labels.inicio }}</label>
+                    <p class='input-group'>
+                        <make-datetime-picker model='vm.Model.inicio' model-isopen='vm.inicioisOpen'></make-datetime-picker>
+                        <span class='input-group-btn'>
+                            <button type='button' class='btn btn-default' ng-click='vm.openCalendar($event, vm,"inicioisOpen")'><i class='fa fa-calendar'></i></button>
+                        </span>
+                    </p>
+                </div>        
+        </section>
+        <section class="col-md-12">
+                  <div class='form-group'>
+                    <label>{{ ::vm.Labels.fim }}</label>
+                    <p class='input-group'>
+                        <make-datetime-picker model='vm.Model.fim' model-isopen='vm.fimisOpen'></make-datetime-picker>
+                        <span class='input-group-btn'>
+                            <button type='button' class='btn btn-default' ng-click='vm.openCalendar($event, vm,"fimisOpen")'><i class='fa fa-calendar'></i></button>
+                        </span>
+                    </p>
+                </div>        
+        </section>

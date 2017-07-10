@@ -1,0 +1,41 @@
+﻿(function () {
+    'use strict';
+  
+    angular
+        .module('<#contextName#>.Services', [
+            'ui.bootstrap',
+            'common.utils',
+            'ui-notification',
+			'ngclipboard'
+        ]);
+
+    angular
+        .module('<#contextName#>.Config', [
+            'ui.router',
+            'common.utils',
+            'oc.lazyLoad',
+        ]);
+
+    angular
+        .module('<#contextName#>.Controllers', [
+            'ui.bootstrap',
+            'common.utils',
+            'ui-notification',
+            'ui.mask',
+            'ui.utils.masks',
+            'ui.bootstrap.datetimepicker',
+			'ngFileUpload',
+            'ncy-angular-breadcrumb',
+			'ui.select',
+            'ngSanitize',
+			'textAngular'
+        ]);
+
+    angular
+       .module('<#contextName#>', [
+           '<#contextName#>.Services',
+           '<#contextName#>.Config',
+           '<#contextName#>.Controllers',
+       ]);
+    
+})();

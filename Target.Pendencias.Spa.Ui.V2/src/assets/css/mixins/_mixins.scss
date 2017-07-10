@@ -1,0 +1,111 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin background-size($bgsize) {
+  -webkit-background-size: $bgsize;
+  -moz-background-size: $bgsize;
+  -o-background-size: $bgsize;
+  background-size: $bgsize;
+}
+
+@mixin transition($transition) {
+  -moz-transition:    $transition;
+  -o-transition:      $transition;
+  -webkit-transition: $transition;
+  transition:         $transition;
+}
+
+@mixin transition-property($property) {
+  -moz-transition-property:    $property;
+  -o-transition-property:      $property;
+  -webkit-transition-property: $property;
+  transition-property:         $property;
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+@mixin background-gradient-linear($top, $bottom) {
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from($top), to($bottom));
+  background: -webkit-linear-gradient(top, $top, $bottom);
+  background: -moz-linear-gradient(top, $top, $bottom);
+  background: -ms-linear-gradient(top, $top, $bottom);
+  background: -o-linear-gradient(top, $top, $bottom);
+}
+
+@mixin translateY($value) {
+  -webkit-transform: translateY($value);
+  -moz-transform:    translateY($value);
+  -ms-transform:     translateY($value);
+  -o-transform:      translateY($value);
+  transform:         translateY($value);
+}
+
+@mixin box-shadow($shadows...) {
+  -moz-box-shadow: $shadows;
+  -webkit-box-shadow: $shadows;
+  box-shadow: $shadows;
+}
+
+@mixin media-max-width($max-width) {
+  @media only screen and (max-width: $max-width) {
+    @content;
+  }
+}
+
+@mixin media-min-width($min-width) {
+  @media only screen and (min-width: $min-width) {
+    @content;
+  }
+}
+
+@mixin media-min-and-max-width ($min-width, $max-width){
+  @media only screen and (min-width: $min-width) and (max-width: $max-width) {
+    @content;
+  }
+}
+
+@mixin media-max-height($max-height) {
+  @media only screen and (max-height: $max-height) {
+    @content;
+  }
+}
+
+@mixin media-min-and-max-width ($min-width, $max-width){
+  @media only screen and (min-width: $min-width) and (max-width: $max-width) {
+    @content;
+  }
+}
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};
+}

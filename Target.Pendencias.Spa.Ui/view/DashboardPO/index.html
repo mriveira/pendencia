@@ -1,0 +1,58 @@
+﻿
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-area-chart"></i> Projetos
+
+                </div>
+                <div class="panel-body" style="background-color:#f9f9f9">
+                    <div class="list-group" ng-repeat="projeto in vm.projetos.dataList track by $index">
+
+                        <div class="list-group-item">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>inicio</th>
+                                        <th>Fim</th>
+                                        <th>Team</th>
+                                        <th>Abertas</th>
+                                        <th>Concluidas</th>
+                                        <th>Pontos Estimas</th>
+                                        <th>Horas Estimas</th>
+                                        <th>Horas Reais</th>
+                                        <th>Burning-down</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{projeto.nome}}</td>
+                                        <td><div bind-custom-value="projeto.inicio" bind-Custom-Type="date"></div></td>
+                                        <td><div bind-custom-value="projeto.fim" bind-Custom-Type="date"></div></td>
+                                        <td>
+                                            <ul ng-repeat="user in projeto.time track by $index">
+                                                <li>{{user}}</li>
+                                            </ul>
+                                        </td>
+                                        <td>{{projeto.totalPendencias}}</td>
+                                        <td>{{projeto.totalConcluidas}}</td>
+                                        <td>{{projeto.totalPontos}}</td>
+                                        <td>{{projeto.totalHoras}}</td>
+                                        <td><div bind-custom-value="projeto.totalHorasReais" bind-Custom-Type="decimal"></div></td>
+                                        <td>
+                                            <canvas id="line" class="chart chart-line" chart-data="projeto.buningDown.pendencias" chart-labels="projeto.buningDown.dias" chart-options="options" chart-colors="projeto.buningDown.colors"></canvas>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

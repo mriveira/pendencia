@@ -1,0 +1,193 @@
+﻿
+<div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default" ng-show="vm.mostrarFiltros">
+                <div class="panel-heading">
+                    <h3>Filtros</h3>
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <section class="col-md-6">
+                            <div class='form-group'>
+                                <label>{{ ::vm.Labels.projetoId }}</label>
+                                <make-select model='vm.crud.ModelFilter.projetoId' dataitem='Projeto' label='Todos' name='projetoId'></make-select>
+                            </div>
+                        </section>
+
+
+                        <section class="col-md-6">
+                            <div class='form-group'>
+                                <label>{{ ::vm.Labels.pendenciaTipoId }}</label>
+                                <make-select model='vm.crud.ModelFilter.pendenciaTipoId' dataitem='PendenciaTipo' label='Todos' name='pendenciaTipoId'></make-select>
+                            </div>
+                        </section>
+                        <section class="col-md-6">
+                            <div class='form-group'>
+                                <label>{{ ::vm.Labels.fluxoTrabalhoStatusId }}</label>
+                                <make-select model='vm.crud.ModelFilter.fluxoTrabalhoStatusId' dataitem='FluxoTrabalhoStatus' label='Todos' name='fluxoTrabalhoStatusId'></make-select>
+                            </div>
+                        </section>
+                        <section class="col-md-6">
+                            <div class='form-group'>
+                                <label>{{ ::vm.Labels.pendenciaPrioridadeId }}</label>
+                                <make-select model='vm.crud.ModelFilter.pendenciaPrioridadeId' dataitem='PendeciaPrioridade' label='Todos' name='pendenciaPrioridadeId'></make-select>
+                            </div>
+                        </section>
+                        <section class="col-md-6">
+                            <div class='form-group'>
+                                <label>{{ ::vm.Labels.tags }}</label>
+                                <input type='text' class='form-control' ng-model='vm.crud.ModelFilter.tags' name='tags' attributes-c attributes-container='Pendencia' attributes-field='tags' />
+                            </div>
+                        </section>
+                    </form>
+                </div>
+                <div class="panel-footer" ng-show="vm.mostrarFiltros">
+                    <button type="button" class="btn btn-primary" ng-click="vm.search(vm.crud.ModelFilter)">
+                        <span class="fa fa-search"></span>
+                        Filtrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-tasks"></i> Minhas Pendências
+                    <a tooltip-placement="top" href="#/Pendencia/Create" uib-tooltip="Nova" class="pull-right btn btn-xs btn-primary" style="margin-left:10px;margin-right:10px">
+                        <i class="fa fa-tasks"></i>
+                    </a>
+                    <a class="pull-right btn btn-xs btn-success" ng-click="vm.mostrarFiltros =! vm.mostrarFiltros" style="margin-left:10px" tooltip-placement="top" uib-tooltip="Filtros">
+                        <i class="fa fa-search"></i>
+                    </a>
+                    <a class="pull-right btn btn-xs btn-default" ng-click="vm.minhasPendencias()" style="margin-left:10px" tooltip-placement="top" uib-tooltip="Minhas Pendências">
+                        <i class="fa fa-user"></i>
+                    </a>
+
+                    <a class="pull-right btn btn-xs btn-default" ng-click="vm.todasPendencias()" style="margin-left:10px" tooltip-placement="top" uib-tooltip="Todas Pendências">
+                        <i class="fa fa-users"></i>
+                    </a>
+
+                </div>
+                <div class="panel-body" style="background-color:#f9f9f9">
+                    <div class="list-group" ng-repeat="pendencia in vm.Pendencias.dataList track by $index">
+
+                        <div class="list-group-item">
+                            
+                            <small class="badge badge-important" style="padding:5px; margin:5px;background-color:{{pendencia.corFundo}};color:{{pendencia.corFonte}}">{{pendencia.status}}</small>
+
+                            <dl>
+                                <dd>
+                                    <div class="text-muted small" style="float: left;margin-right: 10px;text-align:center">
+                                        <div style="background-image: url('{{vm.uploadUri}}{{pendencia.foto }}');width: 30px; height: 30px;background-size: cover;background-position: center;border-radius: 50%;" ng-show="pendencia.foto != null"></div>
+                                        <div style="background-image: url('images/logo-basic.png');width: 30px; height: 30px;background-size: cover;background-position: center;border-radius: 50%;" ng-show="pendencia.foto == null"></div>
+                                        <em><strong>{{pendencia.user}}</strong></em>
+                                    </div>
+
+                                    <strong>[ {{pendencia.codigo}} ]</strong> - {{pendencia.resumo}}
+                                </dd>
+
+                                <dd><hr></dd>
+
+                                <dd>
+                                    <div class="text-muted small">
+                                        <em><strong>Estimativa:</strong></em>
+                                        <em bind-custom-value="pendencia.tempoEstimado" bind-custom-type="int"></em> hora(s)
+                                        <em bind-custom-value="pendencia.pontosEstimados" bind-custom-type="int"></em>ponto(s)
+                                        entrega em :<em bind-custom-value="pendencia.prazo" bind-custom-type="datetimeComplete"></em>
+
+                                        <button tooltip-placement="top" ng-click="vm.Pendencias.reclassificarWithNotes(pendencia.id)" uib-tooltip="Reclassificar" class="pull-right btn btn-xs btn-default" style="margin-left:10px">
+                                            <i class="fa fa-recycle"></i>
+                                        </button>
+
+                                        <button tooltip-placement="top" ng-click="vm.Pendencias.comentar(pendencia.id)" uib-tooltip="Comentar" class="pull-right btn btn-xs btn-default" style="margin-left:10px">
+                                            <i class="fa fa-comment"></i>
+                                        </button>
+
+                                        <button tooltip-placement="top" ng-click="vm.Pendencias.concluirWithNotes(pendencia.id)" uib-tooltip="Concluir" class="pull-right btn btn-xs btn-primary" style="margin-left:10px">
+                                            <i class="fa fa-check"></i>
+                                        </button>
+
+                                        <a href="#/Pendencia/Edit/{{pendencia.id}}" tooltip-placement="top" uib-tooltip="Editar" class="pull-right btn btn-xs btn-default" style="margin-left:10px">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+
+                                        <button tooltip-placement="top" uib-tooltip="Parar" class="pull-right btn btn-xs btn-danger" ng-click="vm.Pendencias.stopWithNotes(pendencia.id)" ng-show="pendencia.cronometrando" style="margin-left:10px">
+                                            <i class="fa fa-stop"></i>
+                                        </button>
+
+                                        <button tooltip-placement="top" uib-tooltip="iniciar" class="pull-right btn btn-xs btn-success" style="margin-left:10px" ng-click="vm.Pendencias.play(pendencia.id)" ng-show="!pendencia.cronometrando">
+                                            <i class="fa fa-play"></i>
+                                        </button>
+
+                                        <button tooltip-placement="top" ng-click="vm.Pendencias.historico(pendencia.id)" uib-tooltip="Comentarios" class="pull-right btn btn-xs btn-default" style="margin-left:10px">
+                                            <i class="fa fa-comments-o"></i>
+                                        </button>
+
+                                        <button tooltip-placement="top" ng-click="vm.Pendencias.detalhes(pendencia.id)" uib-tooltip="Detalhes" class="pull-right btn btn-xs btn-primary" style="margin-left:10px">
+                                            <i class="fa fa-table"></i>
+                                        </button>
+
+
+
+                                    </div>
+                                </dd>
+                            </dl>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-clock-o"></i> TimeSheet
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th><i class="fa fa-gears"></i></th>
+                                    <th>Inicio</th>
+                                    <th>Fim</th>
+                                    <th>Horas</th>
+                                    <th>Nota</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="tempo in vm.tempos.dataList track by $index">
+                                    <td>
+                                        <a tooltip-placement="top" uib-tooltip="Editar" class="btn btn-xs btn-default" ng-click="vm.Pendencias.timeSheetEdit(tempo.pendenciaTemposId)">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    </td>
+                                    <td><p bind-custom-value='tempo.inicio' bind-custom-type=datetimeComplete /></td>
+                                    <td><p bind-custom-value='tempo.fim' bind-custom-type=datetimeComplete /></td>
+                                    <td> <p bind-custom-value='tempo.tempoDecorridoTimeSheet' bind-custom-type=string /></td>
+                                    <td><i class="fa fa-comments-o" uib-tooltip="{{tempo.nota}}"></i></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Total</th>
+                                    <td></td>
+                                    <td></td>
+                                    <th><p bind-custom-value='vm.tempos.summary.additionalSummary.totalHoras' bind-custom-type=string /></th>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
