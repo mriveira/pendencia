@@ -1,8 +1,8 @@
 ﻿<div>
 
   <div class="well">
-    <h3><i class="fa fa-edit"></i> {{ vm.ActionTitle }}</h3>
-    <p>{{ vm.ActionDescription }}</p>
+    <h3><i class="fa fa-edit"></i> {{ vm.actionTitle }}</h3>
+    <p>{{ vm.actionDescription }}</p>
     <div class="row">
       <div class="col-xs-12">
         <div class="btn-group pull-right" style="padding-bottom:10px;">
@@ -12,7 +12,7 @@
           <a class="btn btn-success btn-sm" (click)="onCreate()" style="margin-left:10px;width:100px" tooltip-placement="top" uib-tooltip="Cadastrar">
             <i class="fa fa-plus"></i> Cadastrar
           </a>
-          <a class="btn btn-default btn-sm" (click)="onExport(vm.crud.ModelFilter)" style="margin-left:10px;width:100px" tooltip-placement="top" uib-tooltip="Exportar para Excel">
+          <a class="btn btn-default btn-sm" (click)="onExport(vm.crud.modelFilter)" style="margin-left:10px;width:100px" tooltip-placement="top" uib-tooltip="Exportar para Excel">
             <i class="fa fa-file-excel-o"></i> Excel
           </a>
           <a class="btn btn-primary btn-sm" (click)="vm.mostrarFiltros =! vm.mostrarFiltros" style="margin-left:10px;width:100px" tooltip-placement="top" uib-tooltip="Filtros">
@@ -22,7 +22,6 @@
       </div>
     </div>
   </div>
-
 
   <div class="filter-template">
     <div class="row">
@@ -36,37 +35,37 @@
               <section class="col-md-6">
                 <div class='form-group'>
                   <label>{{ vm.Labels.fluxoTrabalhoStatusId }}</label>
-                  <input type='text' class='form-control' [(ngModel)]='vm.ModelFilter.fluxoTrabalhoStatusId' name='fluxoTrabalhoStatusId' />
+                  <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.fluxoTrabalhoStatusId' name='fluxoTrabalhoStatusId' />
                 </div>
               </section>
               <section class="col-md-6">
                 <div class='form-group'>
                   <label>{{ vm.Labels.nome }}</label>
-                  <input type='text' class='form-control' [(ngModel)]='vm.ModelFilter.nome' name='nome' />
+                  <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.nome' name='nome' />
                 </div>
               </section>
               <section class="col-md-6">
                 <div class='form-group'>
                   {{ vm.Labels.fluxoTrabalhoTipoId }}
-                  <make-select (ngModelChange)="vm.ModelFilter.fluxoTrabalhoTipoId = $event" [dataitem]="'FluxoTrabalhoTipo'"></make-select>
+                  <make-select (msChange)="onChange_makeSelect_modelFilter_fluxoTrabalhoTipoId($event)" [dataitem]="'FluxoTrabalhoTipo'"></make-select>
                 </div>
               </section>
               <section class="col-md-6">
                 <div class='form-group'>
                   <label>{{ vm.Labels.corFundo }}</label>
-                  <input type='text' class='form-control' [(ngModel)]='vm.ModelFilter.corFundo' name='corFundo' />
+                  <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.corFundo' name='corFundo' />
                 </div>
               </section>
               <section class="col-md-6">
                 <div class='form-group'>
                   <label>{{ vm.Labels.corFonte }}</label>
-                  <input type='text' class='form-control' [(ngModel)]='vm.ModelFilter.corFonte' name='corFonte' />
+                  <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.corFonte' name='corFonte' />
                 </div>
               </section>
               <section class="col-md-6">
                 <div class='form-group'>
                   <label>{{ vm.Labels.ordem }}</label>
-                  <input type='text' class='form-control' [(ngModel)]='vm.ModelFilter.ordem' name='ordem' />
+                  <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.ordem' name='ordem' />
                 </div>
               </section>
               <button type="submit" class="btn btn-primary">
@@ -95,16 +94,16 @@
             <table class="table table-bordered table-striped table-hover">
               <thead>
                 <tr>
-                  <th>{{ vm.Labels.fluxoTrabalhoStatusId }}</th>
-                  <th>{{ vm.Labels.nome }}</th>
-                  <th>{{ vm.Labels.corFundo }}</th>
-                  <th>{{ vm.Labels.corFonte }}</th>
-                  <th>{{ vm.Labels.ordem }}</th>
+                  <th>{{ vm.labels.fluxoTrabalhoStatusId }}</th>
+                  <th>{{ vm.labels.nome }}</th>
+                  <th>{{ vm.labels.corFundo }}</th>
+                  <th>{{ vm.labels.corFonte }}</th>
+                  <th>{{ vm.labels.ordem }}</th>
                   <th style="width:120px;" class="text-center">Ações</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of vm.FilterResult">
+                <tr *ngFor="let item of vm.filterResult">
                   <td>{{ item.fluxoTrabalhoStatusId }}</td>
                   <td>{{ item.nome }}</td>
                   <td>{{ item.corFundo }}</td>
@@ -120,7 +119,7 @@
                     <button (click)="onPrint(item.fluxoTrabalhoStatusId)" tooltip-placement="top" uib-tooltip="Imprimir" class="btn btn-xs btn-success">
                       <i class="fa fa-print"></i>
                     </button>
-                    <button (click)="onDelete({ fluxoTrabalhoStatusId : item.fluxoTrabalhoStatusId })" tooltip-placement="top" uib-tooltip="Excluir" class="btn btn-xs btn-danger">
+                    <button (click)="onDelete(item.fluxoTrabalhoStatusId)" tooltip-placement="top" uib-tooltip="Excluir" class="btn btn-xs btn-danger">
                       <i class="fa fa-trash-o"></i>
                     </button>
                   </td>
@@ -134,23 +133,143 @@
   </div>
 </div>
 
-<ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">Modal title</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p>One fine body&hellip;</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
-  </div>
-</ng-template>
+<div bsModal #saveModal="bs-modal" class="gc-modal modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header alert-success">
+        <h4 class="modal-title pull-left">Manutenção de {{ vm.actionTitle }}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" #createForm="ngForm">
+        <div class="modal-body">
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+          <div class="row">
+            <section class="col-md-12">
+              <div class="form-group">
+                <label for="Nome">{{ vm.labels.nome }}</label>
+                <input type="text" class="form-control" name="nome" [(ngModel)]="vm.model.nome" required />
+              </div>
+            </section>
+            <section class="col-md-12">
+              <div class="form-group">
+                <label for="FluxoTrabalhoTipoId">{{ vm.labels.fluxoTrabalhoTipoId }}</label>
+                <make-select (msChange)="onChange_makeSelect_model_fluxoTrabalhoTipoId($event)" [dataitem]="'FluxoTrabalhoTipo'" [value]="vm.model.fluxoTrabalhoTipoId"></make-select>
+              </div>
+            </section>
+            <section class="col-md-12">
+              <div class="form-group">
+                <label for="CorFundo">{{ vm.labels.corFundo }}</label>
+                <input type="text" class="form-control" name="corFundo" [(ngModel)]="vm.model.corFundo" />
+              </div>
+            </section>
+            <section class="col-md-12">
+              <div class="form-group">
+                <label for="CorFonte">{{ vm.labels.corFonte }}</label>
+                <input type="text" class="form-control" name="corFonte" [(ngModel)]="vm.model.corFonte" />
+              </div>
+            </section>
+            <section class="col-md-12">
+              <div class="form-group">
+                <label for="Ordem">{{ vm.labels.ordem }}</label>
+                <input type="text" class="form-control" name="ordem" [(ngModel)]="vm.model.ordem" />
+              </div>
+            </section>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
+          <button type="submit" class="btn btn-success" [disabled]="!createForm.form.valid">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
-<hr>
+<div bsModal #editModal="bs-modal" class="gc-modal modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header alert-success">
+        <h4 class="modal-title pull-left">Manutenção de {{ vm.actionTitle }}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" #editForm="ngForm">
+        <div class="modal-body">
+          <div class="row">
+            <input type="hidden" name="fluxoTrabalhoStatusId" id="fluxoTrabalhoStatusId" [(ngModel)]="vm.model.fluxoTrabalhoStatusId" />
+            <section class="col-md-12">
+              <div class="form-group">
+                <label for="Nome">{{ vm.labels.nome }}</label>
+                <input type="text" class="form-control" name="nome" [(ngModel)]="vm.model.nome" required />
+              </div>
+            </section>
+            <section class="col-md-12">
+              <div class="form-group">
+                <label for="FluxoTrabalhoTipoId">{{ vm.labels.fluxoTrabalhoTipoId }}</label>
+                <make-select (msChange)="onChange_makeSelect_model_fluxoTrabalhoTipoId($event)" [dataitem]="'FluxoTrabalhoTipo'" [value]="vm.model.fluxoTrabalhoTipoId" ms-required></make-select>
+              </div>
+            </section>
+            <section class="col-md-12">
+              <div class="form-group">
+                <label for="CorFundo">{{ vm.labels.corFundo }}</label>
+                <input type="text" class="form-control" name="corFundo" [(ngModel)]="vm.model.corFundo" />
+              </div>
+            </section>
+            <section class="col-md-12">
+              <div class="form-group">
+                <label for="CorFonte">{{ vm.labels.corFonte }}</label>
+                <input type="text" class="form-control" name="corFonte" [(ngModel)]="vm.model.corFonte" />
+              </div>
+            </section>
+            <section class="col-md-12">
+              <div class="form-group">
+                <label for="Ordem">{{ vm.labels.ordem }}</label>
+                <input type="text" class="form-control" name="ordem" [(ngModel)]="vm.model.ordem" />
+              </div>
+            </section>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
+          <button type="submit" class="btn btn-success" [disabled]="!editForm.form.valid">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
-<pre>{{closeResult}}</pre>
+<div bsModal #detailsModal="bs-modal" class="gc-modal modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header alert-success">
+        <h4 class="modal-title pull-left">detalhes de {{ vm.actionTitle }}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <dl>
+          <dt>{{ vm.labels.nome }}</dt>
+          <dd><bind-custom [bcModel]="vm.model.nome" [type]="'string'"></bind-custom></dd>
+          <dt>{{ vm.labels.fluxoTrabalhoTipoId }}</dt>
+          <dd><bind-custom [bcModel]="vm.model.fluxoTrabalhoTipoId" [type]="'propertyInstance'" [propertyName]="fluxoTrabalhoTipoId" [reletedClass]="FluxoTrabalhoTipo"></bind-custom></dd>
+          <dt>{{ vm.labels.corFundo }}</dt>
+          <dd><bind-custom [bcModel]="vm.model.corFundo" [type]="'string'"></bind-custom></dd>
+          <dt>{{ vm.labels.corFonte }}</dt>
+          <dd><bind-custom [bcModel]="vm.model.corFonte" [type]="'string'"></bind-custom></dd>
+          <dt>{{ vm.labels.ordem }}</dt>
+          <dd><bind-custom [bcModel]="vm.model.ordem" [type]="'int?'"></bind-custom></dd>
+        </dl>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
+      </div>
+
+      </div>
+  </div>
+</div>

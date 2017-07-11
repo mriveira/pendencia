@@ -163,11 +163,13 @@ export class ApiService<T> {
 
     private getBase(url: string, filters?: any, onlyDataResult?: boolean): Observable<T> {
 
-        if (filters != null && filters.Id != null) {
-            url += '/' + filters.Id;
+        if (filters != null && filters.id != null) {
+            url += '/' + filters.id;
         }
 
         GlobalVariableService.GetRequestControl().Set(true)
+
+        console.log("getBase", url, filters);
 
         return this.http.get(url,
             this.requestOptions().merge(new RequestOptions({

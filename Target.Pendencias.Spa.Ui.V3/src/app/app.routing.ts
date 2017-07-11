@@ -2,7 +2,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { TargetMainComponent } from './target-main/target-main.component';
 import { LoginComponent } from './login/login.component';
-import { FluxoTrabalhoStatusComponent } from './target-main/fluxo-trabalho-status/fluxo-trabalho-status.component'
 
 
 const APP_ROUTES: Routes = [

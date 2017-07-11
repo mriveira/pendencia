@@ -1,6 +1,6 @@
-﻿import { Component, OnInit} from '@angular/core';
+﻿import { Component, OnInit, ViewChild } from '@angular/core';
 
-
+import { ModalDirective } from 'ngx-bootstrap/modal';
 import { FluxoTrabalhoStatusService } from './fluxo-trabalho-status.service';
 
 @Component({
@@ -11,6 +11,11 @@ import { FluxoTrabalhoStatusService } from './fluxo-trabalho-status.service';
 export class FluxoTrabalhoStatusComponent implements OnInit {
 
     vm: any;
+    closeResult: string;
+
+    @ViewChild('saveModal') private saveModal: ModalDirective;
+    @ViewChild('editModal') private editModal: ModalDirective;
+    @ViewChild('detailsModal') private detailsModal: ModalDirective;
 
     constructor(private fluxoTrabalhoStatusService: FluxoTrabalhoStatusService) {
 
@@ -20,13 +25,13 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
     ngOnInit() {
 
         this.vm.mostrarFiltros = false;
-        
-        this.vm.ActionTitle = "FluxoTrabalhoStatus";
-        this.vm.ActionDescription = "";
-        this.vm.FilterResult = [];
-        this.vm.ModelFilter = [];
+        this.vm.actionTitle = "FluxoTrabalhoStatus";
+        this.vm.actionDescription = "";
+        this.vm.filterResult = [];
+        this.vm.modelFilter = [];
+        this.vm.model = {};
 
-        this.vm.Labels = {
+        this.vm.labels = {
             fluxoTrabalhoStatusId: 'fluxoTrabalhoStatusId',
             nome: 'nome',
             fluxoTrabalhoTipoId: 'fluxoTrabalhoTipoId',
@@ -36,42 +41,87 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
         }
 
         this.fluxoTrabalhoStatusService.get().subscribe((data) => {
-            this.vm.FilterResult = data.dataList;
+            this.vm.filterResult = data.dataList;
         })
 
     }
 
-    public onFilter(formFilter) {
 
-        this.fluxoTrabalhoStatusService.get(formFilter.value).subscribe((data) => {
-            this.vm.FilterResult = data.dataList;
+    public onFilter(filterModal) {
+
+        this.fluxoTrabalhoStatusService.get(filterModal).subscribe((result) => {
+            this.vm.filterResult = result.dataList;
         })
-    }
-
-    public onCreate() {
-
-
-    }
-
-    public onEdit() {
-
-    }
-
-    public onDetails() {
-
-    }
-
-    public onPrint() {
-
-    }
-
-    public onDelete() {
-
     }
 
     public onExport() {
 
 
+    }
+
+    public onCreate() {
+
+        this.saveModal.show();
+    }
+
+    public onEdit(model) {
+
+        this.editModal.show();
+        this.fluxoTrabalhoStatusService.get({ id: model}).subscribe((result) => {
+            this.vm.model = result.data;
+        })
+
+    }
+
+    public onSave(model) {
+
+        this.fluxoTrabalhoStatusService.save(model).subscribe((result) => {
+            this.vm.filterResult.push(result.data);
+        });
+
+        this.saveModal.hide();
+    }
+  
+    public onDetails(model) {
+
+        this.detailsModal.show();
+
+        this.fluxoTrabalhoStatusService.get({ id: model }).subscribe((result) => {
+            this.vm.model = result.data;
+        })
+
+    }
+
+    public onCancel() {
+
+        this.saveModal.hide();
+        this.editModal.hide();
+        this.detailsModal.hide();
+    }
+
+
+    public onPrint() {
+
+    }
+
+    public onDelete(model) {
+
+        this.fluxoTrabalhoStatusService.delete(model).subscribe((result) => {
+            this.vm.filterResult.push(result.data);
+        })
+
+    }
+
+
+    public onChange_makeSelect_model_fluxoTrabalhoTipoId(eventArgs) {
+        console.log("onChange_makeSelect_model_fluxoTrabalhoTipoId", eventArgs)
+        this.vm.model.fluxoTrabalhoTipoId = eventArgs;
+    }
+
+    public onChange_makeSelect_modelFilter_fluxoTrabalhoTipoId(eventArgs) {
+
+        console.log("onChange_makeSelect_modelFilter_fluxoTrabalhoTipoId", eventArgs)
+        this.vm.modelFilter.fluxoTrabalhoTipoId = eventArgs;
     }
 
 }

@@ -1,0 +1,35 @@
+﻿<div>
+  <div class="well">
+    <h3><i class="fa fa-edit"></i> {{ vm.actionTitle }}</h3>
+    <p>{{ vm.actionDescription }}</p>
+  </div>
+
+  <div class="modal-content">
+    
+    <div class="modal-header alert-success">
+      <h4 class="modal-title pull-left">detalhes de {{ vm.actionTitle }}</h4>
+    </div>
+
+    <div class="modal-body">
+      <dl>
+        <dt>{{ vm.labels.nome }}</dt>
+        <dd><bind-custom [bcModel]="vm.model.nome" [type]="'string'"></bind-custom></dd>
+        <dt>{{ vm.labels.fluxoTrabalhoTipoId }}</dt>
+        <dd><bind-custom [bcModel]="vm.model.fluxoTrabalhoTipoId" [type]="'propertyInstance'" [propertyName]="fluxoTrabalhoTipoId" [reletedClass]="FluxoTrabalhoTipo"></bind-custom></dd>
+        <dt>{{ vm.labels.corFundo }}</dt>
+        <dd><bind-custom [bcModel]="vm.model.corFundo" [type]="'string'"></bind-custom></dd>
+        <dt>{{ vm.labels.corFonte }}</dt>
+        <dd><bind-custom [bcModel]="vm.model.corFonte" [type]="'string'"></bind-custom></dd>
+        <dt>{{ vm.labels.ordem }}</dt>
+        <dd><bind-custom [bcModel]="vm.model.ordem" [type]="'int?'"></bind-custom></dd>
+      </dl>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+
+

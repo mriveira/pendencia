@@ -12,7 +12,7 @@ import { ApiService } from '../services/api.service';
 @Component({
     selector: 'make-select',
     template: `
-        <select [(ngModel)]="value" class="form-control" (change)="onChange()">
+        <select [(ngModel)]="value" class="form-control" (change)="_onChange()" >
             <option [value]="undefined">Selecione</option>
             <option *ngFor="let option of options" [value]="option.id">{{ option.name }}</option>
         </select>
@@ -25,39 +25,37 @@ export class MakeSelectComponent implements OnInit {
     * Resource onde será feito o request
     * Exemplo `[dataitem]="'Midia'"`
     */
-    @Input()
-    dataitem: string;
+    @Input() dataitem: string;
 
     /**
     * Changes do feitos no select
     * Exemplo `(ngModelChange)="crud.filter.MidiaId = $event"`
     */
-    @Output()
-    ngModelChange = new EventEmitter<number>();
+    @Output() msChange = new EventEmitter<number>();
 
     /**
     * Valor inicial que virá no select
     * Exemplo `[value]="crud.model.MidiaId"`
     */
-    @Input()
-    value?: number;
+    @Input() value?: number;
 
     public options: any[];
 
-    constructor(public api: ApiService<any>) { }
+    constructor(public api: ApiService<any>) {
 
-    onChange() {
-        this.ngModelChange.emit(this.value);
+    }
+
+    _onChange() {
+        this.msChange.emit(this.value);
+        console.log("_onChange", this.value)
     }
 
     ngOnInit() {
         
         this.api.setResource(this.dataitem).getDataitem().subscribe((data) => {
-
-            console.log("MakeSelectComponent", data);
-
             this.options = data.dataList
         });
+       
     }
 
 }

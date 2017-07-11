@@ -113,12 +113,13 @@ namespace Common.Domain.Base
             this.BeginTransaction();
 
             var resultDomain = await this._serviceBase.Save(model, questionToContinue);
-            var resultDto = this.MapperDomainToDto<TD>(resultDomain);
 
+            await this.CommitAsync();
+
+            var resultDto = this.MapperDomainToDto<TD>(resultDomain);
             if (!DomainIsValid())
                 return resultDto;
 
-            await this.CommitAsync();
             return resultDto;
         }
 
