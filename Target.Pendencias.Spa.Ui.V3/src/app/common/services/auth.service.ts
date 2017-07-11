@@ -64,7 +64,7 @@ export class AuthService {
     public loginSso() {
 
 
-          
+
         let state = Date.now() + "" + Math.random();
         localStorage["state"] = state;
 
@@ -104,8 +104,7 @@ export class AuthService {
 
     public processTokenCallback() {
 
-        if (window.location.href.indexOf("access_token") > -1)
-        {
+        if (window.location.href.indexOf("access_token") > -1) {
 
             let hash = window.location.hash.substr(1);
 
@@ -138,6 +137,8 @@ export class AuthService {
 
         this.api.setResource('CurrentUser').get().subscribe(data => {
             callback(data)
+        }, err => {
+            this.loginSso();
         });
 
     }

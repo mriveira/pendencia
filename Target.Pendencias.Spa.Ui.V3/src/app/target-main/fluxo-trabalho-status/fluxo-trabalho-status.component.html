@@ -1,7 +1,12 @@
 ﻿<div>
 
   <div class="well">
-    <h3><i class="fa fa-edit"></i> {{ vm.actionTitle }}</h3>
+    <h3><i class="fa fa-edit"></i> {{ vm.actionTitle }} </h3>
+    <p><bind-custom [bcModel]="vm.dataValue" [type]="'date'"></bind-custom></p>
+    <p><bind-custom [bcModel]="vm.decimalValue" [type]="'decimal'"></bind-custom></p>
+    <p><bind-custom [bcModel]="vm.integerValue" [type]="'integer'"></bind-custom></p>
+    <p><bind-custom [bcModel]="vm.percentValue" [type]="'percent'"></bind-custom></p>
+    <p><bind-custom [bcModel]="vm.currencyValue" [type]="'currency'"></bind-custom></p>
     <p>{{ vm.actionDescription }}</p>
     <div class="row">
       <div class="col-xs-12">

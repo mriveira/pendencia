@@ -24,6 +24,12 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
 
     ngOnInit() {
 
+        this.vm.dataValue = new Date();
+        this.vm.decimalValue = 1.135;
+        this.vm.integerValue = 2.544;
+        this.vm.percentValue = 5.84852;
+        this.vm.currencyValue = 98484.69;
+
         this.vm.mostrarFiltros = false;
         this.vm.actionTitle = "FluxoTrabalhoStatus";
         this.vm.actionDescription = "";

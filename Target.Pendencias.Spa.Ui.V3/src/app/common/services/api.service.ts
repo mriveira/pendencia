@@ -195,8 +195,8 @@ export class ApiService<T> {
         //if (error.status == 401 || error.status == 403)
         //    window.location.href = "/login";
 
-        let err = error.json();
-        return Observable.throw(err);
+        //let err = error.json();
+        return Observable.throw(error);
     }
 
     private requestOptions(): RequestOptions {
