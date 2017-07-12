@@ -29,26 +29,30 @@ namespace Target.Pendencias.Application
 
         protected override ProjetoFluxoTrabalhoStatus MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _dto = dto as ProjetoFluxoTrabalhoStatusDtoSpecialized;
-            this._validatorAnnotations.Validate(_dto);
+			var _projetofluxotrabalhostatus = dto as ProjetoFluxoTrabalhoStatusDtoSpecialized;
+            this._validatorAnnotations.Validate(_projetofluxotrabalhostatus);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new ProjetoFluxoTrabalhoStatus.ProjetoFluxoTrabalhoStatusFactory().GetDefaaultInstance(_dto, this._user);
+			var domain = new ProjetoFluxoTrabalhoStatus.ProjetoFluxoTrabalhoStatusFactory().GetDefaaultInstance(_projetofluxotrabalhostatus, this._user);
             return domain;
         }
 
 
         protected override async Task<ProjetoFluxoTrabalhoStatus> AlterDomainWithDto<TDS>(TDS dto)
         {
-			var projetofluxotrabalhostatus = dto as ProjetoFluxoTrabalhoStatusDto;
-            var result = await this._serviceBase.GetOne(new ProjetoFluxoTrabalhoStatusFilter { ProjetoId = projetofluxotrabalhostatus.ProjetoId, FluxoTrabalhoStatusId = projetofluxotrabalhostatus.FluxoTrabalhoStatusId });
-
-            //Inicio da Transferencia dos valores
+			return await Task.Run(() =>
+            {
+				var _projetofluxotrabalhostatus = dto as ProjetoFluxoTrabalhoStatusDto;
+				//var result = await this._serviceBase.GetOne(new ProjetoFluxoTrabalhoStatusFilter { ProjetoId = projetofluxotrabalhostatus.ProjetoId, FluxoTrabalhoStatusId = projetofluxotrabalhostatus.FluxoTrabalhoStatusId });
+				var result = new ProjetoFluxoTrabalhoStatus.ProjetoFluxoTrabalhoStatusFactory().GetDefaaultInstance(_projetofluxotrabalhostatus, this._user);
+				//Inicio da Transferencia dos valores
            
 
-            //Fim da Transferencia dos valores
+				//Fim da Transferencia dos valores
 
-            return result;
+				return result;
+			});
+
         }
 
     }

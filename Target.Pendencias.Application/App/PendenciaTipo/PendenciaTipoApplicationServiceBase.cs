@@ -29,26 +29,30 @@ namespace Target.Pendencias.Application
 
         protected override PendenciaTipo MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _dto = dto as PendenciaTipoDtoSpecialized;
-            this._validatorAnnotations.Validate(_dto);
+			var _pendenciatipo = dto as PendenciaTipoDtoSpecialized;
+            this._validatorAnnotations.Validate(_pendenciatipo);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new PendenciaTipo.PendenciaTipoFactory().GetDefaaultInstance(_dto, this._user);
+			var domain = new PendenciaTipo.PendenciaTipoFactory().GetDefaaultInstance(_pendenciatipo, this._user);
             return domain;
         }
 
 
         protected override async Task<PendenciaTipo> AlterDomainWithDto<TDS>(TDS dto)
         {
-			var pendenciatipo = dto as PendenciaTipoDto;
-            var result = await this._serviceBase.GetOne(new PendenciaTipoFilter { PendenciaTipoId = pendenciatipo.PendenciaTipoId });
-
-            //Inicio da Transferencia dos valores
+			return await Task.Run(() =>
+            {
+				var _pendenciatipo = dto as PendenciaTipoDto;
+				//var result = await this._serviceBase.GetOne(new PendenciaTipoFilter { PendenciaTipoId = pendenciatipo.PendenciaTipoId });
+				var result = new PendenciaTipo.PendenciaTipoFactory().GetDefaaultInstance(_pendenciatipo, this._user);
+				//Inicio da Transferencia dos valores
            
 
-            //Fim da Transferencia dos valores
+				//Fim da Transferencia dos valores
 
-            return result;
+				return result;
+			});
+
         }
 
     }

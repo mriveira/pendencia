@@ -29,26 +29,30 @@ namespace Target.Pendencias.Application
 
         protected override ComentarioDocumento MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _dto = dto as ComentarioDocumentoDtoSpecialized;
-            this._validatorAnnotations.Validate(_dto);
+			var _comentariodocumento = dto as ComentarioDocumentoDtoSpecialized;
+            this._validatorAnnotations.Validate(_comentariodocumento);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new ComentarioDocumento.ComentarioDocumentoFactory().GetDefaaultInstance(_dto, this._user);
+			var domain = new ComentarioDocumento.ComentarioDocumentoFactory().GetDefaaultInstance(_comentariodocumento, this._user);
             return domain;
         }
 
 
         protected override async Task<ComentarioDocumento> AlterDomainWithDto<TDS>(TDS dto)
         {
-			var comentariodocumento = dto as ComentarioDocumentoDto;
-            var result = await this._serviceBase.GetOne(new ComentarioDocumentoFilter { DocumentoId = comentariodocumento.DocumentoId, ComentarioId = comentariodocumento.ComentarioId });
-
-            //Inicio da Transferencia dos valores
+			return await Task.Run(() =>
+            {
+				var _comentariodocumento = dto as ComentarioDocumentoDto;
+				//var result = await this._serviceBase.GetOne(new ComentarioDocumentoFilter { DocumentoId = comentariodocumento.DocumentoId, ComentarioId = comentariodocumento.ComentarioId });
+				var result = new ComentarioDocumento.ComentarioDocumentoFactory().GetDefaaultInstance(_comentariodocumento, this._user);
+				//Inicio da Transferencia dos valores
            
 
-            //Fim da Transferencia dos valores
+				//Fim da Transferencia dos valores
 
-            return result;
+				return result;
+			});
+
         }
 
     }

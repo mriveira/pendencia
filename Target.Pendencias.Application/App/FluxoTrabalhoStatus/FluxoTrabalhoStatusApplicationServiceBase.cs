@@ -29,26 +29,30 @@ namespace Target.Pendencias.Application
 
         protected override FluxoTrabalhoStatus MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _dto = dto as FluxoTrabalhoStatusDtoSpecialized;
-            this._validatorAnnotations.Validate(_dto);
+			var _fluxotrabalhostatus = dto as FluxoTrabalhoStatusDtoSpecialized;
+            this._validatorAnnotations.Validate(_fluxotrabalhostatus);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new FluxoTrabalhoStatus.FluxoTrabalhoStatusFactory().GetDefaaultInstance(_dto, this._user);
+			var domain = new FluxoTrabalhoStatus.FluxoTrabalhoStatusFactory().GetDefaaultInstance(_fluxotrabalhostatus, this._user);
             return domain;
         }
 
 
         protected override async Task<FluxoTrabalhoStatus> AlterDomainWithDto<TDS>(TDS dto)
         {
-			var fluxotrabalhostatus = dto as FluxoTrabalhoStatusDto;
-            var result = await this._serviceBase.GetOne(new FluxoTrabalhoStatusFilter { FluxoTrabalhoStatusId = fluxotrabalhostatus.FluxoTrabalhoStatusId });
-
-            //Inicio da Transferencia dos valores
+			return await Task.Run(() =>
+            {
+				var _fluxotrabalhostatus = dto as FluxoTrabalhoStatusDto;
+				//var result = await this._serviceBase.GetOne(new FluxoTrabalhoStatusFilter { FluxoTrabalhoStatusId = fluxotrabalhostatus.FluxoTrabalhoStatusId });
+				var result = new FluxoTrabalhoStatus.FluxoTrabalhoStatusFactory().GetDefaaultInstance(_fluxotrabalhostatus, this._user);
+				//Inicio da Transferencia dos valores
            
 
-            //Fim da Transferencia dos valores
+				//Fim da Transferencia dos valores
 
-            return result;
+				return result;
+			});
+
         }
 
     }

@@ -50,8 +50,8 @@ export class AuthService {
         }).subscribe(data => {
 
             CacheService.add(this._nameToken, data.Data.Token, ECacheType.COOKIE, 0.1);
+            this.router.navigate(["/home"]);
 
-            window.location.href = this.makeUrl('/Home');
 
             if (reload)
                 window.location.reload();
@@ -78,8 +78,7 @@ export class AuthService {
             "scope=" + encodeURI(this._scope) + "&" +
             "state=" + encodeURI(state);
 
-        window.location.href = url;
-
+        this.router.navigateByUrl(url);
 
         return this._typeLogin;
 
@@ -95,10 +94,10 @@ export class AuthService {
 
         if (this._typeLogin == "SSO") {
             var authorizationUrl = GlobalVariableService.GetEndPoints().AUTH + 'account/logout?returnUrl=' + GlobalVariableService.GetEndPoints().APP;
-            window.location.href = authorizationUrl;
+            this.router.navigateByUrl(authorizationUrl);
         }
         else {
-            window.location.href = this.makeUrl('/Login');
+            this.router.navigate(["/login"]);
         }
     }
 
@@ -115,7 +114,6 @@ export class AuthService {
                 return result;
             }, {}) as any;
 
-            console.log("processTokenCallback", result);
 
             if (!result.error) {
                 if (result.state !== localStorage["state"]) {

@@ -5,11 +5,11 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { FluxoTrabalhoStatusService } from '../fluxo-trabalho-status.service';
 
 @Component({
-    selector: 'app-fluxo-trabalho-status-print',
-    templateUrl: './fluxo-trabalho-status-print.component.html',
-    styleUrls: ['./fluxo-trabalho-status-print.component.css'],
+    selector: 'app-fluxo-trabalho-status-edit',
+    templateUrl: './fluxo-trabalho-status-edit.component.html',
+    styleUrls: ['./fluxo-trabalho-status-edit.component.css'],
 })
-export class FluxoTrabalhoStatusPrintComponent implements OnInit {
+export class FluxoTrabalhoStatusEditComponent implements OnInit {
 
     vm: any;
     id: number;

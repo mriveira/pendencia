@@ -29,26 +29,30 @@ namespace Target.Pendencias.Application
 
         protected override Pendencia MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _dto = dto as PendenciaDtoSpecialized;
-            this._validatorAnnotations.Validate(_dto);
+			var _pendencia = dto as PendenciaDtoSpecialized;
+            this._validatorAnnotations.Validate(_pendencia);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new Pendencia.PendenciaFactory().GetDefaaultInstance(_dto, this._user);
+			var domain = new Pendencia.PendenciaFactory().GetDefaaultInstance(_pendencia, this._user);
             return domain;
         }
 
 
         protected override async Task<Pendencia> AlterDomainWithDto<TDS>(TDS dto)
         {
-			var pendencia = dto as PendenciaDto;
-            var result = await this._serviceBase.GetOne(new PendenciaFilter { PendenciaId = pendencia.PendenciaId });
-
-            //Inicio da Transferencia dos valores
+			return await Task.Run(() =>
+            {
+				var _pendencia = dto as PendenciaDto;
+				//var result = await this._serviceBase.GetOne(new PendenciaFilter { PendenciaId = pendencia.PendenciaId });
+				var result = new Pendencia.PendenciaFactory().GetDefaaultInstance(_pendencia, this._user);
+				//Inicio da Transferencia dos valores
            
 
-            //Fim da Transferencia dos valores
+				//Fim da Transferencia dos valores
 
-            return result;
+				return result;
+			});
+
         }
 
     }

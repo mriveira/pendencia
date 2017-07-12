@@ -29,26 +29,30 @@ namespace Target.Pendencias.Application
 
         protected override PendenciaTempos MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _dto = dto as PendenciaTemposDtoSpecialized;
-            this._validatorAnnotations.Validate(_dto);
+			var _pendenciatempos = dto as PendenciaTemposDtoSpecialized;
+            this._validatorAnnotations.Validate(_pendenciatempos);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new PendenciaTempos.PendenciaTemposFactory().GetDefaaultInstance(_dto, this._user);
+			var domain = new PendenciaTempos.PendenciaTemposFactory().GetDefaaultInstance(_pendenciatempos, this._user);
             return domain;
         }
 
 
         protected override async Task<PendenciaTempos> AlterDomainWithDto<TDS>(TDS dto)
         {
-			var pendenciatempos = dto as PendenciaTemposDto;
-            var result = await this._serviceBase.GetOne(new PendenciaTemposFilter { PendenciaTemposId = pendenciatempos.PendenciaTemposId });
-
-            //Inicio da Transferencia dos valores
+			return await Task.Run(() =>
+            {
+				var _pendenciatempos = dto as PendenciaTemposDto;
+				//var result = await this._serviceBase.GetOne(new PendenciaTemposFilter { PendenciaTemposId = pendenciatempos.PendenciaTemposId });
+				var result = new PendenciaTempos.PendenciaTemposFactory().GetDefaaultInstance(_pendenciatempos, this._user);
+				//Inicio da Transferencia dos valores
            
 
-            //Fim da Transferencia dos valores
+				//Fim da Transferencia dos valores
 
-            return result;
+				return result;
+			});
+
         }
 
     }

@@ -29,26 +29,30 @@ namespace Target.Pendencias.Application
 
         protected override Comentario MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _dto = dto as ComentarioDtoSpecialized;
-            this._validatorAnnotations.Validate(_dto);
+			var _comentario = dto as ComentarioDtoSpecialized;
+            this._validatorAnnotations.Validate(_comentario);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new Comentario.ComentarioFactory().GetDefaaultInstance(_dto, this._user);
+			var domain = new Comentario.ComentarioFactory().GetDefaaultInstance(_comentario, this._user);
             return domain;
         }
 
 
         protected override async Task<Comentario> AlterDomainWithDto<TDS>(TDS dto)
         {
-			var comentario = dto as ComentarioDto;
-            var result = await this._serviceBase.GetOne(new ComentarioFilter { ComentarioId = comentario.ComentarioId });
-
-            //Inicio da Transferencia dos valores
+			return await Task.Run(() =>
+            {
+				var _comentario = dto as ComentarioDto;
+				//var result = await this._serviceBase.GetOne(new ComentarioFilter { ComentarioId = comentario.ComentarioId });
+				var result = new Comentario.ComentarioFactory().GetDefaaultInstance(_comentario, this._user);
+				//Inicio da Transferencia dos valores
            
 
-            //Fim da Transferencia dos valores
+				//Fim da Transferencia dos valores
 
-            return result;
+				return result;
+			});
+
         }
 
     }

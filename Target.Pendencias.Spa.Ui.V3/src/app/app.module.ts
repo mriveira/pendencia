@@ -1,13 +1,14 @@
 ﻿import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { routing } from './app.routing';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from 'app/common/services/auth.service'
 import { ApiService } from 'app/common/services/api.service';
-import { FluxoTrabalhoStatusService } from './target-main/fluxo-trabalho-status/fluxo-trabalho-status.service';
-
 import { AppComponent } from './app.component';
 import { TargetMainComponent } from './target-main/target-main.component';
 
@@ -15,12 +16,14 @@ import { TargetMainComponent } from './target-main/target-main.component';
     declarations: [
         AppComponent,
         TargetMainComponent,
-        LoginComponent,
+        LoginComponent
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         HttpModule,
-        routing
+        routing,
+        SimpleNotificationsModule.forRoot()
     ],
     providers: [AuthService, ApiService],
     bootstrap: [AppComponent]

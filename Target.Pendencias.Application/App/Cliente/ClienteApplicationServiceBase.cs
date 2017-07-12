@@ -29,26 +29,30 @@ namespace Target.Pendencias.Application
 
         protected override Cliente MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _dto = dto as ClienteDtoSpecialized;
-            this._validatorAnnotations.Validate(_dto);
+			var _cliente = dto as ClienteDtoSpecialized;
+            this._validatorAnnotations.Validate(_cliente);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new Cliente.ClienteFactory().GetDefaaultInstance(_dto, this._user);
+			var domain = new Cliente.ClienteFactory().GetDefaaultInstance(_cliente, this._user);
             return domain;
         }
 
 
         protected override async Task<Cliente> AlterDomainWithDto<TDS>(TDS dto)
         {
-			var cliente = dto as ClienteDto;
-            var result = await this._serviceBase.GetOne(new ClienteFilter { ClienteId = cliente.ClienteId });
-
-            //Inicio da Transferencia dos valores
+			return await Task.Run(() =>
+            {
+				var _cliente = dto as ClienteDto;
+				//var result = await this._serviceBase.GetOne(new ClienteFilter { ClienteId = cliente.ClienteId });
+				var result = new Cliente.ClienteFactory().GetDefaaultInstance(_cliente, this._user);
+				//Inicio da Transferencia dos valores
            
 
-            //Fim da Transferencia dos valores
+				//Fim da Transferencia dos valores
 
-            return result;
+				return result;
+			});
+
         }
 
     }

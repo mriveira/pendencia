@@ -29,26 +29,30 @@ namespace Target.Pendencias.Application
 
         protected override Acompanhadores MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _dto = dto as AcompanhadoresDtoSpecialized;
-            this._validatorAnnotations.Validate(_dto);
+			var _acompanhadores = dto as AcompanhadoresDtoSpecialized;
+            this._validatorAnnotations.Validate(_acompanhadores);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new Acompanhadores.AcompanhadoresFactory().GetDefaaultInstance(_dto, this._user);
+			var domain = new Acompanhadores.AcompanhadoresFactory().GetDefaaultInstance(_acompanhadores, this._user);
             return domain;
         }
 
 
         protected override async Task<Acompanhadores> AlterDomainWithDto<TDS>(TDS dto)
         {
-			var acompanhadores = dto as AcompanhadoresDto;
-            var result = await this._serviceBase.GetOne(new AcompanhadoresFilter { PendenciaId = acompanhadores.PendenciaId, UsuarioId = acompanhadores.UsuarioId });
-
-            //Inicio da Transferencia dos valores
+			return await Task.Run(() =>
+            {
+				var _acompanhadores = dto as AcompanhadoresDto;
+				//var result = await this._serviceBase.GetOne(new AcompanhadoresFilter { PendenciaId = acompanhadores.PendenciaId, UsuarioId = acompanhadores.UsuarioId });
+				var result = new Acompanhadores.AcompanhadoresFactory().GetDefaaultInstance(_acompanhadores, this._user);
+				//Inicio da Transferencia dos valores
            
 
-            //Fim da Transferencia dos valores
+				//Fim da Transferencia dos valores
 
-            return result;
+				return result;
+			});
+
         }
 
     }

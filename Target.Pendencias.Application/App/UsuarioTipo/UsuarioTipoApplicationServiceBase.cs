@@ -29,26 +29,30 @@ namespace Target.Pendencias.Application
 
         protected override UsuarioTipo MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _dto = dto as UsuarioTipoDtoSpecialized;
-            this._validatorAnnotations.Validate(_dto);
+			var _usuariotipo = dto as UsuarioTipoDtoSpecialized;
+            this._validatorAnnotations.Validate(_usuariotipo);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new UsuarioTipo.UsuarioTipoFactory().GetDefaaultInstance(_dto, this._user);
+			var domain = new UsuarioTipo.UsuarioTipoFactory().GetDefaaultInstance(_usuariotipo, this._user);
             return domain;
         }
 
 
         protected override async Task<UsuarioTipo> AlterDomainWithDto<TDS>(TDS dto)
         {
-			var usuariotipo = dto as UsuarioTipoDto;
-            var result = await this._serviceBase.GetOne(new UsuarioTipoFilter { UsuarioTipoId = usuariotipo.UsuarioTipoId });
-
-            //Inicio da Transferencia dos valores
+			return await Task.Run(() =>
+            {
+				var _usuariotipo = dto as UsuarioTipoDto;
+				//var result = await this._serviceBase.GetOne(new UsuarioTipoFilter { UsuarioTipoId = usuariotipo.UsuarioTipoId });
+				var result = new UsuarioTipo.UsuarioTipoFactory().GetDefaaultInstance(_usuariotipo, this._user);
+				//Inicio da Transferencia dos valores
            
 
-            //Fim da Transferencia dos valores
+				//Fim da Transferencia dos valores
 
-            return result;
+				return result;
+			});
+
         }
 
     }

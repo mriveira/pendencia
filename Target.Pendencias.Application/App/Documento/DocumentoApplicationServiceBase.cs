@@ -29,26 +29,30 @@ namespace Target.Pendencias.Application
 
         protected override Documento MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _dto = dto as DocumentoDtoSpecialized;
-            this._validatorAnnotations.Validate(_dto);
+			var _documento = dto as DocumentoDtoSpecialized;
+            this._validatorAnnotations.Validate(_documento);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new Documento.DocumentoFactory().GetDefaaultInstance(_dto, this._user);
+			var domain = new Documento.DocumentoFactory().GetDefaaultInstance(_documento, this._user);
             return domain;
         }
 
 
         protected override async Task<Documento> AlterDomainWithDto<TDS>(TDS dto)
         {
-			var documento = dto as DocumentoDto;
-            var result = await this._serviceBase.GetOne(new DocumentoFilter { DocumentoId = documento.DocumentoId });
-
-            //Inicio da Transferencia dos valores
+			return await Task.Run(() =>
+            {
+				var _documento = dto as DocumentoDto;
+				//var result = await this._serviceBase.GetOne(new DocumentoFilter { DocumentoId = documento.DocumentoId });
+				var result = new Documento.DocumentoFactory().GetDefaaultInstance(_documento, this._user);
+				//Inicio da Transferencia dos valores
            
 
-            //Fim da Transferencia dos valores
+				//Fim da Transferencia dos valores
 
-            return result;
+				return result;
+			});
+
         }
 
     }

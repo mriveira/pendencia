@@ -1,4 +1,5 @@
 ﻿import { Http, RequestOptions, Response, Headers, URLSearchParams } from '@angular/http';
+import { Router } from '@angular/router';
 import { Inject, Injectable, OnInit } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 
@@ -6,6 +7,7 @@ import { Observable, Observer } from 'rxjs/Rx';
 import { ECacheType } from 'app/common/type-cache.enum';
 import { GlobalVariableService } from 'app/globalvariable.service';
 import { CacheService } from 'app/common/services/cache.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Injectable()
 export class ApiService<T> {
@@ -14,7 +16,7 @@ export class ApiService<T> {
     private _enableNotifification: boolean;
     private _apiDefault: string;
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private notificationsService: NotificationsService, private router: Router) {
 
         this._apiDefault = GlobalVariableService.GetEndPoints().DEFAULT
         this._enableNotifification = true;
@@ -34,6 +36,7 @@ export class ApiService<T> {
             JSON.stringify(data),
             this.requestOptions())
             .map(res => {
+                this.notification(res);
                 return this.successResult(res);
             })
             .catch(error => {
@@ -53,6 +56,7 @@ export class ApiService<T> {
                 search: this.makeSearchParams(data)
             })))
             .map(res => {
+                this.notification(res);
                 return this.successResult(res);
             })
             .catch(error => {
@@ -71,6 +75,7 @@ export class ApiService<T> {
             JSON.stringify(data),
             this.requestOptions())
             .map(res => {
+                this.notification(res);
                 return this.successResult(res);
             })
             .catch(error => {
@@ -186,17 +191,35 @@ export class ApiService<T> {
             });
     }
 
-    private successResult(res: Response): Observable<T> {
-        return res.json();
+    private successResult(response: Response): Observable<T> {
+
+        let _response = response.json();
+        return _response;
     }
 
-    private errorResult(error: Response): Observable<T> {
+    private errorResult(response: Response): Observable<T> {
 
-        //if (error.status == 401 || error.status == 403)
-        //    window.location.href = "/login";
+        if (response.status == 401 || response.status == 403)
+            this.router.navigate(["/login"]);
 
-        let err = error.json();
-        return Observable.throw(err);
+        let _response = response.json();
+        let erros = "ocorreu um erro!";
+        if (_response.result != null) {
+            erros = _response.result.errors[0];
+        }
+
+        this.notificationsService.error(
+            'Erro',
+            erros,
+            {
+                timeOut: 5000,
+                showProgressBar: true,
+                pauseOnHover: false,
+                clickToClose: false,
+            }
+        )
+
+        return Observable.throw(erros);
     }
 
     private requestOptions(): RequestOptions {
@@ -208,6 +231,25 @@ export class ApiService<T> {
         return new RequestOptions({ headers: headers });
     }
 
+    private notification(response) {
+
+        let _response = response.json();
+        let msg = "Operação realizado com sucesso!";
+        if (_response.result != null) {
+            msg = _response.result.message;
+        }
+
+        this.notificationsService.success(
+            'Sucesso',
+            msg,
+            {
+                timeOut: 1000,
+                showProgressBar: true,
+                pauseOnHover: false,
+                clickToClose: false,
+            }
+        )
+    }
 
 
 }

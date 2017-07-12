@@ -29,26 +29,30 @@ namespace Target.Pendencias.Application
 
         protected override Projeto MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _dto = dto as ProjetoDtoSpecialized;
-            this._validatorAnnotations.Validate(_dto);
+			var _projeto = dto as ProjetoDtoSpecialized;
+            this._validatorAnnotations.Validate(_projeto);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new Projeto.ProjetoFactory().GetDefaaultInstance(_dto, this._user);
+			var domain = new Projeto.ProjetoFactory().GetDefaaultInstance(_projeto, this._user);
             return domain;
         }
 
 
         protected override async Task<Projeto> AlterDomainWithDto<TDS>(TDS dto)
         {
-			var projeto = dto as ProjetoDto;
-            var result = await this._serviceBase.GetOne(new ProjetoFilter { ProjetoId = projeto.ProjetoId });
-
-            //Inicio da Transferencia dos valores
+			return await Task.Run(() =>
+            {
+				var _projeto = dto as ProjetoDto;
+				//var result = await this._serviceBase.GetOne(new ProjetoFilter { ProjetoId = projeto.ProjetoId });
+				var result = new Projeto.ProjetoFactory().GetDefaaultInstance(_projeto, this._user);
+				//Inicio da Transferencia dos valores
            
 
-            //Fim da Transferencia dos valores
+				//Fim da Transferencia dos valores
 
-            return result;
+				return result;
+			});
+
         }
 
     }

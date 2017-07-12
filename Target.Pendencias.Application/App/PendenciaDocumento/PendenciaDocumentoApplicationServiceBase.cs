@@ -29,26 +29,30 @@ namespace Target.Pendencias.Application
 
         protected override PendenciaDocumento MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _dto = dto as PendenciaDocumentoDtoSpecialized;
-            this._validatorAnnotations.Validate(_dto);
+			var _pendenciadocumento = dto as PendenciaDocumentoDtoSpecialized;
+            this._validatorAnnotations.Validate(_pendenciadocumento);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new PendenciaDocumento.PendenciaDocumentoFactory().GetDefaaultInstance(_dto, this._user);
+			var domain = new PendenciaDocumento.PendenciaDocumentoFactory().GetDefaaultInstance(_pendenciadocumento, this._user);
             return domain;
         }
 
 
         protected override async Task<PendenciaDocumento> AlterDomainWithDto<TDS>(TDS dto)
         {
-			var pendenciadocumento = dto as PendenciaDocumentoDto;
-            var result = await this._serviceBase.GetOne(new PendenciaDocumentoFilter { PendenciaId = pendenciadocumento.PendenciaId, DocumentoId = pendenciadocumento.DocumentoId });
-
-            //Inicio da Transferencia dos valores
+			return await Task.Run(() =>
+            {
+				var _pendenciadocumento = dto as PendenciaDocumentoDto;
+				//var result = await this._serviceBase.GetOne(new PendenciaDocumentoFilter { PendenciaId = pendenciadocumento.PendenciaId, DocumentoId = pendenciadocumento.DocumentoId });
+				var result = new PendenciaDocumento.PendenciaDocumentoFactory().GetDefaaultInstance(_pendenciadocumento, this._user);
+				//Inicio da Transferencia dos valores
            
 
-            //Fim da Transferencia dos valores
+				//Fim da Transferencia dos valores
 
-            return result;
+				return result;
+			});
+
         }
 
     }

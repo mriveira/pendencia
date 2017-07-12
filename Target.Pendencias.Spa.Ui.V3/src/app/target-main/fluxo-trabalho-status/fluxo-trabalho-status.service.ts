@@ -9,9 +9,29 @@ export class FluxoTrabalhoStatusService {
 
     constructor(private api: ApiService<any>) {
 
-        
+
     }
 
+    initVM() {
+
+        return {
+            mostrarFiltros: false,
+            actionTitle: "FluxoTrabalhoStatus",
+            actionDescription: "",
+            messageConfirmation : "Deseja relamente executar essa operação?", 
+            filterResult: [],
+            modelFilter: [],
+            model: {},
+            labels: {
+                fluxoTrabalhoStatusId: 'fluxoTrabalhoStatusId',
+                nome: 'nome',
+                fluxoTrabalhoTipoId: 'fluxoTrabalhoTipoId',
+                corFundo: 'corFundo',
+                corFonte: 'corFonte',
+                ordem: 'ordem'
+            }
+        };
+    }
 
     get(filters?: any): Observable<any> {
 
@@ -20,7 +40,7 @@ export class FluxoTrabalhoStatusService {
 
     save(model: any): Observable<any> {
 
-        if (model.id != "undefined") {
+        if (model.fluxoTrabalhoStatusId != undefined) {
             return this.api.setResource('FluxoTrabalhoStatus').put(model);
         }
 
