@@ -1,7 +1,7 @@
 ﻿<div>
 
   <div class="well">
-    <h3><i class="fa fa-edit"></i> {{ vm.actionTitle }}</h3>
+    <h3><i class="fa fa-edit"></i> {{ vm.actionTitle }} </h3>
     <p>{{ vm.actionDescription }}</p>
     <div class="row">
       <div class="col-xs-12">
@@ -32,46 +32,14 @@
           </div>
           <div class="panel-body">
             <form #formFilter="ngForm" (ngSubmit)="onFilter(vm.modelFilter)">
-              <section class="col-md-6">
-                <div class='form-group'>
-                  <label>{{ vm.labels.fluxoTrabalhoStatusId }}</label>
-                  <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.fluxoTrabalhoStatusId' name='fluxoTrabalhoStatusId' />
-                </div>
-              </section>
-              <section class="col-md-6">
-                <div class='form-group'>
-                  <label>{{ vm.labels.nome }}</label>
-                  <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.nome' name='nome' />
-                </div>
-              </section>
-              <section class="col-md-6">
-                <div class='form-group'>
-                  {{ vm.labels.fluxoTrabalhoTipoId }}
-                  <make-select (msChange)="onChange_makeSelect_modelFilter_fluxoTrabalhoTipoId($event)" [dataitem]="'FluxoTrabalhoTipo'"></make-select>
-                </div>
-              </section>
-              <section class="col-md-6">
-                <div class='form-group'>
-                  <label>{{ vm.labels.corFundo }}</label>
-                  <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.corFundo' name='corFundo' />
-                </div>
-              </section>
-              <section class="col-md-6">
-                <div class='form-group'>
-                  <label>{{ vm.labels.corFonte }}</label>
-                  <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.corFonte' name='corFonte' />
-                </div>
-              </section>
-              <section class="col-md-6">
-                <div class='form-group'>
-                  <label>{{ vm.labels.ordem }}</label>
-                  <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.ordem' name='ordem' />
-                </div>
-              </section>
+            
+              <app-fluxo-trabalho-status-filter [(vm)]="vm"></app-fluxo-trabalho-status-filter>
+
               <button type="submit" class="btn btn-primary">
                 <span class="fa fa-search"></span>
                 Filtrar
               </button>
+
             </form>
           </div>
 
@@ -109,6 +77,7 @@
                   <td>{{ item.corFundo }}</td>
                   <td>{{ item.corFonte }}</td>
                   <td>{{ item.ordem }}</td>
+
                   <td>
                     <button (click)="onEdit(item.fluxoTrabalhoStatusId)" tooltip-placement="top" uib-tooltip="Editar" class="btn btn-xs btn-default">
                       <i class="fa fa-pencil"></i>
@@ -144,42 +113,6 @@
         </button>
       </div>
       <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" #createForm="ngForm">
-        <!--<div class="modal-body">
-
-          <div class="row">
-            <section class="col-md-12">
-              <div class="form-group">
-                <label for="Nome">{{ vm.labels.nome }}</label>
-                <input type="text" class="form-control" name="nome" [(ngModel)]="vm.model.nome" required />
-              </div>
-            </section>
-            <section class="col-md-12">
-              <div class="form-group">
-                <label for="FluxoTrabalhoTipoId">{{ vm.labels.fluxoTrabalhoTipoId }}</label>
-                <make-select (msChange)="onChange_makeSelect_model_fluxoTrabalhoTipoId($event)" [dataitem]="'FluxoTrabalhoTipo'" [value]="vm.model.fluxoTrabalhoTipoId"></make-select>
-              </div>
-            </section>
-            <section class="col-md-12">
-              <div class="form-group">
-                <label for="CorFundo">{{ vm.labels.corFundo }}</label>
-                <input type="text" class="form-control" name="corFundo" [(ngModel)]="vm.model.corFundo" />
-              </div>
-            </section>
-            <section class="col-md-12">
-              <div class="form-group">
-                <label for="CorFonte">{{ vm.labels.corFonte }}</label>
-                <input type="text" class="form-control" name="corFonte" [(ngModel)]="vm.model.corFonte" />
-              </div>
-            </section>
-            <section class="col-md-12">
-              <div class="form-group">
-                <label for="Ordem">{{ vm.labels.ordem }}</label>
-                <input type="text" class="form-control" name="ordem" [(ngModel)]="vm.model.ordem" />
-              </div>
-            </section>
-          </div>
-
-        </div>-->
 
         <app-fluxo-trabalho-status-field [(vm)]="vm"></app-fluxo-trabalho-status-field>
 
@@ -202,41 +135,6 @@
         </button>
       </div>
       <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" #editForm="ngForm">
-        <!--<div class="modal-body">
-          <div class="row">
-            <input type="hidden" name="fluxoTrabalhoStatusId" id="fluxoTrabalhoStatusId" [(ngModel)]="vm.model.fluxoTrabalhoStatusId" />
-            <section class="col-md-12">
-              <div class="form-group">
-                <label for="Nome">{{ vm.labels.nome }}</label>
-                <input type="text" class="form-control" name="nome" [(ngModel)]="vm.model.nome" required />
-              </div>
-            </section>
-            <section class="col-md-12">
-              <div class="form-group">
-                <label for="FluxoTrabalhoTipoId">{{ vm.labels.fluxoTrabalhoTipoId }}</label>
-                <make-select (msChange)="onChange_makeSelect_model_fluxoTrabalhoTipoId($event)" [dataitem]="'FluxoTrabalhoTipo'" [value]="vm.model.fluxoTrabalhoTipoId" ms-required></make-select>
-              </div>
-            </section>
-            <section class="col-md-12">
-              <div class="form-group">
-                <label for="CorFundo">{{ vm.labels.corFundo }}</label>
-                <input type="text" class="form-control" name="corFundo" [(ngModel)]="vm.model.corFundo" />
-              </div>
-            </section>
-            <section class="col-md-12">
-              <div class="form-group">
-                <label for="CorFonte">{{ vm.labels.corFonte }}</label>
-                <input type="text" class="form-control" name="corFonte" [(ngModel)]="vm.model.corFonte" />
-              </div>
-            </section>
-            <section class="col-md-12">
-              <div class="form-group">
-                <label for="Ordem">{{ vm.labels.ordem }}</label>
-                <input type="text" class="form-control" name="ordem" [(ngModel)]="vm.model.ordem" />
-              </div>
-            </section>
-          </div>
-        </div>-->
         <app-fluxo-trabalho-status-field [(vm)]="vm"></app-fluxo-trabalho-status-field>
         <div class="modal-footer">
           <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
@@ -257,20 +155,7 @@
         </button>
       </div>
 
-      <div class="modal-body">
-        <dl>
-          <dt>{{ vm.labels.nome }}</dt>
-          <dd><bind-custom [bcModel]="vm.model.nome" [type]="'string'"></bind-custom></dd>
-          <dt>{{ vm.labels.fluxoTrabalhoTipoId }}</dt>
-          <dd><bind-custom [bcModel]="vm.model.fluxoTrabalhoTipoId" [type]="'propertyInstance'" [propertyName]="fluxoTrabalhoTipoId" [reletedClass]="FluxoTrabalhoTipo"></bind-custom></dd>
-          <dt>{{ vm.labels.corFundo }}</dt>
-          <dd><bind-custom [bcModel]="vm.model.corFundo" [type]="'string'"></bind-custom></dd>
-          <dt>{{ vm.labels.corFonte }}</dt>
-          <dd><bind-custom [bcModel]="vm.model.corFonte" [type]="'string'"></bind-custom></dd>
-          <dt>{{ vm.labels.ordem }}</dt>
-          <dd><bind-custom [bcModel]="vm.model.ordem" [type]="'int?'"></bind-custom></dd>
-        </dl>
-      </div>
+      <app-fluxo-trabalho-status-details [(vm)]="vm"></app-fluxo-trabalho-status-details>
 
       <div class="modal-footer">
         <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>

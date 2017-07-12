@@ -11,12 +11,14 @@ import { AuthService } from 'app/common/services/auth.service'
 import { ApiService } from 'app/common/services/api.service';
 import { AppComponent } from './app.component';
 import { TargetMainComponent } from './target-main/target-main.component';
+import { LoadingComponent } from './common/components/loading.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         TargetMainComponent,
-        LoginComponent
+        LoginComponent,
+        LoadingComponent
     ],
     imports: [
         BrowserModule,

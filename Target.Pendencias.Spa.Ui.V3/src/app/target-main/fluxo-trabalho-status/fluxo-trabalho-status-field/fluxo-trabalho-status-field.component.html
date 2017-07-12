@@ -10,7 +10,7 @@
     <section class="col-md-12">
       <div class="form-group">
         <label for="FluxoTrabalhoTipoId">{{ vm.labels.fluxoTrabalhoTipoId }}</label>
-        <make-select (msChange)="onChange_makeSelect_model_fluxoTrabalhoTipoId($event)" [dataitem]="'FluxoTrabalhoTipo'" [value]="vm.model.fluxoTrabalhoTipoId" ms-required></make-select>
+        <make-select (msChange)="onChange_makeSelect_model_fluxoTrabalhoTipoId($event)" [dataitem]="'FluxoTrabalhoTipo'" [value]="vm.model.fluxoTrabalhoTipoId" [required]="true"></make-select>
       </div>
     </section>
     <section class="col-md-12">

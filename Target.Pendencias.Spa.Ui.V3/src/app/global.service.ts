@@ -1,25 +1,16 @@
 ﻿import { Injectable, EventEmitter } from '@angular/core'
 
-
-
 export class GlobalService {
 
-
     static operationExecuted = new EventEmitter<OperationExecutedParameters>();
-
-    static operationExecutedCallback = new EventEmitter<any>();
-
+    static operationRequesting = new EventEmitter<boolean>();
 
     public static GetEndPoints() {
         return new EndPoints();
     }
-
-    public static GetRequestControl() {
-        return new RequestControl();
-    }
-
-    public static GetOperationExecutedParameters(_selector: string, _operation: any, _message: string, _service?: any, _vm?: any, _operationCallback?: any) {
-        return new OperationExecutedParameters(_selector, _operation, _message, _service, _vm, _operationCallback);
+   
+    public static GetOperationExecutedParameters(_selector: string, _operation: any, _message: string) {
+        return new OperationExecutedParameters(_selector, _operation, _message);
     }
 
 };
@@ -30,18 +21,13 @@ export class OperationExecutedParameters {
     public selector: string;
     public operation: any;
     public message: string;
-    public service?: any;
-    public vm?: any;
-    public operationCallback: any;
 
-    constructor(_selector: string, _operation: any, _message: string, _service?: any, _vm?: any, _operationCallback? : any) {
+    constructor(_selector: string, _operation: any, _message: string) {
 
         this.selector = _selector;
         this.operation = _operation;
         this.message = _message;
-        this.service = _service;
-        this.vm = _vm;
-        this.operationCallback = _operationCallback;
+
     }
 
 }
@@ -49,18 +35,19 @@ export class OperationExecutedParameters {
 
 export class RequestControl {
 
-    private _REQUESTING;
+    private static _REQUESTING = false;
 
-    constructor() {
-        this._REQUESTING = false
-    }
+    static Set(value: boolean) {
 
-    Set(value: boolean) {
+        console.log(this._REQUESTING);
         this._REQUESTING = value;
+        
     }
 
-    Get() {
+    static Get() {
+        console.log(this._REQUESTING);
         return this._REQUESTING;
+
     }
 
 }

@@ -30,7 +30,8 @@ export class ApiService<T> {
 
     public post(data: any): Observable<T> {
 
-        GlobalService.GetRequestControl().Set(true);
+        let url = this.makeBaseUrl();
+        this.loading(url, true);
 
         return this.http.post(this.makeBaseUrl(),
             JSON.stringify(data),
@@ -43,15 +44,17 @@ export class ApiService<T> {
                 return this.errorResult(error);
             })
             .finally(() => {
-                GlobalService.GetRequestControl().Set(false);
+                this.loading(url, false);
             });
     }
 
     public delete(data: any): Observable<T> {
 
-        GlobalService.GetRequestControl().Set(true);
 
-        return this.http.delete(this.makeBaseUrl(),
+        let url = this.makeBaseUrl();
+        this.loading(url, true);
+
+        return this.http.delete(url,
             this.requestOptions().merge(new RequestOptions({
                 search: this.makeSearchParams(data)
             })))
@@ -63,15 +66,16 @@ export class ApiService<T> {
                 return this.errorResult(error);
             })
             .finally(() => {
-                GlobalService.GetRequestControl().Set(false);
+                this.loading(url, false);
             });
     }
 
     public put(data: any): Observable<T> {
 
-        GlobalService.GetRequestControl().Set(true);
+        let url = this.makeBaseUrl();
+        this.loading(url, true);
 
-        return this.http.put(this.makeBaseUrl(),
+        return this.http.put(url,
             JSON.stringify(data),
             this.requestOptions())
             .map(res => {
@@ -82,7 +86,7 @@ export class ApiService<T> {
                 return this.errorResult(error);
             })
             .finally(() => {
-                GlobalService.GetRequestControl().Set(false);
+                this.loading(url, false);
             });
     }
 
@@ -181,9 +185,7 @@ export class ApiService<T> {
             url += '/' + filters.id;
         }
 
-        GlobalService.GetRequestControl().Set(true)
-
-        console.log("getBase", url, filters);
+        this.loading(url, true);
 
         return this.http.get(url,
             this.requestOptions().merge(new RequestOptions({
@@ -196,7 +198,7 @@ export class ApiService<T> {
                 return this.errorResult(error);
             })
             .finally(() => {
-                GlobalService.GetRequestControl().Set(false);
+                this.loading(url, false);
             });
     }
 
@@ -231,7 +233,7 @@ export class ApiService<T> {
         return Observable.throw(erros);
     }
 
-   
+
 
     private notification(response) {
 
@@ -251,6 +253,13 @@ export class ApiService<T> {
                 clickToClose: false,
             }
         )
+    }
+
+    private loading(url: string, value: boolean) {
+
+        GlobalService.operationRequesting.emit(value);
+        console.log("aqui", url);
+
     }
 
 

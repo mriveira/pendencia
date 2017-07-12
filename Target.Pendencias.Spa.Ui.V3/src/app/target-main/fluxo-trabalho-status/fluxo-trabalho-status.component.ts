@@ -104,26 +104,16 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
 
         GlobalService.GetOperationExecutedParameters(
             "confirm-modal",
-            function (service: any, vm: any) {
+            () => {
 
-                service.delete({ fluxoTrabalhoStatusId: model }).subscribe((result) => {
-                    vm = vm.filter(function (el) {
+                this.fluxoTrabalhoStatusService.delete({ fluxoTrabalhoStatusId: model }).subscribe((result) => {
+                    this.vm.filterResult = this.vm.filterResult.filter(function (el) {
                         return el.fluxoTrabalhoStatusId !== model;
                     });
                 });
             },
-            this.vm.messageConfirmation,
-            this.fluxoTrabalhoStatusService,
-            this.vm.filterResult
-            //function (_vm) {
-            //    GlobalService.operationExecutedCallback.subscribe((vm) => {
-            //        _vm = vm;
-            //    });
-            //}
-        );
-
-
-
+            this.vm.messageConfirmation
+            );
 
     }
 

@@ -12,7 +12,7 @@ import { ApiService } from '../services/api.service';
 @Component({
     selector: 'make-select',
     template: `
-        <select [(ngModel)]="value" class="form-control" (change)="_onChange()" >
+        <select [(ngModel)]="value" class="form-control" (change)="_onChange()" [required]="required" >
             <option [value]="undefined">Selecione</option>
             <option *ngFor="let option of options" [value]="option.id">{{ option.name }}</option>
         </select>
@@ -26,6 +26,7 @@ export class MakeSelectComponent implements OnInit {
     * Exemplo `[dataitem]="'Midia'"`
     */
     @Input() dataitem: string;
+    @Input() required: boolean;
 
     /**
     * Changes do feitos no select
