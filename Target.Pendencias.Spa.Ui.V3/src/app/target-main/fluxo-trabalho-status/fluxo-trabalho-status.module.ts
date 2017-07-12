@@ -17,6 +17,7 @@ import { FluxoTrabalhoStatusRoutingModule } from './fluxo-trabalho-status.routin
 
 
 import { ApiService } from 'app/common/services/api.service';
+import { FluxoTrabalhoStatusFieldComponent } from './fluxo-trabalho-status-field/fluxo-trabalho-status-field.component';
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import { ApiService } from 'app/common/services/api.service';
         FluxoTrabalhoStatusEditComponent,
         MakeSelectComponent,  
         BindCustomComponent,
-        ConfirmModalComponent
+        ConfirmModalComponent,
+        FluxoTrabalhoStatusFieldComponent
     ],
     providers: [FluxoTrabalhoStatusService, ApiService, ConfirmModalComponent],
 })

@@ -35,10 +35,7 @@ export class FluxoTrabalhoStatusPrintComponent implements OnInit {
     }
     
 
-    public onCancel() {
-
-       
-    }
+   
 
 
 }

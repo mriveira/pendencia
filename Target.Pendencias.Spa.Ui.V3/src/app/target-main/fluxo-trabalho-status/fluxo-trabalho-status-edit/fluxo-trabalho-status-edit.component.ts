@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { FluxoTrabalhoStatusService } from '../fluxo-trabalho-status.service';
@@ -15,7 +15,7 @@ export class FluxoTrabalhoStatusEditComponent implements OnInit {
     id: number;
     private sub: any;
 
-    constructor(private fluxoTrabalhoStatusService: FluxoTrabalhoStatusService, private route: ActivatedRoute) {
+    constructor(private fluxoTrabalhoStatusService: FluxoTrabalhoStatusService, private route: ActivatedRoute, private router: Router) {
 
         this.vm = {};
     }
@@ -33,12 +33,12 @@ export class FluxoTrabalhoStatusEditComponent implements OnInit {
         })
 
     }
-    
 
-    public onCancel() {
+    onSave(model) {
 
-       
+        this.fluxoTrabalhoStatusService.save(model).subscribe((result) => {
+            this.router.navigate(["/fluxotrabalhostatus"])
+        });
     }
-
 
 }

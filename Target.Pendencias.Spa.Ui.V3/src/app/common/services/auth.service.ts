@@ -4,7 +4,7 @@ import { URLSearchParams, } from '@angular/http';
 
 import { ApiService } from 'app/common/services/api.service';
 import { ECacheType } from 'app/common/type-cache.enum';
-import { GlobalVariableService } from 'app/globalvariable.service';
+import { GlobalService } from 'app/global.service';
 import { CacheService } from 'app/common/services/cache.service';
 
 @Injectable()
@@ -28,9 +28,9 @@ export class AuthService {
         this._nameToken = "TOKEN_AUTH";
         this._nameEndPointAuthApi = "AUTHAPI";
         this._typeLogin = "SSO";
-        this._authorizationUrl = GlobalVariableService.GetEndPoints().AUTH + '/connect/authorize';
+        this._authorizationUrl = GlobalService.GetEndPoints().AUTH + '/connect/authorize';
         this._client_id = 'Target-spa-v2';
-        this._redirect_uri = GlobalVariableService.GetEndPoints().APP;
+        this._redirect_uri = GlobalService.GetEndPoints().APP;
         this._response_type = "token";
         this._scope = "ssosa";
 
@@ -39,7 +39,7 @@ export class AuthService {
 
     public loginResourceOwner(email, password, reload = false) {
 
-        this.apiAuth.setResource("auth", GlobalVariableService.GetEndPoints().AUTHAPI).post({
+        this.apiAuth.setResource("auth", GlobalService.GetEndPoints().AUTHAPI).post({
 
             ClientId: this._client_id,
             ClientSecret: "******",
@@ -78,7 +78,7 @@ export class AuthService {
             "scope=" + encodeURI(this._scope) + "&" +
             "state=" + encodeURI(state);
 
-        this.router.navigateByUrl(url);
+        window.location.href = url;
 
         return this._typeLogin;
 
@@ -93,7 +93,7 @@ export class AuthService {
         this._reset();
 
         if (this._typeLogin == "SSO") {
-            var authorizationUrl = GlobalVariableService.GetEndPoints().AUTH + 'account/logout?returnUrl=' + GlobalVariableService.GetEndPoints().APP;
+            var authorizationUrl = GlobalService.GetEndPoints().AUTH + 'account/logout?returnUrl=' + GlobalService.GetEndPoints().APP;
             this.router.navigateByUrl(authorizationUrl);
         }
         else {

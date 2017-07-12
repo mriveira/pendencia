@@ -131,6 +131,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 <div bsModal #saveModal="bs-modal" class="gc-modal modal fade">
@@ -143,7 +144,7 @@
         </button>
       </div>
       <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" #createForm="ngForm">
-        <div class="modal-body">
+        <!--<div class="modal-body">
 
           <div class="row">
             <section class="col-md-12">
@@ -177,7 +178,11 @@
               </div>
             </section>
           </div>
-        </div>
+
+        </div>-->
+
+        <app-fluxo-trabalho-status-field [(vm)]="vm"></app-fluxo-trabalho-status-field>
+
         <div class="modal-footer">
           <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
           <button type="submit" class="btn btn-success" [disabled]="!createForm.form.valid">Salvar</button>
@@ -197,7 +202,7 @@
         </button>
       </div>
       <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" #editForm="ngForm">
-        <div class="modal-body">
+        <!--<div class="modal-body">
           <div class="row">
             <input type="hidden" name="fluxoTrabalhoStatusId" id="fluxoTrabalhoStatusId" [(ngModel)]="vm.model.fluxoTrabalhoStatusId" />
             <section class="col-md-12">
@@ -231,7 +236,8 @@
               </div>
             </section>
           </div>
-        </div>
+        </div>-->
+        <app-fluxo-trabalho-status-field [(vm)]="vm"></app-fluxo-trabalho-status-field>
         <div class="modal-footer">
           <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
           <button type="submit" class="btn btn-success" [disabled]="!editForm.form.valid">Salvar</button>
@@ -274,20 +280,4 @@
   </div>
 </div>
 
-<div bsModal #confirmModal="bs-modal" class="gc-modal modal fade">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">Confirmação</h3>
-      </div>
-      <div class="modal-body">
-        {{ vm.messageConfirmation }}
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-danger" type="button" (click)="onConfimationYes()">Sim</button>
-        <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
+<confirm-modal ></confirm-modal>

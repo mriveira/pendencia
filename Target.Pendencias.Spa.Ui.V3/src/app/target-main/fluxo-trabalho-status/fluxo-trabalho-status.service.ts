@@ -1,6 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
-import { ApiService } from 'app/common/services/api.service';
 import { Observable, Observer } from 'rxjs/Rx';
+
+import { ApiService } from 'app/common/services/api.service';
 
 @Injectable()
 export class FluxoTrabalhoStatusService {
@@ -50,6 +51,7 @@ export class FluxoTrabalhoStatusService {
     delete(model: any): Observable<any> {
 
         return this.api.setResource('FluxoTrabalhoStatus').delete(model);
+
     }
 
 }

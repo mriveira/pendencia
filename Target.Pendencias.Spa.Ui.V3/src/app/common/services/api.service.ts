@@ -5,7 +5,7 @@ import { Observable, Observer } from 'rxjs/Rx';
 
 
 import { ECacheType } from 'app/common/type-cache.enum';
-import { GlobalVariableService } from 'app/globalvariable.service';
+import { GlobalService } from 'app/global.service';
 import { CacheService } from 'app/common/services/cache.service';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -18,7 +18,7 @@ export class ApiService<T> {
 
     constructor(private http: Http, private notificationsService: NotificationsService, private router: Router) {
 
-        this._apiDefault = GlobalVariableService.GetEndPoints().DEFAULT
+        this._apiDefault = GlobalService.GetEndPoints().DEFAULT
         this._enableNotifification = true;
     }
 
@@ -30,7 +30,7 @@ export class ApiService<T> {
 
     public post(data: any): Observable<T> {
 
-        GlobalVariableService.GetRequestControl().Set(true);
+        GlobalService.GetRequestControl().Set(true);
 
         return this.http.post(this.makeBaseUrl(),
             JSON.stringify(data),
@@ -43,13 +43,13 @@ export class ApiService<T> {
                 return this.errorResult(error);
             })
             .finally(() => {
-                GlobalVariableService.GetRequestControl().Set(false);
+                GlobalService.GetRequestControl().Set(false);
             });
     }
 
     public delete(data: any): Observable<T> {
 
-        GlobalVariableService.GetRequestControl().Set(true);
+        GlobalService.GetRequestControl().Set(true);
 
         return this.http.delete(this.makeBaseUrl(),
             this.requestOptions().merge(new RequestOptions({
@@ -63,13 +63,13 @@ export class ApiService<T> {
                 return this.errorResult(error);
             })
             .finally(() => {
-                GlobalVariableService.GetRequestControl().Set(false);
+                GlobalService.GetRequestControl().Set(false);
             });
     }
 
     public put(data: any): Observable<T> {
 
-        GlobalVariableService.GetRequestControl().Set(true);
+        GlobalService.GetRequestControl().Set(true);
 
         return this.http.put(this.makeBaseUrl(),
             JSON.stringify(data),
@@ -82,7 +82,7 @@ export class ApiService<T> {
                 return this.errorResult(error);
             })
             .finally(() => {
-                GlobalVariableService.GetRequestControl().Set(false);
+                GlobalService.GetRequestControl().Set(false);
             });
     }
 
@@ -136,6 +136,15 @@ export class ApiService<T> {
         return this._resource;
     }
 
+    public requestOptions(): RequestOptions {
+        const headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': "Bearer " + CacheService.get('TOKEN_AUTH', ECacheType.COOKIE)
+        });
+
+        return new RequestOptions({ headers: headers });
+    }
+
 
     private makeGetCustomMethodBaseUrl(method: string): string {
 
@@ -172,7 +181,7 @@ export class ApiService<T> {
             url += '/' + filters.id;
         }
 
-        GlobalVariableService.GetRequestControl().Set(true)
+        GlobalService.GetRequestControl().Set(true)
 
         console.log("getBase", url, filters);
 
@@ -187,7 +196,7 @@ export class ApiService<T> {
                 return this.errorResult(error);
             })
             .finally(() => {
-                GlobalVariableService.GetRequestControl().Set(false);
+                GlobalService.GetRequestControl().Set(false);
             });
     }
 
@@ -222,14 +231,7 @@ export class ApiService<T> {
         return Observable.throw(erros);
     }
 
-    private requestOptions(): RequestOptions {
-        const headers = new Headers({
-            'Content-Type': 'application/json',
-            'Authorization': "Bearer " + CacheService.get('TOKEN_AUTH', ECacheType.COOKIE)
-        });
-
-        return new RequestOptions({ headers: headers });
-    }
+   
 
     private notification(response) {
 

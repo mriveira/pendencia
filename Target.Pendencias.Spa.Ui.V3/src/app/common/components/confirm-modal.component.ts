@@ -1,52 +1,73 @@
 ﻿import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { GlobalService } from '../../global.service';
 
 @Component({
     selector: 'confirm-modal',
     template: `
-              <div bsModal #confirmModal="bs-modal" class="gc-modal modal fade">
-                  <div class="modal-header">
+              <div bsModal #_confirmModal="bs-modal" class="gc-modal modal fade">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
                       <h3 class="modal-title">Confirmação</h3>
+                    </div>
+                    <div class="modal-body">
+                      {{ vm.messageConfirmation }}
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-danger" type="button" (click)="onConfimationYes()">Sim</button>
+                      <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
+                    </div>
                   </div>
-                  <div class="modal-body">
-                      {{ message }}
-                  </div>
-                  <div class="modal-footer">
-                      <button class="btn btn-danger" type="button" ng-click="onYes()">Sim</button>
-                      <button class="btn btn-default" type="button" ng-click="onCancel()">Cancelar</button>
-                  </div>
-               </div>
-`,
+                </div>
+              </div>
+            ` 
 })
 export class ConfirmModalComponent implements OnInit {
 
 
-    @Input() message: string;
-    @Output() cmConfirm = new EventEmitter<boolean>();
+    
+    @ViewChild('_confirmModal') private _confirmModal: ModalDirective;
 
-    //@ViewChild('confirmModal') private confirmModal: ModalDirective;
+    vm: any;
+    message: string;
+
+    _openationConfimationYes: any;
+    _operationService: any;
+    _operationVM: any;
 
     constructor() {
-
+        this.vm = {};
+        this.vm.messageConfirmation = "tem certeza que deseja Executar Essa operaçã?"
     }
 
 
     ngOnInit() {
 
+        
+        GlobalService.operationExecuted.subscribe((result) => {
+            if (result.selector == "confirm-modal") {
+                this.vm.messageConfirmation = result.message;
+                this.show();
+                this._openationConfimationYes = result.operation;
+                this._operationService = result.service;
+                this._operationVM = result.vm;
+            };
+        })
+
     }
 
     show() {
-        //this.confirmModal.show();
+        this._confirmModal.show();
     }
 
-    onYes() {
-        this.cmConfirm.emit(true);
-        //this.confirmModal.hide();
+    onConfimationYes() {
+        this._openationConfimationYes(this._operationService, this._operationVM);
+        this._confirmModal.hide();
     }
 
     onCancel() {
-        this.cmConfirm.emit(false);
-        //this.confirmModal.hide();
+        this._confirmModal.hide();
     }
 
 }
