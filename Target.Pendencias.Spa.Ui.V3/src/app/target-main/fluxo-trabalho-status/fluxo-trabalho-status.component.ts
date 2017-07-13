@@ -31,8 +31,9 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
         this.vm = this.fluxoTrabalhoStatusService.initVM();
 
 
-        this.fluxoTrabalhoStatusService.get().subscribe((data) => {
-            this.vm.filterResult = data.dataList;
+        this.fluxoTrabalhoStatusService.get().subscribe((result) => {
+            this.vm.filterResult = result.dataList;
+            this.vm.summary = result.summary;
         })
 
     }
@@ -42,6 +43,7 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
 
         this.fluxoTrabalhoStatusService.get(modelFilter).subscribe((result) => {
             this.vm.filterResult = result.dataList;
+            this.vm.summary = result.summary;
         })
     }
 

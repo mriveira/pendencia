@@ -22,6 +22,7 @@ export class FluxoTrabalhoStatusService {
             messageConfirmation : "Deseja relamente executar essa operação?", 
             filterResult: [],
             modelFilter: [],
+            summary : {},
             model: {},
             labels: {
                 fluxoTrabalhoStatusId: 'fluxoTrabalhoStatusId',

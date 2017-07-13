@@ -30,7 +30,6 @@ export class ConfirmModalComponent implements OnInit {
     @ViewChild('_confirmModal') private _confirmModal: ModalDirective;
 
     vm: any;
-    message: string;
 
     _openationConfimationYes: any;
     _operationService: any;
