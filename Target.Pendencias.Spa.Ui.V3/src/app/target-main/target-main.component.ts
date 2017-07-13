@@ -29,9 +29,6 @@ export class TargetMainComponent implements OnInit {
                 if (result.data.tools != null) {
                     this.vm.menu = JSON.parse(result.data.tools)
                 }
-
-                this.vm.userInfo = "Usuário logado: " + this.vm.userName + " [" + this.vm.userRole + "]"
-
             }
 
         });

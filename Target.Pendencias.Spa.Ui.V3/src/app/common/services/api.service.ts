@@ -103,14 +103,13 @@ export class ApiService<T> {
     }
 
     public getDataitem(filters?: any): Observable<T> {
-        return this.getMethodCustom('GetDataItem');
+        return this.getMethodCustom('GetDataItem', filters);
     }
 
     public getMethodCustom(method: string, filters?: any): Observable<T> {
 
-        if (filters == null) {
+        if (filters == null)
             filters = {};
-        }
 
         filters.AttributeBehavior = method;
         return this.getBase(this.makeResourceMore(), filters);
@@ -256,10 +255,7 @@ export class ApiService<T> {
     }
 
     private loading(url: string, value: boolean) {
-
         GlobalService.operationRequesting.emit(value);
-        console.log("aqui", url);
-
     }
 
 

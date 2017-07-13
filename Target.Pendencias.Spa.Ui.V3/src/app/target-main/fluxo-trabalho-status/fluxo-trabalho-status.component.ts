@@ -110,7 +110,7 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
             "confirm-modal",
             () => {
                 this.fluxoTrabalhoStatusService.delete({ fluxoTrabalhoStatusId: model }).subscribe((result) => {
-                    this.vm.filterResult = this.vm.filterResult.filter(function (el) {
+                      this.vm.filterResult = this.vm.filterResult.filter(function (el) {
                         return el.fluxoTrabalhoStatusId !== model;
                     });
                 });
@@ -119,11 +119,9 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
         );
 
         GlobalService.operationExecuted.emit(conf);
-
     }
 
     public onConfimationYes() {
-
         this.operationConfimationYes();
     }
 

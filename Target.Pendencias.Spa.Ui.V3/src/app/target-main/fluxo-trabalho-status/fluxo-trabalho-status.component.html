@@ -1,137 +1,129 @@
-﻿<div>
+﻿<div class="gc-body__heading">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+  </ol>
 
-  <div class="well">
-    <h3><i class="fa fa-edit"></i> {{ vm.actionTitle }} </h3>
-    <p>{{ vm.actionDescription }}</p>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="btn-group pull-right" style="padding-bottom:10px;">
-          <a href="javascript:history.back()" class="btn btn-primary btn-sm" data-original-title="" title="" style="margin-left:10px;width:100px" tooltip-placement="top" uib-tooltip="Voltar">
-            <i class="fa fa-reply"></i> Voltar
+  <div class="gc-heading__controls">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col d-flex justify-content-end">
+          <a href="javascript:history.back()" class="btn btn-sm btn-outline-secondary mr-auto p-2">
+            <span class="fa fa-arrow-left" aria-hidden="true"></span> Voltar
           </a>
-          <a class="btn btn-success btn-sm" (click)="onCreate()" style="margin-left:10px;width:100px" tooltip-placement="top" uib-tooltip="Cadastrar">
-            <i class="fa fa-plus"></i> Cadastrar
-          </a>
-          <a class="btn btn-default btn-sm" (click)="onExport(vm.crud.modelFilter)" style="margin-left:10px;width:100px" tooltip-placement="top" uib-tooltip="Exportar para Excel">
-            <i class="fa fa-file-excel-o"></i> Excel
-          </a>
-          <a class="btn btn-primary btn-sm" (click)="vm.mostrarFiltros =! vm.mostrarFiltros" style="margin-left:10px;width:100px" tooltip-placement="top" uib-tooltip="Filtros">
-            <i class="fa fa-search"></i> Filtros
-          </a>
+          <button type="button" class="btn btn-sm btn-primary p-2" (click)="vm.mostrarFiltros = !vm.mostrarFiltros">
+            <span class="fa fa-filter" aria-hidden="true"></span> Filtros
+          </button>
+          <button type="button" class="btn btn-sm btn-success p-2" (click)="onCreate()">
+            <span class="fa fa-plus" aria-hidden="true"></span> Novo item
+          </button>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="filter-template">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-12">
-        <div class="panel panel-default" *ngIf="vm.mostrarFiltros">
-          <div class="panel-heading">
-            <h3>Filtros</h3>
-          </div>
-          <div class="panel-body">
-            <form #formFilter="ngForm" (ngSubmit)="onFilter(vm.modelFilter)">
-
-              <app-fluxo-trabalho-status-filter [(vm)]="vm"></app-fluxo-trabalho-status-filter>
-
-              <button type="submit" class="btn btn-primary">
+      <div class="col">
+        <h2 class="title--main">
+          <span class="fa fa-home" aria-hidden="true"></span> {{ vm.actionTitle }} <small>{{ vm.actionDescription }}</small>
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row" *ngIf="vm.mostrarFiltros">
+    <div class="col">
+      <div class="gc-filter">
+        <form #formFilter="ngForm" (ngSubmit)="onFilter(vm.modelFilter)">
+          <div class="card card-primary">
+            <div class="card-header">Filtros</div>
+            <div class="card-block">
+                <app-fluxo-trabalho-status-filter [(vm)]="vm"></app-fluxo-trabalho-status-filter>
+            </div>
+            <div class="card-footer d-flex justify-content-end">
+              <button class="btn btn-primary" type="submit">
                 <span class="fa fa-search"></span>
                 Filtrar
               </button>
-
-            </form>
+            </div>
           </div>
-
-          <div class="panel-footer" ng-show="vm.mostrarFiltros">
-
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
 
-  <div class="grid-template">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <i class="fa fa-table"></i> Resultado
-          </div>
-          <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover">
-              <thead>
-                <tr>
-                  <th>{{ vm.labels.fluxoTrabalhoStatusId }}</th>
-                  <th>{{ vm.labels.nome }}</th>
-                  <th>{{ vm.labels.corFundo }}</th>
-                  <th>{{ vm.labels.corFonte }}</th>
-                  <th>{{ vm.labels.ordem }}</th>
-                  <th style="width:120px;" class="text-center">Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of vm.filterResult">
-                  <td>{{ item.fluxoTrabalhoStatusId }}</td>
-                  <td>{{ item.nome }}</td>
-                  <td>{{ item.corFundo }}</td>
-                  <td>{{ item.corFonte }}</td>
-                  <td>{{ item.ordem }}</td>
-
-                  <td>
-                    <button (click)="onEdit(item.fluxoTrabalhoStatusId)" tooltip-placement="top" uib-tooltip="Editar" class="btn btn-xs btn-default">
-                      <i class="fa fa-pencil"></i>
-                    </button>
-                    <button (click)="onDetails(item.fluxoTrabalhoStatusId)" tooltip-placement="top" uib-tooltip="Detalhes" class="btn btn-xs btn-sm">
-                      <i class="fa fa-table"></i>
-                    </button>
-                    <button (click)="onPrint(item.fluxoTrabalhoStatusId)" tooltip-placement="top" uib-tooltip="Imprimir" class="btn btn-xs btn-success">
-                      <i class="fa fa-print"></i>
-                    </button>
-                    <button (click)="onDeleteConfimation(item.fluxoTrabalhoStatusId)" tooltip-placement="top" uib-tooltip="Excluir" class="btn btn-xs btn-danger">
-                      <i class="fa fa-trash-o"></i>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+  <div class="row">
+    <div class="col">
+      <div class="card gc-grid">
+        <div class="card-header gc-grid__header">
+          Titulo
+        </div>
+        <div class="card-block gc-grid__body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>{{ vm.labels.fluxoTrabalhoStatusId }}</th>
+                <th>{{ vm.labels.nome }}</th>
+                <th>{{ vm.labels.corFundo }}</th>
+                <th>{{ vm.labels.corFonte }}</th>
+                <th>{{ vm.labels.ordem }}</th>
+                <th width="175" class="text-center">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of vm.filterResult">
+                <td>{{ item.fluxoTrabalhoStatusId }}</td>
+                <td>{{ item.nome }}</td>
+                <td>{{ item.corFundo }}</td>
+                <td>{{ item.corFonte }}</td>
+                <td>{{ item.ordem }}</td>
+                <td>
+                  <button (click)="onEdit(item.fluxoTrabalhoStatusId)" tooltip-placement="top" uib-tooltip="Editar" class="btn btn-sm btn-default">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button (click)="onDetails(item.fluxoTrabalhoStatusId)" tooltip-placement="top" uib-tooltip="Detalhes" class="btn btn-sm">
+                    <i class="fa fa-table"></i>
+                  </button>
+                  <button (click)="onPrint(item.fluxoTrabalhoStatusId)" tooltip-placement="top" uib-tooltip="Imprimir" class="btn btn-sm btn-success">
+                    <i class="fa fa-print"></i>
+                  </button>
+                  <button (click)="onDeleteConfimation(item.fluxoTrabalhoStatusId)" tooltip-placement="top" uib-tooltip="Excluir" class="btn btn-sm btn-danger">
+                    <i class="fa fa-trash-o"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer gc-grid__footer">
+            <div class="gc-pagination">
+                <make-pagination [(vm)]="vm" (pageChanged)="onPageChanged($event)"></make-pagination>
+            </div>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="panel-footer text-center">
-    <div class="gc-pagination">
-      <make-pagination [(vm)]="vm" (pageChanged)="onPageChanged($event)"></make-pagination>
-    </div>
-  </div>
-
 </div>
 
-    <div bsModal #saveModal="bs-modal" class="gc-modal modal fade">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title pull-left">Manutenção de {{ vm.actionTitle }}</h4>
-            <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-
-          <form (ngSubmit)="onSave(vm.modelgit )" (keyup.enter)="onSave(vm.model)" #createForm="ngForm">
-
-            <app-fluxo-trabalho-status-field [(vm)]="vm"></app-fluxo-trabalho-status-field>
-
-            <div class="modal-footer">
-              <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
-              <button type="submit" class="btn btn-success" [disabled]="!createForm.form.valid">Salvar</button>
-            </div>
-
-          </form>
-        </div>
+<div bsModal #saveModal="bs-modal" class="gc-modal modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Manutenção de {{ vm.actionTitle }}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <form (ngSubmit)="onSave(vm.model)" #createForm="ngForm">
+        <app-fluxo-trabalho-status-field [(vm)]="vm"></app-fluxo-trabalho-status-field>
+        <div class="modal-footer">
+          <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
+          <button type="submit" class="btn btn-success" [disabled]="!createForm.form.valid">Salvar</button>
+        </div>
+      </form>
     </div>
+  </div>
+</div>
 
     <div bsModal #editModal="bs-modal" class="gc-modal modal fade">
       <div class="modal-dialog modal-lg">
@@ -173,4 +165,4 @@
       </div>
     </div>
 
-    <confirm-modal></confirm-modal>
+<confirm-modal ></confirm-modal>

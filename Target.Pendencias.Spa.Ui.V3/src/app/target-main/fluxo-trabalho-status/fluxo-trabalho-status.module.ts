@@ -17,7 +17,6 @@ import { ApiService } from 'app/common/services/api.service';
 import { MakeSelectComponent } from 'app/common/components/select.component';
 import { MakePaginationComponent } from 'app/common/components/pagination.component';
 
-
 @NgModule({
     imports: [
         CommonModule,

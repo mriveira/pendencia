@@ -41,7 +41,7 @@ export class EndPoints {
     public readonly APP: string;
 
     constructor() {
-        this.DEFAULT = 'http://localhost:8122/api/';
+        this.DEFAULT = 'http://localhost:8122/api';
         this.AUTHAPI = 'http://localhost:4000/api';
         this.AUTH = 'http://localhost:4000/';
         this.APP = 'http://localhost:4200';

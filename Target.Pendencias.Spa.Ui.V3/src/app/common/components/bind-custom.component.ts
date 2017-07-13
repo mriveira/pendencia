@@ -1,44 +1,85 @@
 ﻿import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { DatePipe, DecimalPipe, PercentPipe, CurrencyPipe } from "@angular/common";
+import { ApiService } from "app/common/services/api.service";
 
 @Component({
     selector: 'bind-custom',
-    template: `<label>{{ bcModel }}</label>`,
-    providers: [DatePipe, DecimalPipe, PercentPipe, CurrencyPipe],
+    template: `
+      <span *ngIf="tag === 'span' || !tag">{{ value }}</span>
+      <label *ngIf="tag === 'label'">{{ value }}</label>
+      <p *ngIf="tag === 'p'">{{ value }}</p>
+      <div *ngIf="tag === 'div'">{{ value }}</div>
+    `,
+    providers: [DatePipe, DecimalPipe, PercentPipe, CurrencyPipe, ApiService],
 })
 export class BindCustomComponent implements OnInit, OnChanges {
+        
 
-    @Input() bcModel: any;
-    @Input() type: any;
-    @Input() reletedClass: any;
-    @Input() propertyName: any;
+
+    value: any;
+
+    @Input() model: any;
+    @Input() format: string;
+    @Input() tag: string;
+    @Input() instance: string;
+    @Input() filterid: string;
 
     constructor(
         private datePipe: DatePipe,
         private decimalPipe: DecimalPipe,
         private percentPipe: PercentPipe,
-        private currencyPipe: CurrencyPipe) { }
+        private currencyPipe: CurrencyPipe,
+        private api: ApiService<any>) { }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (this.type === 'date')
-            this.bcModel = this.datePipe.transform(this.bcModel, 'dd/MM/yyyy');
+        
+        if (this.format === 'date')
+            this.value = this.datePipe.transform(this.model, 'dd/MM/yyyy');
 
-        if (this.type === 'decimal')
-            this.bcModel = this.decimalPipe.transform(this.bcModel, '1.2-2');
+        else if (this.format === 'time')
+            this.value = this.datePipe.transform(this.model, 'HH:mm');
 
-        if (this.type === 'integer')
-            this.bcModel = this.decimalPipe.transform(this.bcModel, '1.0-0');
+        else if (this.format === 'datetime')
+            this.value = this.datePipe.transform(this.model, 'dd/MM/yyyy HH:mm');
 
-        if (this.type === 'percent')
-            this.bcModel = this.percentPipe.transform(this.bcModel, '1.2-2');
+        else if (this.format === 'decimal')
+            this.value = this.decimalPipe.transform(this.model, '1.2-2');
 
-        if (this.type === 'currency')
-            this.bcModel = this.currencyPipe.transform(this.bcModel, 'BRL', true, '1.2-2');
+        else if (this.format === 'integer')
+            this.value = this.decimalPipe.transform(this.model, '1.0-0');
+
+        else if (this.format === 'percent')
+            this.value = this.percentPipe.transform(this.model, '1.2-2');
+
+        else if (this.format === 'currency')
+            this.value = this.currencyPipe.transform(this.model, 'BRL', true, '1.2-2');
+
+        else if (this.format === 'bool')
+            this.value = (this.model == true ? "Sim" : "Não");
+
+        else if (this.format === 'instance')
+            this._getInstance();
+
+        else
+            this.value = this.model;
+    }
+
+    ngOnInit(): void {
+
     }
 
 
-    ngOnInit() {
+    private _getInstance() {
 
+        if (!this.instance || !this.model) {
+            this.value = "carregando...";
+            return;
+        }
+
+        var filter = eval("[{ " + this.filterid + ": " + this.model + " }]");
+        this.api.setResource(this.instance).getDataitem(filter[0]).subscribe(data => {
+            this.value = data.dataList[0].name;
+        });
     }
 
 }
