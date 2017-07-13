@@ -1,5 +1,6 @@
 ﻿import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+import { GlobalService } from 'app/global.service';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -9,8 +10,8 @@ import { ApiService } from '../services/api.service';
             (pageChanged)="pageChanged()" 
             itemsPerPage="10" 
             totalItems="{{vm.summary.total}}" 
-            previousText="'Anterior'"
-            nextText="'Próximo'" 
+            previousText="Anterior"
+            nextText="Próximo" 
             maxSize="5" 
             rotate="true">
         </pagination>
@@ -30,9 +31,10 @@ export class MakePaginationComponent {
 
     constructor() { }
 
-    onPageChanged() {
+    onPageChanged(paging: any) {
 
-
+        console.log(paging);
+        //GlobalService.operationPaging.emit()
     }
 
 }

@@ -32,7 +32,7 @@
           </div>
           <div class="panel-body">
             <form #formFilter="ngForm" (ngSubmit)="onFilter(vm.modelFilter)">
-            
+
               <app-fluxo-trabalho-status-filter [(vm)]="vm"></app-fluxo-trabalho-status-filter>
 
               <button type="submit" class="btn btn-primary">
@@ -101,68 +101,76 @@
     </div>
   </div>
 
+  <div class="panel-footer text-center">
+    <div class="gc-pagination">
+      <make-pagination [(vm)]="vm"></make-pagination>
+    </div>
+  </div>
+
 </div>
 
-<div bsModal #saveModal="bs-modal" class="gc-modal modal fade">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">Manutenção de {{ vm.actionTitle }}</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" #createForm="ngForm">
+    <div bsModal #saveModal="bs-modal" class="gc-modal modal fade">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">Manutenção de {{ vm.actionTitle }}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
 
-        <app-fluxo-trabalho-status-field [(vm)]="vm"></app-fluxo-trabalho-status-field>
+          <form (ngSubmit)="onSave(vm.model,createForm)" (keyup.enter)="onSave(vm.model)" #createForm="ngForm">
 
-        <div class="modal-footer">
-          <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
-          <button type="submit" class="btn btn-success" [disabled]="!createForm.form.valid">Salvar</button>
+            <app-fluxo-trabalho-status-field [(vm)]="vm"></app-fluxo-trabalho-status-field>
+
+            <div class="modal-footer">
+              <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
+              <button type="submit" class="btn btn-success" [disabled]="!createForm.form.valid">Salvar</button>
+            </div>
+
+          </form>
         </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<div bsModal #editModal="bs-modal" class="gc-modal modal fade">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">Manutenção de {{ vm.actionTitle }}</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
-      <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" #editForm="ngForm">
-        <app-fluxo-trabalho-status-field [(vm)]="vm"></app-fluxo-trabalho-status-field>
-        <div class="modal-footer">
-          <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
-          <button type="submit" class="btn btn-success" [disabled]="!editForm.form.valid">Salvar</button>
+    </div>
+
+    <div bsModal #editModal="bs-modal" class="gc-modal modal fade">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">Manutenção de {{ vm.actionTitle }}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" #editForm="ngForm">
+            <app-fluxo-trabalho-status-field [(vm)]="vm"></app-fluxo-trabalho-status-field>
+            <div class="modal-footer">
+              <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
+              <button type="submit" class="btn btn-success" [disabled]="!editForm.form.valid">Salvar</button>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<div bsModal #detailsModal="bs-modal" class="gc-modal modal fade">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">detalhes de {{ vm.actionTitle }}</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
-
-      <app-fluxo-trabalho-status-details [(vm)]="vm"></app-fluxo-trabalho-status-details>
-
-      <div class="modal-footer">
-        <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
-      </div>
-
     </div>
-  </div>
-</div>
 
-<confirm-modal ></confirm-modal>
+    <div bsModal #detailsModal="bs-modal" class="gc-modal modal fade">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">detalhes de {{ vm.actionTitle }}</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <app-fluxo-trabalho-status-details [(vm)]="vm"></app-fluxo-trabalho-status-details>
+
+          <div class="modal-footer">
+            <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <confirm-modal></confirm-modal>

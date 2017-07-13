@@ -8,6 +8,7 @@
 export class FluxoTrabalhoStatusFieldComponent implements OnInit {
 
     @Input() vm: any;
+    
 
     constructor() { }
 

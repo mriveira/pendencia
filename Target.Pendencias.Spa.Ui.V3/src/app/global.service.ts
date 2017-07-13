@@ -4,6 +4,7 @@ export class GlobalService {
 
     static operationExecuted = new EventEmitter<OperationExecutedParameters>();
     static operationRequesting = new EventEmitter<boolean>();
+    static operationPaging = new EventEmitter<any>();
 
     public static getEndPoints() {
         return new EndPoints();
@@ -27,26 +28,6 @@ export class OperationExecutedParameters {
         this.selector = _selector;
         this.operation = _operation;
         this.message = _message;
-
-    }
-
-}
-
-
-export class RequestControl {
-
-    private static _REQUESTING = false;
-
-    static Set(value: boolean) {
-
-        console.log(this._REQUESTING);
-        this._REQUESTING = value;
-        
-    }
-
-    static Get() {
-        console.log(this._REQUESTING);
-        return this._REQUESTING;
 
     }
 
