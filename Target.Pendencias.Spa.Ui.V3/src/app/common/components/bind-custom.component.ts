@@ -12,7 +12,9 @@ import { ApiService } from "app/common/services/api.service";
     `,
     providers: [DatePipe, DecimalPipe, PercentPipe, CurrencyPipe, ApiService],
 })
-export class BindCustomComponent implements OnChanges {
+export class BindCustomComponent implements OnInit, OnChanges {
+        
+
 
     value: any;
 
@@ -30,7 +32,7 @@ export class BindCustomComponent implements OnChanges {
         private api: ApiService<any>) { }
 
     ngOnChanges(changes: SimpleChanges): void {
-
+        
         if (this.format === 'date')
             this.value = this.datePipe.transform(this.model, 'dd/MM/yyyy');
 
@@ -61,6 +63,11 @@ export class BindCustomComponent implements OnChanges {
         else
             this.value = this.model;
     }
+
+    ngOnInit(): void {
+
+    }
+
 
     private _getInstance() {
 

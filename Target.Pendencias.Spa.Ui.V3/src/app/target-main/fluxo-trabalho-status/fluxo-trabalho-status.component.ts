@@ -119,17 +119,11 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
         );
 
         GlobalService.operationExecuted.emit(conf);
-
-
     }
 
     public onConfimationYes() {
-
         this.operationConfimationYes();
     }
-
-
-
 
     public onChange_makeSelect_modelFilter_fluxoTrabalhoTipoId(eventArgs) {
         this.vm.modelFilter.fluxoTrabalhoTipoId = eventArgs;
