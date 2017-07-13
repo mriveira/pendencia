@@ -69,7 +69,7 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
 
     public onSave(model) {
 
-
+        console.log(model)
         this.fluxoTrabalhoStatusService.save(model).subscribe((result) => {
 
             this.vm.filterResult = this.vm.filterResult.filter(function (el) {
@@ -109,7 +109,6 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
         var conf = GlobalService.operationExecutedParameters(
             "confirm-modal",
             () => {
-                console.log("confirm-modal")
                 this.fluxoTrabalhoStatusService.delete({ fluxoTrabalhoStatusId: model }).subscribe((result) => {
                     this.vm.filterResult = this.vm.filterResult.filter(function (el) {
                         return el.fluxoTrabalhoStatusId !== model;
@@ -120,7 +119,6 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
         );
 
         GlobalService.operationExecuted.emit(conf);
-
 
     }
 
