@@ -7,7 +7,7 @@ import { ApiService } from '../services/api.service';
     selector: 'make-pagination',
     template: `
         <pagination 
-            (pageChanged)="pageChanged()" 
+            (pageChanged)="onPageChanged($event)" 
             itemsPerPage="10" 
             totalItems="{{vm.summary.total}}" 
             previousText="Anterior"
@@ -26,15 +26,15 @@ import { ApiService } from '../services/api.service';
 export class MakePaginationComponent {
 
     @Input() vm: any;
-    @Input() itemsPerPage: number;
-    @Input() totalItems: number;
-
+    @Output() pageChanged = new EventEmitter<any>();
     constructor() { }
 
-    onPageChanged(paging: any) {
+    onPageChanged(e: any) {
 
-        console.log(paging);
-        //GlobalService.operationPaging.emit()
+        this.pageChanged.emit({
+            PageIndex: e.page,
+            PageSize: e.itemsPerPage,
+        })
     }
 
 }

@@ -129,12 +129,16 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
         this.operationConfimationYes();
     }
 
+    public onPageChanged(e) {
 
+        let modelFilter = this.fluxoTrabalhoStatusService.pagingConfig(this.vm.modelFilter, e);
 
-
-    public onChange_makeSelect_modelFilter_fluxoTrabalhoTipoId(eventArgs) {
-
-        this.vm.modelFilter.fluxoTrabalhoTipoId = eventArgs;
+        this.fluxoTrabalhoStatusService.get(modelFilter).subscribe((result) => {
+            this.vm.filterResult = result.dataList;
+            this.vm.summary = result.summary;
+            console.log(this.vm.filterResult);
+        });
     }
+
 
 }

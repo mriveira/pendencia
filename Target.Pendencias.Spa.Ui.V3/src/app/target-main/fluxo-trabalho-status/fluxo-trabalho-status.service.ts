@@ -35,6 +35,16 @@ export class FluxoTrabalhoStatusService {
         };
     }
 
+    pagingConfig(modelFilter,pageConfig) {
+
+        return Object.assign(modelFilter, {
+            PageIndex: pageConfig.PageIndex,
+            PageSize: pageConfig.PageSize,
+            IsPagination: true
+        });
+
+    }
+
     get(filters?: any): Observable<any> {
 
         return this.api.setResource('FluxoTrabalhoStatus').get(filters);

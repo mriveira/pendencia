@@ -103,7 +103,7 @@
 
   <div class="panel-footer text-center">
     <div class="gc-pagination">
-      <make-pagination [(vm)]="vm"></make-pagination>
+      <make-pagination [(vm)]="vm" (pageChanged)="onPageChanged($event)"></make-pagination>
     </div>
   </div>
 

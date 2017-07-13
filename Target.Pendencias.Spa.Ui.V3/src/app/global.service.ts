@@ -4,7 +4,7 @@ export class GlobalService {
 
     static operationExecuted = new EventEmitter<OperationExecutedParameters>();
     static operationRequesting = new EventEmitter<boolean>();
-    static operationPaging = new EventEmitter<any>();
+
 
     public static getEndPoints() {
         return new EndPoints();
