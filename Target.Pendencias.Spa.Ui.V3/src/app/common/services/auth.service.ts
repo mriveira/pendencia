@@ -28,9 +28,9 @@ export class AuthService {
         this._nameToken = "TOKEN_AUTH";
         this._nameEndPointAuthApi = "AUTHAPI";
         this._typeLogin = "SSO";
-        this._authorizationUrl = GlobalService.GetEndPoints().AUTH + '/connect/authorize';
+        this._authorizationUrl = GlobalService.getEndPoints().AUTH + '/connect/authorize';
         this._client_id = 'Target-spa-v2';
-        this._redirect_uri = GlobalService.GetEndPoints().APP;
+        this._redirect_uri = GlobalService.getEndPoints().APP;
         this._response_type = "token";
         this._scope = "ssosa";
 
@@ -39,7 +39,7 @@ export class AuthService {
 
     public loginResourceOwner(email, password, reload = false) {
 
-        this.apiAuth.setResource("auth", GlobalService.GetEndPoints().AUTHAPI).post({
+        this.apiAuth.setResource("auth", GlobalService.getEndPoints().AUTHAPI).post({
 
             ClientId: this._client_id,
             ClientSecret: "******",
@@ -93,7 +93,7 @@ export class AuthService {
         this._reset();
 
         if (this._typeLogin == "SSO") {
-            var authorizationUrl = GlobalService.GetEndPoints().AUTH + 'account/logout?returnUrl=' + GlobalService.GetEndPoints().APP;
+            var authorizationUrl = GlobalService.getEndPoints().AUTH + 'account/logout?returnUrl=' + GlobalService.getEndPoints().APP;
             this.router.navigateByUrl(authorizationUrl);
         }
         else {

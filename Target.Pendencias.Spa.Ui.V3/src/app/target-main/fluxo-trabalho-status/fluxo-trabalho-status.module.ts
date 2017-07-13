@@ -31,7 +31,7 @@ import { FluxoTrabalhoStatusService } from './fluxo-trabalho-status.service';
         MakeSelectComponent,
         ConfirmModalComponent,
         FluxoTrabalhoStatusFieldComponent,
-        FluxoTrabalhoStatusFilterComponent
+        FluxoTrabalhoStatusFilterComponent,
     ],
     providers: [FluxoTrabalhoStatusService, ApiService, ConfirmModalComponent],
 })

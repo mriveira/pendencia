@@ -5,11 +5,11 @@ export class GlobalService {
     static operationExecuted = new EventEmitter<OperationExecutedParameters>();
     static operationRequesting = new EventEmitter<boolean>();
 
-    public static GetEndPoints() {
+    public static getEndPoints() {
         return new EndPoints();
     }
    
-    public static GetOperationExecutedParameters(_selector: string, _operation: any, _message: string) {
+    public static operationExecutedParameters(_selector: string, _operation: any, _message: string) {
         return new OperationExecutedParameters(_selector, _operation, _message);
     }
 

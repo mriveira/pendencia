@@ -18,7 +18,7 @@ export class ApiService<T> {
 
     constructor(private http: Http, private notificationsService: NotificationsService, private router: Router) {
 
-        this._apiDefault = GlobalService.GetEndPoints().DEFAULT
+        this._apiDefault = GlobalService.getEndPoints().DEFAULT
         this._enableNotifification = true;
     }
 

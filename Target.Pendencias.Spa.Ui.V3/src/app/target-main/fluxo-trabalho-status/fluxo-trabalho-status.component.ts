@@ -52,6 +52,7 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
 
     public onCreate() {
 
+        this.vm.model = {};
         this.saveModal.show();
     }
 
@@ -102,10 +103,10 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
 
     public onDeleteConfimation(model) {
 
-        GlobalService.GetOperationExecutedParameters(
+        var conf = GlobalService.operationExecutedParameters(
             "confirm-modal",
             () => {
-
+                console.log("confirm-modal")
                 this.fluxoTrabalhoStatusService.delete({ fluxoTrabalhoStatusId: model }).subscribe((result) => {
                     this.vm.filterResult = this.vm.filterResult.filter(function (el) {
                         return el.fluxoTrabalhoStatusId !== model;
@@ -113,7 +114,10 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
                 });
             },
             this.vm.messageConfirmation
-            );
+        );
+
+        GlobalService.operationExecuted.emit(conf);
+
 
     }
 
