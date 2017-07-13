@@ -5,7 +5,7 @@ import { GlobalService } from 'app/global.service';
     selector: 'loading',
     template: `
     <div class="loader" [hidden]="!requesting">
-        <img src="../../../assets/images/loader.gif" alt="carregando..." />
+        <img src="../../../assets/img/loader.gif" alt="carregando..." />
     </div>`,
     styles: [`
     .loader {

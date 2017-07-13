@@ -9,9 +9,10 @@ import { AuthService } from 'app/common/services/auth.service'
 export class TargetMainComponent implements OnInit {
 
     vm: any;
-
+    menuIsOpen: boolean;
     constructor(private authService: AuthService) {
         this.vm = {};
+        this.menuIsOpen = true;
     }
 
     ngOnInit() {
@@ -32,6 +33,11 @@ export class TargetMainComponent implements OnInit {
             }
 
         });
+    }
+
+    onToggleMenu() {
+
+        this.menuIsOpen = !this.menuIsOpen
     }
 
 }
