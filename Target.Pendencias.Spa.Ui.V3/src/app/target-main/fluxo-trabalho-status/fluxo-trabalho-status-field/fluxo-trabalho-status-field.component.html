@@ -1,10 +1,11 @@
-﻿<div class="modal-body">
+﻿
+<div class="modal-body">
   <div class="row">
     <input type="hidden" name="fluxoTrabalhoStatusId" id="fluxoTrabalhoStatusId" [(ngModel)]="vm.model.fluxoTrabalhoStatusId" />
     <section class="col-md-12">
       <div class="form-group">
         <label for="Nome">{{ vm.labels.nome }}</label>
-        <input type="text" class="form-control" name="nome" [(ngModel)]="vm.model.nome" required />
+        <input type="text" class="form-control" name="nome" (change)="isValid()" [(ngModel)]="vm.model.nome" required />
       </div>
     </section>
     <section class="col-md-12">

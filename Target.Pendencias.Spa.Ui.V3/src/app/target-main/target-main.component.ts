@@ -40,4 +40,9 @@ export class TargetMainComponent implements OnInit {
         this.menuIsOpen = !this.menuIsOpen
     }
 
+    onLogout() {
+
+        this.authService.logout();
+    }
+
 }

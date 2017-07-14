@@ -17,6 +17,9 @@ import { ApiService } from 'app/common/services/api.service';
 import { MakeSelectComponent } from 'app/common/components/select.component';
 import { MakePaginationComponent } from 'app/common/components/pagination.component';
 
+import { ValidationCustom } from 'app/common/directives/validation-custom.directive';
+
+
 @NgModule({
     imports: [
         CommonModule,
@@ -34,6 +37,7 @@ import { MakePaginationComponent } from 'app/common/components/pagination.compon
         ConfirmModalComponent,
         FluxoTrabalhoStatusFieldComponent,
         FluxoTrabalhoStatusFilterComponent,
+        ValidationCustom
     ],
     providers: [FluxoTrabalhoStatusService, ApiService, ConfirmModalComponent],
 })

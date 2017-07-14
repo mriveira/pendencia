@@ -1,5 +1,6 @@
-﻿import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, Output, EventEmitter, } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { FluxoTrabalhoStatusService } from './fluxo-trabalho-status.service';
@@ -14,11 +15,13 @@ import { GlobalService } from '../../global.service';
 export class FluxoTrabalhoStatusComponent implements OnInit {
 
     vm: any;
+
     operationConfimationYes: any;
 
     @ViewChild('saveModal') private saveModal: ModalDirective;
     @ViewChild('editModal') private editModal: ModalDirective;
     @ViewChild('detailsModal') private detailsModal: ModalDirective;
+    @ViewChild('formCreate') private formCreate;
 
     constructor(private fluxoTrabalhoStatusService: FluxoTrabalhoStatusService, private router: Router) {
 
@@ -29,7 +32,6 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
 
 
         this.vm = this.fluxoTrabalhoStatusService.initVM();
-
 
         this.fluxoTrabalhoStatusService.get().subscribe((result) => {
             this.vm.filterResult = result.dataList;
@@ -69,13 +71,14 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
 
     public onSave(model) {
 
-        console.log(model)
         this.fluxoTrabalhoStatusService.save(model).subscribe((result) => {
 
             this.vm.filterResult = this.vm.filterResult.filter(function (el) {
                 return el.fluxoTrabalhoStatusId !== result.data.fluxoTrabalhoStatusId;
             });
+
             this.vm.filterResult.push(result.data);
+            this.vm.summary.total = this.vm.filterResult.length
         });
 
         this.saveModal.hide();
@@ -110,9 +113,10 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
             "confirm-modal",
             () => {
                 this.fluxoTrabalhoStatusService.delete({ fluxoTrabalhoStatusId: model }).subscribe((result) => {
-                      this.vm.filterResult = this.vm.filterResult.filter(function (el) {
+                    this.vm.filterResult = this.vm.filterResult.filter(function (el) {
                         return el.fluxoTrabalhoStatusId !== model;
                     });
+                    this.vm.summary.total = this.vm.filterResult.length
                 });
             },
             this.vm.messageConfirmation
@@ -135,6 +139,13 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
             console.log(this.vm.filterResult);
         });
     }
+
+    public onOrderBy(field) {
+        console.log(field);
+    }
+
+
+    
 
 
 }
