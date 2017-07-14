@@ -10,34 +10,21 @@ namespace Target.Pendencias.Gen
     public class ConfigExternalResources
     {
 
-        private ExternalResource ConfigExternarResourcesTemplatesFrontAngularJs(bool replaceLocalFilesApplication) {
-
-            return new ExternalResource
-            {
-                ReplaceLocalFilesApplication = replaceLocalFilesApplication,
-                ResouceRepositoryName = "template-gerador-front-angularJS",
-                ResourceUrlRepository = "https://github.com/wilsonsantosnet/template-gerador-front-angularJS.git",
-                ResourceLocalPathFolderExecuteCloning = @"C:\Projetos\Outros\Repositorios",
-                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Target.Pendencias\Gerador.Gen\Templates\Front",
-            };
-
-        }
-
-        private ExternalResource ConfigExternarResourcesTemplatesFrontAngular(bool replaceLocalFilesApplication)
+        private ExternalResource ConfigExternarResourcesTemplatesFrontBs4Angular20(bool replaceLocalFilesApplication)
         {
 
             return new ExternalResource
             {
                 ReplaceLocalFilesApplication = replaceLocalFilesApplication,
-                ResouceRepositoryName = "template-gerador-front-angular",
-                ResourceUrlRepository = "https://github.com/wilsonsantosnet/template-gerador-front-angular.git",
+                ResouceRepositoryName = "template-gerador-front-bs4-angular2.0",
+                ResourceUrlRepository = "https://github.com/wilsonsantosnet/template-gerador-front-bs4-angular2.0.git",
                 ResourceLocalPathFolderExecuteCloning = @"C:\Projetos\Outros\Repositorios",
-                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Target.Pendencias\Gerador.Gen\Templates\FrontV2",
+                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Target.Pendencias\Gerador.Gen\Templates\FrontV4",
             };
 
         }
 
-        private ExternalResource ConfigExternarResourcesTemplatesBackDDD(bool replaceLocalFilesApplication) 
+        private ExternalResource ConfigExternarResourcesTemplatesBackDDD(bool replaceLocalFilesApplication)
         {
 
             return new ExternalResource
@@ -51,30 +38,16 @@ namespace Target.Pendencias.Gen
 
         }
 
-        private ExternalResource ConfigExternarResourcesFrameworkAngulaJsCrud(bool replaceLocalFilesApplication)
+        private ExternalResource ConfigExternarResourcesFrameworkAngula20Crud(bool replaceLocalFilesApplication)
         {
 
             return new ExternalResource
             {
                 ReplaceLocalFilesApplication = true,
-                ResouceRepositoryName = "framework-angularJS-CRUD",
-                ResourceUrlRepository = "https://github.com/wilsonsantosnet/framework-angularJS-CRUD.git",
+                ResouceRepositoryName = "framework-angular2.0-CRUD",
+                ResourceUrlRepository = "https://github.com/wilsonsantosnet/framework-angular2.0-CRUD.git",
                 ResourceLocalPathFolderExecuteCloning = @"C:\Projetos\Outros\Repositorios",
-                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Target.Pendencias\Target.Pendencias.Spa.Ui\js\common"
-            };
-
-        }
-
-        private ExternalResource ConfigExternarResourcesFrameworkAngulaCrud(bool replaceLocalFilesApplication)
-        {
-
-            return new ExternalResource
-            {
-                ReplaceLocalFilesApplication = true,
-                ResouceRepositoryName = "framework-angular-CRUD",
-                ResourceUrlRepository = "https://github.com/wilsonsantosnet/framework-angular-CRUD.git",
-                ResourceLocalPathFolderExecuteCloning = @"C:\Projetos\Outros\Repositorios",
-                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Target.Pendencias\Target.Pendencias.Spa.Ui.V2\src\app\common"
+                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Target.Pendencias\Target.Pendencias.Spa.Ui.V4\src\app\common"
             };
 
         }
@@ -94,35 +67,22 @@ namespace Target.Pendencias.Gen
 
         }
 
-        private ExternalResource ConfigExternarResourcesSeedLayoutBs3AngularJs(bool replaceLocalFilesApplication)
+        private ExternalResource ConfigExternarResourcesSeedLayoutBs4Angular20(bool replaceLocalFilesApplication)
         {
 
             return new ExternalResource
             {
                 ReplaceLocalFilesApplication = true,
                 DownloadOneTime = true,
-                ResouceRepositoryName = "Seed-layout-front",
-                ResourceUrlRepository = "https://github.com/wilsonsantosnet/seed-layout-front.git",
+                ResouceRepositoryName = "Seed-layout-front-bs4-angular2.0",
+                ResourceUrlRepository = "https://github.com/wilsonsantosnet/Seed-layout-front-bs4-angular2.0.git",
                 ResourceLocalPathFolderExecuteCloning = @"C:\Projetos\Outros\Repositorios",
-                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Target.Pendencias\Target.Pendencias.Spa.Ui"
+                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Target.Pendencias\Target.Pendencias.Spa.Ui.V4"
             };
 
         }
 
-        private ExternalResource ConfigExternarResourcesSeedLayoutBs3Angular(bool replaceLocalFilesApplication)
-        {
 
-            return new ExternalResource
-            {
-                ReplaceLocalFilesApplication = true,
-                DownloadOneTime = true,
-                ResouceRepositoryName = "Seed-layout-front-angular",
-                ResourceUrlRepository = "https://github.com/wilsonsantosnet/Seed-layout-front-angular.git",
-                ResourceLocalPathFolderExecuteCloning = @"C:\Projetos\Outros\Repositorios",
-                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Target.Pendencias\Target.Pendencias.Spa.Ui.V2"
-            };
-
-        }
 
         public IEnumerable<ExternalResource> GetConfigExternarReources()
         {
@@ -130,14 +90,12 @@ namespace Target.Pendencias.Gen
 
             return new List<ExternalResource>
             {
-               ConfigExternarResourcesTemplatesFrontAngular(replaceLocalFilesApplication),
-               //ConfigExternarResourcesTemplatesFrontAngularJs(replaceLocalFilesApplication),
-               //ConfigExternarResourcesTemplatesBackDDD(replaceLocalFilesApplication),
-               //ConfigExternarResourcesFrameworkAngulaJsCrud(replaceLocalFilesApplication),
-               ConfigExternarResourcesFrameworkAngulaCrud(replaceLocalFilesApplication),
-               //ConfigExternarResourcesFrameworkCommon(replaceLocalFilesApplication),
-               //ConfigExternarResourcesSeedLayoutBs3AngularJs(replaceLocalFilesApplication)
-               ConfigExternarResourcesSeedLayoutBs3Angular(replaceLocalFilesApplication)
+
+               ConfigExternarResourcesTemplatesBackDDD(replaceLocalFilesApplication),
+               ConfigExternarResourcesFrameworkCommon(replaceLocalFilesApplication),
+               ConfigExternarResourcesTemplatesFrontBs4Angular20(replaceLocalFilesApplication),
+               ConfigExternarResourcesFrameworkAngula20Crud(replaceLocalFilesApplication),
+               ConfigExternarResourcesSeedLayoutBs4Angular20(replaceLocalFilesApplication),
 
             };
 

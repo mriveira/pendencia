@@ -10,13 +10,13 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from 'app/common/services/auth.service'
 import { ApiService } from 'app/common/services/api.service';
 import { AppComponent } from './app.component';
-import { TargetMainComponent } from './target-main/target-main.component';
+import { MainComponent } from './main/main.component';
 import { LoadingComponent } from './common/components/loading.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        TargetMainComponent,
+        MainComponent,
         LoginComponent,
         LoadingComponent
     ],

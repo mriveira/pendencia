@@ -27,12 +27,12 @@ export class AuthService {
 
         this._nameToken = "TOKEN_AUTH";
         this._nameEndPointAuthApi = "AUTHAPI";
-        this._typeLogin = "SSO";
+        this._typeLogin = GlobalService.getAuthSettings().TYPE_LOGIN;
         this._authorizationUrl = GlobalService.getEndPoints().AUTH + '/connect/authorize';
-        this._client_id = 'Target-spa-v2';
+        this._client_id = GlobalService.getAuthSettings().CLIENT_ID;
         this._redirect_uri = GlobalService.getEndPoints().APP;
         this._response_type = "token";
-        this._scope = "ssosa";
+        this._scope = GlobalService.getAuthSettings().SCOPE;
 
 
     }
