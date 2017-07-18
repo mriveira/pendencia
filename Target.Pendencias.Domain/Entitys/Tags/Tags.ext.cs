@@ -20,7 +20,7 @@ namespace Target.Pendencias.Domain.Entitys
 
 		public class TagsFactory
         {
-            public Tags GetDefaaultInstance(dynamic data, CurrentUser user)
+            public Tags GetDefaultInstance(dynamic data, CurrentUser user)
             {
                 var construction = new Tags(data.TagsId,
                                         data.Nome,

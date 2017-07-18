@@ -20,7 +20,7 @@ namespace Target.Pendencias.Domain.Entitys
 
 		public class ComentarioDocumentoFactory
         {
-            public ComentarioDocumento GetDefaaultInstance(dynamic data, CurrentUser user)
+            public ComentarioDocumento GetDefaultInstance(dynamic data, CurrentUser user)
             {
                 var construction = new ComentarioDocumento(data.DocumentoId,
                                         data.ComentarioId);

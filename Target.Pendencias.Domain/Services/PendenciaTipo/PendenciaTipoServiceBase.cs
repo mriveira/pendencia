@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<PendenciaTipo> Save(PendenciaTipo pendenciatipo, bool questionToContinue = false)
         {
-            var pendenciatipoOld = await this.GetOne(new PendenciaTipoFilter { PendenciaTipoId = pendenciatipo.PendenciaTipoId });
+			var pendenciatipoOld = await this.GetOne(new PendenciaTipoFilter { PendenciaTipoId = pendenciatipo.PendenciaTipoId });
+			var pendenciatipoOrchestrated = await this.DomainOrchestration(pendenciatipo, pendenciatipoOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(pendenciatipo, pendenciatipoOld) == false)
-                    return pendenciatipo;
+                if (base.Continue(pendenciatipoOrchestrated, pendenciatipoOld) == false)
+                    return pendenciatipoOrchestrated;
             }
 
-            return this.SaveWithValidation(pendenciatipo, pendenciatipoOld);
+            return this.SaveWithValidation(pendenciatipoOrchestrated, pendenciatipoOld);
         }
 
         public override async Task<PendenciaTipo> SavePartial(PendenciaTipo pendenciatipo, bool questionToContinue = false)
         {
             var pendenciatipoOld = await this.GetOne(new PendenciaTipoFilter { PendenciaTipoId = pendenciatipo.PendenciaTipoId });
+			var pendenciatipoOrchestrated = await this.DomainOrchestration(pendenciatipo, pendenciatipoOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(pendenciatipo, pendenciatipoOld) == false)
-                    return pendenciatipo;
+                if (base.Continue(pendenciatipoOrchestrated, pendenciatipoOld) == false)
+                    return pendenciatipoOrchestrated;
             }
 
-            return SaveWithOutValidation(pendenciatipo, pendenciatipoOld);
+            return SaveWithOutValidation(pendenciatipoOrchestrated, pendenciatipoOld);
         }
 
         protected override PendenciaTipo SaveWithOutValidation(PendenciaTipo pendenciatipo, PendenciaTipo pendenciatipoOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             pendenciatipo = this.SaveDefault(pendenciatipo, pendenciatipoOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return pendenciatipo;
-            }
+				return pendenciatipo;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(pendenciatipo);
 
             if (!base._validationResult.IsValid)
-            {
                 return pendenciatipo;
-            }
             
             pendenciatipo = this.SaveDefault(pendenciatipo, pendenciatipoOld);
             base._validationResult.Message = "PendenciaTipo cadastrado com sucesso :)";
@@ -145,16 +145,19 @@ namespace Target.Pendencias.Domain.Services
         protected virtual PendenciaTipo SaveDefault(PendenciaTipo pendenciatipo, PendenciaTipo pendenciatipoOld)
         {
 			
-			
 
-            var isNew = pendenciatipoOld.IsNull();
-			
+            var isNew = pendenciatipoOld.IsNull();			
             if (isNew)
-                pendenciatipo = this._rep.Add(pendenciatipo);
+                pendenciatipo = this.AddDefault(pendenciatipo);
             else
 				pendenciatipo = this.UpdateDefault(pendenciatipo);
 
-
+            return pendenciatipo;
+        }
+		
+        protected virtual PendenciaTipo AddDefault(PendenciaTipo pendenciatipo)
+        {
+            pendenciatipo = this._rep.Add(pendenciatipo);
             return pendenciatipo;
         }
 

@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<Usuario> Save(Usuario usuario, bool questionToContinue = false)
         {
-            var usuarioOld = await this.GetOne(new UsuarioFilter { UsuarioId = usuario.UsuarioId });
+			var usuarioOld = await this.GetOne(new UsuarioFilter { UsuarioId = usuario.UsuarioId });
+			var usuarioOrchestrated = await this.DomainOrchestration(usuario, usuarioOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(usuario, usuarioOld) == false)
-                    return usuario;
+                if (base.Continue(usuarioOrchestrated, usuarioOld) == false)
+                    return usuarioOrchestrated;
             }
 
-            return this.SaveWithValidation(usuario, usuarioOld);
+            return this.SaveWithValidation(usuarioOrchestrated, usuarioOld);
         }
 
         public override async Task<Usuario> SavePartial(Usuario usuario, bool questionToContinue = false)
         {
             var usuarioOld = await this.GetOne(new UsuarioFilter { UsuarioId = usuario.UsuarioId });
+			var usuarioOrchestrated = await this.DomainOrchestration(usuario, usuarioOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(usuario, usuarioOld) == false)
-                    return usuario;
+                if (base.Continue(usuarioOrchestrated, usuarioOld) == false)
+                    return usuarioOrchestrated;
             }
 
-            return SaveWithOutValidation(usuario, usuarioOld);
+            return SaveWithOutValidation(usuarioOrchestrated, usuarioOld);
         }
 
         protected override Usuario SaveWithOutValidation(Usuario usuario, Usuario usuarioOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             usuario = this.SaveDefault(usuario, usuarioOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return usuario;
-            }
+				return usuario;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(usuario);
 
             if (!base._validationResult.IsValid)
-            {
                 return usuario;
-            }
             
             usuario = this.SaveDefault(usuario, usuarioOld);
             base._validationResult.Message = "Usuario cadastrado com sucesso :)";
@@ -144,17 +144,20 @@ namespace Target.Pendencias.Domain.Services
 
         protected virtual Usuario SaveDefault(Usuario usuario, Usuario usuarioOld)
         {
-			
-			usuario = AuditDefault(usuario, usuarioOld);
+			usuario = this.AuditDefault(usuario, usuarioOld);
 
-            var isNew = usuarioOld.IsNull();
-			
+            var isNew = usuarioOld.IsNull();			
             if (isNew)
-                usuario = this._rep.Add(usuario);
+                usuario = this.AddDefault(usuario);
             else
 				usuario = this.UpdateDefault(usuario);
 
-
+            return usuario;
+        }
+		
+        protected virtual Usuario AddDefault(Usuario usuario)
+        {
+            usuario = this._rep.Add(usuario);
             return usuario;
         }
 

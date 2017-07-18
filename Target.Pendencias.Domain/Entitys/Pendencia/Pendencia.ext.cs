@@ -22,7 +22,7 @@ namespace Target.Pendencias.Domain.Entitys
 
         public class PendenciaFactory
         {
-            public Pendencia GetDefaaultInstance(dynamic data, CurrentUser user)
+            public Pendencia GetDefaultInstance(dynamic data, CurrentUser user)
             {
 
                 var construction = new Pendencia(data.ProjetoId,
@@ -135,7 +135,7 @@ namespace Target.Pendencias.Domain.Entitys
             if (this.CollectionComentarios.IsNotAny())
                 this.CollectionComentarios = new List<Comentario>();
 
-            this.CollectionComentarios.Add(new Comentario.ComentarioFactory().GetDefaaultInstance(new
+            this.CollectionComentarios.Add(new Comentario.ComentarioFactory().GetDefaultInstance(new
             {
                 ComentarioId = 0,
                 Descricao = comentario,
@@ -169,7 +169,7 @@ namespace Target.Pendencias.Domain.Entitys
             var descricaoDoEvento = $"No Processo de {processo}, Saiu de {FluxoAtual} e foi para {FluxoFuturo}.";
             this.CollectionPendenciaEventos
                 .Add(new PendenciaEventos.PendenciaEventosFactory()
-                .GetDefaaultInstance(new
+                .GetDefaultInstance(new
                 {
                     PendenciaEventosId = 0,
                     PendenciaId = this.PendenciaId,

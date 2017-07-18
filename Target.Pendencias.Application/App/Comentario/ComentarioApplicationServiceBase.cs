@@ -33,7 +33,7 @@ namespace Target.Pendencias.Application
             this._validatorAnnotations.Validate(_comentario);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new Comentario.ComentarioFactory().GetDefaaultInstance(_comentario, this._user);
+			var domain = new Comentario.ComentarioFactory().GetDefaultInstance(_comentario, this._user);
             return domain;
         }
 
@@ -44,7 +44,7 @@ namespace Target.Pendencias.Application
             {
 				var _comentario = dto as ComentarioDto;
 				//var result = await this._serviceBase.GetOne(new ComentarioFilter { ComentarioId = comentario.ComentarioId });
-				var result = new Comentario.ComentarioFactory().GetDefaaultInstance(_comentario, this._user);
+				var result = new Comentario.ComentarioFactory().GetDefaultInstance(_comentario, this._user);
 				//Inicio da Transferencia dos valores
            
 

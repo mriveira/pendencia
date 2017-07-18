@@ -33,7 +33,7 @@ namespace Target.Pendencias.Application
             this._validatorAnnotations.Validate(_usuario);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new Usuario.UsuarioFactory().GetDefaaultInstance(_usuario, this._user);
+			var domain = new Usuario.UsuarioFactory().GetDefaultInstance(_usuario, this._user);
             return domain;
         }
 
@@ -44,7 +44,7 @@ namespace Target.Pendencias.Application
             {
 				var _usuario = dto as UsuarioDto;
 				//var result = await this._serviceBase.GetOne(new UsuarioFilter { UsuarioId = usuario.UsuarioId });
-				var result = new Usuario.UsuarioFactory().GetDefaaultInstance(_usuario, this._user);
+				var result = new Usuario.UsuarioFactory().GetDefaultInstance(_usuario, this._user);
 				//Inicio da Transferencia dos valores
            
 

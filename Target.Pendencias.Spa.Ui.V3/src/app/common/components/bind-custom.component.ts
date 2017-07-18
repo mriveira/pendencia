@@ -39,13 +39,13 @@ export class BindCustomComponent implements OnInit, OnChanges {
         else if (this.format === 'time')
             this.value = this.datePipe.transform(this.model, 'HH:mm');
 
-        else if (this.format === 'datetime')
+        else if (this.format === 'datetime' || this.format === 'datetime?')
             this.value = this.datePipe.transform(this.model, 'dd/MM/yyyy HH:mm');
 
         else if (this.format === 'decimal')
             this.value = this.decimalPipe.transform(this.model, '1.2-2');
 
-        else if (this.format === 'integer')
+        else if (this.format === 'integer' || this.format === 'int' || this.format === 'int?')
             this.value = this.decimalPipe.transform(this.model, '1.0-0');
 
         else if (this.format === 'percent')

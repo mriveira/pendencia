@@ -33,7 +33,7 @@ namespace Target.Pendencias.Application
             this._validatorAnnotations.Validate(_projeto);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new Projeto.ProjetoFactory().GetDefaaultInstance(_projeto, this._user);
+			var domain = new Projeto.ProjetoFactory().GetDefaultInstance(_projeto, this._user);
             return domain;
         }
 
@@ -44,7 +44,7 @@ namespace Target.Pendencias.Application
             {
 				var _projeto = dto as ProjetoDto;
 				//var result = await this._serviceBase.GetOne(new ProjetoFilter { ProjetoId = projeto.ProjetoId });
-				var result = new Projeto.ProjetoFactory().GetDefaaultInstance(_projeto, this._user);
+				var result = new Projeto.ProjetoFactory().GetDefaultInstance(_projeto, this._user);
 				//Inicio da Transferencia dos valores
            
 

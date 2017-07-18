@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<ComentarioDocumento> Save(ComentarioDocumento comentariodocumento, bool questionToContinue = false)
         {
-            var comentariodocumentoOld = await this.GetOne(new ComentarioDocumentoFilter { DocumentoId = comentariodocumento.DocumentoId, ComentarioId = comentariodocumento.ComentarioId });
+			var comentariodocumentoOld = await this.GetOne(new ComentarioDocumentoFilter { DocumentoId = comentariodocumento.DocumentoId, ComentarioId = comentariodocumento.ComentarioId });
+			var comentariodocumentoOrchestrated = await this.DomainOrchestration(comentariodocumento, comentariodocumentoOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(comentariodocumento, comentariodocumentoOld) == false)
-                    return comentariodocumento;
+                if (base.Continue(comentariodocumentoOrchestrated, comentariodocumentoOld) == false)
+                    return comentariodocumentoOrchestrated;
             }
 
-            return this.SaveWithValidation(comentariodocumento, comentariodocumentoOld);
+            return this.SaveWithValidation(comentariodocumentoOrchestrated, comentariodocumentoOld);
         }
 
         public override async Task<ComentarioDocumento> SavePartial(ComentarioDocumento comentariodocumento, bool questionToContinue = false)
         {
             var comentariodocumentoOld = await this.GetOne(new ComentarioDocumentoFilter { DocumentoId = comentariodocumento.DocumentoId, ComentarioId = comentariodocumento.ComentarioId });
+			var comentariodocumentoOrchestrated = await this.DomainOrchestration(comentariodocumento, comentariodocumentoOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(comentariodocumento, comentariodocumentoOld) == false)
-                    return comentariodocumento;
+                if (base.Continue(comentariodocumentoOrchestrated, comentariodocumentoOld) == false)
+                    return comentariodocumentoOrchestrated;
             }
 
-            return SaveWithOutValidation(comentariodocumento, comentariodocumentoOld);
+            return SaveWithOutValidation(comentariodocumentoOrchestrated, comentariodocumentoOld);
         }
 
         protected override ComentarioDocumento SaveWithOutValidation(ComentarioDocumento comentariodocumento, ComentarioDocumento comentariodocumentoOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             comentariodocumento = this.SaveDefault(comentariodocumento, comentariodocumentoOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return comentariodocumento;
-            }
+				return comentariodocumento;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(comentariodocumento);
 
             if (!base._validationResult.IsValid)
-            {
                 return comentariodocumento;
-            }
             
             comentariodocumento = this.SaveDefault(comentariodocumento, comentariodocumentoOld);
             base._validationResult.Message = "ComentarioDocumento cadastrado com sucesso :)";
@@ -145,16 +145,19 @@ namespace Target.Pendencias.Domain.Services
         protected virtual ComentarioDocumento SaveDefault(ComentarioDocumento comentariodocumento, ComentarioDocumento comentariodocumentoOld)
         {
 			
-			
 
-            var isNew = comentariodocumentoOld.IsNull();
-			
+            var isNew = comentariodocumentoOld.IsNull();			
             if (isNew)
-                comentariodocumento = this._rep.Add(comentariodocumento);
+                comentariodocumento = this.AddDefault(comentariodocumento);
             else
 				comentariodocumento = this.UpdateDefault(comentariodocumento);
 
-
+            return comentariodocumento;
+        }
+		
+        protected virtual ComentarioDocumento AddDefault(ComentarioDocumento comentariodocumento)
+        {
+            comentariodocumento = this._rep.Add(comentariodocumento);
             return comentariodocumento;
         }
 

@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<Documento> Save(Documento documento, bool questionToContinue = false)
         {
-            var documentoOld = await this.GetOne(new DocumentoFilter { DocumentoId = documento.DocumentoId });
+			var documentoOld = await this.GetOne(new DocumentoFilter { DocumentoId = documento.DocumentoId });
+			var documentoOrchestrated = await this.DomainOrchestration(documento, documentoOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(documento, documentoOld) == false)
-                    return documento;
+                if (base.Continue(documentoOrchestrated, documentoOld) == false)
+                    return documentoOrchestrated;
             }
 
-            return this.SaveWithValidation(documento, documentoOld);
+            return this.SaveWithValidation(documentoOrchestrated, documentoOld);
         }
 
         public override async Task<Documento> SavePartial(Documento documento, bool questionToContinue = false)
         {
             var documentoOld = await this.GetOne(new DocumentoFilter { DocumentoId = documento.DocumentoId });
+			var documentoOrchestrated = await this.DomainOrchestration(documento, documentoOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(documento, documentoOld) == false)
-                    return documento;
+                if (base.Continue(documentoOrchestrated, documentoOld) == false)
+                    return documentoOrchestrated;
             }
 
-            return SaveWithOutValidation(documento, documentoOld);
+            return SaveWithOutValidation(documentoOrchestrated, documentoOld);
         }
 
         protected override Documento SaveWithOutValidation(Documento documento, Documento documentoOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             documento = this.SaveDefault(documento, documentoOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return documento;
-            }
+				return documento;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(documento);
 
             if (!base._validationResult.IsValid)
-            {
                 return documento;
-            }
             
             documento = this.SaveDefault(documento, documentoOld);
             base._validationResult.Message = "Documento cadastrado com sucesso :)";
@@ -145,16 +145,19 @@ namespace Target.Pendencias.Domain.Services
         protected virtual Documento SaveDefault(Documento documento, Documento documentoOld)
         {
 			
-			
 
-            var isNew = documentoOld.IsNull();
-			
+            var isNew = documentoOld.IsNull();			
             if (isNew)
-                documento = this._rep.Add(documento);
+                documento = this.AddDefault(documento);
             else
 				documento = this.UpdateDefault(documento);
 
-
+            return documento;
+        }
+		
+        protected virtual Documento AddDefault(Documento documento)
+        {
+            documento = this._rep.Add(documento);
             return documento;
         }
 

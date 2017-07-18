@@ -68,7 +68,7 @@ namespace Target.Pendencias.Domain.Services
 
         }
 
-        protected override Pendencia AuditDefault(DomainBaseWithUserCreate entity, DomainBaseWithUserCreate entityOld)
+        public override Pendencia AuditDefault(DomainBaseWithUserCreate entity, DomainBaseWithUserCreate entityOld)
         {
             var result = base.AuditDefault(entity, entityOld);
 

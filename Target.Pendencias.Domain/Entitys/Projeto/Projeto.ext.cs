@@ -24,7 +24,7 @@ namespace Target.Pendencias.Domain.Entitys
 
         public class ProjetoFactory
         {
-            public Projeto GetDefaaultInstance(dynamic data, CurrentUser user)
+            public Projeto GetDefaultInstance(dynamic data, CurrentUser user)
             {
                 var _usuarioId = user.GetTenantOwnerId<int>();
 

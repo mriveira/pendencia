@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<Projeto> Save(Projeto projeto, bool questionToContinue = false)
         {
-            var projetoOld = await this.GetOne(new ProjetoFilter { ProjetoId = projeto.ProjetoId });
+			var projetoOld = await this.GetOne(new ProjetoFilter { ProjetoId = projeto.ProjetoId });
+			var projetoOrchestrated = await this.DomainOrchestration(projeto, projetoOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(projeto, projetoOld) == false)
-                    return projeto;
+                if (base.Continue(projetoOrchestrated, projetoOld) == false)
+                    return projetoOrchestrated;
             }
 
-            return this.SaveWithValidation(projeto, projetoOld);
+            return this.SaveWithValidation(projetoOrchestrated, projetoOld);
         }
 
         public override async Task<Projeto> SavePartial(Projeto projeto, bool questionToContinue = false)
         {
             var projetoOld = await this.GetOne(new ProjetoFilter { ProjetoId = projeto.ProjetoId });
+			var projetoOrchestrated = await this.DomainOrchestration(projeto, projetoOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(projeto, projetoOld) == false)
-                    return projeto;
+                if (base.Continue(projetoOrchestrated, projetoOld) == false)
+                    return projetoOrchestrated;
             }
 
-            return SaveWithOutValidation(projeto, projetoOld);
+            return SaveWithOutValidation(projetoOrchestrated, projetoOld);
         }
 
         protected override Projeto SaveWithOutValidation(Projeto projeto, Projeto projetoOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             projeto = this.SaveDefault(projeto, projetoOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return projeto;
-            }
+				return projeto;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(projeto);
 
             if (!base._validationResult.IsValid)
-            {
                 return projeto;
-            }
             
             projeto = this.SaveDefault(projeto, projetoOld);
             base._validationResult.Message = "Projeto cadastrado com sucesso :)";
@@ -144,17 +144,20 @@ namespace Target.Pendencias.Domain.Services
 
         protected virtual Projeto SaveDefault(Projeto projeto, Projeto projetoOld)
         {
-			
-			projeto = AuditDefault(projeto, projetoOld);
+			projeto = this.AuditDefault(projeto, projetoOld);
 
-            var isNew = projetoOld.IsNull();
-			
+            var isNew = projetoOld.IsNull();			
             if (isNew)
-                projeto = this._rep.Add(projeto);
+                projeto = this.AddDefault(projeto);
             else
 				projeto = this.UpdateDefault(projeto);
 
-
+            return projeto;
+        }
+		
+        protected virtual Projeto AddDefault(Projeto projeto)
+        {
+            projeto = this._rep.Add(projeto);
             return projeto;
         }
 

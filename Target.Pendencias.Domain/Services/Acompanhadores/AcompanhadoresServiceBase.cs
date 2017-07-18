@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<Acompanhadores> Save(Acompanhadores acompanhadores, bool questionToContinue = false)
         {
-            var acompanhadoresOld = await this.GetOne(new AcompanhadoresFilter { PendenciaId = acompanhadores.PendenciaId, UsuarioId = acompanhadores.UsuarioId });
+			var acompanhadoresOld = await this.GetOne(new AcompanhadoresFilter { PendenciaId = acompanhadores.PendenciaId, UsuarioId = acompanhadores.UsuarioId });
+			var acompanhadoresOrchestrated = await this.DomainOrchestration(acompanhadores, acompanhadoresOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(acompanhadores, acompanhadoresOld) == false)
-                    return acompanhadores;
+                if (base.Continue(acompanhadoresOrchestrated, acompanhadoresOld) == false)
+                    return acompanhadoresOrchestrated;
             }
 
-            return this.SaveWithValidation(acompanhadores, acompanhadoresOld);
+            return this.SaveWithValidation(acompanhadoresOrchestrated, acompanhadoresOld);
         }
 
         public override async Task<Acompanhadores> SavePartial(Acompanhadores acompanhadores, bool questionToContinue = false)
         {
             var acompanhadoresOld = await this.GetOne(new AcompanhadoresFilter { PendenciaId = acompanhadores.PendenciaId, UsuarioId = acompanhadores.UsuarioId });
+			var acompanhadoresOrchestrated = await this.DomainOrchestration(acompanhadores, acompanhadoresOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(acompanhadores, acompanhadoresOld) == false)
-                    return acompanhadores;
+                if (base.Continue(acompanhadoresOrchestrated, acompanhadoresOld) == false)
+                    return acompanhadoresOrchestrated;
             }
 
-            return SaveWithOutValidation(acompanhadores, acompanhadoresOld);
+            return SaveWithOutValidation(acompanhadoresOrchestrated, acompanhadoresOld);
         }
 
         protected override Acompanhadores SaveWithOutValidation(Acompanhadores acompanhadores, Acompanhadores acompanhadoresOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             acompanhadores = this.SaveDefault(acompanhadores, acompanhadoresOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return acompanhadores;
-            }
+				return acompanhadores;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(acompanhadores);
 
             if (!base._validationResult.IsValid)
-            {
                 return acompanhadores;
-            }
             
             acompanhadores = this.SaveDefault(acompanhadores, acompanhadoresOld);
             base._validationResult.Message = "Acompanhadores cadastrado com sucesso :)";
@@ -145,16 +145,19 @@ namespace Target.Pendencias.Domain.Services
         protected virtual Acompanhadores SaveDefault(Acompanhadores acompanhadores, Acompanhadores acompanhadoresOld)
         {
 			
-			
 
-            var isNew = acompanhadoresOld.IsNull();
-			
+            var isNew = acompanhadoresOld.IsNull();			
             if (isNew)
-                acompanhadores = this._rep.Add(acompanhadores);
+                acompanhadores = this.AddDefault(acompanhadores);
             else
 				acompanhadores = this.UpdateDefault(acompanhadores);
 
-
+            return acompanhadores;
+        }
+		
+        protected virtual Acompanhadores AddDefault(Acompanhadores acompanhadores)
+        {
+            acompanhadores = this._rep.Add(acompanhadores);
             return acompanhadores;
         }
 

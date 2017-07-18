@@ -20,7 +20,7 @@ namespace Target.Pendencias.Domain.Entitys
 
 		public class PendeciaPrioridadeFactory
         {
-            public PendeciaPrioridade GetDefaaultInstance(dynamic data, CurrentUser user)
+            public PendeciaPrioridade GetDefaultInstance(dynamic data, CurrentUser user)
             {
                 var construction = new PendeciaPrioridade(data.PendeciaPrioridadeId,
                                         data.Nome);

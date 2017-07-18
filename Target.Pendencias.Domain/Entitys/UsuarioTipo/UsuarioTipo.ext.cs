@@ -20,7 +20,7 @@ namespace Target.Pendencias.Domain.Entitys
 
 		public class UsuarioTipoFactory
         {
-            public UsuarioTipo GetDefaaultInstance(dynamic data, CurrentUser user)
+            public UsuarioTipo GetDefaultInstance(dynamic data, CurrentUser user)
             {
                 var construction = new UsuarioTipo(data.UsuarioTipoId,
                                         data.Nome);

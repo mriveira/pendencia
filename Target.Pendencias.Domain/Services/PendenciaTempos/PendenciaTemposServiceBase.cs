@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<PendenciaTempos> Save(PendenciaTempos pendenciatempos, bool questionToContinue = false)
         {
-            var pendenciatemposOld = await this.GetOne(new PendenciaTemposFilter { PendenciaTemposId = pendenciatempos.PendenciaTemposId });
+			var pendenciatemposOld = await this.GetOne(new PendenciaTemposFilter { PendenciaTemposId = pendenciatempos.PendenciaTemposId });
+			var pendenciatemposOrchestrated = await this.DomainOrchestration(pendenciatempos, pendenciatemposOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(pendenciatempos, pendenciatemposOld) == false)
-                    return pendenciatempos;
+                if (base.Continue(pendenciatemposOrchestrated, pendenciatemposOld) == false)
+                    return pendenciatemposOrchestrated;
             }
 
-            return this.SaveWithValidation(pendenciatempos, pendenciatemposOld);
+            return this.SaveWithValidation(pendenciatemposOrchestrated, pendenciatemposOld);
         }
 
         public override async Task<PendenciaTempos> SavePartial(PendenciaTempos pendenciatempos, bool questionToContinue = false)
         {
             var pendenciatemposOld = await this.GetOne(new PendenciaTemposFilter { PendenciaTemposId = pendenciatempos.PendenciaTemposId });
+			var pendenciatemposOrchestrated = await this.DomainOrchestration(pendenciatempos, pendenciatemposOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(pendenciatempos, pendenciatemposOld) == false)
-                    return pendenciatempos;
+                if (base.Continue(pendenciatemposOrchestrated, pendenciatemposOld) == false)
+                    return pendenciatemposOrchestrated;
             }
 
-            return SaveWithOutValidation(pendenciatempos, pendenciatemposOld);
+            return SaveWithOutValidation(pendenciatemposOrchestrated, pendenciatemposOld);
         }
 
         protected override PendenciaTempos SaveWithOutValidation(PendenciaTempos pendenciatempos, PendenciaTempos pendenciatemposOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             pendenciatempos = this.SaveDefault(pendenciatempos, pendenciatemposOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return pendenciatempos;
-            }
+				return pendenciatempos;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(pendenciatempos);
 
             if (!base._validationResult.IsValid)
-            {
                 return pendenciatempos;
-            }
             
             pendenciatempos = this.SaveDefault(pendenciatempos, pendenciatemposOld);
             base._validationResult.Message = "PendenciaTempos cadastrado com sucesso :)";
@@ -144,17 +144,20 @@ namespace Target.Pendencias.Domain.Services
 
         protected virtual PendenciaTempos SaveDefault(PendenciaTempos pendenciatempos, PendenciaTempos pendenciatemposOld)
         {
-			
-			pendenciatempos = AuditDefault(pendenciatempos, pendenciatemposOld);
+			pendenciatempos = this.AuditDefault(pendenciatempos, pendenciatemposOld);
 
-            var isNew = pendenciatemposOld.IsNull();
-			
+            var isNew = pendenciatemposOld.IsNull();			
             if (isNew)
-                pendenciatempos = this._rep.Add(pendenciatempos);
+                pendenciatempos = this.AddDefault(pendenciatempos);
             else
 				pendenciatempos = this.UpdateDefault(pendenciatempos);
 
-
+            return pendenciatempos;
+        }
+		
+        protected virtual PendenciaTempos AddDefault(PendenciaTempos pendenciatempos)
+        {
+            pendenciatempos = this._rep.Add(pendenciatempos);
             return pendenciatempos;
         }
 

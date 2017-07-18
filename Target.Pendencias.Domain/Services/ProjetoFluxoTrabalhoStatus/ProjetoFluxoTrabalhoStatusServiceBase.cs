@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<ProjetoFluxoTrabalhoStatus> Save(ProjetoFluxoTrabalhoStatus projetofluxotrabalhostatus, bool questionToContinue = false)
         {
-            var projetofluxotrabalhostatusOld = await this.GetOne(new ProjetoFluxoTrabalhoStatusFilter { ProjetoId = projetofluxotrabalhostatus.ProjetoId, FluxoTrabalhoStatusId = projetofluxotrabalhostatus.FluxoTrabalhoStatusId });
+			var projetofluxotrabalhostatusOld = await this.GetOne(new ProjetoFluxoTrabalhoStatusFilter { ProjetoId = projetofluxotrabalhostatus.ProjetoId, FluxoTrabalhoStatusId = projetofluxotrabalhostatus.FluxoTrabalhoStatusId });
+			var projetofluxotrabalhostatusOrchestrated = await this.DomainOrchestration(projetofluxotrabalhostatus, projetofluxotrabalhostatusOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(projetofluxotrabalhostatus, projetofluxotrabalhostatusOld) == false)
-                    return projetofluxotrabalhostatus;
+                if (base.Continue(projetofluxotrabalhostatusOrchestrated, projetofluxotrabalhostatusOld) == false)
+                    return projetofluxotrabalhostatusOrchestrated;
             }
 
-            return this.SaveWithValidation(projetofluxotrabalhostatus, projetofluxotrabalhostatusOld);
+            return this.SaveWithValidation(projetofluxotrabalhostatusOrchestrated, projetofluxotrabalhostatusOld);
         }
 
         public override async Task<ProjetoFluxoTrabalhoStatus> SavePartial(ProjetoFluxoTrabalhoStatus projetofluxotrabalhostatus, bool questionToContinue = false)
         {
             var projetofluxotrabalhostatusOld = await this.GetOne(new ProjetoFluxoTrabalhoStatusFilter { ProjetoId = projetofluxotrabalhostatus.ProjetoId, FluxoTrabalhoStatusId = projetofluxotrabalhostatus.FluxoTrabalhoStatusId });
+			var projetofluxotrabalhostatusOrchestrated = await this.DomainOrchestration(projetofluxotrabalhostatus, projetofluxotrabalhostatusOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(projetofluxotrabalhostatus, projetofluxotrabalhostatusOld) == false)
-                    return projetofluxotrabalhostatus;
+                if (base.Continue(projetofluxotrabalhostatusOrchestrated, projetofluxotrabalhostatusOld) == false)
+                    return projetofluxotrabalhostatusOrchestrated;
             }
 
-            return SaveWithOutValidation(projetofluxotrabalhostatus, projetofluxotrabalhostatusOld);
+            return SaveWithOutValidation(projetofluxotrabalhostatusOrchestrated, projetofluxotrabalhostatusOld);
         }
 
         protected override ProjetoFluxoTrabalhoStatus SaveWithOutValidation(ProjetoFluxoTrabalhoStatus projetofluxotrabalhostatus, ProjetoFluxoTrabalhoStatus projetofluxotrabalhostatusOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             projetofluxotrabalhostatus = this.SaveDefault(projetofluxotrabalhostatus, projetofluxotrabalhostatusOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return projetofluxotrabalhostatus;
-            }
+				return projetofluxotrabalhostatus;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(projetofluxotrabalhostatus);
 
             if (!base._validationResult.IsValid)
-            {
                 return projetofluxotrabalhostatus;
-            }
             
             projetofluxotrabalhostatus = this.SaveDefault(projetofluxotrabalhostatus, projetofluxotrabalhostatusOld);
             base._validationResult.Message = "ProjetoFluxoTrabalhoStatus cadastrado com sucesso :)";
@@ -145,16 +145,19 @@ namespace Target.Pendencias.Domain.Services
         protected virtual ProjetoFluxoTrabalhoStatus SaveDefault(ProjetoFluxoTrabalhoStatus projetofluxotrabalhostatus, ProjetoFluxoTrabalhoStatus projetofluxotrabalhostatusOld)
         {
 			
-			
 
-            var isNew = projetofluxotrabalhostatusOld.IsNull();
-			
+            var isNew = projetofluxotrabalhostatusOld.IsNull();			
             if (isNew)
-                projetofluxotrabalhostatus = this._rep.Add(projetofluxotrabalhostatus);
+                projetofluxotrabalhostatus = this.AddDefault(projetofluxotrabalhostatus);
             else
 				projetofluxotrabalhostatus = this.UpdateDefault(projetofluxotrabalhostatus);
 
-
+            return projetofluxotrabalhostatus;
+        }
+		
+        protected virtual ProjetoFluxoTrabalhoStatus AddDefault(ProjetoFluxoTrabalhoStatus projetofluxotrabalhostatus)
+        {
+            projetofluxotrabalhostatus = this._rep.Add(projetofluxotrabalhostatus);
             return projetofluxotrabalhostatus;
         }
 

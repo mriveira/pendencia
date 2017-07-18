@@ -33,7 +33,7 @@ namespace Target.Pendencias.Application
             this._validatorAnnotations.Validate(_acompanhadores);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new Acompanhadores.AcompanhadoresFactory().GetDefaaultInstance(_acompanhadores, this._user);
+			var domain = new Acompanhadores.AcompanhadoresFactory().GetDefaultInstance(_acompanhadores, this._user);
             return domain;
         }
 
@@ -44,7 +44,7 @@ namespace Target.Pendencias.Application
             {
 				var _acompanhadores = dto as AcompanhadoresDto;
 				//var result = await this._serviceBase.GetOne(new AcompanhadoresFilter { PendenciaId = acompanhadores.PendenciaId, UsuarioId = acompanhadores.UsuarioId });
-				var result = new Acompanhadores.AcompanhadoresFactory().GetDefaaultInstance(_acompanhadores, this._user);
+				var result = new Acompanhadores.AcompanhadoresFactory().GetDefaultInstance(_acompanhadores, this._user);
 				//Inicio da Transferencia dos valores
            
 

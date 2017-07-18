@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<Pendencia> Save(Pendencia pendencia, bool questionToContinue = false)
         {
-            var pendenciaOld = await this.GetOne(new PendenciaFilter { PendenciaId = pendencia.PendenciaId });
+			var pendenciaOld = await this.GetOne(new PendenciaFilter { PendenciaId = pendencia.PendenciaId });
+			var pendenciaOrchestrated = await this.DomainOrchestration(pendencia, pendenciaOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(pendencia, pendenciaOld) == false)
-                    return pendencia;
+                if (base.Continue(pendenciaOrchestrated, pendenciaOld) == false)
+                    return pendenciaOrchestrated;
             }
 
-            return this.SaveWithValidation(pendencia, pendenciaOld);
+            return this.SaveWithValidation(pendenciaOrchestrated, pendenciaOld);
         }
 
         public override async Task<Pendencia> SavePartial(Pendencia pendencia, bool questionToContinue = false)
         {
             var pendenciaOld = await this.GetOne(new PendenciaFilter { PendenciaId = pendencia.PendenciaId });
+			var pendenciaOrchestrated = await this.DomainOrchestration(pendencia, pendenciaOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(pendencia, pendenciaOld) == false)
-                    return pendencia;
+                if (base.Continue(pendenciaOrchestrated, pendenciaOld) == false)
+                    return pendenciaOrchestrated;
             }
 
-            return SaveWithOutValidation(pendencia, pendenciaOld);
+            return SaveWithOutValidation(pendenciaOrchestrated, pendenciaOld);
         }
 
         protected override Pendencia SaveWithOutValidation(Pendencia pendencia, Pendencia pendenciaOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             pendencia = this.SaveDefault(pendencia, pendenciaOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return pendencia;
-            }
+				return pendencia;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(pendencia);
 
             if (!base._validationResult.IsValid)
-            {
                 return pendencia;
-            }
             
             pendencia = this.SaveDefault(pendencia, pendenciaOld);
             base._validationResult.Message = "Pendencia cadastrado com sucesso :)";
@@ -144,17 +144,20 @@ namespace Target.Pendencias.Domain.Services
 
         protected virtual Pendencia SaveDefault(Pendencia pendencia, Pendencia pendenciaOld)
         {
-			
-			pendencia = AuditDefault(pendencia, pendenciaOld);
+			pendencia = this.AuditDefault(pendencia, pendenciaOld);
 
-            var isNew = pendenciaOld.IsNull();
-			
+            var isNew = pendenciaOld.IsNull();			
             if (isNew)
-                pendencia = this._rep.Add(pendencia);
+                pendencia = this.AddDefault(pendencia);
             else
 				pendencia = this.UpdateDefault(pendencia);
 
-
+            return pendencia;
+        }
+		
+        protected virtual Pendencia AddDefault(Pendencia pendencia)
+        {
+            pendencia = this._rep.Add(pendencia);
             return pendencia;
         }
 

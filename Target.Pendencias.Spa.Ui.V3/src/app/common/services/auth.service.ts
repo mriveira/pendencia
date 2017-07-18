@@ -91,7 +91,8 @@ export class AuthService {
     public logout() {
 
         this._reset();
-
+        console.log(this._typeLogin);
+          
         if (this._typeLogin == "SSO") {
             var authorizationUrl = GlobalService.getEndPoints().AUTH + 'account/logout?returnUrl=' + GlobalService.getEndPoints().APP;
             window.location.href = authorizationUrl;

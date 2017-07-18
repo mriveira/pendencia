@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<UsuarioTipo> Save(UsuarioTipo usuariotipo, bool questionToContinue = false)
         {
-            var usuariotipoOld = await this.GetOne(new UsuarioTipoFilter { UsuarioTipoId = usuariotipo.UsuarioTipoId });
+			var usuariotipoOld = await this.GetOne(new UsuarioTipoFilter { UsuarioTipoId = usuariotipo.UsuarioTipoId });
+			var usuariotipoOrchestrated = await this.DomainOrchestration(usuariotipo, usuariotipoOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(usuariotipo, usuariotipoOld) == false)
-                    return usuariotipo;
+                if (base.Continue(usuariotipoOrchestrated, usuariotipoOld) == false)
+                    return usuariotipoOrchestrated;
             }
 
-            return this.SaveWithValidation(usuariotipo, usuariotipoOld);
+            return this.SaveWithValidation(usuariotipoOrchestrated, usuariotipoOld);
         }
 
         public override async Task<UsuarioTipo> SavePartial(UsuarioTipo usuariotipo, bool questionToContinue = false)
         {
             var usuariotipoOld = await this.GetOne(new UsuarioTipoFilter { UsuarioTipoId = usuariotipo.UsuarioTipoId });
+			var usuariotipoOrchestrated = await this.DomainOrchestration(usuariotipo, usuariotipoOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(usuariotipo, usuariotipoOld) == false)
-                    return usuariotipo;
+                if (base.Continue(usuariotipoOrchestrated, usuariotipoOld) == false)
+                    return usuariotipoOrchestrated;
             }
 
-            return SaveWithOutValidation(usuariotipo, usuariotipoOld);
+            return SaveWithOutValidation(usuariotipoOrchestrated, usuariotipoOld);
         }
 
         protected override UsuarioTipo SaveWithOutValidation(UsuarioTipo usuariotipo, UsuarioTipo usuariotipoOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             usuariotipo = this.SaveDefault(usuariotipo, usuariotipoOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return usuariotipo;
-            }
+				return usuariotipo;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(usuariotipo);
 
             if (!base._validationResult.IsValid)
-            {
                 return usuariotipo;
-            }
             
             usuariotipo = this.SaveDefault(usuariotipo, usuariotipoOld);
             base._validationResult.Message = "UsuarioTipo cadastrado com sucesso :)";
@@ -145,16 +145,19 @@ namespace Target.Pendencias.Domain.Services
         protected virtual UsuarioTipo SaveDefault(UsuarioTipo usuariotipo, UsuarioTipo usuariotipoOld)
         {
 			
-			
 
-            var isNew = usuariotipoOld.IsNull();
-			
+            var isNew = usuariotipoOld.IsNull();			
             if (isNew)
-                usuariotipo = this._rep.Add(usuariotipo);
+                usuariotipo = this.AddDefault(usuariotipo);
             else
 				usuariotipo = this.UpdateDefault(usuariotipo);
 
-
+            return usuariotipo;
+        }
+		
+        protected virtual UsuarioTipo AddDefault(UsuarioTipo usuariotipo)
+        {
+            usuariotipo = this._rep.Add(usuariotipo);
             return usuariotipo;
         }
 

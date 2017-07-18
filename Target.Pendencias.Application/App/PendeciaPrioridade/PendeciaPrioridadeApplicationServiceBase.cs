@@ -33,7 +33,7 @@ namespace Target.Pendencias.Application
             this._validatorAnnotations.Validate(_pendeciaprioridade);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new PendeciaPrioridade.PendeciaPrioridadeFactory().GetDefaaultInstance(_pendeciaprioridade, this._user);
+			var domain = new PendeciaPrioridade.PendeciaPrioridadeFactory().GetDefaultInstance(_pendeciaprioridade, this._user);
             return domain;
         }
 
@@ -44,7 +44,7 @@ namespace Target.Pendencias.Application
             {
 				var _pendeciaprioridade = dto as PendeciaPrioridadeDto;
 				//var result = await this._serviceBase.GetOne(new PendeciaPrioridadeFilter { PendeciaPrioridadeId = pendeciaprioridade.PendeciaPrioridadeId });
-				var result = new PendeciaPrioridade.PendeciaPrioridadeFactory().GetDefaaultInstance(_pendeciaprioridade, this._user);
+				var result = new PendeciaPrioridade.PendeciaPrioridadeFactory().GetDefaultInstance(_pendeciaprioridade, this._user);
 				//Inicio da Transferencia dos valores
            
 

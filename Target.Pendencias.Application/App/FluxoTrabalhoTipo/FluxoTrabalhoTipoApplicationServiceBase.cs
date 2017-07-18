@@ -33,7 +33,7 @@ namespace Target.Pendencias.Application
             this._validatorAnnotations.Validate(_fluxotrabalhotipo);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new FluxoTrabalhoTipo.FluxoTrabalhoTipoFactory().GetDefaaultInstance(_fluxotrabalhotipo, this._user);
+			var domain = new FluxoTrabalhoTipo.FluxoTrabalhoTipoFactory().GetDefaultInstance(_fluxotrabalhotipo, this._user);
             return domain;
         }
 
@@ -44,7 +44,7 @@ namespace Target.Pendencias.Application
             {
 				var _fluxotrabalhotipo = dto as FluxoTrabalhoTipoDto;
 				//var result = await this._serviceBase.GetOne(new FluxoTrabalhoTipoFilter { FluxoTrabalhoTipoId = fluxotrabalhotipo.FluxoTrabalhoTipoId });
-				var result = new FluxoTrabalhoTipo.FluxoTrabalhoTipoFactory().GetDefaaultInstance(_fluxotrabalhotipo, this._user);
+				var result = new FluxoTrabalhoTipo.FluxoTrabalhoTipoFactory().GetDefaultInstance(_fluxotrabalhotipo, this._user);
 				//Inicio da Transferencia dos valores
            
 

@@ -20,7 +20,7 @@ namespace Target.Pendencias.Domain.Entitys
 
 		public class PendenciaEventosFactory
         {
-            public PendenciaEventos GetDefaaultInstance(dynamic data, CurrentUser user)
+            public PendenciaEventos GetDefaultInstance(dynamic data, CurrentUser user)
             {
                 var construction = new PendenciaEventos(data.PendenciaEventosId,
                                         data.PendenciaId,

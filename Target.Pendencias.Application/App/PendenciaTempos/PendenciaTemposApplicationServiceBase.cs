@@ -33,7 +33,7 @@ namespace Target.Pendencias.Application
             this._validatorAnnotations.Validate(_pendenciatempos);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new PendenciaTempos.PendenciaTemposFactory().GetDefaaultInstance(_pendenciatempos, this._user);
+			var domain = new PendenciaTempos.PendenciaTemposFactory().GetDefaultInstance(_pendenciatempos, this._user);
             return domain;
         }
 
@@ -44,7 +44,7 @@ namespace Target.Pendencias.Application
             {
 				var _pendenciatempos = dto as PendenciaTemposDto;
 				//var result = await this._serviceBase.GetOne(new PendenciaTemposFilter { PendenciaTemposId = pendenciatempos.PendenciaTemposId });
-				var result = new PendenciaTempos.PendenciaTemposFactory().GetDefaaultInstance(_pendenciatempos, this._user);
+				var result = new PendenciaTempos.PendenciaTemposFactory().GetDefaultInstance(_pendenciatempos, this._user);
 				//Inicio da Transferencia dos valores
            
 

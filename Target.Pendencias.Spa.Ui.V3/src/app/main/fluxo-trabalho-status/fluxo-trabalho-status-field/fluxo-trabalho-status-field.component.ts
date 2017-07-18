@@ -33,19 +33,29 @@ export class FluxoTrabalhoStatusFieldComponent implements OnInit {
     public isValid() {
 
         for (let key in this.vm.required) {
-            if (this.vm.required.hasOwnProperty(key)) {
-
-                console.log("isValid", this.vm.model);
-
-                if (this.vm.model[key] == null || this.vm.model[key] == undefined || this.vm.model[key] == "undefined" || this.vm.model[key] == "") {
-                    this.vm.isValid = false;
-                    return false;
-                }
+            var validField = this.isValidField(key);
+            if (validField)
+            {
+                this.vm.isValid = false;
+                return false;
             }
         }
         this.vm.isValid = true;
         return true;
 
+    }
+
+    public isValidField(key) {
+
+      
+            if (this.vm.required.hasOwnProperty(key)) {
+
+                if (this.vm.model[key] == null || this.vm.model[key] == undefined || this.vm.model[key] == "undefined" || this.vm.model[key] == "") {
+                    return false;
+                }
+            }
+       
+            return true;
     }
 
 }

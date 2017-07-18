@@ -33,7 +33,7 @@ namespace Target.Pendencias.Application
             this._validatorAnnotations.Validate(_projetofluxotrabalhostatus);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new ProjetoFluxoTrabalhoStatus.ProjetoFluxoTrabalhoStatusFactory().GetDefaaultInstance(_projetofluxotrabalhostatus, this._user);
+			var domain = new ProjetoFluxoTrabalhoStatus.ProjetoFluxoTrabalhoStatusFactory().GetDefaultInstance(_projetofluxotrabalhostatus, this._user);
             return domain;
         }
 
@@ -44,7 +44,7 @@ namespace Target.Pendencias.Application
             {
 				var _projetofluxotrabalhostatus = dto as ProjetoFluxoTrabalhoStatusDto;
 				//var result = await this._serviceBase.GetOne(new ProjetoFluxoTrabalhoStatusFilter { ProjetoId = projetofluxotrabalhostatus.ProjetoId, FluxoTrabalhoStatusId = projetofluxotrabalhostatus.FluxoTrabalhoStatusId });
-				var result = new ProjetoFluxoTrabalhoStatus.ProjetoFluxoTrabalhoStatusFactory().GetDefaaultInstance(_projetofluxotrabalhostatus, this._user);
+				var result = new ProjetoFluxoTrabalhoStatus.ProjetoFluxoTrabalhoStatusFactory().GetDefaultInstance(_projetofluxotrabalhostatus, this._user);
 				//Inicio da Transferencia dos valores
            
 

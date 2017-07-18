@@ -20,7 +20,7 @@ namespace Target.Pendencias.Domain.Entitys
 
 		public class AcompanhadoresFactory
         {
-            public Acompanhadores GetDefaaultInstance(dynamic data, CurrentUser user)
+            public Acompanhadores GetDefaultInstance(dynamic data, CurrentUser user)
             {
                 var construction = new Acompanhadores(data.PendenciaId,
                                         data.UsuarioId);

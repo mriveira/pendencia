@@ -33,7 +33,7 @@ namespace Target.Pendencias.Application
             this._validatorAnnotations.Validate(_dto);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new Tags.TagsFactory().GetDefaaultInstance(_dto, this._user);
+			var domain = new Tags.TagsFactory().GetDefaultInstance(_dto, this._user);
             return domain;
         }
 

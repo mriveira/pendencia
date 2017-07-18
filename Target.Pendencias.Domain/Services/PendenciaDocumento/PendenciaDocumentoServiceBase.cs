@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<PendenciaDocumento> Save(PendenciaDocumento pendenciadocumento, bool questionToContinue = false)
         {
-            var pendenciadocumentoOld = await this.GetOne(new PendenciaDocumentoFilter { PendenciaId = pendenciadocumento.PendenciaId, DocumentoId = pendenciadocumento.DocumentoId });
+			var pendenciadocumentoOld = await this.GetOne(new PendenciaDocumentoFilter { PendenciaId = pendenciadocumento.PendenciaId, DocumentoId = pendenciadocumento.DocumentoId });
+			var pendenciadocumentoOrchestrated = await this.DomainOrchestration(pendenciadocumento, pendenciadocumentoOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(pendenciadocumento, pendenciadocumentoOld) == false)
-                    return pendenciadocumento;
+                if (base.Continue(pendenciadocumentoOrchestrated, pendenciadocumentoOld) == false)
+                    return pendenciadocumentoOrchestrated;
             }
 
-            return this.SaveWithValidation(pendenciadocumento, pendenciadocumentoOld);
+            return this.SaveWithValidation(pendenciadocumentoOrchestrated, pendenciadocumentoOld);
         }
 
         public override async Task<PendenciaDocumento> SavePartial(PendenciaDocumento pendenciadocumento, bool questionToContinue = false)
         {
             var pendenciadocumentoOld = await this.GetOne(new PendenciaDocumentoFilter { PendenciaId = pendenciadocumento.PendenciaId, DocumentoId = pendenciadocumento.DocumentoId });
+			var pendenciadocumentoOrchestrated = await this.DomainOrchestration(pendenciadocumento, pendenciadocumentoOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(pendenciadocumento, pendenciadocumentoOld) == false)
-                    return pendenciadocumento;
+                if (base.Continue(pendenciadocumentoOrchestrated, pendenciadocumentoOld) == false)
+                    return pendenciadocumentoOrchestrated;
             }
 
-            return SaveWithOutValidation(pendenciadocumento, pendenciadocumentoOld);
+            return SaveWithOutValidation(pendenciadocumentoOrchestrated, pendenciadocumentoOld);
         }
 
         protected override PendenciaDocumento SaveWithOutValidation(PendenciaDocumento pendenciadocumento, PendenciaDocumento pendenciadocumentoOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             pendenciadocumento = this.SaveDefault(pendenciadocumento, pendenciadocumentoOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return pendenciadocumento;
-            }
+				return pendenciadocumento;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(pendenciadocumento);
 
             if (!base._validationResult.IsValid)
-            {
                 return pendenciadocumento;
-            }
             
             pendenciadocumento = this.SaveDefault(pendenciadocumento, pendenciadocumentoOld);
             base._validationResult.Message = "PendenciaDocumento cadastrado com sucesso :)";
@@ -145,16 +145,19 @@ namespace Target.Pendencias.Domain.Services
         protected virtual PendenciaDocumento SaveDefault(PendenciaDocumento pendenciadocumento, PendenciaDocumento pendenciadocumentoOld)
         {
 			
-			
 
-            var isNew = pendenciadocumentoOld.IsNull();
-			
+            var isNew = pendenciadocumentoOld.IsNull();			
             if (isNew)
-                pendenciadocumento = this._rep.Add(pendenciadocumento);
+                pendenciadocumento = this.AddDefault(pendenciadocumento);
             else
 				pendenciadocumento = this.UpdateDefault(pendenciadocumento);
 
-
+            return pendenciadocumento;
+        }
+		
+        protected virtual PendenciaDocumento AddDefault(PendenciaDocumento pendenciadocumento)
+        {
+            pendenciadocumento = this._rep.Add(pendenciadocumento);
             return pendenciadocumento;
         }
 

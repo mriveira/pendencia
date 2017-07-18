@@ -33,7 +33,7 @@ namespace <#namespace#>.Application
             this._validatorAnnotations.Validate(_<#classNameLower#>);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new <#className#>.<#className#>Factory().GetDefaaultInstance(_<#classNameLower#>, this._user);
+			var domain = new <#className#>.<#className#>Factory().GetDefaultInstance(_<#classNameLower#>, this._user);
             return domain;
         }
 
@@ -44,7 +44,7 @@ namespace <#namespace#>.Application
             {
 				var _<#classNameLower#> = dto as <#className#>Dto;
 				//var result = await this._serviceBase.GetOne(<#GetOneFilterKeys#>);
-				var result = new <#className#>.<#className#>Factory().GetDefaaultInstance(_<#classNameLower#>, this._user);
+				var result = new <#className#>.<#className#>Factory().GetDefaultInstance(_<#classNameLower#>, this._user);
 				//Inicio da Transferencia dos valores
            
 

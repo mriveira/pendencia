@@ -68,26 +68,30 @@ namespace <#namespace#>.Domain.Services
 
         public override async Task<<#className#>> Save(<#className#> <#classNameLower#>, bool questionToContinue = false)
         {
-            var <#classNameLower#>Old = await this.GetOne(<#GetOneFilterKeys#>);
+			var <#classNameLower#>Old = await this.GetOne(<#GetOneFilterKeys#>);
+			var <#classNameLower#>Orchestrated = await this.DomainOrchestration(<#classNameLower#>, <#classNameLower#>Old);
+
             if (questionToContinue)
             {
-                if (base.Continue(<#classNameLower#>, <#classNameLower#>Old) == false)
-                    return <#classNameLower#>;
+                if (base.Continue(<#classNameLower#>Orchestrated, <#classNameLower#>Old) == false)
+                    return <#classNameLower#>Orchestrated;
             }
 
-            return this.SaveWithValidation(<#classNameLower#>, <#classNameLower#>Old);
+            return this.SaveWithValidation(<#classNameLower#>Orchestrated, <#classNameLower#>Old);
         }
 
         public override async Task<<#className#>> SavePartial(<#className#> <#classNameLower#>, bool questionToContinue = false)
         {
             var <#classNameLower#>Old = await this.GetOne(<#GetOneFilterKeys#>);
+			var <#classNameLower#>Orchestrated = await this.DomainOrchestration(<#classNameLower#>, <#classNameLower#>Old);
+
             if (questionToContinue)
             {
-                if (base.Continue(<#classNameLower#>, <#classNameLower#>Old) == false)
-                    return <#classNameLower#>;
+                if (base.Continue(<#classNameLower#>Orchestrated, <#classNameLower#>Old) == false)
+                    return <#classNameLower#>Orchestrated;
             }
 
-            return SaveWithOutValidation(<#classNameLower#>, <#classNameLower#>Old);
+            return SaveWithOutValidation(<#classNameLower#>Orchestrated, <#classNameLower#>Old);
         }
 
         protected override <#className#> SaveWithOutValidation(<#className#> <#classNameLower#>, <#className#> <#classNameLower#>Old)
@@ -95,9 +99,7 @@ namespace <#namespace#>.Domain.Services
             <#classNameLower#> = this.SaveDefault(<#classNameLower#>, <#classNameLower#>Old);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return <#classNameLower#>;
-            }
+				return <#classNameLower#>;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace <#namespace#>.Domain.Services
             this.Specifications(<#classNameLower#>);
 
             if (!base._validationResult.IsValid)
-            {
                 return <#classNameLower#>;
-            }
             
             <#classNameLower#> = this.SaveDefault(<#classNameLower#>, <#classNameLower#>Old);
             base._validationResult.Message = "<#className#> cadastrado com sucesso :)";
@@ -144,17 +144,20 @@ namespace <#namespace#>.Domain.Services
 
         protected virtual <#className#> SaveDefault(<#className#> <#classNameLower#>, <#className#> <#classNameLower#>Old)
         {
-			
 			<#AuditDefault#>
 
-            var isNew = <#classNameLower#>Old.IsNull();
-			
+            var isNew = <#classNameLower#>Old.IsNull();			
             if (isNew)
-                <#classNameLower#> = this._rep.Add(<#classNameLower#>);
+                <#classNameLower#> = this.AddDefault(<#classNameLower#>);
             else
 				<#classNameLower#> = this.UpdateDefault(<#classNameLower#>);
 
-
+            return <#classNameLower#>;
+        }
+		
+        protected virtual <#className#> AddDefault(<#className#> <#classNameLower#>)
+        {
+            <#classNameLower#> = this._rep.Add(<#classNameLower#>);
             return <#classNameLower#>;
         }
 

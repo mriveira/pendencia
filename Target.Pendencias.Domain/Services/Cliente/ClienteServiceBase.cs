@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<Cliente> Save(Cliente cliente, bool questionToContinue = false)
         {
-            var clienteOld = await this.GetOne(new ClienteFilter { ClienteId = cliente.ClienteId });
+			var clienteOld = await this.GetOne(new ClienteFilter { ClienteId = cliente.ClienteId });
+			var clienteOrchestrated = await this.DomainOrchestration(cliente, clienteOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(cliente, clienteOld) == false)
-                    return cliente;
+                if (base.Continue(clienteOrchestrated, clienteOld) == false)
+                    return clienteOrchestrated;
             }
 
-            return this.SaveWithValidation(cliente, clienteOld);
+            return this.SaveWithValidation(clienteOrchestrated, clienteOld);
         }
 
         public override async Task<Cliente> SavePartial(Cliente cliente, bool questionToContinue = false)
         {
             var clienteOld = await this.GetOne(new ClienteFilter { ClienteId = cliente.ClienteId });
+			var clienteOrchestrated = await this.DomainOrchestration(cliente, clienteOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(cliente, clienteOld) == false)
-                    return cliente;
+                if (base.Continue(clienteOrchestrated, clienteOld) == false)
+                    return clienteOrchestrated;
             }
 
-            return SaveWithOutValidation(cliente, clienteOld);
+            return SaveWithOutValidation(clienteOrchestrated, clienteOld);
         }
 
         protected override Cliente SaveWithOutValidation(Cliente cliente, Cliente clienteOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             cliente = this.SaveDefault(cliente, clienteOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return cliente;
-            }
+				return cliente;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(cliente);
 
             if (!base._validationResult.IsValid)
-            {
                 return cliente;
-            }
             
             cliente = this.SaveDefault(cliente, clienteOld);
             base._validationResult.Message = "Cliente cadastrado com sucesso :)";
@@ -144,17 +144,20 @@ namespace Target.Pendencias.Domain.Services
 
         protected virtual Cliente SaveDefault(Cliente cliente, Cliente clienteOld)
         {
-			
-			cliente = AuditDefault(cliente, clienteOld);
+			cliente = this.AuditDefault(cliente, clienteOld);
 
-            var isNew = clienteOld.IsNull();
-			
+            var isNew = clienteOld.IsNull();			
             if (isNew)
-                cliente = this._rep.Add(cliente);
+                cliente = this.AddDefault(cliente);
             else
 				cliente = this.UpdateDefault(cliente);
 
-
+            return cliente;
+        }
+		
+        protected virtual Cliente AddDefault(Cliente cliente)
+        {
+            cliente = this._rep.Add(cliente);
             return cliente;
         }
 

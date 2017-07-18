@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<FluxoTrabalhoStatus> Save(FluxoTrabalhoStatus fluxotrabalhostatus, bool questionToContinue = false)
         {
-            var fluxotrabalhostatusOld = await this.GetOne(new FluxoTrabalhoStatusFilter { FluxoTrabalhoStatusId = fluxotrabalhostatus.FluxoTrabalhoStatusId });
+			var fluxotrabalhostatusOld = await this.GetOne(new FluxoTrabalhoStatusFilter { FluxoTrabalhoStatusId = fluxotrabalhostatus.FluxoTrabalhoStatusId });
+			var fluxotrabalhostatusOrchestrated = await this.DomainOrchestration(fluxotrabalhostatus, fluxotrabalhostatusOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(fluxotrabalhostatus, fluxotrabalhostatusOld) == false)
-                    return fluxotrabalhostatus;
+                if (base.Continue(fluxotrabalhostatusOrchestrated, fluxotrabalhostatusOld) == false)
+                    return fluxotrabalhostatusOrchestrated;
             }
 
-            return this.SaveWithValidation(fluxotrabalhostatus, fluxotrabalhostatusOld);
+            return this.SaveWithValidation(fluxotrabalhostatusOrchestrated, fluxotrabalhostatusOld);
         }
 
         public override async Task<FluxoTrabalhoStatus> SavePartial(FluxoTrabalhoStatus fluxotrabalhostatus, bool questionToContinue = false)
         {
             var fluxotrabalhostatusOld = await this.GetOne(new FluxoTrabalhoStatusFilter { FluxoTrabalhoStatusId = fluxotrabalhostatus.FluxoTrabalhoStatusId });
+			var fluxotrabalhostatusOrchestrated = await this.DomainOrchestration(fluxotrabalhostatus, fluxotrabalhostatusOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(fluxotrabalhostatus, fluxotrabalhostatusOld) == false)
-                    return fluxotrabalhostatus;
+                if (base.Continue(fluxotrabalhostatusOrchestrated, fluxotrabalhostatusOld) == false)
+                    return fluxotrabalhostatusOrchestrated;
             }
 
-            return SaveWithOutValidation(fluxotrabalhostatus, fluxotrabalhostatusOld);
+            return SaveWithOutValidation(fluxotrabalhostatusOrchestrated, fluxotrabalhostatusOld);
         }
 
         protected override FluxoTrabalhoStatus SaveWithOutValidation(FluxoTrabalhoStatus fluxotrabalhostatus, FluxoTrabalhoStatus fluxotrabalhostatusOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             fluxotrabalhostatus = this.SaveDefault(fluxotrabalhostatus, fluxotrabalhostatusOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return fluxotrabalhostatus;
-            }
+				return fluxotrabalhostatus;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(fluxotrabalhostatus);
 
             if (!base._validationResult.IsValid)
-            {
                 return fluxotrabalhostatus;
-            }
             
             fluxotrabalhostatus = this.SaveDefault(fluxotrabalhostatus, fluxotrabalhostatusOld);
             base._validationResult.Message = "FluxoTrabalhoStatus cadastrado com sucesso :)";
@@ -145,16 +145,19 @@ namespace Target.Pendencias.Domain.Services
         protected virtual FluxoTrabalhoStatus SaveDefault(FluxoTrabalhoStatus fluxotrabalhostatus, FluxoTrabalhoStatus fluxotrabalhostatusOld)
         {
 			
-			
 
-            var isNew = fluxotrabalhostatusOld.IsNull();
-			
+            var isNew = fluxotrabalhostatusOld.IsNull();			
             if (isNew)
-                fluxotrabalhostatus = this._rep.Add(fluxotrabalhostatus);
+                fluxotrabalhostatus = this.AddDefault(fluxotrabalhostatus);
             else
 				fluxotrabalhostatus = this.UpdateDefault(fluxotrabalhostatus);
 
-
+            return fluxotrabalhostatus;
+        }
+		
+        protected virtual FluxoTrabalhoStatus AddDefault(FluxoTrabalhoStatus fluxotrabalhostatus)
+        {
+            fluxotrabalhostatus = this._rep.Add(fluxotrabalhostatus);
             return fluxotrabalhostatus;
         }
 

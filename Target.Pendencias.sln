@@ -157,6 +157,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Target.Pendencias.Spa.Ui.V4
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "59985"
+		SlnRelativePath = "Target.Pendencias.Spa.Ui.V4\"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
@@ -241,11 +242,9 @@ Global
 		{46FD18BC-8302-47CE-A2B6-85B1AC4F1E3A}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{46FD18BC-8302-47CE-A2B6-85B1AC4F1E3A}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{39676546-C118-465A-88C9-FD6AC589539A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39676546-C118-465A-88C9-FD6AC589539A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39676546-C118-465A-88C9-FD6AC589539A}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{39676546-C118-465A-88C9-FD6AC589539A}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{6010BB5F-8036-4DE5-8C41-90CB1E046E9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6010BB5F-8036-4DE5-8C41-90CB1E046E9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6010BB5F-8036-4DE5-8C41-90CB1E046E9A}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{6010BB5F-8036-4DE5-8C41-90CB1E046E9A}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection

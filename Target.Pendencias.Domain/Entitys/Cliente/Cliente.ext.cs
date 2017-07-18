@@ -20,7 +20,7 @@ namespace Target.Pendencias.Domain.Entitys
 
 		public class ClienteFactory
         {
-            public Cliente GetDefaaultInstance(dynamic data, CurrentUser user)
+            public Cliente GetDefaultInstance(dynamic data, CurrentUser user)
             {
                 var _usuarioId = user.GetTenantOwnerId<int>();
 

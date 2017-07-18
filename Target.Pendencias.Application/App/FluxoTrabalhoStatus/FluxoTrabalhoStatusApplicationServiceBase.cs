@@ -33,7 +33,7 @@ namespace Target.Pendencias.Application
             this._validatorAnnotations.Validate(_fluxotrabalhostatus);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
 
-			var domain = new FluxoTrabalhoStatus.FluxoTrabalhoStatusFactory().GetDefaaultInstance(_fluxotrabalhostatus, this._user);
+			var domain = new FluxoTrabalhoStatus.FluxoTrabalhoStatusFactory().GetDefaultInstance(_fluxotrabalhostatus, this._user);
             return domain;
         }
 
@@ -44,7 +44,7 @@ namespace Target.Pendencias.Application
             {
 				var _fluxotrabalhostatus = dto as FluxoTrabalhoStatusDto;
 				//var result = await this._serviceBase.GetOne(new FluxoTrabalhoStatusFilter { FluxoTrabalhoStatusId = fluxotrabalhostatus.FluxoTrabalhoStatusId });
-				var result = new FluxoTrabalhoStatus.FluxoTrabalhoStatusFactory().GetDefaaultInstance(_fluxotrabalhostatus, this._user);
+				var result = new FluxoTrabalhoStatus.FluxoTrabalhoStatusFactory().GetDefaultInstance(_fluxotrabalhostatus, this._user);
 				//Inicio da Transferencia dos valores
            
 

@@ -15,23 +15,7 @@ namespace Target.Pendencias.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            new AcompanhadoresMap(modelBuilder.Entity<Acompanhadores>());
-            new ClienteMap(modelBuilder.Entity<Cliente>());
-            new ComentarioMap(modelBuilder.Entity<Comentario>());
-            new ComentarioDocumentoMap(modelBuilder.Entity<ComentarioDocumento>());
-            new DocumentoMap(modelBuilder.Entity<Documento>());
-            new FluxoTrabalhoStatusMap(modelBuilder.Entity<FluxoTrabalhoStatus>());
-            new FluxoTrabalhoTipoMap(modelBuilder.Entity<FluxoTrabalhoTipo>());
-            new PendeciaPrioridadeMap(modelBuilder.Entity<PendeciaPrioridade>());
-            new PendenciaEventosMap(modelBuilder.Entity<PendenciaEventos>());
-            new PendenciaMap(modelBuilder.Entity<Pendencia>());
-            new PendenciaDocumentoMap(modelBuilder.Entity<PendenciaDocumento>());
-            new PendenciaTipoMap(modelBuilder.Entity<PendenciaTipo>());
-            new ProjetoMap(modelBuilder.Entity<Projeto>());
-            new ProjetoFluxoTrabalhoStatusMap(modelBuilder.Entity<ProjetoFluxoTrabalhoStatus>());
-            new PendenciaTemposMap(modelBuilder.Entity<PendenciaTempos>());
             new UsuarioMap(modelBuilder.Entity<Usuario>());
-            new UsuarioTipoMap(modelBuilder.Entity<UsuarioTipo>());
 
         }
 

@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<FluxoTrabalhoTipo> Save(FluxoTrabalhoTipo fluxotrabalhotipo, bool questionToContinue = false)
         {
-            var fluxotrabalhotipoOld = await this.GetOne(new FluxoTrabalhoTipoFilter { FluxoTrabalhoTipoId = fluxotrabalhotipo.FluxoTrabalhoTipoId });
+			var fluxotrabalhotipoOld = await this.GetOne(new FluxoTrabalhoTipoFilter { FluxoTrabalhoTipoId = fluxotrabalhotipo.FluxoTrabalhoTipoId });
+			var fluxotrabalhotipoOrchestrated = await this.DomainOrchestration(fluxotrabalhotipo, fluxotrabalhotipoOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(fluxotrabalhotipo, fluxotrabalhotipoOld) == false)
-                    return fluxotrabalhotipo;
+                if (base.Continue(fluxotrabalhotipoOrchestrated, fluxotrabalhotipoOld) == false)
+                    return fluxotrabalhotipoOrchestrated;
             }
 
-            return this.SaveWithValidation(fluxotrabalhotipo, fluxotrabalhotipoOld);
+            return this.SaveWithValidation(fluxotrabalhotipoOrchestrated, fluxotrabalhotipoOld);
         }
 
         public override async Task<FluxoTrabalhoTipo> SavePartial(FluxoTrabalhoTipo fluxotrabalhotipo, bool questionToContinue = false)
         {
             var fluxotrabalhotipoOld = await this.GetOne(new FluxoTrabalhoTipoFilter { FluxoTrabalhoTipoId = fluxotrabalhotipo.FluxoTrabalhoTipoId });
+			var fluxotrabalhotipoOrchestrated = await this.DomainOrchestration(fluxotrabalhotipo, fluxotrabalhotipoOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(fluxotrabalhotipo, fluxotrabalhotipoOld) == false)
-                    return fluxotrabalhotipo;
+                if (base.Continue(fluxotrabalhotipoOrchestrated, fluxotrabalhotipoOld) == false)
+                    return fluxotrabalhotipoOrchestrated;
             }
 
-            return SaveWithOutValidation(fluxotrabalhotipo, fluxotrabalhotipoOld);
+            return SaveWithOutValidation(fluxotrabalhotipoOrchestrated, fluxotrabalhotipoOld);
         }
 
         protected override FluxoTrabalhoTipo SaveWithOutValidation(FluxoTrabalhoTipo fluxotrabalhotipo, FluxoTrabalhoTipo fluxotrabalhotipoOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             fluxotrabalhotipo = this.SaveDefault(fluxotrabalhotipo, fluxotrabalhotipoOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return fluxotrabalhotipo;
-            }
+				return fluxotrabalhotipo;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(fluxotrabalhotipo);
 
             if (!base._validationResult.IsValid)
-            {
                 return fluxotrabalhotipo;
-            }
             
             fluxotrabalhotipo = this.SaveDefault(fluxotrabalhotipo, fluxotrabalhotipoOld);
             base._validationResult.Message = "FluxoTrabalhoTipo cadastrado com sucesso :)";
@@ -145,16 +145,19 @@ namespace Target.Pendencias.Domain.Services
         protected virtual FluxoTrabalhoTipo SaveDefault(FluxoTrabalhoTipo fluxotrabalhotipo, FluxoTrabalhoTipo fluxotrabalhotipoOld)
         {
 			
-			
 
-            var isNew = fluxotrabalhotipoOld.IsNull();
-			
+            var isNew = fluxotrabalhotipoOld.IsNull();			
             if (isNew)
-                fluxotrabalhotipo = this._rep.Add(fluxotrabalhotipo);
+                fluxotrabalhotipo = this.AddDefault(fluxotrabalhotipo);
             else
 				fluxotrabalhotipo = this.UpdateDefault(fluxotrabalhotipo);
 
-
+            return fluxotrabalhotipo;
+        }
+		
+        protected virtual FluxoTrabalhoTipo AddDefault(FluxoTrabalhoTipo fluxotrabalhotipo)
+        {
+            fluxotrabalhotipo = this._rep.Add(fluxotrabalhotipo);
             return fluxotrabalhotipo;
         }
 

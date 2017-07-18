@@ -71,6 +71,8 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
 
     public onSave(model) {
 
+        console.log(model);
+
         this.fluxoTrabalhoStatusService.save(model).subscribe((result) => {
 
             this.vm.filterResult = this.vm.filterResult.filter(function (el) {

@@ -20,7 +20,7 @@ namespace Target.Pendencias.Domain.Entitys
 
 		public class FluxoTrabalhoStatusFactory
         {
-            public FluxoTrabalhoStatus GetDefaaultInstance(dynamic data, CurrentUser user)
+            public FluxoTrabalhoStatus GetDefaultInstance(dynamic data, CurrentUser user)
             {
                 var construction = new FluxoTrabalhoStatus(data.FluxoTrabalhoStatusId,
                                         data.Nome,

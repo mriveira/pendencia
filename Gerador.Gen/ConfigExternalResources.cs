@@ -33,7 +33,7 @@ namespace Target.Pendencias.Gen
                 ResouceRepositoryName = "template-gerador-back-DDD",
                 ResourceUrlRepository = "https://github.com/wilsonsantosnet/template-gerador-back-DDD.git",
                 ResourceLocalPathFolderExecuteCloning = @"C:\Projetos\Outros\Repositorios",
-                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Target.Pendencias\Gerador.Gen\Templates\Back"
+                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Pendencia\Gerador.Gen\Templates\Back"
             };
 
         }
@@ -62,7 +62,7 @@ namespace Target.Pendencias.Gen
                 ResouceRepositoryName = "framework-core-common",
                 ResourceUrlRepository = "https://github.com/wilsonsantosnet/framework-core-common.git",
                 ResourceLocalPathFolderExecuteCloning = @"C:\Projetos\Outros\Repositorios",
-                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Target.Pendencias"
+                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Pendencia"
             };
 
         }
@@ -93,9 +93,9 @@ namespace Target.Pendencias.Gen
 
                ConfigExternarResourcesTemplatesBackDDD(replaceLocalFilesApplication),
                ConfigExternarResourcesFrameworkCommon(replaceLocalFilesApplication),
-               ConfigExternarResourcesTemplatesFrontBs4Angular20(replaceLocalFilesApplication),
-               ConfigExternarResourcesFrameworkAngula20Crud(replaceLocalFilesApplication),
-               ConfigExternarResourcesSeedLayoutBs4Angular20(replaceLocalFilesApplication),
+               //ConfigExternarResourcesTemplatesFrontBs4Angular20(replaceLocalFilesApplication),
+               //ConfigExternarResourcesFrameworkAngula20Crud(replaceLocalFilesApplication),
+               //ConfigExternarResourcesSeedLayoutBs4Angular20(replaceLocalFilesApplication),
 
             };
 

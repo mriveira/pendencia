@@ -18,6 +18,7 @@ import { MakeSelectComponent } from 'app/common/components/select.component';
 import { MakePaginationComponent } from 'app/common/components/pagination.component';
 
 import { ValidationCustom } from 'app/common/directives/validation-custom.directive';
+import { FluxoTrabalhoStatusHeadComponent } from './fluxo-trabalho-status-head/fluxo-trabalho-status-head.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ValidationCustom } from 'app/common/directives/validation-custom.direct
         ConfirmModalComponent,
         FluxoTrabalhoStatusFieldComponent,
         FluxoTrabalhoStatusFilterComponent,
-        ValidationCustom
+        ValidationCustom,
+        FluxoTrabalhoStatusHeadComponent
     ],
     providers: [FluxoTrabalhoStatusService, ApiService, ConfirmModalComponent],
 })

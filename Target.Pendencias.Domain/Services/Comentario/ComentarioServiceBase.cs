@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<Comentario> Save(Comentario comentario, bool questionToContinue = false)
         {
-            var comentarioOld = await this.GetOne(new ComentarioFilter { ComentarioId = comentario.ComentarioId });
+			var comentarioOld = await this.GetOne(new ComentarioFilter { ComentarioId = comentario.ComentarioId });
+			var comentarioOrchestrated = await this.DomainOrchestration(comentario, comentarioOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(comentario, comentarioOld) == false)
-                    return comentario;
+                if (base.Continue(comentarioOrchestrated, comentarioOld) == false)
+                    return comentarioOrchestrated;
             }
 
-            return this.SaveWithValidation(comentario, comentarioOld);
+            return this.SaveWithValidation(comentarioOrchestrated, comentarioOld);
         }
 
         public override async Task<Comentario> SavePartial(Comentario comentario, bool questionToContinue = false)
         {
             var comentarioOld = await this.GetOne(new ComentarioFilter { ComentarioId = comentario.ComentarioId });
+			var comentarioOrchestrated = await this.DomainOrchestration(comentario, comentarioOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(comentario, comentarioOld) == false)
-                    return comentario;
+                if (base.Continue(comentarioOrchestrated, comentarioOld) == false)
+                    return comentarioOrchestrated;
             }
 
-            return SaveWithOutValidation(comentario, comentarioOld);
+            return SaveWithOutValidation(comentarioOrchestrated, comentarioOld);
         }
 
         protected override Comentario SaveWithOutValidation(Comentario comentario, Comentario comentarioOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             comentario = this.SaveDefault(comentario, comentarioOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return comentario;
-            }
+				return comentario;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(comentario);
 
             if (!base._validationResult.IsValid)
-            {
                 return comentario;
-            }
             
             comentario = this.SaveDefault(comentario, comentarioOld);
             base._validationResult.Message = "Comentario cadastrado com sucesso :)";
@@ -144,17 +144,20 @@ namespace Target.Pendencias.Domain.Services
 
         protected virtual Comentario SaveDefault(Comentario comentario, Comentario comentarioOld)
         {
-			
-			comentario = AuditDefault(comentario, comentarioOld);
+			comentario = this.AuditDefault(comentario, comentarioOld);
 
-            var isNew = comentarioOld.IsNull();
-			
+            var isNew = comentarioOld.IsNull();			
             if (isNew)
-                comentario = this._rep.Add(comentario);
+                comentario = this.AddDefault(comentario);
             else
 				comentario = this.UpdateDefault(comentario);
 
-
+            return comentario;
+        }
+		
+        protected virtual Comentario AddDefault(Comentario comentario)
+        {
+            comentario = this._rep.Add(comentario);
             return comentario;
         }
 

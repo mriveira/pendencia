@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<PendenciaEventos> Save(PendenciaEventos pendenciaeventos, bool questionToContinue = false)
         {
-            var pendenciaeventosOld = await this.GetOne(new PendenciaEventosFilter { PendenciaEventosId = pendenciaeventos.PendenciaEventosId });
+			var pendenciaeventosOld = await this.GetOne(new PendenciaEventosFilter { PendenciaEventosId = pendenciaeventos.PendenciaEventosId });
+			var pendenciaeventosOrchestrated = await this.DomainOrchestration(pendenciaeventos, pendenciaeventosOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(pendenciaeventos, pendenciaeventosOld) == false)
-                    return pendenciaeventos;
+                if (base.Continue(pendenciaeventosOrchestrated, pendenciaeventosOld) == false)
+                    return pendenciaeventosOrchestrated;
             }
 
-            return this.SaveWithValidation(pendenciaeventos, pendenciaeventosOld);
+            return this.SaveWithValidation(pendenciaeventosOrchestrated, pendenciaeventosOld);
         }
 
         public override async Task<PendenciaEventos> SavePartial(PendenciaEventos pendenciaeventos, bool questionToContinue = false)
         {
             var pendenciaeventosOld = await this.GetOne(new PendenciaEventosFilter { PendenciaEventosId = pendenciaeventos.PendenciaEventosId });
+			var pendenciaeventosOrchestrated = await this.DomainOrchestration(pendenciaeventos, pendenciaeventosOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(pendenciaeventos, pendenciaeventosOld) == false)
-                    return pendenciaeventos;
+                if (base.Continue(pendenciaeventosOrchestrated, pendenciaeventosOld) == false)
+                    return pendenciaeventosOrchestrated;
             }
 
-            return SaveWithOutValidation(pendenciaeventos, pendenciaeventosOld);
+            return SaveWithOutValidation(pendenciaeventosOrchestrated, pendenciaeventosOld);
         }
 
         protected override PendenciaEventos SaveWithOutValidation(PendenciaEventos pendenciaeventos, PendenciaEventos pendenciaeventosOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             pendenciaeventos = this.SaveDefault(pendenciaeventos, pendenciaeventosOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return pendenciaeventos;
-            }
+				return pendenciaeventos;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(pendenciaeventos);
 
             if (!base._validationResult.IsValid)
-            {
                 return pendenciaeventos;
-            }
             
             pendenciaeventos = this.SaveDefault(pendenciaeventos, pendenciaeventosOld);
             base._validationResult.Message = "PendenciaEventos cadastrado com sucesso :)";
@@ -144,17 +144,20 @@ namespace Target.Pendencias.Domain.Services
 
         protected virtual PendenciaEventos SaveDefault(PendenciaEventos pendenciaeventos, PendenciaEventos pendenciaeventosOld)
         {
-			
-			pendenciaeventos = AuditDefault(pendenciaeventos, pendenciaeventosOld);
+			pendenciaeventos = this.AuditDefault(pendenciaeventos, pendenciaeventosOld);
 
-            var isNew = pendenciaeventosOld.IsNull();
-			
+            var isNew = pendenciaeventosOld.IsNull();			
             if (isNew)
-                pendenciaeventos = this._rep.Add(pendenciaeventos);
+                pendenciaeventos = this.AddDefault(pendenciaeventos);
             else
 				pendenciaeventos = this.UpdateDefault(pendenciaeventos);
 
-
+            return pendenciaeventos;
+        }
+		
+        protected virtual PendenciaEventos AddDefault(PendenciaEventos pendenciaeventos)
+        {
+            pendenciaeventos = this._rep.Add(pendenciaeventos);
             return pendenciaeventos;
         }
 

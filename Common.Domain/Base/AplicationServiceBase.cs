@@ -88,7 +88,7 @@ namespace Common.Domain.Base
             var entityChanged = await this.AlterDomainWithDto(entity);
             if (entityChanged.IsNull())
             {
-                this._serviceBase.AddDomainValidation("Não econtrado");
+                this._serviceBase.AddDomainValidation("Não encontrado");
                 return entity;
             }
 
@@ -113,13 +113,12 @@ namespace Common.Domain.Base
             this.BeginTransaction();
 
             var resultDomain = await this._serviceBase.Save(model, questionToContinue);
-
-            await this.CommitAsync();
-
             var resultDto = this.MapperDomainToDto<TD>(resultDomain);
+
             if (!DomainIsValid())
                 return resultDto;
 
+            await this.CommitAsync();
             return resultDto;
         }
 

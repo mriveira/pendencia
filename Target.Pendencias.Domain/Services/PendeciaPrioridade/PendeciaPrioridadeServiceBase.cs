@@ -68,26 +68,30 @@ namespace Target.Pendencias.Domain.Services
 
         public override async Task<PendeciaPrioridade> Save(PendeciaPrioridade pendeciaprioridade, bool questionToContinue = false)
         {
-            var pendeciaprioridadeOld = await this.GetOne(new PendeciaPrioridadeFilter { PendeciaPrioridadeId = pendeciaprioridade.PendeciaPrioridadeId });
+			var pendeciaprioridadeOld = await this.GetOne(new PendeciaPrioridadeFilter { PendeciaPrioridadeId = pendeciaprioridade.PendeciaPrioridadeId });
+			var pendeciaprioridadeOrchestrated = await this.DomainOrchestration(pendeciaprioridade, pendeciaprioridadeOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(pendeciaprioridade, pendeciaprioridadeOld) == false)
-                    return pendeciaprioridade;
+                if (base.Continue(pendeciaprioridadeOrchestrated, pendeciaprioridadeOld) == false)
+                    return pendeciaprioridadeOrchestrated;
             }
 
-            return this.SaveWithValidation(pendeciaprioridade, pendeciaprioridadeOld);
+            return this.SaveWithValidation(pendeciaprioridadeOrchestrated, pendeciaprioridadeOld);
         }
 
         public override async Task<PendeciaPrioridade> SavePartial(PendeciaPrioridade pendeciaprioridade, bool questionToContinue = false)
         {
             var pendeciaprioridadeOld = await this.GetOne(new PendeciaPrioridadeFilter { PendeciaPrioridadeId = pendeciaprioridade.PendeciaPrioridadeId });
+			var pendeciaprioridadeOrchestrated = await this.DomainOrchestration(pendeciaprioridade, pendeciaprioridadeOld);
+
             if (questionToContinue)
             {
-                if (base.Continue(pendeciaprioridade, pendeciaprioridadeOld) == false)
-                    return pendeciaprioridade;
+                if (base.Continue(pendeciaprioridadeOrchestrated, pendeciaprioridadeOld) == false)
+                    return pendeciaprioridadeOrchestrated;
             }
 
-            return SaveWithOutValidation(pendeciaprioridade, pendeciaprioridadeOld);
+            return SaveWithOutValidation(pendeciaprioridadeOrchestrated, pendeciaprioridadeOld);
         }
 
         protected override PendeciaPrioridade SaveWithOutValidation(PendeciaPrioridade pendeciaprioridade, PendeciaPrioridade pendeciaprioridadeOld)
@@ -95,9 +99,7 @@ namespace Target.Pendencias.Domain.Services
             pendeciaprioridade = this.SaveDefault(pendeciaprioridade, pendeciaprioridadeOld);
 
 			if (base._validationResult.IsNotNull() && !base._validationResult.IsValid)
-            {
-                return pendeciaprioridade;
-            }
+				return pendeciaprioridade;
 
             base._validationResult = new ValidationSpecificationResult
             {
@@ -125,9 +127,7 @@ namespace Target.Pendencias.Domain.Services
             this.Specifications(pendeciaprioridade);
 
             if (!base._validationResult.IsValid)
-            {
                 return pendeciaprioridade;
-            }
             
             pendeciaprioridade = this.SaveDefault(pendeciaprioridade, pendeciaprioridadeOld);
             base._validationResult.Message = "PendeciaPrioridade cadastrado com sucesso :)";
@@ -145,16 +145,19 @@ namespace Target.Pendencias.Domain.Services
         protected virtual PendeciaPrioridade SaveDefault(PendeciaPrioridade pendeciaprioridade, PendeciaPrioridade pendeciaprioridadeOld)
         {
 			
-			
 
-            var isNew = pendeciaprioridadeOld.IsNull();
-			
+            var isNew = pendeciaprioridadeOld.IsNull();			
             if (isNew)
-                pendeciaprioridade = this._rep.Add(pendeciaprioridade);
+                pendeciaprioridade = this.AddDefault(pendeciaprioridade);
             else
 				pendeciaprioridade = this.UpdateDefault(pendeciaprioridade);
 
-
+            return pendeciaprioridade;
+        }
+		
+        protected virtual PendeciaPrioridade AddDefault(PendeciaPrioridade pendeciaprioridade)
+        {
+            pendeciaprioridade = this._rep.Add(pendeciaprioridade);
             return pendeciaprioridade;
         }
 
