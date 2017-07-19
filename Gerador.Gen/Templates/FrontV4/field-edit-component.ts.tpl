@@ -2,11 +2,11 @@
 
 
 @Component({
-    selector: 'app-<#classNameLowerAndSeparator#>-field',
-    templateUrl: './<#classNameLowerAndSeparator#>-field.component.html',
-    styleUrls: ['./<#classNameLowerAndSeparator#>-field.component.css']
+    selector: 'app-<#classNameLowerAndSeparator#>-field-edit',
+    templateUrl: './<#classNameLowerAndSeparator#>-field-edit.component.html',
+    styleUrls: ['./<#classNameLowerAndSeparator#>-field-edit.component.css']
 })
-export class FluxoTrabalhoStatusFieldComponent implements OnInit {
+export class <#className#>FieldEditComponent implements OnInit {
 
     @Input() vm: any;
 
@@ -25,11 +25,9 @@ export class FluxoTrabalhoStatusFieldComponent implements OnInit {
     public onCancel() {
 
     }
+    
+    <#fields#>
 
-    public onChange_makeSelect_model_fluxoTrabalhoTipoId(eventArgs) {
-        this.vm.model.fluxoTrabalhoTipoId = eventArgs;
-        this.isValid();
-    }
     public isValid() {
 
         for (let key in this.vm.required) {

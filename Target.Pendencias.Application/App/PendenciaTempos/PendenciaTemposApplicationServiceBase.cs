@@ -15,7 +15,7 @@ namespace Target.Pendencias.Application
     {
         protected readonly ValidatorAnnotations<PendenciaTemposDto> _validatorAnnotations;
         protected readonly IPendenciaTemposService _service;
-		protected readonly CurrentUser _user;
+		    protected readonly CurrentUser _user;
 
         public PendenciaTemposApplicationServiceBase(IPendenciaTemposService service, IUnitOfWork uow, ICache cache, CurrentUser user) :
             base(service, uow, cache)
@@ -23,36 +23,23 @@ namespace Target.Pendencias.Application
             base.SetTagNameCache("PendenciaTempos");
             this._validatorAnnotations = new ValidatorAnnotations<PendenciaTemposDto>();
             this._service = service;
-			this._user = user;
+			      this._user = user;
         }
-
 
         protected override PendenciaTempos MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _pendenciatempos = dto as PendenciaTemposDtoSpecialized;
-            this._validatorAnnotations.Validate(_pendenciatempos);
+			      var _dto = dto as PendenciaTemposDtoSpecialized;
+            this._validatorAnnotations.Validate(_dto);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
-
-			var domain = new PendenciaTempos.PendenciaTemposFactory().GetDefaultInstance(_pendenciatempos, this._user);
+			      var domain = new PendenciaTempos.PendenciaTemposFactory().GetDefaultInstance(_dto, this._user);
             return domain;
         }
 
-
         protected override async Task<PendenciaTempos> AlterDomainWithDto<TDS>(TDS dto)
         {
-			return await Task.Run(() =>
-            {
-				var _pendenciatempos = dto as PendenciaTemposDto;
-				//var result = await this._serviceBase.GetOne(new PendenciaTemposFilter { PendenciaTemposId = pendenciatempos.PendenciaTemposId });
-				var result = new PendenciaTempos.PendenciaTemposFactory().GetDefaultInstance(_pendenciatempos, this._user);
-				//Inicio da Transferencia dos valores
-           
-
-				//Fim da Transferencia dos valores
-
-				return result;
-			});
-
+			      var pendenciatempos = dto as PendenciaTemposDto;
+            var result = await this._serviceBase.GetOne(new PendenciaTemposFilter { PendenciaTemposId = pendenciatempos.PendenciaTemposId });
+            return result;
         }
 
     }

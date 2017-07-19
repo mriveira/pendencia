@@ -1,0 +1,27 @@
+<div class="row">
+	  <section class="col-md-6">
+	                <div class='form-group'>
+                    <label>{{ vm.labels.nome }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required (change)='isValid()' />
+                </div>
+  </section>
+  <section class="col-md-6">
+	                <div class='form-group'>
+                    <label>{{ vm.labels.fluxoTrabalhoTipoId }}</label>
+                    <make-select [value]='vm.model.fluxoTrabalhoTipoId' [dataitem]='"FluxoTrabalhoTipo"' label='Selecione' [name]='fluxoTrabalhoTipoId' [required]='true' (msChange)='onChangeMakeSelectfluxoTrabalhoTipoId($event)'></make-select>
+                </div>
+  </section>
+  <section class="col-md-6">
+	                <div class='form-group'>
+                    <label>{{ vm.labels.corFundo }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.corFundo' name='corFundo'  (change)='isValid()' />
+                </div>
+  </section>
+  <section class="col-md-6">
+	                <div class='form-group'>
+                    <label>{{ vm.labels.corFonte }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.corFonte' name='corFonte'  (change)='isValid()' />
+                </div>
+  </section>
+
+</div>

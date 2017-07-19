@@ -47,6 +47,22 @@ namespace Target.Pendencias.Api.Controllers
 
 
         [HttpGet("{id}")]
+		public async Task<IActionResult> Get(int id, [FromQuery]ComentarioDocumentoFilter filters)
+		{
+			var result = new HttpResult<ComentarioDocumentoDto>(this._logger);
+            try
+            {
+				filters.DocumentoId = id;
+                var returnModel = await this._app.GetOne(filters);
+                return result.ReturnCustomResponse(this._app, returnModel);
+            }
+            catch (Exception ex)
+            {
+                return result.ReturnCustomException(ex,"Target.Pendencias - ComentarioDocumento", id);
+            }
+
+		}
+
 
 
 

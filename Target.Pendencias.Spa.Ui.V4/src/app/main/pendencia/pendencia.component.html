@@ -1,0 +1,247 @@
+<div class="gc-body__heading">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+  </ol>
+
+  <div class="gc-heading__controls">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col d-flex justify-content-end">
+          <a href="javascript:history.back()" class="btn btn-sm btn-outline-secondary mr-auto p-2">
+            <span class="fa fa-arrow-left" aria-hidden="true"></span> Voltar
+          </a>
+          <button type="button" class="btn btn-sm btn-primary p-2" (click)="vm.mostrarFiltros = !vm.mostrarFiltros">
+            <span class="fa fa-filter" aria-hidden="true"></span> Filtros
+          </button>
+          <button type="button" class="btn btn-sm btn-success p-2" (click)="onCreate()">
+            <span class="fa fa-plus" aria-hidden="true"></span> Novo item
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <h2 class="title--main">
+          <span class="fa fa-home" aria-hidden="true"></span> {{ vm.actionTitle }} <small>{{ vm.actionDescription }}</small>
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row" *ngIf="vm.mostrarFiltros">
+    <div class="col">
+      <div class="gc-filter">
+        <form #formFilter="ngForm" (ngSubmit)="onFilter(vm.modelFilter)">
+          <div class="card card-primary">
+            <div class="card-header">Filtros</div>
+            <div class="card-block">
+              <app-pendencia-filter [(vm)]="vm"></app-pendencia-filter>
+            </div>
+            <div class="card-footer d-flex justify-content-end">
+              <button class="btn btn-primary" type="submit">
+                <span class="fa fa-search"></span>
+                Filtrar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="card gc-grid">
+        <div class="card-header gc-grid__header">
+          Titulo
+        </div>
+        <div class="card-block gc-grid__body">
+          <table class="table">
+            <thead>
+              <tr>
+				<th>
+                  {{ vm.labels.projetoId }}
+                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('projetoId')">
+                    <i class="fa fa-arrows-v"></i>
+                  </button>
+                </th>
+				<th>
+                  {{ vm.labels.resumo }}
+                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('resumo')">
+                    <i class="fa fa-arrows-v"></i>
+                  </button>
+                </th>
+				<th>
+                  {{ vm.labels.requisitadoPor }}
+                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('requisitadoPor')">
+                    <i class="fa fa-arrows-v"></i>
+                  </button>
+                </th>
+				<th>
+                  {{ vm.labels.tempoEstimado }}
+                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('tempoEstimado')">
+                    <i class="fa fa-arrows-v"></i>
+                  </button>
+                </th>
+				<th>
+                  {{ vm.labels.pontosEstimados }}
+                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('pontosEstimados')">
+                    <i class="fa fa-arrows-v"></i>
+                  </button>
+                </th>
+				<th>
+                  {{ vm.labels.prazo }}
+                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('prazo')">
+                    <i class="fa fa-arrows-v"></i>
+                  </button>
+                </th>
+				<th>
+                  {{ vm.labels.usuarioId }}
+                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('usuarioId')">
+                    <i class="fa fa-arrows-v"></i>
+                  </button>
+                </th>
+				<th>
+                  {{ vm.labels.pendenciaTipoId }}
+                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('pendenciaTipoId')">
+                    <i class="fa fa-arrows-v"></i>
+                  </button>
+                </th>
+				<th>
+                  {{ vm.labels.fluxoTrabalhoStatusId }}
+                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('fluxoTrabalhoStatusId')">
+                    <i class="fa fa-arrows-v"></i>
+                  </button>
+                </th>
+				<th>
+                  {{ vm.labels.pendenciaPrioridadeId }}
+                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('pendenciaPrioridadeId')">
+                    <i class="fa fa-arrows-v"></i>
+                  </button>
+                </th>
+				<th>
+                  {{ vm.labels.tags }}
+                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('tags')">
+                    <i class="fa fa-arrows-v"></i>
+                  </button>
+                </th>
+				<th>
+                  {{ vm.labels.dataConclusao }}
+                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('dataConclusao')">
+                    <i class="fa fa-arrows-v"></i>
+                  </button>
+                </th>
+
+                <th width="175" class="text-center">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of vm.filterResult">
+				<td><bind-custom [model]="item.projetoId" [format]="'int'" [tag]="'span'" ></bind-custom></td>
+				<td><bind-custom [model]="item.resumo" [format]="'string'" [tag]="'span'" ></bind-custom></td>
+				<td><bind-custom [model]="item.requisitadoPor" [format]="'string'" [tag]="'span'" ></bind-custom></td>
+				<td><bind-custom [model]="item.tempoEstimado" [format]="'int?'" [tag]="'span'" ></bind-custom></td>
+				<td><bind-custom [model]="item.pontosEstimados" [format]="'int?'" [tag]="'span'" ></bind-custom></td>
+				<td><bind-custom [model]="item.prazo" [format]="'DateTime?'" [tag]="'span'" ></bind-custom></td>
+				<td><bind-custom [model]="item.usuarioId" [format]="'int'" [tag]="'span'" ></bind-custom></td>
+				<td><bind-custom [model]="item.pendenciaTipoId" [format]="'int'" [tag]="'span'" ></bind-custom></td>
+				<td><bind-custom [model]="item.fluxoTrabalhoStatusId" [format]="'int'" [tag]="'span'"  [instance]="'FluxoTrabalhoStatus'" [filterid]="'vm.model.fluxoTrabalhoStatusId'"></bind-custom></td>
+				<td><bind-custom [model]="item.pendenciaPrioridadeId" [format]="'int'" [tag]="'span'" ></bind-custom></td>
+				<td><bind-custom [model]="item.tags" [format]="'string'" [tag]="'span'" ></bind-custom></td>
+				<td><bind-custom [model]="item.dataConclusao" [format]="'DateTime?'" [tag]="'span'" ></bind-custom></td>
+
+                <td>
+                  <button (click)="onEdit({ pendenciaId: item.pendenciaId })" tooltip-placement="top" uib-tooltip="Editar" class="btn btn-sm btn-default">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button (click)="onDetails({ pendenciaId: item.pendenciaId })" tooltip-placement="top" uib-tooltip="Detalhes" class="btn btn-sm">
+                    <i class="fa fa-table"></i>
+                  </button>
+                  <button (click)="onPrint({ pendenciaId: item.pendenciaId })" tooltip-placement="top" uib-tooltip="Imprimir" class="btn btn-sm btn-success">
+                    <i class="fa fa-print"></i>
+                  </button>
+                  <button (click)="onDeleteConfimation({ pendenciaId: item.pendenciaId })" tooltip-placement="top" uib-tooltip="Excluir" class="btn btn-sm btn-danger">
+                    <i class="fa fa-trash-o"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer gc-grid__footer">
+          <div class="gc-pagination">
+            <make-pagination [(vm)]="vm" (pageChanged)="onPageChanged($event)"></make-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #saveModal="bs-modal" class="gc-modal modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Manutenção de {{ vm.actionTitle }}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" #createForm="ngForm">
+        <div class="modal-body">
+          <app-pendencia-field-create [(vm)]="vm"></app-pendencia-field-create>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
+          <button type="submit" class="btn btn-success" [disabled]="!vm.isValid" >Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div bsModal #editModal="bs-modal" class="gc-modal modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Manutenção de {{ vm.actionTitle }}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" #editForm="ngForm">
+        <app-pendencia-field-edit [(vm)]="vm"></app-pendencia-field-edit>
+        <div class="modal-footer">
+          <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
+          <button type="submit" class="btn btn-success" [disabled]="!editForm.form.valid">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div bsModal #detailsModal="bs-modal" class="gc-modal modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">detalhes de {{ vm.actionTitle }}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <app-pendencia-details [(vm)]="vm"></app-pendencia-details>
+
+      <div class="modal-footer">
+        <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<confirm-modal></confirm-modal>

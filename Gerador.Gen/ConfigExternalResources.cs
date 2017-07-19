@@ -19,7 +19,7 @@ namespace Target.Pendencias.Gen
                 ResouceRepositoryName = "template-gerador-front-bs4-angular2.0",
                 ResourceUrlRepository = "https://github.com/wilsonsantosnet/template-gerador-front-bs4-angular2.0.git",
                 ResourceLocalPathFolderExecuteCloning = @"C:\Projetos\Outros\Repositorios",
-                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Target.Pendencias\Gerador.Gen\Templates\FrontV4",
+                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\pendencia\Gerador.Gen\Templates\FrontV4",
             };
 
         }
@@ -47,7 +47,7 @@ namespace Target.Pendencias.Gen
                 ResouceRepositoryName = "framework-angular2.0-CRUD",
                 ResourceUrlRepository = "https://github.com/wilsonsantosnet/framework-angular2.0-CRUD.git",
                 ResourceLocalPathFolderExecuteCloning = @"C:\Projetos\Outros\Repositorios",
-                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Target.Pendencias\Target.Pendencias.Spa.Ui.V4\src\app\common"
+                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Pendencia\Target.Pendencias.Spa.Ui.V4\src\app\common"
             };
 
         }
@@ -77,7 +77,7 @@ namespace Target.Pendencias.Gen
                 ResouceRepositoryName = "Seed-layout-front-bs4-angular2.0",
                 ResourceUrlRepository = "https://github.com/wilsonsantosnet/Seed-layout-front-bs4-angular2.0.git",
                 ResourceLocalPathFolderExecuteCloning = @"C:\Projetos\Outros\Repositorios",
-                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Target.Pendencias\Target.Pendencias.Spa.Ui.V4"
+                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Pendencia\Target.Pendencias.Spa.Ui.V4"
             };
 
         }
@@ -93,9 +93,9 @@ namespace Target.Pendencias.Gen
 
                ConfigExternarResourcesTemplatesBackDDD(replaceLocalFilesApplication),
                ConfigExternarResourcesFrameworkCommon(replaceLocalFilesApplication),
-               //ConfigExternarResourcesTemplatesFrontBs4Angular20(replaceLocalFilesApplication),
-               //ConfigExternarResourcesFrameworkAngula20Crud(replaceLocalFilesApplication),
-               //ConfigExternarResourcesSeedLayoutBs4Angular20(replaceLocalFilesApplication),
+               ConfigExternarResourcesTemplatesFrontBs4Angular20(replaceLocalFilesApplication),
+               ConfigExternarResourcesFrameworkAngula20Crud(replaceLocalFilesApplication),
+               ConfigExternarResourcesSeedLayoutBs4Angular20(replaceLocalFilesApplication),
 
             };
 

@@ -12,6 +12,7 @@ using Target.Pendencias.Data.Context;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Common.API.Extensions;
+using System.Collections.Generic;
 
 namespace Target.Pendencias.Api
 {
@@ -75,7 +76,7 @@ namespace Target.Pendencias.Api
             app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
             {
                 Authority = configSettingsBase.Value.AuthorityEndPoint,
-                ScopeName = "ssosa",
+                AllowedScopes = new List<string> { "ssosa" },
                 RequireHttpsMetadata = false
             });
 

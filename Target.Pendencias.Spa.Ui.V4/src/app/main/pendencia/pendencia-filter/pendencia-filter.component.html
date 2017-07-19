@@ -1,0 +1,45 @@
+<div class="row">
+	  <section class="col-md-6">
+	                <div class='form-group'>
+                    <label>{{ vm.labels.resumo }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.resumo' name='resumo' required (change)='isValid()' />
+                </div>
+  </section>
+  <section class="col-md-6">
+	                <div class='form-group'>
+                    <label>{{ vm.labels.descricao }}</label>
+                    <textarea class='form-control'  [(ngModel)]='vm.model.descricao' name='descricao'  rows='10'></textarea>
+                </div>
+  </section>
+  <section class="col-md-6">
+	                <div class='form-group'>
+                    <label>{{ vm.labels.requisitadoPor }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.requisitadoPor' name='requisitadoPor'  (change)='isValid()' />
+                </div>
+  </section>
+  <section class="col-md-6">
+	                <div class='form-group'>
+                    <label>{{ vm.labels.pontosEstimados }}</label>
+                    <div class='radio'><label><input type='radio' name='pontosEstimados' value='0' ng-model='vm.Model.pontosEstimados'>0 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='1' ng-model='vm.Model.pontosEstimados'>1 Ponto</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='2' ng-model='vm.Model.pontosEstimados'>2 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='3' ng-model='vm.Model.pontosEstimados'>3 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='5' ng-model='vm.Model.pontosEstimados'>5 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='8' ng-model='vm.Model.pontosEstimados'>8 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='13' ng-model='vm.Model.pontosEstimados'>13 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='20' ng-model='vm.Model.pontosEstimados'>20 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='40' ng-model='vm.Model.pontosEstimados'>40 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='100' ng-model='vm.Model.pontosEstimados'>100 Pontos</label></div>
+                </div>
+  </section>
+  <section class="col-md-6">
+	                <div class='form-group'>
+                    <label>{{ vm.labels.prazo }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.prazo' name='prazo'  (change)='isValid()' />
+                </div>
+  </section>
+  <section class="col-md-6">
+	                <div class='form-group'>
+                    <label>{{ vm.labels.fluxoTrabalhoStatusId }}</label>
+                    <make-select [value]='vm.model.fluxoTrabalhoStatusId' [dataitem]='"FluxoTrabalhoStatus"' label='Selecione' [name]='fluxoTrabalhoStatusId' [required]='true' (msChange)='onChangeMakeSelectfluxoTrabalhoStatusId($event)'></make-select>
+                </div>
+  </section>
+  <section class="col-md-6">
+	                <div class='form-group'>
+                    <label>{{ vm.labels.tags }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.tags' name='tags'  (change)='isValid()' />
+                </div>
+  </section>
+
+</div>

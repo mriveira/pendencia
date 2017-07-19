@@ -15,7 +15,7 @@ namespace Target.Pendencias.Application
     {
         protected readonly ValidatorAnnotations<PendenciaDocumentoDto> _validatorAnnotations;
         protected readonly IPendenciaDocumentoService _service;
-		protected readonly CurrentUser _user;
+		    protected readonly CurrentUser _user;
 
         public PendenciaDocumentoApplicationServiceBase(IPendenciaDocumentoService service, IUnitOfWork uow, ICache cache, CurrentUser user) :
             base(service, uow, cache)
@@ -23,36 +23,23 @@ namespace Target.Pendencias.Application
             base.SetTagNameCache("PendenciaDocumento");
             this._validatorAnnotations = new ValidatorAnnotations<PendenciaDocumentoDto>();
             this._service = service;
-			this._user = user;
+			      this._user = user;
         }
-
 
         protected override PendenciaDocumento MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _pendenciadocumento = dto as PendenciaDocumentoDtoSpecialized;
-            this._validatorAnnotations.Validate(_pendenciadocumento);
+			      var _dto = dto as PendenciaDocumentoDtoSpecialized;
+            this._validatorAnnotations.Validate(_dto);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
-
-			var domain = new PendenciaDocumento.PendenciaDocumentoFactory().GetDefaultInstance(_pendenciadocumento, this._user);
+			      var domain = new PendenciaDocumento.PendenciaDocumentoFactory().GetDefaultInstance(_dto, this._user);
             return domain;
         }
 
-
         protected override async Task<PendenciaDocumento> AlterDomainWithDto<TDS>(TDS dto)
         {
-			return await Task.Run(() =>
-            {
-				var _pendenciadocumento = dto as PendenciaDocumentoDto;
-				//var result = await this._serviceBase.GetOne(new PendenciaDocumentoFilter { PendenciaId = pendenciadocumento.PendenciaId, DocumentoId = pendenciadocumento.DocumentoId });
-				var result = new PendenciaDocumento.PendenciaDocumentoFactory().GetDefaultInstance(_pendenciadocumento, this._user);
-				//Inicio da Transferencia dos valores
-           
-
-				//Fim da Transferencia dos valores
-
-				return result;
-			});
-
+			      var pendenciadocumento = dto as PendenciaDocumentoDto;
+            var result = await this._serviceBase.GetOne(new PendenciaDocumentoFilter { PendenciaId = pendenciadocumento.PendenciaId, DocumentoId = pendenciadocumento.DocumentoId });
+            return result;
         }
 
     }

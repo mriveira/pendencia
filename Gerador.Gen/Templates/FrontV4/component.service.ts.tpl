@@ -43,7 +43,7 @@ export class <#className#>Service {
 
     save(model: any): Observable<any> {
 
-        if (model.fluxoTrabalhoStatusId != undefined) {
+        if (model.<#KeyName#> != undefined) {
             return this.api.setResource('<#className#>').put(model);
         }
 

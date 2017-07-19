@@ -15,7 +15,7 @@ namespace Target.Pendencias.Application
     {
         protected readonly ValidatorAnnotations<ProjetoFluxoTrabalhoStatusDto> _validatorAnnotations;
         protected readonly IProjetoFluxoTrabalhoStatusService _service;
-		protected readonly CurrentUser _user;
+		    protected readonly CurrentUser _user;
 
         public ProjetoFluxoTrabalhoStatusApplicationServiceBase(IProjetoFluxoTrabalhoStatusService service, IUnitOfWork uow, ICache cache, CurrentUser user) :
             base(service, uow, cache)
@@ -23,36 +23,23 @@ namespace Target.Pendencias.Application
             base.SetTagNameCache("ProjetoFluxoTrabalhoStatus");
             this._validatorAnnotations = new ValidatorAnnotations<ProjetoFluxoTrabalhoStatusDto>();
             this._service = service;
-			this._user = user;
+			      this._user = user;
         }
-
 
         protected override ProjetoFluxoTrabalhoStatus MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _projetofluxotrabalhostatus = dto as ProjetoFluxoTrabalhoStatusDtoSpecialized;
-            this._validatorAnnotations.Validate(_projetofluxotrabalhostatus);
+			      var _dto = dto as ProjetoFluxoTrabalhoStatusDtoSpecialized;
+            this._validatorAnnotations.Validate(_dto);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
-
-			var domain = new ProjetoFluxoTrabalhoStatus.ProjetoFluxoTrabalhoStatusFactory().GetDefaultInstance(_projetofluxotrabalhostatus, this._user);
+			      var domain = new ProjetoFluxoTrabalhoStatus.ProjetoFluxoTrabalhoStatusFactory().GetDefaultInstance(_dto, this._user);
             return domain;
         }
 
-
         protected override async Task<ProjetoFluxoTrabalhoStatus> AlterDomainWithDto<TDS>(TDS dto)
         {
-			return await Task.Run(() =>
-            {
-				var _projetofluxotrabalhostatus = dto as ProjetoFluxoTrabalhoStatusDto;
-				//var result = await this._serviceBase.GetOne(new ProjetoFluxoTrabalhoStatusFilter { ProjetoId = projetofluxotrabalhostatus.ProjetoId, FluxoTrabalhoStatusId = projetofluxotrabalhostatus.FluxoTrabalhoStatusId });
-				var result = new ProjetoFluxoTrabalhoStatus.ProjetoFluxoTrabalhoStatusFactory().GetDefaultInstance(_projetofluxotrabalhostatus, this._user);
-				//Inicio da Transferencia dos valores
-           
-
-				//Fim da Transferencia dos valores
-
-				return result;
-			});
-
+			      var projetofluxotrabalhostatus = dto as ProjetoFluxoTrabalhoStatusDto;
+            var result = await this._serviceBase.GetOne(new ProjetoFluxoTrabalhoStatusFilter { ProjetoId = projetofluxotrabalhostatus.ProjetoId, FluxoTrabalhoStatusId = projetofluxotrabalhostatus.FluxoTrabalhoStatusId });
+            return result;
         }
 
     }

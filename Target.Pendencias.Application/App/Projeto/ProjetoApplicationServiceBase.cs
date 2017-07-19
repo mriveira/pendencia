@@ -15,7 +15,7 @@ namespace Target.Pendencias.Application
     {
         protected readonly ValidatorAnnotations<ProjetoDto> _validatorAnnotations;
         protected readonly IProjetoService _service;
-		protected readonly CurrentUser _user;
+		    protected readonly CurrentUser _user;
 
         public ProjetoApplicationServiceBase(IProjetoService service, IUnitOfWork uow, ICache cache, CurrentUser user) :
             base(service, uow, cache)
@@ -23,36 +23,23 @@ namespace Target.Pendencias.Application
             base.SetTagNameCache("Projeto");
             this._validatorAnnotations = new ValidatorAnnotations<ProjetoDto>();
             this._service = service;
-			this._user = user;
+			      this._user = user;
         }
-
 
         protected override Projeto MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _projeto = dto as ProjetoDtoSpecialized;
-            this._validatorAnnotations.Validate(_projeto);
+			      var _dto = dto as ProjetoDtoSpecialized;
+            this._validatorAnnotations.Validate(_dto);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
-
-			var domain = new Projeto.ProjetoFactory().GetDefaultInstance(_projeto, this._user);
+			      var domain = new Projeto.ProjetoFactory().GetDefaultInstance(_dto, this._user);
             return domain;
         }
 
-
         protected override async Task<Projeto> AlterDomainWithDto<TDS>(TDS dto)
         {
-			return await Task.Run(() =>
-            {
-				var _projeto = dto as ProjetoDto;
-				//var result = await this._serviceBase.GetOne(new ProjetoFilter { ProjetoId = projeto.ProjetoId });
-				var result = new Projeto.ProjetoFactory().GetDefaultInstance(_projeto, this._user);
-				//Inicio da Transferencia dos valores
-           
-
-				//Fim da Transferencia dos valores
-
-				return result;
-			});
-
+			      var projeto = dto as ProjetoDto;
+            var result = await this._serviceBase.GetOne(new ProjetoFilter { ProjetoId = projeto.ProjetoId });
+            return result;
         }
 
     }

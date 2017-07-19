@@ -1,0 +1,21 @@
+<div class="modal-body">
+  <dl>
+    <dt>{{ vm.labels.nome }}:</dt>
+    <dd><bind-custom [model]="vm.model.nome" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.fluxoTrabalhoTipoId }}:</dt>
+    <dd><bind-custom [model]="vm.model.fluxoTrabalhoTipoId" [format]="'int'" [tag]="'span'"  [instance]="'FluxoTrabalhoTipo'" [filterid]="'vm.model.fluxoTrabalhoTipoId'"></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.corFundo }}:</dt>
+    <dd><bind-custom [model]="vm.model.corFundo" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.corFonte }}:</dt>
+    <dd><bind-custom [model]="vm.model.corFonte" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+
+  </dl> 
+</div>

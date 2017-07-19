@@ -15,7 +15,7 @@ namespace Target.Pendencias.Application
     {
         protected readonly ValidatorAnnotations<AcompanhadoresDto> _validatorAnnotations;
         protected readonly IAcompanhadoresService _service;
-		protected readonly CurrentUser _user;
+		    protected readonly CurrentUser _user;
 
         public AcompanhadoresApplicationServiceBase(IAcompanhadoresService service, IUnitOfWork uow, ICache cache, CurrentUser user) :
             base(service, uow, cache)
@@ -23,36 +23,23 @@ namespace Target.Pendencias.Application
             base.SetTagNameCache("Acompanhadores");
             this._validatorAnnotations = new ValidatorAnnotations<AcompanhadoresDto>();
             this._service = service;
-			this._user = user;
+			      this._user = user;
         }
-
 
         protected override Acompanhadores MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _acompanhadores = dto as AcompanhadoresDtoSpecialized;
-            this._validatorAnnotations.Validate(_acompanhadores);
+			      var _dto = dto as AcompanhadoresDtoSpecialized;
+            this._validatorAnnotations.Validate(_dto);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
-
-			var domain = new Acompanhadores.AcompanhadoresFactory().GetDefaultInstance(_acompanhadores, this._user);
+			      var domain = new Acompanhadores.AcompanhadoresFactory().GetDefaultInstance(_dto, this._user);
             return domain;
         }
 
-
         protected override async Task<Acompanhadores> AlterDomainWithDto<TDS>(TDS dto)
         {
-			return await Task.Run(() =>
-            {
-				var _acompanhadores = dto as AcompanhadoresDto;
-				//var result = await this._serviceBase.GetOne(new AcompanhadoresFilter { PendenciaId = acompanhadores.PendenciaId, UsuarioId = acompanhadores.UsuarioId });
-				var result = new Acompanhadores.AcompanhadoresFactory().GetDefaultInstance(_acompanhadores, this._user);
-				//Inicio da Transferencia dos valores
-           
-
-				//Fim da Transferencia dos valores
-
-				return result;
-			});
-
+			      var acompanhadores = dto as AcompanhadoresDto;
+            var result = await this._serviceBase.GetOne(new AcompanhadoresFilter { PendenciaId = acompanhadores.PendenciaId, UsuarioId = acompanhadores.UsuarioId });
+            return result;
         }
 
     }

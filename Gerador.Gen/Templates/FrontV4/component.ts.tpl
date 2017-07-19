@@ -64,7 +64,7 @@ export class <#className#>Component implements OnInit {
 
         this.editModal.show();
         this.<#classNameInstance#>Service.get(model).subscribe((result) => {
-            this.vm.model = result.data;
+            this.vm.model = result.dataList[0];
         })
 
     }
@@ -88,9 +88,8 @@ export class <#className#>Component implements OnInit {
     public onDetails(model) {
 
         this.detailsModal.show();
-
         this.<#classNameInstance#>Service.get(model).subscribe((result) => {
-            this.vm.model = result.data;
+            this.vm.model = result.dataList[0];
         })
 
     }
@@ -103,16 +102,18 @@ export class <#className#>Component implements OnInit {
     }
 
 
-    public onPrint(<#KeyName#>) {
-        this.router.navigate(['/<#classNameLower#>/print', <#KeyName#>]);
+    public onPrint(model) {
+        this.router.navigate(['/<#classNameLower#>/print', model.<#KeyNameCamelCase#>]);
     }
 
     public onDeleteConfimation(model) {
 
+
+
         var conf = GlobalService.operationExecutedParameters(
             "confirm-modal",
             () => {
-                this.<#classNameInstance#>Service.delete({ fluxoTrabalhoStatusId: model }).subscribe((result) => {
+                this.<#classNameInstance#>Service.delete(model).subscribe((result) => {
                     this.vm.filterResult = this.vm.filterResult.filter(function (model) {
                         return <#ExpressionKeyNames#>;
                     });

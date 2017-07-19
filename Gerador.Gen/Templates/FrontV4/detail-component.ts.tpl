@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-    selector: '<#classNameLowerAndSeparator#>-status-details',
+    selector: 'app-<#classNameLowerAndSeparator#>-details',
     templateUrl: './<#classNameLowerAndSeparator#>-details.component.html',
     styleUrls: ['./<#classNameLowerAndSeparator#>-details.component.css']
 })

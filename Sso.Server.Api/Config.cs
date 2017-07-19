@@ -28,12 +28,12 @@ namespace Sso.Server.Api
 
             var tools = new List<dynamic>
             {
-                new { Name = "Crud Usuario", Value = $"#/Usuario" },
-                new { Name = "Crud Clientes", Value = "#Cliente" },
-                new { Name = "Crud Projeto", Value = "#Projeto" },
-                new { Name = "Crud Pendencia", Value = "#Pendencia" },
-                new { Name = "Dash Time", Value = "#/Dashboard/Team" },
-                new { Name = "Dash PO", Value = "#/Dashboard/PO" },
+                new { Name = "Crud Usuario", Value = "/usuario" },
+                new { Name = "Crud Clientes", Value = "/cliente" },
+                new { Name = "Crud Projeto", Value = "/projeto" },
+                new { Name = "Crud Pendencia", Value = "/pendencia" },
+                new { Name = "Dash Time", Value = "/dashboard/team" },
+                new { Name = "Dash PO", Value = "/dashboard/po" },
             };
 
             var _toolsForSubscriber = JsonConvert.SerializeObject(tools);
@@ -54,10 +54,10 @@ namespace Sso.Server.Api
 
             var tools = new List<dynamic>
             {
-                new { Name = "Editar Usuario", Value = $"#/Usuario/Edit/{tenantId}" },
-                new { Name = "Crud Pendencia", Value = "#Pendencia" },
-                new { Name = "Dash Time", Value = "#/Dashboard/Team" },
-                new { Name = "Dash PO", Value = "#/Dashboard/PO" },
+                new { Name = "Editar Usuario", Value = $"/usuario/edit/{tenantId}" },
+                new { Name = "Crud Pendencia", Value = "/pendencia" },
+                new { Name = "Dash Time", Value = "/dashboard/team" },
+                new { Name = "Dash PO", Value = "/dashboard/po" },
             };
 
             var _toolsForSubscriber = JsonConvert.SerializeObject(tools);
@@ -78,12 +78,12 @@ namespace Sso.Server.Api
 
             var tools = new List<dynamic>
             {
-                new { Name = "Status dos Fluxos", Value = "#FluxoTrabalhoStatus" },
-                new { Name = "Tipos de Fluxos", Value = "#FluxoTrabalhoTipo" },
-                new { Name = "Prioridade", Value = "#PendeciaPrioridade" },
-                new { Name = "Tipos de Pendencias", Value = "#PendenciaTipo" },
-                new { Name = "Usuário", Value = "#Usuario" },
-                new { Name = "Tipos de Usuários", Value = "#UsuarioTipo" },
+                new { Name = "Status dos Fluxos", Value = "/fluxotrabalhostatus" },
+                new { Name = "Tipos de Fluxos", Value = "/fluxotrabalhotipo" },
+                new { Name = "Prioridade", Value = "/pendeciaprioridade" },
+                new { Name = "Tipos de Pendencias", Value = "/pendenciatipo" },
+                new { Name = "Usuário", Value = "/usuario" },
+                new { Name = "Tipos de Usuários", Value = "/usuariotipo" },
 
             };
 

@@ -15,7 +15,7 @@ namespace Target.Pendencias.Application
     {
         protected readonly ValidatorAnnotations<UsuarioTipoDto> _validatorAnnotations;
         protected readonly IUsuarioTipoService _service;
-		protected readonly CurrentUser _user;
+		    protected readonly CurrentUser _user;
 
         public UsuarioTipoApplicationServiceBase(IUsuarioTipoService service, IUnitOfWork uow, ICache cache, CurrentUser user) :
             base(service, uow, cache)
@@ -23,36 +23,23 @@ namespace Target.Pendencias.Application
             base.SetTagNameCache("UsuarioTipo");
             this._validatorAnnotations = new ValidatorAnnotations<UsuarioTipoDto>();
             this._service = service;
-			this._user = user;
+			      this._user = user;
         }
-
 
         protected override UsuarioTipo MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _usuariotipo = dto as UsuarioTipoDtoSpecialized;
-            this._validatorAnnotations.Validate(_usuariotipo);
+			      var _dto = dto as UsuarioTipoDtoSpecialized;
+            this._validatorAnnotations.Validate(_dto);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
-
-			var domain = new UsuarioTipo.UsuarioTipoFactory().GetDefaultInstance(_usuariotipo, this._user);
+			      var domain = new UsuarioTipo.UsuarioTipoFactory().GetDefaultInstance(_dto, this._user);
             return domain;
         }
 
-
         protected override async Task<UsuarioTipo> AlterDomainWithDto<TDS>(TDS dto)
         {
-			return await Task.Run(() =>
-            {
-				var _usuariotipo = dto as UsuarioTipoDto;
-				//var result = await this._serviceBase.GetOne(new UsuarioTipoFilter { UsuarioTipoId = usuariotipo.UsuarioTipoId });
-				var result = new UsuarioTipo.UsuarioTipoFactory().GetDefaultInstance(_usuariotipo, this._user);
-				//Inicio da Transferencia dos valores
-           
-
-				//Fim da Transferencia dos valores
-
-				return result;
-			});
-
+			      var usuariotipo = dto as UsuarioTipoDto;
+            var result = await this._serviceBase.GetOne(new UsuarioTipoFilter { UsuarioTipoId = usuariotipo.UsuarioTipoId });
+            return result;
         }
 
     }

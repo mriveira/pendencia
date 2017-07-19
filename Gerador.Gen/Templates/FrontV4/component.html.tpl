@@ -109,7 +109,7 @@
       </div>
       <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" #createForm="ngForm">
         <div class="modal-body">
-          <app-<#classNameLowerAndSeparator#>-field [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-field>
+          <app-<#classNameLowerAndSeparator#>-field-create [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-field-create>
         </div>
         <div class="modal-footer">
           <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
@@ -130,7 +130,7 @@
         </button>
       </div>
       <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" #editForm="ngForm">
-        <app-<#classNameLowerAndSeparator#>-field [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-field>
+        <app-<#classNameLowerAndSeparator#>-field-edit [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-field-edit>
         <div class="modal-footer">
           <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
           <button type="submit" class="btn btn-success" [disabled]="!editForm.form.valid">Salvar</button>

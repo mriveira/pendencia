@@ -5,24 +5,23 @@ import { <#className#>PrintComponent } from './<#classNameLowerAndSeparator#>-pr
 import { <#className#>PrintRoutingModule } from './<#classNameLowerAndSeparator#>-print.routing.module';
 
 import { <#className#>Service } from '../<#classNameLowerAndSeparator#>.service';
-import { ConfirmModalComponent } from 'app/common/components/confirm-modal.component';
 import { ApiService } from 'app/common/services/api.service';
 
 import { <#className#>DetailsComponent } from '../<#classNameLowerAndSeparator#>-details/<#classNameLowerAndSeparator#>-details.component';
-import { BindCustomComponent } from 'app/common/components/bind-custom.component';
+import { CommonSharedModule } from 'app/common/common-shared.module';
 
 @NgModule({
     imports: [
         CommonModule,
+		CommonSharedModule,
         <#className#>PrintRoutingModule,
     ],
     declarations: [
         <#className#>PrintComponent,
-        <#className#>DetailsComponent,
-        BindCustomComponent,
+        <#className#>DetailsComponent
     ],
-    providers: [<#className#>Service, ApiService, ConfirmModalComponent],
-    exports: [<#className#>DetailsComponent, BindCustomComponent]
+    providers: [<#className#>Service, ApiService],
+    exports: [<#className#>DetailsComponent]
 })
 export class <#className#>PrintModule {
 

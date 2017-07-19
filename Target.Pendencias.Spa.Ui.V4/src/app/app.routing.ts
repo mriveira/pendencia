@@ -10,10 +10,26 @@ const APP_ROUTES: Routes = [
     {
         path: '', component: MainComponent, children: [
 
-            { path: 'usuario', loadChildren: './main/usuario/usuario.module#UsuarioModule' },
+            { path: 'pendencia', loadChildren: './main/pendencia/pendencia.module#PendenciaModule' },
         ]
     },
-    { path: 'fluxotrabalhostatus/print/:id', loadChildren: './main/usuario/usuario-print/usuario-print.module#FluxoTrabalhoStatusPrintModule' },
+    { path: 'pendencia/print/:id', loadChildren: './main/pendencia/pendencia-print/pendencia-print.module#PendenciaPrintModule' },
+
+    {
+        path: '', component: MainComponent, children: [
+
+            { path: 'fluxotrabalhostatus', loadChildren: './main/fluxotrabalhostatus/fluxotrabalhostatus.module#FluxoTrabalhoStatusModule' },
+        ]
+    },
+    { path: 'fluxotrabalhostatus/print/:id', loadChildren: './main/fluxotrabalhostatus/fluxotrabalhostatus-print/fluxotrabalhostatus-print.module#FluxoTrabalhoStatusPrintModule' },
+
+    {
+        path: '', component: MainComponent, children: [
+
+            { path: 'fluxotrabalhotipo', loadChildren: './main/fluxotrabalhotipo/fluxotrabalhotipo.module#FluxoTrabalhoTipoModule' },
+        ]
+    },
+    { path: 'fluxotrabalhotipo/print/:id', loadChildren: './main/fluxotrabalhotipo/fluxotrabalhotipo-print/fluxotrabalhotipo-print.module#FluxoTrabalhoTipoPrintModule' },
 
 
 

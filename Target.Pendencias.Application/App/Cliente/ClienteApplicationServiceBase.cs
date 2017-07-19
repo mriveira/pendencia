@@ -15,7 +15,7 @@ namespace Target.Pendencias.Application
     {
         protected readonly ValidatorAnnotations<ClienteDto> _validatorAnnotations;
         protected readonly IClienteService _service;
-		protected readonly CurrentUser _user;
+		    protected readonly CurrentUser _user;
 
         public ClienteApplicationServiceBase(IClienteService service, IUnitOfWork uow, ICache cache, CurrentUser user) :
             base(service, uow, cache)
@@ -23,36 +23,23 @@ namespace Target.Pendencias.Application
             base.SetTagNameCache("Cliente");
             this._validatorAnnotations = new ValidatorAnnotations<ClienteDto>();
             this._service = service;
-			this._user = user;
+			      this._user = user;
         }
-
 
         protected override Cliente MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _cliente = dto as ClienteDtoSpecialized;
-            this._validatorAnnotations.Validate(_cliente);
+			      var _dto = dto as ClienteDtoSpecialized;
+            this._validatorAnnotations.Validate(_dto);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
-
-			var domain = new Cliente.ClienteFactory().GetDefaultInstance(_cliente, this._user);
+			      var domain = new Cliente.ClienteFactory().GetDefaultInstance(_dto, this._user);
             return domain;
         }
 
-
         protected override async Task<Cliente> AlterDomainWithDto<TDS>(TDS dto)
         {
-			return await Task.Run(() =>
-            {
-				var _cliente = dto as ClienteDto;
-				//var result = await this._serviceBase.GetOne(new ClienteFilter { ClienteId = cliente.ClienteId });
-				var result = new Cliente.ClienteFactory().GetDefaultInstance(_cliente, this._user);
-				//Inicio da Transferencia dos valores
-           
-
-				//Fim da Transferencia dos valores
-
-				return result;
-			});
-
+			      var cliente = dto as ClienteDto;
+            var result = await this._serviceBase.GetOne(new ClienteFilter { ClienteId = cliente.ClienteId });
+            return result;
         }
 
     }

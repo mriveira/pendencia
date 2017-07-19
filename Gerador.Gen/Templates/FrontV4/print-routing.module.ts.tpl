@@ -1,15 +1,11 @@
 ﻿import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { <#className#>Component } from './<#classNameLowerAndSeparator#>.component';
-import { <#className#>EditComponent } from './<#classNameLowerAndSeparator#>-edit/<#classNameLowerAndSeparator#>-edit.component';
-import { GlobalService } from '../../global.service';
-
+import { <#className#>PrintComponent } from './<#classNameLowerAndSeparator#>-print.component';
 
 @NgModule({
     imports: [
         RouterModule.forChild([
-            { path: '', component: <#className#>Component },
-            { path: 'edit/:id', component:  <#className#>EditComponent }
+            { path: '', component: <#className#>PrintComponent }
         ])
     ],
     exports: [
@@ -17,6 +13,6 @@ import { GlobalService } from '../../global.service';
     ]
 })
 
-export class  <#className#>RoutingModule {
+export class  <#className#>PrintRoutingModule {
 
 }

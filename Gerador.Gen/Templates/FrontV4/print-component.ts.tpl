@@ -2,11 +2,11 @@
 import { ActivatedRoute } from '@angular/router';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { FluxoTrabalhoStatusService } from '../fluxo-trabalho-status.service';
+import { <#className#>Service } from '../<#classNameLowerAndSeparator#>.service';
 
 @Component({
     selector: 'app-<#classNameLowerAndSeparator#>-print',
-    templateUrl: './f<#classNameLowerAndSeparator#>-print.component.html',
+    templateUrl: './<#classNameLowerAndSeparator#>-print.component.html',
     styleUrls: ['./<#classNameLowerAndSeparator#>-print.component.css'],
 })
 export class <#className#>PrintComponent implements OnInit {

@@ -1,0 +1,33 @@
+<div class="modal-body">
+  <dl>
+    <dt>{{ vm.labels.resumo }}:</dt>
+    <dd><bind-custom [model]="vm.model.resumo" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.requisitadoPor }}:</dt>
+    <dd><bind-custom [model]="vm.model.requisitadoPor" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.pontosEstimados }}:</dt>
+    <dd><bind-custom [model]="vm.model.pontosEstimados" [format]="'int?'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.prazo }}:</dt>
+    <dd><bind-custom [model]="vm.model.prazo" [format]="'DateTime?'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.fluxoTrabalhoStatusId }}:</dt>
+    <dd><bind-custom [model]="vm.model.fluxoTrabalhoStatusId" [format]="'int'" [tag]="'span'"  [instance]="'FluxoTrabalhoStatus'" [filterid]="'vm.model.fluxoTrabalhoStatusId'"></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.tags }}:</dt>
+    <dd><bind-custom [model]="vm.model.tags" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.dataConclusao }}:</dt>
+    <dd><bind-custom [model]="vm.model.dataConclusao" [format]="'DateTime?'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+
+  </dl> 
+</div>
