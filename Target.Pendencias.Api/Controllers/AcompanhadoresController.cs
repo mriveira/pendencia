@@ -108,7 +108,7 @@ namespace Target.Pendencias.Api.Controllers
             try
             {
                 await this._app.Remove(dto);
-                return result.ReturnCustomResponse(this._app);
+                return result.ReturnCustomResponse(this._app, dto);
             }
             catch (Exception ex)
             {

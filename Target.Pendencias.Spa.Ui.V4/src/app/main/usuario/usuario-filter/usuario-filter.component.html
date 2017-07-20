@@ -1,0 +1,55 @@
+<div class="row">
+	  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.labels.nome }}</label>
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.nome' name='nome' />
+                </div>
+  </section>
+  <section class="col-md-6">
+	                <div class='form-group'>
+                    <label>{{ vm.labels.foto }}</label>
+                    <label class='alert alert-danger'>Campo {{ vm.labels.foto }} é obrigatório</label>
+                    <p class='input-group'>
+                        <input type = 'text' name='foto'  [(ngModel)]='vm.model.foto' class='form-control' placeholder='Selecionar aqrquivo...' >
+                        <span class='input-group-btn'>
+                            <label class='btn btn-default btn-file'>
+                                Procurar<input type='file'  multiple>
+                            </label>
+                            <button class='btn btn-default' type='button' ng-click='vm.delete(vm.model.foto, vm.model)'>Excluir</button>
+                        </span>
+                     </p>
+                    <img src='{{vm.uploadUri}}{{vm.model.foto}}' style='width: 100px' />
+                    <p *ng-If='vm.model.foto != null' style='margin: 10px'>
+                         <button class='btn' ngclipboard data-clipboard-text='{{vm.uploadUri}}{{vm.model.foto}}' uib-tooltip='copiar'>
+                            <em class='text-muted'>{{vm.uploadUri}}{{vm.model.foto}}</em> <i class='fa fa-copy'></i>
+                        </button>
+                    </p>
+                </div>
+  </section>
+  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.labels.email }}</label>
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.email' name='email' />
+                </div>
+  </section>
+  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.labels.senha }}</label>
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.senha' name='senha' />
+                </div>
+  </section>
+  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.labels.usuarioTipoId }}</label>
+                    <make-select [value]='vm.model.usuarioTipoId' [dataitem]='"UsuarioTipo"' label='Selecione' [name]='usuarioTipoId' [required]='false'></make-select>
+                </div>
+  </section>
+  <section class="col-md-6">
+	                <div class='checkbox'>
+                    <label>
+                        <input type='checkbox'  [(ngModel)]='vm.modelFilter.ativo' name='ativo' /> {{ vm.labels.ativo }}?
+                    </label>
+                </div>
+  </section>
+
+</div>

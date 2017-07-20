@@ -2,6 +2,12 @@
   <div class="row">
 			<section class="col-md-12">
                 <div class='form-group'>
+                    <label>{{ vm.labels.projetoId }}</label>
+                    <make-select [value]='vm.model.projetoId' [dataitem]='"Projeto"' label='Selecione' [name]='projetoId' [required]='true' (msChange)='onChangeMakeSelectprojetoId($event)'></make-select>
+                </div>
+			</section>
+			<section class="col-md-12">
+                <div class='form-group'>
                     <label>{{ vm.labels.resumo }}</label>
                     <input type='text' class='form-control'[(ngModel)]='vm.model.resumo' name='resumo' required (change)='isValid()' />
                 </div>
@@ -32,8 +38,20 @@
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
+                    <label>{{ vm.labels.pendenciaTipoId }}</label>
+                    <make-select [value]='vm.model.pendenciaTipoId' [dataitem]='"PendenciaTipo"' label='Selecione' [name]='pendenciaTipoId' [required]='true' (msChange)='onChangeMakeSelectpendenciaTipoId($event)'></make-select>
+                </div>
+			</section>
+			<section class="col-md-12">
+                <div class='form-group'>
                     <label>{{ vm.labels.fluxoTrabalhoStatusId }}</label>
                     <make-select [value]='vm.model.fluxoTrabalhoStatusId' [dataitem]='"FluxoTrabalhoStatus"' label='Selecione' [name]='fluxoTrabalhoStatusId' [required]='true' (msChange)='onChangeMakeSelectfluxoTrabalhoStatusId($event)'></make-select>
+                </div>
+			</section>
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.pendenciaPrioridadeId }}</label>
+                    <make-select [value]='vm.model.pendenciaPrioridadeId' [dataitem]='"PendeciaPrioridade"' label='Selecione' [name]='pendenciaPrioridadeId' [required]='true' (msChange)='onChangeMakeSelectpendenciaPrioridadeId($event)'></make-select>
                 </div>
 			</section>
 			<section class="col-md-12">

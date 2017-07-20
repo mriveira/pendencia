@@ -8,6 +8,11 @@ namespace Target.Pendencias.Application.Config
 
         public DominioToDtoProfileTarget()
         {
+            CreateMap(typeof(Pendencia), typeof(PendenciaDto)).ReverseMap();
+            CreateMap(typeof(Pendencia), typeof(PendenciaDtoSpecialized));
+            CreateMap(typeof(Pendencia), typeof(PendenciaDtoSpecializedResult));
+            CreateMap(typeof(Pendencia), typeof(PendenciaDtoSpecializedReport));
+            CreateMap(typeof(Pendencia), typeof(PendenciaDtoSpecializedDetails));
             CreateMap(typeof(Usuario), typeof(UsuarioDto)).ReverseMap();
             CreateMap(typeof(Usuario), typeof(UsuarioDtoSpecialized));
             CreateMap(typeof(Usuario), typeof(UsuarioDtoSpecializedResult));
@@ -58,11 +63,6 @@ namespace Target.Pendencias.Application.Config
             CreateMap(typeof(PendenciaEventos), typeof(PendenciaEventosDtoSpecializedResult));
             CreateMap(typeof(PendenciaEventos), typeof(PendenciaEventosDtoSpecializedReport));
             CreateMap(typeof(PendenciaEventos), typeof(PendenciaEventosDtoSpecializedDetails));
-            CreateMap(typeof(Pendencia), typeof(PendenciaDto)).ReverseMap();
-            CreateMap(typeof(Pendencia), typeof(PendenciaDtoSpecialized));
-            CreateMap(typeof(Pendencia), typeof(PendenciaDtoSpecializedResult));
-            CreateMap(typeof(Pendencia), typeof(PendenciaDtoSpecializedReport));
-            CreateMap(typeof(Pendencia), typeof(PendenciaDtoSpecializedDetails));
             CreateMap(typeof(PendenciaDocumento), typeof(PendenciaDocumentoDto)).ReverseMap();
             CreateMap(typeof(PendenciaDocumento), typeof(PendenciaDocumentoDtoSpecialized));
             CreateMap(typeof(PendenciaDocumento), typeof(PendenciaDocumentoDtoSpecializedResult));

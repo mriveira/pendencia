@@ -1,0 +1,23 @@
+<div class="modal-body">
+  <div class="row">
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.pendenciaId }}</label>
+                    <make-select [value]='vm.model.pendenciaId' [dataitem]='"Pendencia"' label='Selecione' [name]='pendenciaId' [required]='true' (msChange)='onChangeMakeSelectpendenciaId($event)'></make-select>
+                </div>
+			</section>
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.descricao }}</label>
+                    <textarea class='form-control'  [(ngModel)]='vm.model.descricao' name='descricao' required rows='10'></textarea>
+                </div>
+			</section>
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.data }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.data' name='data'  (change)='isValid()' />
+                </div>
+			</section>
+
+  </div>
+</div>

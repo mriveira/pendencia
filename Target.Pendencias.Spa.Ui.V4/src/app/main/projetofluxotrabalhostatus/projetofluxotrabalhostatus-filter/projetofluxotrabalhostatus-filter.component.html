@@ -1,0 +1,15 @@
+<div class="row">
+	  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.labels.projetoId }}</label>
+                    <make-select [value]='vm.model.projetoId' [dataitem]='"Projeto"' label='Selecione' [name]='projetoId' [required]='false'></make-select>
+                </div>
+  </section>
+  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.labels.fluxoTrabalhoStatusId }}</label>
+                    <make-select [value]='vm.model.fluxoTrabalhoStatusId' [dataitem]='"FluxoTrabalhoStatus"' label='Selecione' [name]='fluxoTrabalhoStatusId' [required]='false'></make-select>
+                </div>
+  </section>
+
+</div>

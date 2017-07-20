@@ -27,7 +27,7 @@ namespace Target.Pendencias.Api.Controllers
         {
             this._rep = rep;
             this._app = app;
-			this._logger = logger.CreateLogger<ComentarioController>();
+			this._logger = logger.CreateLogger<ComentarioMoreController>();
         }
 
         [HttpGet]

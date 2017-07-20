@@ -1,8 +1,14 @@
 <div class="row">
 	  <section class="col-md-6">
-	                <div class='form-group'>
+	<div class='form-group'>
+                    <label>{{ vm.labels.projetoId }}</label>
+                    <make-select [value]='vm.model.projetoId' [dataitem]='"Projeto"' label='Selecione' [name]='projetoId' [required]='false'></make-select>
+                </div>
+  </section>
+  <section class="col-md-6">
+	<div class='form-group'>
                     <label>{{ vm.labels.resumo }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.resumo' name='resumo' required (change)='isValid()' />
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.resumo' name='resumo' />
                 </div>
   </section>
   <section class="col-md-6">
@@ -12,9 +18,9 @@
                 </div>
   </section>
   <section class="col-md-6">
-	                <div class='form-group'>
+	<div class='form-group'>
                     <label>{{ vm.labels.requisitadoPor }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.requisitadoPor' name='requisitadoPor'  (change)='isValid()' />
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.requisitadoPor' name='requisitadoPor' />
                 </div>
   </section>
   <section class="col-md-6">
@@ -24,21 +30,33 @@
                 </div>
   </section>
   <section class="col-md-6">
-	                <div class='form-group'>
+	<div class='form-group'>
                     <label>{{ vm.labels.prazo }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.prazo' name='prazo'  (change)='isValid()' />
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.prazo' name='prazo' />
                 </div>
   </section>
   <section class="col-md-6">
-	                <div class='form-group'>
+	<div class='form-group'>
+                    <label>{{ vm.labels.pendenciaTipoId }}</label>
+                    <make-select [value]='vm.model.pendenciaTipoId' [dataitem]='"PendenciaTipo"' label='Selecione' [name]='pendenciaTipoId' [required]='false'></make-select>
+                </div>
+  </section>
+  <section class="col-md-6">
+	<div class='form-group'>
                     <label>{{ vm.labels.fluxoTrabalhoStatusId }}</label>
-                    <make-select [value]='vm.model.fluxoTrabalhoStatusId' [dataitem]='"FluxoTrabalhoStatus"' label='Selecione' [name]='fluxoTrabalhoStatusId' [required]='true' (msChange)='onChangeMakeSelectfluxoTrabalhoStatusId($event)'></make-select>
+                    <make-select [value]='vm.model.fluxoTrabalhoStatusId' [dataitem]='"FluxoTrabalhoStatus"' label='Selecione' [name]='fluxoTrabalhoStatusId' [required]='false'></make-select>
                 </div>
   </section>
   <section class="col-md-6">
-	                <div class='form-group'>
+	<div class='form-group'>
+                    <label>{{ vm.labels.pendenciaPrioridadeId }}</label>
+                    <make-select [value]='vm.model.pendenciaPrioridadeId' [dataitem]='"PendeciaPrioridade"' label='Selecione' [name]='pendenciaPrioridadeId' [required]='false'></make-select>
+                </div>
+  </section>
+  <section class="col-md-6">
+	<div class='form-group'>
                     <label>{{ vm.labels.tags }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.tags' name='tags'  (change)='isValid()' />
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.tags' name='tags' />
                 </div>
   </section>
 

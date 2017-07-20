@@ -1,0 +1,47 @@
+<div class="modal-body">
+  <div class="row">
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.nome }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required (change)='isValid()' />
+                </div>
+			</section>
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.descricao }}</label>
+                    <textarea class='form-control'  [(ngModel)]='vm.model.descricao' name='descricao' required rows='10'></textarea>
+                </div>
+			</section>
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.visao }}</label>
+                    <textarea class='form-control'  [(ngModel)]='vm.model.visao' name='visao'  rows='10'></textarea>
+                </div>
+			</section>
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.clienteId }}</label>
+                    <make-select [value]='vm.model.clienteId' [dataitem]='"Cliente"' label='Selecione' [name]='clienteId' [required]='true' (msChange)='onChangeMakeSelectclienteId($event)'></make-select>
+                </div>
+			</section>
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.chaveUnica }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.chaveUnica' name='chaveUnica' required (change)='isValid()' />
+                </div>
+			</section>
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.inicio }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.inicio' name='inicio'  (change)='isValid()' />
+                </div>
+			</section>
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.fim }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.fim' name='fim'  (change)='isValid()' />
+                </div>
+			</section>
+
+  </div>
+</div>

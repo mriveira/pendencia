@@ -1,0 +1,17 @@
+<div class="modal-body">
+  <div class="row">
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.arquivo }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.arquivo' name='arquivo' required (change)='isValid()' />
+                </div>
+			</section>
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.ext }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.ext' name='ext' required (change)='isValid()' />
+                </div>
+			</section>
+
+  </div>
+</div>

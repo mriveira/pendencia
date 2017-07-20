@@ -26,7 +26,7 @@ export class <#className#>FieldEditComponent implements OnInit {
 
     }
     
-    <#fields#>
+    <#fieldItems#>
 
     public isValid() {
 

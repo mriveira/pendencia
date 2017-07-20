@@ -49,12 +49,10 @@ export class MakeSelectComponent implements OnInit {
 
     _onChange() {
         this.msChange.emit(this.value);
-        console.log("_onChange", this.value)
     }
 
     ngOnInit() {
 
-        console.log("MakeSelectComponent ngOnInit",this.dataitem)
         this.api.setResource(this.dataitem).getDataitem().subscribe((data) => {
             this.options = data.dataList
         });

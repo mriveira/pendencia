@@ -1,0 +1,29 @@
+<div class="modal-body">
+  <div class="row">
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.nome }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required (change)='isValid()' />
+                </div>
+			</section>
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.telefoneDeContato }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.telefoneDeContato' name='telefoneDeContato'  (change)='isValid()' />
+                </div>
+			</section>
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.emailDeContato }}</label>
+                    <input type='email' class='form-control'[(ngModel)]='vm.model.emailDeContato' name='emailDeContato'  (change)='isValid()' />
+                </div>
+			</section>
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.cpfcnpj }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.cpfcnpj' name='cpfcnpj'  (change)='isValid()' />
+                </div>
+			</section>
+
+  </div>
+</div>

@@ -26,8 +26,24 @@ export class PendenciaFieldEditComponent implements OnInit {
 
     }
     
-    public onChangeMakeSelectfluxoTrabalhoStatusId(eventArgs) {
+    public onChangeMakeSelectprojetoId(eventArgs) {
+        this.vm.model.projetoId = eventArgs;
+        this.isValid();
+	}
+public onChangeMakeSelectusuarioId(eventArgs) {
+        this.vm.model.usuarioId = eventArgs;
+        this.isValid();
+	}
+public onChangeMakeSelectpendenciaTipoId(eventArgs) {
+        this.vm.model.pendenciaTipoId = eventArgs;
+        this.isValid();
+	}
+public onChangeMakeSelectfluxoTrabalhoStatusId(eventArgs) {
         this.vm.model.fluxoTrabalhoStatusId = eventArgs;
+        this.isValid();
+	}
+public onChangeMakeSelectpendenciaPrioridadeId(eventArgs) {
+        this.vm.model.pendenciaPrioridadeId = eventArgs;
         this.isValid();
 	}
 

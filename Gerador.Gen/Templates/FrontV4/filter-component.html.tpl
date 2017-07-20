@@ -1,3 +1,3 @@
 ﻿<div class="row">
-	<#fields#>
+<#fieldItems#>
 </div>

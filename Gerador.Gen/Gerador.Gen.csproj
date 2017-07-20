@@ -310,7 +310,7 @@
     <None Include="Templates\FrontV4\field-component.section.html.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Templates\FrontV4\field-makeselect-change-component.ts.tpl">
+    <None Include="Templates\FrontV4\makeselect-on-change.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\FrontV4\field-create-component.ts.tpl">

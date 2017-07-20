@@ -26,7 +26,7 @@ export class <#className#>FieldCreateComponent implements OnInit {
 
     }
 
-    <#fields#>
+    <#fieldItems#>
 
     public isValid() {
 

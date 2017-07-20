@@ -20,6 +20,10 @@ namespace Target.Pendencias.Api
             services.AddScoped<ICache, RedisComponent>();
             services.AddScoped<IUnitOfWork, UnitOfWork<DbContextTarget>>();
             
+			services.AddScoped<IPendenciaApplicationService, PendenciaApplicationService>();
+			services.AddScoped<IPendenciaService, PendenciaService>();
+			services.AddScoped<IPendenciaRepository, PendenciaRepository>();
+
 			services.AddScoped<IUsuarioApplicationService, UsuarioApplicationService>();
 			services.AddScoped<IUsuarioService, UsuarioService>();
 			services.AddScoped<IUsuarioRepository, UsuarioRepository>();
@@ -59,10 +63,6 @@ namespace Target.Pendencias.Api
 			services.AddScoped<IPendenciaEventosApplicationService, PendenciaEventosApplicationService>();
 			services.AddScoped<IPendenciaEventosService, PendenciaEventosService>();
 			services.AddScoped<IPendenciaEventosRepository, PendenciaEventosRepository>();
-
-			services.AddScoped<IPendenciaApplicationService, PendenciaApplicationService>();
-			services.AddScoped<IPendenciaService, PendenciaService>();
-			services.AddScoped<IPendenciaRepository, PendenciaRepository>();
 
 			services.AddScoped<IPendenciaDocumentoApplicationService, PendenciaDocumentoApplicationService>();
 			services.AddScoped<IPendenciaDocumentoService, PendenciaDocumentoService>();

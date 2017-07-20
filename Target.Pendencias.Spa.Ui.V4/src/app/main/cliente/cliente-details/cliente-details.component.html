@@ -1,0 +1,25 @@
+<div class="modal-body">
+  <dl>
+    <dt>{{ vm.labels.nome }}:</dt>
+    <dd><bind-custom [model]="vm.model.nome" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.telefoneDeContato }}:</dt>
+    <dd><bind-custom [model]="vm.model.telefoneDeContato" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.emailDeContato }}:</dt>
+    <dd><bind-custom [model]="vm.model.emailDeContato" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.cpfcnpj }}:</dt>
+    <dd><bind-custom [model]="vm.model.cpfcnpj" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.usuarioId }}:</dt>
+    <dd><bind-custom [model]="vm.model.usuarioId" [format]="'int'" [tag]="'span'"  [instance]="'Usuario'" [filterid]="'vm.model.usuarioId'"></bind-custom></dd>
+ 
+
+
+  </dl> 
+</div>

@@ -141,16 +141,16 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of vm.filterResult">
-				<td><bind-custom [model]="item.projetoId" [format]="'int'" [tag]="'span'" ></bind-custom></td>
+				<td><bind-custom [model]="item.projetoId" [format]="'int'" [tag]="'span'"  [instance]="'Projeto'" [filterid]="'vm.model.projetoId'"></bind-custom></td>
 				<td><bind-custom [model]="item.resumo" [format]="'string'" [tag]="'span'" ></bind-custom></td>
 				<td><bind-custom [model]="item.requisitadoPor" [format]="'string'" [tag]="'span'" ></bind-custom></td>
 				<td><bind-custom [model]="item.tempoEstimado" [format]="'int?'" [tag]="'span'" ></bind-custom></td>
 				<td><bind-custom [model]="item.pontosEstimados" [format]="'int?'" [tag]="'span'" ></bind-custom></td>
 				<td><bind-custom [model]="item.prazo" [format]="'DateTime?'" [tag]="'span'" ></bind-custom></td>
-				<td><bind-custom [model]="item.usuarioId" [format]="'int'" [tag]="'span'" ></bind-custom></td>
-				<td><bind-custom [model]="item.pendenciaTipoId" [format]="'int'" [tag]="'span'" ></bind-custom></td>
+				<td><bind-custom [model]="item.usuarioId" [format]="'int'" [tag]="'span'"  [instance]="'Usuario'" [filterid]="'vm.model.usuarioId'"></bind-custom></td>
+				<td><bind-custom [model]="item.pendenciaTipoId" [format]="'int'" [tag]="'span'"  [instance]="'PendenciaTipo'" [filterid]="'vm.model.pendenciaTipoId'"></bind-custom></td>
 				<td><bind-custom [model]="item.fluxoTrabalhoStatusId" [format]="'int'" [tag]="'span'"  [instance]="'FluxoTrabalhoStatus'" [filterid]="'vm.model.fluxoTrabalhoStatusId'"></bind-custom></td>
-				<td><bind-custom [model]="item.pendenciaPrioridadeId" [format]="'int'" [tag]="'span'" ></bind-custom></td>
+				<td><bind-custom [model]="item.pendenciaPrioridadeId" [format]="'int'" [tag]="'span'"  [instance]="'PendeciaPrioridade'" [filterid]="'vm.model.pendenciaPrioridadeId'"></bind-custom></td>
 				<td><bind-custom [model]="item.tags" [format]="'string'" [tag]="'span'" ></bind-custom></td>
 				<td><bind-custom [model]="item.dataConclusao" [format]="'DateTime?'" [tag]="'span'" ></bind-custom></td>
 

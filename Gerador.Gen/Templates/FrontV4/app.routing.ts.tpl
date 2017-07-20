@@ -8,7 +8,6 @@ const APP_ROUTES: Routes = [
     { path: 'home', component: MainComponent },
     { path: 'login', component: LoginComponent },
 <#classItems#>
-
 ]
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

@@ -27,7 +27,7 @@ namespace Target.Pendencias.Api.Controllers
         {
             this._rep = rep;
             this._app = app;
-			this._logger = logger.CreateLogger<FluxoTrabalhoTipoController>();
+			this._logger = logger.CreateLogger<FluxoTrabalhoTipoMoreController>();
         }
 
         [HttpGet]

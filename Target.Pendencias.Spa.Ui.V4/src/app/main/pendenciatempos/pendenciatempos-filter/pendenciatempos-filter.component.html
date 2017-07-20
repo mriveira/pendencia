@@ -1,0 +1,33 @@
+<div class="row">
+	  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.labels.pendenciaId }}</label>
+                    <make-select [value]='vm.model.pendenciaId' [dataitem]='"Pendencia"' label='Selecione' [name]='pendenciaId' [required]='false'></make-select>
+                </div>
+  </section>
+  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.labels.usuarioId }}</label>
+                    <make-select [value]='vm.model.usuarioId' [dataitem]='"Usuario"' label='Selecione' [name]='usuarioId' [required]='false'></make-select>
+                </div>
+  </section>
+  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.labels.inicio }}</label>
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.inicio' name='inicio' />
+                </div>
+  </section>
+  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.labels.fim }}</label>
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.fim' name='fim' />
+                </div>
+  </section>
+  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.labels.nota }}</label>
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.nota' name='nota' />
+                </div>
+  </section>
+
+</div>

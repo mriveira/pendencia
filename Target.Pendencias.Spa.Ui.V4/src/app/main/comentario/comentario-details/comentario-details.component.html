@@ -1,0 +1,17 @@
+<div class="modal-body">
+  <dl>
+    <dt>{{ vm.labels.data }}:</dt>
+    <dd><bind-custom [model]="vm.model.data" [format]="'DateTime'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.usuarioId }}:</dt>
+    <dd><bind-custom [model]="vm.model.usuarioId" [format]="'int'" [tag]="'span'"  [instance]="'Usuario'" [filterid]="'vm.model.usuarioId'"></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.pendenciaId }}:</dt>
+    <dd><bind-custom [model]="vm.model.pendenciaId" [format]="'int'" [tag]="'span'"  [instance]="'Pendencia'" [filterid]="'vm.model.pendenciaId'"></bind-custom></dd>
+ 
+
+
+  </dl> 
+</div>

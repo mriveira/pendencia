@@ -1,0 +1,13 @@
+<div class="modal-body">
+  <dl>
+    <dt>{{ vm.labels.documentoId }}:</dt>
+    <dd><bind-custom [model]="vm.model.documentoId" [format]="'int'" [tag]="'span'"  [instance]="'Documento'" [filterid]="'vm.model.documentoId'"></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.comentarioId }}:</dt>
+    <dd><bind-custom [model]="vm.model.comentarioId" [format]="'int'" [tag]="'span'"  [instance]="'Comentario'" [filterid]="'vm.model.comentarioId'"></bind-custom></dd>
+ 
+
+
+  </dl> 
+</div>
