@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { PendenciaTemposService } from '../pendenciatempos.service';
 
 @Component({
@@ -11,11 +11,13 @@ export class PendenciaTemposFieldEditComponent implements OnInit {
     @Input() vm: any;
 
 
-    constructor(private pendenciaTemposService: PendenciaTemposService) { }
+    constructor(private pendenciaTemposService: PendenciaTemposService, private ref: ChangeDetectorRef) { }
 
-    ngOnInit() {
-        this.pendenciaTemposService.isValid(this.vm);
-    }
+    ngOnInit() { }
+
+	ngOnChanges() {
+       this.ref.detectChanges()
+	}
 
     public onSave(model)
     {
@@ -28,16 +30,10 @@ export class PendenciaTemposFieldEditComponent implements OnInit {
     
 	public onChangeMakeSelectpendenciaId(eventArgs) {
         this.vm.model.pendenciaId = eventArgs;
-        this.pendenciaTemposService.isValid(this.vm);
 	}
 	public onChangeMakeSelectusuarioId(eventArgs) {
         this.vm.model.usuarioId = eventArgs;
-        this.pendenciaTemposService.isValid(this.vm);
 	}
 
-
-	public isValid(vm) {
-        this.pendenciaTemposService.isValid(this.vm);
-    }
    
 }

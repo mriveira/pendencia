@@ -34,7 +34,9 @@ export class FluxoTrabalhoStatusPrintComponent implements OnInit {
 
     }
     
-
+	onPrint() {
+        window.print();
+	}
    
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { ProjetoService } from '../projeto.service';
 
 @Component({
@@ -11,11 +11,13 @@ export class ProjetoFieldEditComponent implements OnInit {
     @Input() vm: any;
 
 
-    constructor(private projetoService: ProjetoService) { }
+    constructor(private projetoService: ProjetoService, private ref: ChangeDetectorRef) { }
 
-    ngOnInit() {
-        this.projetoService.isValid(this.vm);
-    }
+    ngOnInit() { }
+
+	ngOnChanges() {
+       this.ref.detectChanges()
+	}
 
     public onSave(model)
     {
@@ -28,16 +30,10 @@ export class ProjetoFieldEditComponent implements OnInit {
     
 	public onChangeMakeSelectclienteId(eventArgs) {
         this.vm.model.clienteId = eventArgs;
-        this.projetoService.isValid(this.vm);
 	}
 	public onChangeMakeSelectusuarioId(eventArgs) {
         this.vm.model.usuarioId = eventArgs;
-        this.projetoService.isValid(this.vm);
 	}
 
-
-	public isValid(vm) {
-        this.projetoService.isValid(this.vm);
-    }
    
 }

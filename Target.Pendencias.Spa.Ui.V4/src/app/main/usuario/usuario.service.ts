@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { ApiService } from 'app/common/services/api.service';
 import { GlobalService } from '../../global.service';
@@ -8,9 +9,20 @@ import { GlobalService } from '../../global.service';
 @Injectable()
 export class UsuarioService {
 
+	private _form : FormGroup;
 
     constructor(private api: ApiService<any>) {
 
+		this._form = new FormGroup({
+            nome : new FormControl(),
+            foto : new FormControl(),
+            email : new FormControl(),
+            senha : new FormControl(),
+            usuarioTipoId : new FormControl(),
+            ativo : new FormControl(),
+            usuarioDonoId : new FormControl(),
+
+        });
 
     }
 
@@ -36,15 +48,7 @@ export class UsuarioService {
 				usuarioDonoId : 'usuarioDonoId',
 
             },
-            required: {
-				nome : true,
-				email : true,
-				senha : true,
-				usuarioTipoId : true,
-				ativo : true,
-
-			},
-            isValid : true
+			form: this._form
         };
 
     }
@@ -77,22 +81,6 @@ export class UsuarioService {
             IsPagination: true
         });
 
-    }
-
-	public isValid(vm) {
-
-        for (let key in vm.required) {
-            if (vm.required.hasOwnProperty(key)) {
-
-                if (vm.model[key] == null || vm.model[key] == undefined || vm.model[key] == "undefined" || vm.model[key] == "") {
-                    vm.isValid = false;
-                    return false;
-                }
-
-            }
-        }
-        vm.isValid = true;
-        return true;
     }
 
 }

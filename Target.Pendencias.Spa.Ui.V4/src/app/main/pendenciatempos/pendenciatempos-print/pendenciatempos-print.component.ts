@@ -34,7 +34,9 @@ export class PendenciaTemposPrintComponent implements OnInit {
 
     }
     
-
+	onPrint() {
+        window.print();
+	}
    
 
 

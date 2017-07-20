@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef} from '@angular/core';
 import { ComentarioDocumentoService } from '../comentariodocumento.service';
 
 @Component({
@@ -11,11 +11,13 @@ export class ComentarioDocumentoFieldCreateComponent implements OnInit {
     @Input() vm: any;
 
 
-   constructor(private comentarioDocumentoService: ComentarioDocumentoService) { }
+   constructor(private comentarioDocumentoService: ComentarioDocumentoService, private ref: ChangeDetectorRef) { }
 
-    ngOnInit() {
-        this.comentarioDocumentoService.isValid(this.vm);
-    }
+    ngOnInit() {}
+
+	ngOnChanges() {
+       this.ref.detectChanges()
+	}
 
     public onSave(model)
     {
@@ -28,16 +30,10 @@ export class ComentarioDocumentoFieldCreateComponent implements OnInit {
 
 	public onChangeMakeSelectdocumentoId(eventArgs) {
         this.vm.model.documentoId = eventArgs;
-        this.comentarioDocumentoService.isValid(this.vm);
 	}
 	public onChangeMakeSelectcomentarioId(eventArgs) {
         this.vm.model.comentarioId = eventArgs;
-        this.comentarioDocumentoService.isValid(this.vm);
 	}
 
-
-	public isValid(vm) {
-        this.comentarioDocumentoService.isValid(this.vm);
-    }
 
 }

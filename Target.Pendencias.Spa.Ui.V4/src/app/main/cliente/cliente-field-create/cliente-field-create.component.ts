@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef} from '@angular/core';
 import { ClienteService } from '../cliente.service';
 
 @Component({
@@ -11,11 +11,13 @@ export class ClienteFieldCreateComponent implements OnInit {
     @Input() vm: any;
 
 
-   constructor(private clienteService: ClienteService) { }
+   constructor(private clienteService: ClienteService, private ref: ChangeDetectorRef) { }
 
-    ngOnInit() {
-        this.clienteService.isValid(this.vm);
-    }
+    ngOnInit() {}
+
+	ngOnChanges() {
+       this.ref.detectChanges()
+	}
 
     public onSave(model)
     {
@@ -28,12 +30,7 @@ export class ClienteFieldCreateComponent implements OnInit {
 
 	public onChangeMakeSelectusuarioId(eventArgs) {
         this.vm.model.usuarioId = eventArgs;
-        this.clienteService.isValid(this.vm);
 	}
 
-
-	public isValid(vm) {
-        this.clienteService.isValid(this.vm);
-    }
 
 }

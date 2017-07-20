@@ -1,5 +1,5 @@
 ﻿<div class="modal-body">
-  <div class="row">
+  <div class="row" [formGroup]="vm.form">
 <#fieldItems#>
   </div>
 </div>

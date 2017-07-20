@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef} from '@angular/core';
 import { AcompanhadoresService } from '../acompanhadores.service';
 
 @Component({
@@ -11,11 +11,13 @@ export class AcompanhadoresFieldCreateComponent implements OnInit {
     @Input() vm: any;
 
 
-   constructor(private acompanhadoresService: AcompanhadoresService) { }
+   constructor(private acompanhadoresService: AcompanhadoresService, private ref: ChangeDetectorRef) { }
 
-    ngOnInit() {
-        this.acompanhadoresService.isValid(this.vm);
-    }
+    ngOnInit() {}
+
+	ngOnChanges() {
+       this.ref.detectChanges()
+	}
 
     public onSave(model)
     {
@@ -28,12 +30,7 @@ export class AcompanhadoresFieldCreateComponent implements OnInit {
 
 	public onChangeMakeSelectpendenciaId(eventArgs) {
         this.vm.model.pendenciaId = eventArgs;
-        this.acompanhadoresService.isValid(this.vm);
 	}
 
-
-	public isValid(vm) {
-        this.acompanhadoresService.isValid(this.vm);
-    }
 
 }

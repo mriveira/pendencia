@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormGroup, FormControl} from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { AcompanhadoresService } from './acompanhadores.service';
@@ -21,7 +21,6 @@ export class AcompanhadoresComponent implements OnInit {
     @ViewChild('saveModal') private saveModal: ModalDirective;
     @ViewChild('editModal') private editModal: ModalDirective;
     @ViewChild('detailsModal') private detailsModal: ModalDirective;
-    @ViewChild('formCreate') private formCreate;
 
     constructor(private acompanhadoresService: AcompanhadoresService, private router: Router) {
 

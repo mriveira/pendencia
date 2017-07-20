@@ -34,7 +34,9 @@ export class ClientePrintComponent implements OnInit {
 
     }
     
-
+	onPrint() {
+        window.print();
+	}
    
 
 

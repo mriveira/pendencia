@@ -34,7 +34,9 @@ export class PendenciaPrintComponent implements OnInit {
 
     }
     
-
+	onPrint() {
+        window.print();
+	}
    
 
 

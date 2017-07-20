@@ -1,9 +1,9 @@
 <div class="modal-body">
-  <div class="row">
+  <div class="row" [formGroup]="vm.form">
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.nome }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required (change)='isValid(vm)' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required formControlName='nome' />
                 </div>
 			</section>
 			<section class="col-md-12">
@@ -18,30 +18,30 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.email }}</label>
-                    <input type='email' class='form-control'[(ngModel)]='vm.model.email' name='email' required (change)='isValid(vm)' />
+                    <input type='email' class='form-control'[(ngModel)]='vm.model.email' name='email' required formControlName='email' />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.senha }}</label>
-                    <input type='password' class='form-control' [(ngModel)]='vm.model.senha' name='senha' required (change)='isValid(vm)'/>
+                    <input type='password' class='form-control' [(ngModel)]='vm.model.senha' name='senha' required formControlName='senha'  />
                 </div>
                 <div class='form-group'>
                     <label *ngIf='vm.model.senha == vm.model.confSenha || vm.model.confSenha == null'>Confirmar {{ vm.labels.senha }}</label>
                     <label class='alert alert-danger' *ngIf='vm.model.senha != vm.model.confSenha && vm.model.confSenha != null'>Confirme sua  {{ vm.labels.senha }}</label>
-                    <input type='password' class='form-control'  [(ngModel)]='vm.model.confSenha' name='confSenha' required (change)='isValid(vm)' />
+                    <input type='password' class='form-control'  [(ngModel)]='vm.model.confSenha' name='confSenha' required formControlName='confSenha' />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.usuarioTipoId }}</label>
-                    <make-select [value]='vm.model.usuarioTipoId' [dataitem]='"UsuarioTipo"' label='Selecione' [name]='usuarioTipoId' [required]='true' (msChange)='onChangeMakeSelectusuarioTipoId($event)'></make-select>
+                    <make-select [value]='vm.model.usuarioTipoId' [dataitem]='"UsuarioTipo"' label='Selecione' [name]='usuarioTipoId' [required]='true' (msChange)='onChangeMakeSelectusuarioTipoId($event)' [form]='vm.form'></make-select>
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='checkbox'>
                     <label>
-                        <input type='checkbox'  [(ngModel)]='vm.model.ativo'  name='ativo' /> {{ vm.labels.ativo }}?
+                        <input type='checkbox'  [(ngModel)]='vm.model.ativo'  name='ativo' formControlName='ativo' /> {{ vm.labels.ativo }}?
                     </label>
                 </div>
 			</section>

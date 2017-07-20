@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef} from '@angular/core';
 import { PendeciaPrioridadeService } from '../pendeciaprioridade.service';
 
 @Component({
@@ -11,11 +11,13 @@ export class PendeciaPrioridadeFieldCreateComponent implements OnInit {
     @Input() vm: any;
 
 
-   constructor(private pendeciaPrioridadeService: PendeciaPrioridadeService) { }
+   constructor(private pendeciaPrioridadeService: PendeciaPrioridadeService, private ref: ChangeDetectorRef) { }
 
-    ngOnInit() {
-        this.pendeciaPrioridadeService.isValid(this.vm);
-    }
+    ngOnInit() {}
+
+	ngOnChanges() {
+       this.ref.detectChanges()
+	}
 
     public onSave(model)
     {
@@ -27,9 +29,5 @@ export class PendeciaPrioridadeFieldCreateComponent implements OnInit {
     }
 
 
-
-	public isValid(vm) {
-        this.pendeciaPrioridadeService.isValid(this.vm);
-    }
 
 }

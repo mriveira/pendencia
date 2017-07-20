@@ -31,12 +31,11 @@ namespace Common.Orm
             {
                 return null;
             }
-            ParameterExpression paramterExpression = Expression.Parameter(typeof(T));
-            Expression orderByProperty = Expression.Property(paramterExpression, propertyName);
-            LambdaExpression lambda = Expression.Lambda(orderByProperty, paramterExpression);
-            MethodInfo genericMethod =
-              OrderByMethod.MakeGenericMethod(typeof(T), orderByProperty.Type);
-            object ret = genericMethod.Invoke(null, new object[] { source, lambda });
+            var paramterExpression = Expression.Parameter(typeof(T));
+            var orderByProperty = Expression.Property(paramterExpression, propertyName);
+            var lambda = Expression.Lambda(orderByProperty, paramterExpression);
+            var genericMethod = OrderByMethod.MakeGenericMethod(typeof(T), orderByProperty.Type);
+            var ret = genericMethod.Invoke(null, new object[] { source, lambda });
             return (IQueryable<T>)ret;
         }
 
@@ -48,12 +47,11 @@ namespace Common.Orm
             {
                 return null;
             }
-            ParameterExpression paramterExpression = Expression.Parameter(typeof(T));
-            Expression orderByProperty = Expression.Property(paramterExpression, propertyName);
-            LambdaExpression lambda = Expression.Lambda(orderByProperty, paramterExpression);
-            MethodInfo genericMethod =
-              OrderByDescendingMethod.MakeGenericMethod(typeof(T), orderByProperty.Type);
-            object ret = genericMethod.Invoke(null, new object[] { source, lambda });
+            var paramterExpression = Expression.Parameter(typeof(T));
+            var orderByProperty = Expression.Property(paramterExpression, propertyName);
+            var lambda = Expression.Lambda(orderByProperty, paramterExpression);
+            var genericMethod = OrderByDescendingMethod.MakeGenericMethod(typeof(T), orderByProperty.Type);
+            var ret = genericMethod.Invoke(null, new object[] { source, lambda });
             return (IQueryable<T>)ret;
         }
     }

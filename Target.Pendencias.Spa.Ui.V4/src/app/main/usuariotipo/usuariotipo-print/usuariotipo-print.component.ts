@@ -34,7 +34,9 @@ export class UsuarioTipoPrintComponent implements OnInit {
 
     }
     
-
+	onPrint() {
+        window.print();
+	}
    
 
 

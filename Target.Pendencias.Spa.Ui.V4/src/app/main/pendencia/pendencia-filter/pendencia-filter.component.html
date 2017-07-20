@@ -2,7 +2,7 @@
   <section class="col-md-6">
 	<div class='form-group'>
                     <label>{{ vm.labels.projetoId }}</label>
-                    <make-select [value]='vm.modelFilter.projetoId' [dataitem]='"Projeto"' label='Selecione' [name]='projetoId' [required]='false' (msChange)='onChangeMakeSelectprojetoId($event)'></make-select>
+                    <make-select [value]='vm.modelFilter.projetoId' [dataitem]='"Projeto"' label='Selecione' [name]='projetoId' [required]='false' (msChange)='onChangeMakeSelectprojetoId($event)' [form]='vm.form'></make-select>
                 </div>
   </section>
   <section class="col-md-6">
@@ -14,7 +14,7 @@
   <section class="col-md-6">
 	                <div class='form-group'>
                     <label>{{ vm.labels.descricao }}</label>
-                    <textarea class='form-control'  [(ngModel)]='vm.model.descricao' name='descricao'  rows='10'></textarea>
+                    <textarea class='form-control'  [(ngModel)]='vm.model.descricao' name='descricao'  rows='10' formControlName='descricao' ></textarea>
                 </div>
   </section>
   <section class="col-md-6">
@@ -44,19 +44,19 @@
   <section class="col-md-6">
 	<div class='form-group'>
                     <label>{{ vm.labels.pendenciaTipoId }}</label>
-                    <make-select [value]='vm.modelFilter.pendenciaTipoId' [dataitem]='"PendenciaTipo"' label='Selecione' [name]='pendenciaTipoId' [required]='false' (msChange)='onChangeMakeSelectpendenciaTipoId($event)'></make-select>
+                    <make-select [value]='vm.modelFilter.pendenciaTipoId' [dataitem]='"PendenciaTipo"' label='Selecione' [name]='pendenciaTipoId' [required]='false' (msChange)='onChangeMakeSelectpendenciaTipoId($event)' [form]='vm.form'></make-select>
                 </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
                     <label>{{ vm.labels.fluxoTrabalhoStatusId }}</label>
-                    <make-select [value]='vm.modelFilter.fluxoTrabalhoStatusId' [dataitem]='"FluxoTrabalhoStatus"' label='Selecione' [name]='fluxoTrabalhoStatusId' [required]='false' (msChange)='onChangeMakeSelectfluxoTrabalhoStatusId($event)'></make-select>
+                    <make-select [value]='vm.modelFilter.fluxoTrabalhoStatusId' [dataitem]='"FluxoTrabalhoStatus"' label='Selecione' [name]='fluxoTrabalhoStatusId' [required]='false' (msChange)='onChangeMakeSelectfluxoTrabalhoStatusId($event)' [form]='vm.form'></make-select>
                 </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
                     <label>{{ vm.labels.pendenciaPrioridadeId }}</label>
-                    <make-select [value]='vm.modelFilter.pendenciaPrioridadeId' [dataitem]='"PendeciaPrioridade"' label='Selecione' [name]='pendenciaPrioridadeId' [required]='false' (msChange)='onChangeMakeSelectpendenciaPrioridadeId($event)'></make-select>
+                    <make-select [value]='vm.modelFilter.pendenciaPrioridadeId' [dataitem]='"PendeciaPrioridade"' label='Selecione' [name]='pendenciaPrioridadeId' [required]='false' (msChange)='onChangeMakeSelectpendenciaPrioridadeId($event)' [form]='vm.form'></make-select>
                 </div>
   </section>
   <section class="col-md-6">

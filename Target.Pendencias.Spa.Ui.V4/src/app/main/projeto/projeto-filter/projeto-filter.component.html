@@ -20,7 +20,7 @@
   <section class="col-md-6">
 	<div class='form-group'>
                     <label>{{ vm.labels.clienteId }}</label>
-                    <make-select [value]='vm.modelFilter.clienteId' [dataitem]='"Cliente"' label='Selecione' [name]='clienteId' [required]='false' (msChange)='onChangeMakeSelectclienteId($event)'></make-select>
+                    <make-select [value]='vm.modelFilter.clienteId' [dataitem]='"Cliente"' label='Selecione' [name]='clienteId' [required]='false' (msChange)='onChangeMakeSelectclienteId($event)' [form]='vm.form'></make-select>
                 </div>
   </section>
   <section class="col-md-6">

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef} from '@angular/core';
 import { ProjetoFluxoTrabalhoStatusService } from '../projetofluxotrabalhostatus.service';
 
 @Component({
@@ -11,11 +11,13 @@ export class ProjetoFluxoTrabalhoStatusFieldCreateComponent implements OnInit {
     @Input() vm: any;
 
 
-   constructor(private projetoFluxoTrabalhoStatusService: ProjetoFluxoTrabalhoStatusService) { }
+   constructor(private projetoFluxoTrabalhoStatusService: ProjetoFluxoTrabalhoStatusService, private ref: ChangeDetectorRef) { }
 
-    ngOnInit() {
-        this.projetoFluxoTrabalhoStatusService.isValid(this.vm);
-    }
+    ngOnInit() {}
+
+	ngOnChanges() {
+       this.ref.detectChanges()
+	}
 
     public onSave(model)
     {
@@ -28,16 +30,10 @@ export class ProjetoFluxoTrabalhoStatusFieldCreateComponent implements OnInit {
 
 	public onChangeMakeSelectprojetoId(eventArgs) {
         this.vm.model.projetoId = eventArgs;
-        this.projetoFluxoTrabalhoStatusService.isValid(this.vm);
 	}
 	public onChangeMakeSelectfluxoTrabalhoStatusId(eventArgs) {
         this.vm.model.fluxoTrabalhoStatusId = eventArgs;
-        this.projetoFluxoTrabalhoStatusService.isValid(this.vm);
 	}
 
-
-	public isValid(vm) {
-        this.projetoFluxoTrabalhoStatusService.isValid(this.vm);
-    }
 
 }

@@ -34,7 +34,9 @@ export class DocumentoPrintComponent implements OnInit {
 
     }
     
-
+	onPrint() {
+        window.print();
+	}
    
 
 

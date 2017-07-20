@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { PendenciaEventosService } from '../pendenciaeventos.service';
 
 @Component({
@@ -11,11 +11,13 @@ export class PendenciaEventosFieldEditComponent implements OnInit {
     @Input() vm: any;
 
 
-    constructor(private pendenciaEventosService: PendenciaEventosService) { }
+    constructor(private pendenciaEventosService: PendenciaEventosService, private ref: ChangeDetectorRef) { }
 
-    ngOnInit() {
-        this.pendenciaEventosService.isValid(this.vm);
-    }
+    ngOnInit() { }
+
+	ngOnChanges() {
+       this.ref.detectChanges()
+	}
 
     public onSave(model)
     {
@@ -28,12 +30,7 @@ export class PendenciaEventosFieldEditComponent implements OnInit {
     
 	public onChangeMakeSelectpendenciaId(eventArgs) {
         this.vm.model.pendenciaId = eventArgs;
-        this.pendenciaEventosService.isValid(this.vm);
 	}
 
-
-	public isValid(vm) {
-        this.pendenciaEventosService.isValid(this.vm);
-    }
    
 }

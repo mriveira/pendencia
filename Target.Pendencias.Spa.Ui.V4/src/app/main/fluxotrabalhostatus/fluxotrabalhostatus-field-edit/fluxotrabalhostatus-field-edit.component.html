@@ -1,33 +1,33 @@
 <div class="modal-body">
-  <div class="row">
+  <div class="row" [formGroup]="vm.form">
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.nome }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required (change)='isValid(vm)' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required formControlName='nome' />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.fluxoTrabalhoTipoId }}</label>
-                    <make-select [value]='vm.model.fluxoTrabalhoTipoId' [dataitem]='"FluxoTrabalhoTipo"' label='Selecione' [name]='fluxoTrabalhoTipoId' [required]='true' (msChange)='onChangeMakeSelectfluxoTrabalhoTipoId($event)'></make-select>
+                    <make-select [value]='vm.model.fluxoTrabalhoTipoId' [dataitem]='"FluxoTrabalhoTipo"' label='Selecione' [name]='fluxoTrabalhoTipoId' [required]='true' (msChange)='onChangeMakeSelectfluxoTrabalhoTipoId($event)' [form]='vm.form'></make-select>
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.corFundo }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.corFundo' name='corFundo'  (change)='isValid(vm)' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.corFundo' name='corFundo'  formControlName='corFundo' />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.corFonte }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.corFonte' name='corFonte'  (change)='isValid(vm)' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.corFonte' name='corFonte'  formControlName='corFonte' />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.ordem }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.ordem' name='ordem'  (change)='isValid(vm)' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.ordem' name='ordem'  formControlName='ordem' />
                 </div>
 			</section>
 

@@ -34,7 +34,9 @@ export class PendeciaPrioridadePrintComponent implements OnInit {
 
     }
     
-
+	onPrint() {
+        window.print();
+	}
    
 
 

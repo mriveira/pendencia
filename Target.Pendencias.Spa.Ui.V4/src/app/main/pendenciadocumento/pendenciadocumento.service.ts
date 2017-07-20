@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { ApiService } from 'app/common/services/api.service';
 import { GlobalService } from '../../global.service';
@@ -8,9 +9,15 @@ import { GlobalService } from '../../global.service';
 @Injectable()
 export class PendenciaDocumentoService {
 
+	private _form : FormGroup;
 
     constructor(private api: ApiService<any>) {
 
+		this._form = new FormGroup({
+            pendenciaId : new FormControl(),
+            documentoId : new FormControl(),
+
+        });
 
     }
 
@@ -30,12 +37,7 @@ export class PendenciaDocumentoService {
 				documentoId : 'documentoId',
 
             },
-            required: {
-				pendenciaId : true,
-				documentoId : true,
-
-			},
-            isValid : true
+			form: this._form
         };
 
     }
@@ -68,22 +70,6 @@ export class PendenciaDocumentoService {
             IsPagination: true
         });
 
-    }
-
-	public isValid(vm) {
-
-        for (let key in vm.required) {
-            if (vm.required.hasOwnProperty(key)) {
-
-                if (vm.model[key] == null || vm.model[key] == undefined || vm.model[key] == "undefined" || vm.model[key] == "") {
-                    vm.isValid = false;
-                    return false;
-                }
-
-            }
-        }
-        vm.isValid = true;
-        return true;
     }
 
 }

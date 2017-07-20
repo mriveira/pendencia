@@ -34,7 +34,9 @@ export class ProjetoPrintComponent implements OnInit {
 
     }
     
-
+	onPrint() {
+        window.print();
+	}
    
 
 

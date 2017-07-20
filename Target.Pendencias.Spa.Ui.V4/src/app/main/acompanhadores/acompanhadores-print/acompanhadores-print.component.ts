@@ -34,7 +34,9 @@ export class AcompanhadoresPrintComponent implements OnInit {
 
     }
     
-
+	onPrint() {
+        window.print();
+	}
    
 
 

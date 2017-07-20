@@ -34,7 +34,9 @@ export class ComentarioDocumentoPrintComponent implements OnInit {
 
     }
     
-
+	onPrint() {
+        window.print();
+	}
    
 
 

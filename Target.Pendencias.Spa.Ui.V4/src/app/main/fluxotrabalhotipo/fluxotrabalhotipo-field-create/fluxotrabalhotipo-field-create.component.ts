@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef} from '@angular/core';
 import { FluxoTrabalhoTipoService } from '../fluxotrabalhotipo.service';
 
 @Component({
@@ -11,11 +11,13 @@ export class FluxoTrabalhoTipoFieldCreateComponent implements OnInit {
     @Input() vm: any;
 
 
-   constructor(private fluxoTrabalhoTipoService: FluxoTrabalhoTipoService) { }
+   constructor(private fluxoTrabalhoTipoService: FluxoTrabalhoTipoService, private ref: ChangeDetectorRef) { }
 
-    ngOnInit() {
-        this.fluxoTrabalhoTipoService.isValid(this.vm);
-    }
+    ngOnInit() {}
+
+	ngOnChanges() {
+       this.ref.detectChanges()
+	}
 
     public onSave(model)
     {
@@ -27,9 +29,5 @@ export class FluxoTrabalhoTipoFieldCreateComponent implements OnInit {
     }
 
 
-
-	public isValid(vm) {
-        this.fluxoTrabalhoTipoService.isValid(this.vm);
-    }
 
 }

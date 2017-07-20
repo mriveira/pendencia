@@ -36,7 +36,7 @@
     <div class="col">
       <div class="gc-filter">
         <form #formFilter="ngForm" (ngSubmit)="onFilter(vm.modelFilter)">
-          <div class="card card-primary">
+          <div class="card gc-card card-primary">
             <div class="card-header">Filtros</div>
             <div class="card-block">
               <app-<#classNameLowerAndSeparator#>-filter [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-filter>
@@ -46,6 +46,7 @@
                 <span class="fa fa-search"></span>
                 Filtrar
               </button>
+			  <button class="btn btn-default" type="button" (click)="vm.mostrarFiltros =! vm.mostrarFiltros">Cancelar</button>
             </div>
           </div>
         </form>
@@ -107,13 +108,13 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" #createForm="ngForm">
+      <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" novalidate>
         <div class="modal-body">
           <app-<#classNameLowerAndSeparator#>-field-create [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-field-create>
         </div>
         <div class="modal-footer">
           <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
-          <button type="submit" class="btn btn-success" [disabled]="!vm.isValid" >Salvar</button>
+          <button type="submit" class="btn btn-success" [disabled]="vm.form.invalid" >Salvar</button>
         </div>
       </form>
     </div>
@@ -129,11 +130,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" #editForm="ngForm">
+      <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" novalidate>
         <app-<#classNameLowerAndSeparator#>-field-edit [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-field-edit>
         <div class="modal-footer">
           <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
-          <button type="submit" class="btn btn-success" [disabled]="!editForm.form.valid">Salvar</button>
+          <button type="submit" class="btn btn-success" [disabled]="vm.form.invalid">Salvar</button>
         </div>
       </form>
     </div>

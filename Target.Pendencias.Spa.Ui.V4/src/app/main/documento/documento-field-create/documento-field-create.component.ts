@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef} from '@angular/core';
 import { DocumentoService } from '../documento.service';
 
 @Component({
@@ -11,11 +11,13 @@ export class DocumentoFieldCreateComponent implements OnInit {
     @Input() vm: any;
 
 
-   constructor(private documentoService: DocumentoService) { }
+   constructor(private documentoService: DocumentoService, private ref: ChangeDetectorRef) { }
 
-    ngOnInit() {
-        this.documentoService.isValid(this.vm);
-    }
+    ngOnInit() {}
+
+	ngOnChanges() {
+       this.ref.detectChanges()
+	}
 
     public onSave(model)
     {
@@ -27,9 +29,5 @@ export class DocumentoFieldCreateComponent implements OnInit {
     }
 
 
-
-	public isValid(vm) {
-        this.documentoService.isValid(this.vm);
-    }
 
 }

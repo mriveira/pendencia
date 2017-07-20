@@ -1,6 +1,6 @@
-﻿import { Component, OnInit, ViewChild, Output, EventEmitter, } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormGroup, FormControl} from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { <#className#>Service } from './<#classNameLowerAndSeparator#>.service';
@@ -21,7 +21,6 @@ export class <#className#>Component implements OnInit {
     @ViewChild('saveModal') private saveModal: ModalDirective;
     @ViewChild('editModal') private editModal: ModalDirective;
     @ViewChild('detailsModal') private detailsModal: ModalDirective;
-    @ViewChild('formCreate') private formCreate;
 
     constructor(private <#classNameInstance#>Service: <#className#>Service, private router: Router) {
 

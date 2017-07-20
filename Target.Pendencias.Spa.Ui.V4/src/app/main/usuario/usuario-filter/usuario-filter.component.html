@@ -29,7 +29,7 @@
   <section class="col-md-6">
 	<div class='form-group'>
                     <label>{{ vm.labels.usuarioTipoId }}</label>
-                    <make-select [value]='vm.modelFilter.usuarioTipoId' [dataitem]='"UsuarioTipo"' label='Selecione' [name]='usuarioTipoId' [required]='false' (msChange)='onChangeMakeSelectusuarioTipoId($event)'></make-select>
+                    <make-select [value]='vm.modelFilter.usuarioTipoId' [dataitem]='"UsuarioTipo"' label='Selecione' [name]='usuarioTipoId' [required]='false' (msChange)='onChangeMakeSelectusuarioTipoId($event)' [form]='vm.form'></make-select>
                 </div>
   </section>
   <section class="col-md-6">

@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input } from '@angular/core';
+﻿import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { <#className#>Service } from '../<#classNameLowerAndSeparator#>.service';
 
 @Component({
@@ -11,11 +11,13 @@ export class <#className#>FieldEditComponent implements OnInit {
     @Input() vm: any;
 
 
-    constructor(private <#classNameInstance#>Service: <#className#>Service) { }
+    constructor(private <#classNameInstance#>Service: <#className#>Service, private ref: ChangeDetectorRef) { }
 
-    ngOnInit() {
-        this.<#classNameInstance#>Service.isValid(this.vm);
-    }
+    ngOnInit() { }
+
+	ngOnChanges() {
+       this.ref.detectChanges()
+	}
 
     public onSave(model)
     {
@@ -27,9 +29,5 @@ export class <#className#>FieldEditComponent implements OnInit {
     }
     
 <#fieldItems#>
-
-	public isValid(vm) {
-        this.<#classNameInstance#>Service.isValid(this.vm);
-    }
    
 }

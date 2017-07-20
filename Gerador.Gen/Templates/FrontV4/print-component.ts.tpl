@@ -34,7 +34,9 @@ export class <#className#>PrintComponent implements OnInit {
 
     }
     
-
+	onPrint() {
+        window.print();
+	}
    
 
 

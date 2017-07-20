@@ -1,9 +1,9 @@
 <div class="modal-body">
-  <div class="row">
+  <div class="row" [formGroup]="vm.form">
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.pendenciaId }}</label>
-                    <make-select [value]='vm.model.pendenciaId' [dataitem]='"Pendencia"' label='Selecione' [name]='pendenciaId' [required]='true' (msChange)='onChangeMakeSelectpendenciaId($event)'></make-select>
+                    <make-select [value]='vm.model.pendenciaId' [dataitem]='"Pendencia"' label='Selecione' [name]='pendenciaId' [required]='true' (msChange)='onChangeMakeSelectpendenciaId($event)' [form]='vm.form'></make-select>
                 </div>
 			</section>
 

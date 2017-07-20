@@ -14,13 +14,13 @@
   <section class="col-md-6">
 	<div class='form-group'>
                     <label>{{ vm.labels.usuarioId }}</label>
-                    <make-select [value]='vm.modelFilter.usuarioId' [dataitem]='"Usuario"' label='Selecione' [name]='usuarioId' [required]='false' (msChange)='onChangeMakeSelectusuarioId($event)'></make-select>
+                    <make-select [value]='vm.modelFilter.usuarioId' [dataitem]='"Usuario"' label='Selecione' [name]='usuarioId' [required]='false' (msChange)='onChangeMakeSelectusuarioId($event)' [form]='vm.form'></make-select>
                 </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
                     <label>{{ vm.labels.pendenciaId }}</label>
-                    <make-select [value]='vm.modelFilter.pendenciaId' [dataitem]='"Pendencia"' label='Selecione' [name]='pendenciaId' [required]='false' (msChange)='onChangeMakeSelectpendenciaId($event)'></make-select>
+                    <make-select [value]='vm.modelFilter.pendenciaId' [dataitem]='"Pendencia"' label='Selecione' [name]='pendenciaId' [required]='false' (msChange)='onChangeMakeSelectpendenciaId($event)' [form]='vm.form'></make-select>
                 </div>
   </section>
 

@@ -1,6 +1,6 @@
 ﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PaginationModule } from 'ngx-bootstrap/pagination'
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -15,6 +15,7 @@ import { ConfirmModalComponent } from 'app/common/components/confirm-modal.compo
     imports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         PaginationModule.forRoot(),
         ModalModule.forRoot(),
     ],
@@ -25,7 +26,10 @@ import { ConfirmModalComponent } from 'app/common/components/confirm-modal.compo
         ConfirmModalComponent
     ],
     providers: [],
-    exports: [BindCustomComponent, MakeSelectComponent, MakePaginationComponent, ConfirmModalComponent]
+    exports: [BindCustomComponent,
+        MakeSelectComponent,
+        MakePaginationComponent,
+        ConfirmModalComponent]
 })
 export class CommonSharedModule {
 

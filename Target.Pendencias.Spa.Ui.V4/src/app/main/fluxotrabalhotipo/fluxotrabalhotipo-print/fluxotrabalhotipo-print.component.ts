@@ -34,7 +34,9 @@ export class FluxoTrabalhoTipoPrintComponent implements OnInit {
 
     }
     
-
+	onPrint() {
+        window.print();
+	}
    
 
 

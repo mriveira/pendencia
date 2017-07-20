@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { ApiService } from 'app/common/services/api.service';
 import { GlobalService } from '../../global.service';
@@ -8,9 +9,26 @@ import { GlobalService } from '../../global.service';
 @Injectable()
 export class PendenciaService {
 
+	private _form : FormGroup;
 
     constructor(private api: ApiService<any>) {
 
+		this._form = new FormGroup({
+            projetoId : new FormControl(),
+            resumo : new FormControl(),
+            descricao : new FormControl(),
+            requisitadoPor : new FormControl(),
+            tempoEstimado : new FormControl(),
+            pontosEstimados : new FormControl(),
+            prazo : new FormControl(),
+            usuarioId : new FormControl(),
+            pendenciaTipoId : new FormControl(),
+            fluxoTrabalhoStatusId : new FormControl(),
+            pendenciaPrioridadeId : new FormControl(),
+            tags : new FormControl(),
+            dataConclusao : new FormControl(),
+
+        });
 
     }
 
@@ -42,16 +60,7 @@ export class PendenciaService {
 				dataConclusao : 'dataConclusao',
 
             },
-            required: {
-				projetoId : true,
-				resumo : true,
-				usuarioId : true,
-				pendenciaTipoId : true,
-				fluxoTrabalhoStatusId : true,
-				pendenciaPrioridadeId : true,
-
-			},
-            isValid : true
+			form: this._form
         };
 
     }
@@ -84,22 +93,6 @@ export class PendenciaService {
             IsPagination: true
         });
 
-    }
-
-	public isValid(vm) {
-
-        for (let key in vm.required) {
-            if (vm.required.hasOwnProperty(key)) {
-
-                if (vm.model[key] == null || vm.model[key] == undefined || vm.model[key] == "undefined" || vm.model[key] == "") {
-                    vm.isValid = false;
-                    return false;
-                }
-
-            }
-        }
-        vm.isValid = true;
-        return true;
     }
 
 }
