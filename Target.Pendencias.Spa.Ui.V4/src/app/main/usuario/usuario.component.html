@@ -82,12 +82,6 @@
                   </button>
                 </th>
 				<th>
-                  {{ vm.labels.usuarioTipoId }}
-                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('usuarioTipoId')">
-                    <i class="fa fa-arrows-v"></i>
-                  </button>
-                </th>
-				<th>
                   {{ vm.labels.ativo }}
                   <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('ativo')">
                     <i class="fa fa-arrows-v"></i>
@@ -102,7 +96,6 @@
 				<td><bind-custom [model]="item.nome" [format]="'string'" [tag]="'span'" ></bind-custom></td>
 				<td><bind-custom [model]="item.email" [format]="'string'" [tag]="'span'" ></bind-custom></td>
 				<td><bind-custom [model]="item.senha" [format]="'string'" [tag]="'span'" ></bind-custom></td>
-				<td><bind-custom [model]="item.usuarioTipoId" [format]="'int'" [tag]="'span'"  [instance]="'UsuarioTipo'" [filterid]="'vm.model.usuarioTipoId'"></bind-custom></td>
 				<td><bind-custom [model]="item.ativo" [format]="'bool'" [tag]="'span'" ></bind-custom></td>
 
                 <td>

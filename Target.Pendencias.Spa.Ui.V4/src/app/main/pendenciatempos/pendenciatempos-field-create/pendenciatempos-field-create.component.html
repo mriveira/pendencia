@@ -15,13 +15,13 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.inicio }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.inicio' name='inicio' ng-required='true' (change)='isValid()' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.inicio' name='inicio' required='true' (change)='isValid(vm)' />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.fim }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.fim' name='fim'  (change)='isValid()' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.fim' name='fim'  (change)='isValid(vm)' />
                 </div>
 			</section>
 			<section class="col-md-12">

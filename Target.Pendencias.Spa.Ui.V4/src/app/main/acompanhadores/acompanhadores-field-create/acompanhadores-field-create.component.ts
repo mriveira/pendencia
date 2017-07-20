@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { AcompanhadoresService } from '../acompanhadores.service';
 
 @Component({
     selector: 'app-acompanhadores-field-create',
@@ -11,10 +11,10 @@ export class AcompanhadoresFieldCreateComponent implements OnInit {
     @Input() vm: any;
 
 
-    constructor() { }
+   constructor(private acompanhadoresService: AcompanhadoresService) { }
 
     ngOnInit() {
-        this.isValid();
+        this.acompanhadoresService.isValid(this.vm);
     }
 
     public onSave(model)
@@ -26,28 +26,14 @@ export class AcompanhadoresFieldCreateComponent implements OnInit {
 
     }
 
-    public onChangeMakeSelectpendenciaId(eventArgs) {
+	public onChangeMakeSelectpendenciaId(eventArgs) {
         this.vm.model.pendenciaId = eventArgs;
-        this.isValid();
+        this.acompanhadoresService.isValid(this.vm);
 	}
 
 
-    public isValid() {
-
-        for (let key in this.vm.required) {
-            if (this.vm.required.hasOwnProperty(key)) {
-
-                console.log("isValid", this.vm.model);
-
-                if (this.vm.model[key] == null || this.vm.model[key] == undefined || this.vm.model[key] == "undefined" || this.vm.model[key] == "") {
-                    this.vm.isValid = false;
-                    return false;
-                }
-            }
-        }
-        this.vm.isValid = true;
-        return true;
-
+	public isValid(vm) {
+        this.acompanhadoresService.isValid(this.vm);
     }
 
 }

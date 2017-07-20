@@ -15,9 +15,6 @@ export class PendeciaPrioridadeFilterComponent implements OnInit {
     }
 
 
-    public onChange_makeSelect_modelFilter_fluxoTrabalhoTipoId(eventArgs) {
-
-        this.vm.modelFilter.fluxoTrabalhoTipoId = eventArgs;
-    }
+    
 
 }

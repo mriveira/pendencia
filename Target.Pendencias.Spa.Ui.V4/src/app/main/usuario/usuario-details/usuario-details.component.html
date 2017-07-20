@@ -13,11 +13,15 @@
  
 
     <dt>{{ vm.labels.usuarioTipoId }}:</dt>
-    <dd><bind-custom [model]="vm.model.usuarioTipoId" [format]="'int'" [tag]="'span'"  [instance]="'UsuarioTipo'" [filterid]="'vm.model.usuarioTipoId'"></bind-custom></dd>
+    <dd><bind-custom [model]="vm.model.usuarioTipoId" [format]="'instance'" [tag]="'span'"  [instance]="'UsuarioTipo'" [filterid]="'vm.model.usuarioTipoId'"></bind-custom></dd>
  
 
     <dt>{{ vm.labels.ativo }}:</dt>
     <dd><bind-custom [model]="vm.model.ativo" [format]="'bool'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.usuarioDonoId }}:</dt>
+    <dd><bind-custom [model]="vm.model.usuarioDonoId" [format]="'int?'" [tag]="'span'" ></bind-custom></dd>
  
 
 

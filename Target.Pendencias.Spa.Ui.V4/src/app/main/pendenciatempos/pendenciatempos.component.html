@@ -64,18 +64,6 @@
             <thead>
               <tr>
 				<th>
-                  {{ vm.labels.pendenciaId }}
-                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('pendenciaId')">
-                    <i class="fa fa-arrows-v"></i>
-                  </button>
-                </th>
-				<th>
-                  {{ vm.labels.usuarioId }}
-                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('usuarioId')">
-                    <i class="fa fa-arrows-v"></i>
-                  </button>
-                </th>
-				<th>
                   {{ vm.labels.inicio }}
                   <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('inicio')">
                     <i class="fa fa-arrows-v"></i>
@@ -93,8 +81,6 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of vm.filterResult">
-				<td><bind-custom [model]="item.pendenciaId" [format]="'int'" [tag]="'span'"  [instance]="'Pendencia'" [filterid]="'vm.model.pendenciaId'"></bind-custom></td>
-				<td><bind-custom [model]="item.usuarioId" [format]="'int'" [tag]="'span'"  [instance]="'Usuario'" [filterid]="'vm.model.usuarioId'"></bind-custom></td>
 				<td><bind-custom [model]="item.inicio" [format]="'DateTime'" [tag]="'span'" ></bind-custom></td>
 				<td><bind-custom [model]="item.fim" [format]="'DateTime?'" [tag]="'span'" ></bind-custom></td>
 

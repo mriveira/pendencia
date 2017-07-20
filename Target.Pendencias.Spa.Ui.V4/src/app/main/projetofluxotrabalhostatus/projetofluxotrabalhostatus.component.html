@@ -63,26 +63,12 @@
           <table class="table">
             <thead>
               <tr>
-				<th>
-                  {{ vm.labels.projetoId }}
-                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('projetoId')">
-                    <i class="fa fa-arrows-v"></i>
-                  </button>
-                </th>
-				<th>
-                  {{ vm.labels.fluxoTrabalhoStatusId }}
-                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('fluxoTrabalhoStatusId')">
-                    <i class="fa fa-arrows-v"></i>
-                  </button>
-                </th>
 
                 <th width="175" class="text-center">Ações</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of vm.filterResult">
-				<td><bind-custom [model]="item.projetoId" [format]="'int'" [tag]="'span'"  [instance]="'Projeto'" [filterid]="'vm.model.projetoId'"></bind-custom></td>
-				<td><bind-custom [model]="item.fluxoTrabalhoStatusId" [format]="'int'" [tag]="'span'"  [instance]="'FluxoTrabalhoStatus'" [filterid]="'vm.model.fluxoTrabalhoStatusId'"></bind-custom></td>
 
                 <td>
                   <button (click)="onEdit({ projetoId: item.projetoId, fluxoTrabalhoStatusId: item.fluxoTrabalhoStatusId })" tooltip-placement="top" uib-tooltip="Editar" class="btn btn-sm btn-default">

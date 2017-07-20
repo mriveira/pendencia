@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { ProjetoService } from '../projeto.service';
 
 @Component({
     selector: 'app-projeto-field-create',
@@ -11,10 +11,10 @@ export class ProjetoFieldCreateComponent implements OnInit {
     @Input() vm: any;
 
 
-    constructor() { }
+   constructor(private projetoService: ProjetoService) { }
 
     ngOnInit() {
-        this.isValid();
+        this.projetoService.isValid(this.vm);
     }
 
     public onSave(model)
@@ -26,32 +26,18 @@ export class ProjetoFieldCreateComponent implements OnInit {
 
     }
 
-    public onChangeMakeSelectclienteId(eventArgs) {
+	public onChangeMakeSelectclienteId(eventArgs) {
         this.vm.model.clienteId = eventArgs;
-        this.isValid();
+        this.projetoService.isValid(this.vm);
 	}
-public onChangeMakeSelectusuarioId(eventArgs) {
+	public onChangeMakeSelectusuarioId(eventArgs) {
         this.vm.model.usuarioId = eventArgs;
-        this.isValid();
+        this.projetoService.isValid(this.vm);
 	}
 
 
-    public isValid() {
-
-        for (let key in this.vm.required) {
-            if (this.vm.required.hasOwnProperty(key)) {
-
-                console.log("isValid", this.vm.model);
-
-                if (this.vm.model[key] == null || this.vm.model[key] == undefined || this.vm.model[key] == "undefined" || this.vm.model[key] == "") {
-                    this.vm.isValid = false;
-                    return false;
-                }
-            }
-        }
-        this.vm.isValid = true;
-        return true;
-
+	public isValid(vm) {
+        this.projetoService.isValid(this.vm);
     }
 
 }

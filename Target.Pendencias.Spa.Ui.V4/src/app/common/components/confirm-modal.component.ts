@@ -36,17 +36,18 @@ export class ConfirmModalComponent implements OnInit {
     _operationVM: any;
 
     constructor() {
-        this.vm = {};
-        this.vm.messageConfirmation = "tem certeza que deseja Executar Essa operaçã?"
+       
     }
 
 
     ngOnInit() {
 
-        
+        this.vm = {};
+        this.vm.messageConfirmation = "tem certeza que deseja Executar Essa operação?";
+
         GlobalService.operationExecuted.subscribe((result) => {
             if (result.selector == "confirm-modal") {
-                this.vm.messageConfirmation = result.message;
+                this.vm.messageConfirmation = result.message || this.vm.messageConfirmation;
                 this.show();
                 this._openationConfimationYes = result.operation;
                 this._operationService = result.service;

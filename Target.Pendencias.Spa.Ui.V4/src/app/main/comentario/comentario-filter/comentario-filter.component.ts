@@ -15,9 +15,12 @@ export class ComentarioFilterComponent implements OnInit {
     }
 
 
-    public onChange_makeSelect_modelFilter_fluxoTrabalhoTipoId(eventArgs) {
+    public onChangeMakeSelectusuarioId(eventArgs) {
+        this.vm.modelFilter.usuarioId = eventArgs;
+	}
+public onChangeMakeSelectpendenciaId(eventArgs) {
+        this.vm.modelFilter.pendenciaId = eventArgs;
+	}
 
-        this.vm.modelFilter.fluxoTrabalhoTipoId = eventArgs;
-    }
 
 }

@@ -15,7 +15,7 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.data }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.data' name='data'  (change)='isValid()' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.data' name='data'  (change)='isValid(vm)' />
                 </div>
 			</section>
 

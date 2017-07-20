@@ -63,26 +63,12 @@
           <table class="table">
             <thead>
               <tr>
-				<th>
-                  {{ vm.labels.pendenciaId }}
-                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('pendenciaId')">
-                    <i class="fa fa-arrows-v"></i>
-                  </button>
-                </th>
-				<th>
-                  {{ vm.labels.documentoId }}
-                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('documentoId')">
-                    <i class="fa fa-arrows-v"></i>
-                  </button>
-                </th>
 
                 <th width="175" class="text-center">Ações</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of vm.filterResult">
-				<td><bind-custom [model]="item.pendenciaId" [format]="'int'" [tag]="'span'"  [instance]="'Pendencia'" [filterid]="'vm.model.pendenciaId'"></bind-custom></td>
-				<td><bind-custom [model]="item.documentoId" [format]="'int'" [tag]="'span'"  [instance]="'Documento'" [filterid]="'vm.model.documentoId'"></bind-custom></td>
 
                 <td>
                   <button (click)="onEdit({ pendenciaId: item.pendenciaId, documentoId: item.documentoId })" tooltip-placement="top" uib-tooltip="Editar" class="btn btn-sm btn-default">

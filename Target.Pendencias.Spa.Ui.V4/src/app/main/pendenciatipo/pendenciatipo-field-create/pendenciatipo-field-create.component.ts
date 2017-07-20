@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { PendenciaTipoService } from '../pendenciatipo.service';
 
 @Component({
     selector: 'app-pendenciatipo-field-create',
@@ -11,10 +11,10 @@ export class PendenciaTipoFieldCreateComponent implements OnInit {
     @Input() vm: any;
 
 
-    constructor() { }
+   constructor(private pendenciaTipoService: PendenciaTipoService) { }
 
     ngOnInit() {
-        this.isValid();
+        this.pendenciaTipoService.isValid(this.vm);
     }
 
     public onSave(model)
@@ -26,24 +26,10 @@ export class PendenciaTipoFieldCreateComponent implements OnInit {
 
     }
 
-    
 
-    public isValid() {
 
-        for (let key in this.vm.required) {
-            if (this.vm.required.hasOwnProperty(key)) {
-
-                console.log("isValid", this.vm.model);
-
-                if (this.vm.model[key] == null || this.vm.model[key] == undefined || this.vm.model[key] == "undefined" || this.vm.model[key] == "") {
-                    this.vm.isValid = false;
-                    return false;
-                }
-            }
-        }
-        this.vm.isValid = true;
-        return true;
-
+	public isValid(vm) {
+        this.pendenciaTipoService.isValid(this.vm);
     }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { PendenciaService } from '../pendencia.service';
 
 @Component({
     selector: 'app-pendencia-field-edit',
@@ -11,10 +11,10 @@ export class PendenciaFieldEditComponent implements OnInit {
     @Input() vm: any;
 
 
-    constructor() { }
+    constructor(private pendenciaService: PendenciaService) { }
 
     ngOnInit() {
-        this.isValid();
+        this.pendenciaService.isValid(this.vm);
     }
 
     public onSave(model)
@@ -26,44 +26,30 @@ export class PendenciaFieldEditComponent implements OnInit {
 
     }
     
-    public onChangeMakeSelectprojetoId(eventArgs) {
+	public onChangeMakeSelectprojetoId(eventArgs) {
         this.vm.model.projetoId = eventArgs;
-        this.isValid();
+        this.pendenciaService.isValid(this.vm);
 	}
-public onChangeMakeSelectusuarioId(eventArgs) {
+	public onChangeMakeSelectusuarioId(eventArgs) {
         this.vm.model.usuarioId = eventArgs;
-        this.isValid();
+        this.pendenciaService.isValid(this.vm);
 	}
-public onChangeMakeSelectpendenciaTipoId(eventArgs) {
+	public onChangeMakeSelectpendenciaTipoId(eventArgs) {
         this.vm.model.pendenciaTipoId = eventArgs;
-        this.isValid();
+        this.pendenciaService.isValid(this.vm);
 	}
-public onChangeMakeSelectfluxoTrabalhoStatusId(eventArgs) {
+	public onChangeMakeSelectfluxoTrabalhoStatusId(eventArgs) {
         this.vm.model.fluxoTrabalhoStatusId = eventArgs;
-        this.isValid();
+        this.pendenciaService.isValid(this.vm);
 	}
-public onChangeMakeSelectpendenciaPrioridadeId(eventArgs) {
+	public onChangeMakeSelectpendenciaPrioridadeId(eventArgs) {
         this.vm.model.pendenciaPrioridadeId = eventArgs;
-        this.isValid();
+        this.pendenciaService.isValid(this.vm);
 	}
 
 
-    public isValid() {
-
-        for (let key in this.vm.required) {
-            if (this.vm.required.hasOwnProperty(key)) {
-
-                console.log("isValid", this.vm.model);
-
-                if (this.vm.model[key] == null || this.vm.model[key] == undefined || this.vm.model[key] == "undefined" || this.vm.model[key] == "") {
-                    this.vm.isValid = false;
-                    return false;
-                }
-            }
-        }
-        this.vm.isValid = true;
-        return true;
-
+	public isValid(vm) {
+        this.pendenciaService.isValid(this.vm);
     }
-
+   
 }

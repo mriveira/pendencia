@@ -15,9 +15,12 @@ export class PendenciaDocumentoFilterComponent implements OnInit {
     }
 
 
-    public onChange_makeSelect_modelFilter_fluxoTrabalhoTipoId(eventArgs) {
+    public onChangeMakeSelectpendenciaId(eventArgs) {
+        this.vm.modelFilter.pendenciaId = eventArgs;
+	}
+public onChangeMakeSelectdocumentoId(eventArgs) {
+        this.vm.modelFilter.documentoId = eventArgs;
+	}
 
-        this.vm.modelFilter.fluxoTrabalhoTipoId = eventArgs;
-    }
 
 }

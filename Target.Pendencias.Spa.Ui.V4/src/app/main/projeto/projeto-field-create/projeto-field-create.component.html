@@ -3,7 +3,7 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.nome }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required (change)='isValid()' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required (change)='isValid(vm)' />
                 </div>
 			</section>
 			<section class="col-md-12">
@@ -27,19 +27,19 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.chaveUnica }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.chaveUnica' name='chaveUnica' required (change)='isValid()' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.chaveUnica' name='chaveUnica' required (change)='isValid(vm)' />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.inicio }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.inicio' name='inicio'  (change)='isValid()' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.inicio' name='inicio'  (change)='isValid(vm)' />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.fim }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.fim' name='fim'  (change)='isValid()' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.fim' name='fim'  (change)='isValid(vm)' />
                 </div>
 			</section>
 

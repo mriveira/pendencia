@@ -1,5 +1,5 @@
 <div class="row">
-	  <section class="col-md-6">
+  <section class="col-md-6">
 	<div class='form-group'>
                     <label>{{ vm.labels.nome }}</label>
                     <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.nome' name='nome' />
@@ -20,7 +20,7 @@
   <section class="col-md-6">
 	<div class='form-group'>
                     <label>{{ vm.labels.clienteId }}</label>
-                    <make-select [value]='vm.model.clienteId' [dataitem]='"Cliente"' label='Selecione' [name]='clienteId' [required]='false'></make-select>
+                    <make-select [value]='vm.modelFilter.clienteId' [dataitem]='"Cliente"' label='Selecione' [name]='clienteId' [required]='false' (msChange)='onChangeMakeSelectclienteId($event)'></make-select>
                 </div>
   </section>
   <section class="col-md-6">

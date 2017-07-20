@@ -15,9 +15,9 @@ export class ProjetoFilterComponent implements OnInit {
     }
 
 
-    public onChange_makeSelect_modelFilter_fluxoTrabalhoTipoId(eventArgs) {
+    public onChangeMakeSelectclienteId(eventArgs) {
+        this.vm.modelFilter.clienteId = eventArgs;
+	}
 
-        this.vm.modelFilter.fluxoTrabalhoTipoId = eventArgs;
-    }
 
 }

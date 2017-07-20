@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { ClienteService } from '../cliente.service';
 
 @Component({
     selector: 'app-cliente-field-create',
@@ -11,10 +11,10 @@ export class ClienteFieldCreateComponent implements OnInit {
     @Input() vm: any;
 
 
-    constructor() { }
+   constructor(private clienteService: ClienteService) { }
 
     ngOnInit() {
-        this.isValid();
+        this.clienteService.isValid(this.vm);
     }
 
     public onSave(model)
@@ -26,28 +26,14 @@ export class ClienteFieldCreateComponent implements OnInit {
 
     }
 
-    public onChangeMakeSelectusuarioId(eventArgs) {
+	public onChangeMakeSelectusuarioId(eventArgs) {
         this.vm.model.usuarioId = eventArgs;
-        this.isValid();
+        this.clienteService.isValid(this.vm);
 	}
 
 
-    public isValid() {
-
-        for (let key in this.vm.required) {
-            if (this.vm.required.hasOwnProperty(key)) {
-
-                console.log("isValid", this.vm.model);
-
-                if (this.vm.model[key] == null || this.vm.model[key] == undefined || this.vm.model[key] == "undefined" || this.vm.model[key] == "") {
-                    this.vm.isValid = false;
-                    return false;
-                }
-            }
-        }
-        this.vm.isValid = true;
-        return true;
-
+	public isValid(vm) {
+        this.clienteService.isValid(this.vm);
     }
 
 }

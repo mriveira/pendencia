@@ -3,13 +3,13 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.arquivo }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.arquivo' name='arquivo' required (change)='isValid()' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.arquivo' name='arquivo' required (change)='isValid(vm)' />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.ext }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.ext' name='ext' required (change)='isValid()' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.ext' name='ext' required (change)='isValid(vm)' />
                 </div>
 			</section>
 

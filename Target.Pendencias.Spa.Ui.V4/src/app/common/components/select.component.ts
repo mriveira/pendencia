@@ -8,13 +8,14 @@ import { ApiService } from '../services/api.service';
  * `<make-select (ngModelChange)="crud.filter.MidiaId = $event" [dataitem]="'Midia'" [value]="crud.model.MidiaId"></make-select>`
  * Injetar esse component no módulo onde for utilizar
  * @constructor
+[attr.selected]="i == 1 ? false : null"
  */
 @Component({
     selector: 'make-select',
     template: `
         <select [(ngModel)]="value" class="form-control" (change)="_onChange()" required="{{required}}" name="{{name}}"  >
             <option [value]="undefined">Selecione</option>
-            <option *ngFor="let option of options" [value]="option.id">{{ option.name }}</option>
+            <option *ngFor="let option of options; let i=index;" [value]="option.id" >{{ option.name }}</option>
         </select>
     `,  
     providers: [ApiService],

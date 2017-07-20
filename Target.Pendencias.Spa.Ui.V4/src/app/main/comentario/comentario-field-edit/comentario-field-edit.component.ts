@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { ComentarioService } from '../comentario.service';
 
 @Component({
     selector: 'app-comentario-field-edit',
@@ -11,10 +11,10 @@ export class ComentarioFieldEditComponent implements OnInit {
     @Input() vm: any;
 
 
-    constructor() { }
+    constructor(private comentarioService: ComentarioService) { }
 
     ngOnInit() {
-        this.isValid();
+        this.comentarioService.isValid(this.vm);
     }
 
     public onSave(model)
@@ -26,32 +26,18 @@ export class ComentarioFieldEditComponent implements OnInit {
 
     }
     
-    public onChangeMakeSelectusuarioId(eventArgs) {
+	public onChangeMakeSelectusuarioId(eventArgs) {
         this.vm.model.usuarioId = eventArgs;
-        this.isValid();
+        this.comentarioService.isValid(this.vm);
 	}
-public onChangeMakeSelectpendenciaId(eventArgs) {
+	public onChangeMakeSelectpendenciaId(eventArgs) {
         this.vm.model.pendenciaId = eventArgs;
-        this.isValid();
+        this.comentarioService.isValid(this.vm);
 	}
 
 
-    public isValid() {
-
-        for (let key in this.vm.required) {
-            if (this.vm.required.hasOwnProperty(key)) {
-
-                console.log("isValid", this.vm.model);
-
-                if (this.vm.model[key] == null || this.vm.model[key] == undefined || this.vm.model[key] == "undefined" || this.vm.model[key] == "") {
-                    this.vm.isValid = false;
-                    return false;
-                }
-            }
-        }
-        this.vm.isValid = true;
-        return true;
-
+	public isValid(vm) {
+        this.comentarioService.isValid(this.vm);
     }
-
+   
 }

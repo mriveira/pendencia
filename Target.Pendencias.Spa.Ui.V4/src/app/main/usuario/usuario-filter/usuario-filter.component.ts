@@ -15,9 +15,9 @@ export class UsuarioFilterComponent implements OnInit {
     }
 
 
-    public onChange_makeSelect_modelFilter_fluxoTrabalhoTipoId(eventArgs) {
+    public onChangeMakeSelectusuarioTipoId(eventArgs) {
+        this.vm.modelFilter.usuarioTipoId = eventArgs;
+	}
 
-        this.vm.modelFilter.fluxoTrabalhoTipoId = eventArgs;
-    }
 
 }

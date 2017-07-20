@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { UsuarioService } from '../usuario.service';
 
 @Component({
     selector: 'app-usuario-field-edit',
@@ -11,10 +11,10 @@ export class UsuarioFieldEditComponent implements OnInit {
     @Input() vm: any;
 
 
-    constructor() { }
+    constructor(private usuarioService: UsuarioService) { }
 
     ngOnInit() {
-        this.isValid();
+        this.usuarioService.isValid(this.vm);
     }
 
     public onSave(model)
@@ -26,28 +26,14 @@ export class UsuarioFieldEditComponent implements OnInit {
 
     }
     
-    public onChangeMakeSelectusuarioTipoId(eventArgs) {
+	public onChangeMakeSelectusuarioTipoId(eventArgs) {
         this.vm.model.usuarioTipoId = eventArgs;
-        this.isValid();
+        this.usuarioService.isValid(this.vm);
 	}
 
 
-    public isValid() {
-
-        for (let key in this.vm.required) {
-            if (this.vm.required.hasOwnProperty(key)) {
-
-                console.log("isValid", this.vm.model);
-
-                if (this.vm.model[key] == null || this.vm.model[key] == undefined || this.vm.model[key] == "undefined" || this.vm.model[key] == "") {
-                    this.vm.isValid = false;
-                    return false;
-                }
-            }
-        }
-        this.vm.isValid = true;
-        return true;
-
+	public isValid(vm) {
+        this.usuarioService.isValid(this.vm);
     }
-
+   
 }

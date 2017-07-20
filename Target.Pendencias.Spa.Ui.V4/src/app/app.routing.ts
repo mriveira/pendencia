@@ -144,7 +144,6 @@ const APP_ROUTES: Routes = [
     { path: 'usuariotipo/print/:id', loadChildren: './main/usuariotipo/usuariotipo-print/usuariotipo-print.module#UsuarioTipoPrintModule' },
 
 
-
 ]
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

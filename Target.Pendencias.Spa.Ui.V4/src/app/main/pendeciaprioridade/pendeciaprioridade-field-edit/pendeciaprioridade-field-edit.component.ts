@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { PendeciaPrioridadeService } from '../pendeciaprioridade.service';
 
 @Component({
     selector: 'app-pendeciaprioridade-field-edit',
@@ -11,10 +11,10 @@ export class PendeciaPrioridadeFieldEditComponent implements OnInit {
     @Input() vm: any;
 
 
-    constructor() { }
+    constructor(private pendeciaPrioridadeService: PendeciaPrioridadeService) { }
 
     ngOnInit() {
-        this.isValid();
+        this.pendeciaPrioridadeService.isValid(this.vm);
     }
 
     public onSave(model)
@@ -26,24 +26,10 @@ export class PendeciaPrioridadeFieldEditComponent implements OnInit {
 
     }
     
-    
 
-    public isValid() {
 
-        for (let key in this.vm.required) {
-            if (this.vm.required.hasOwnProperty(key)) {
-
-                console.log("isValid", this.vm.model);
-
-                if (this.vm.model[key] == null || this.vm.model[key] == undefined || this.vm.model[key] == "undefined" || this.vm.model[key] == "") {
-                    this.vm.isValid = false;
-                    return false;
-                }
-            }
-        }
-        this.vm.isValid = true;
-        return true;
-
+	public isValid(vm) {
+        this.pendeciaPrioridadeService.isValid(this.vm);
     }
-
+   
 }

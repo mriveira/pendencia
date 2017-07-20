@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { PendenciaDocumentoService } from '../pendenciadocumento.service';
 
 @Component({
     selector: 'app-pendenciadocumento-field-create',
@@ -11,10 +11,10 @@ export class PendenciaDocumentoFieldCreateComponent implements OnInit {
     @Input() vm: any;
 
 
-    constructor() { }
+   constructor(private pendenciaDocumentoService: PendenciaDocumentoService) { }
 
     ngOnInit() {
-        this.isValid();
+        this.pendenciaDocumentoService.isValid(this.vm);
     }
 
     public onSave(model)
@@ -26,32 +26,18 @@ export class PendenciaDocumentoFieldCreateComponent implements OnInit {
 
     }
 
-    public onChangeMakeSelectpendenciaId(eventArgs) {
+	public onChangeMakeSelectpendenciaId(eventArgs) {
         this.vm.model.pendenciaId = eventArgs;
-        this.isValid();
+        this.pendenciaDocumentoService.isValid(this.vm);
 	}
-public onChangeMakeSelectdocumentoId(eventArgs) {
+	public onChangeMakeSelectdocumentoId(eventArgs) {
         this.vm.model.documentoId = eventArgs;
-        this.isValid();
+        this.pendenciaDocumentoService.isValid(this.vm);
 	}
 
 
-    public isValid() {
-
-        for (let key in this.vm.required) {
-            if (this.vm.required.hasOwnProperty(key)) {
-
-                console.log("isValid", this.vm.model);
-
-                if (this.vm.model[key] == null || this.vm.model[key] == undefined || this.vm.model[key] == "undefined" || this.vm.model[key] == "") {
-                    this.vm.isValid = false;
-                    return false;
-                }
-            }
-        }
-        this.vm.isValid = true;
-        return true;
-
+	public isValid(vm) {
+        this.pendenciaDocumentoService.isValid(this.vm);
     }
 
 }

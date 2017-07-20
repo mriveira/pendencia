@@ -13,7 +13,7 @@ import { ApiService } from "app/common/services/api.service";
     providers: [DatePipe, DecimalPipe, PercentPipe, CurrencyPipe, ApiService],
 })
 export class BindCustomComponent implements OnInit, OnChanges {
-        
+
 
 
     value: any;
@@ -32,32 +32,32 @@ export class BindCustomComponent implements OnInit, OnChanges {
         private api: ApiService<any>) { }
 
     ngOnChanges(changes: SimpleChanges): void {
-        
-        if (this.format === 'date')
+
+        if (this.format.toLocaleLowerCase() === 'date')
             this.value = this.datePipe.transform(this.model, 'dd/MM/yyyy');
 
-        else if (this.format === 'time')
+        else if (this.format.toLocaleLowerCase() === 'time')
             this.value = this.datePipe.transform(this.model, 'HH:mm');
 
-        else if (this.format === 'datetime' || this.format === 'datetime?')
+        else if (this.format.toLocaleLowerCase() === 'datetime' || this.format.toLocaleLowerCase() === 'datetime?')
             this.value = this.datePipe.transform(this.model, 'dd/MM/yyyy HH:mm');
 
-        else if (this.format === 'decimal')
+        else if (this.format.toLocaleLowerCase() === 'decimal')
             this.value = this.decimalPipe.transform(this.model, '1.2-2');
 
-        else if (this.format === 'integer' || this.format === 'int' || this.format === 'int?')
+        else if (this.format.toLocaleLowerCase() === 'integer' || this.format.toLocaleLowerCase() === 'int' || this.format.toLocaleLowerCase() === 'int?')
             this.value = this.decimalPipe.transform(this.model, '1.0-0');
 
-        else if (this.format === 'percent')
+        else if (this.format.toLocaleLowerCase() === 'percent')
             this.value = this.percentPipe.transform(this.model, '1.2-2');
 
-        else if (this.format === 'currency')
+        else if (this.format.toLocaleLowerCase() === 'currency')
             this.value = this.currencyPipe.transform(this.model, 'BRL', true, '1.2-2');
 
-        else if (this.format === 'bool')
+        else if (this.format.toLocaleLowerCase() === 'bool' || this.format.toLocaleLowerCase() === 'bool?')
             this.value = (this.model == true ? "Sim" : "Não");
 
-        else if (this.format === 'instance')
+        else if (this.format.toLocaleLowerCase() === 'instance')
             this._getInstance();
 
         else
@@ -71,15 +71,17 @@ export class BindCustomComponent implements OnInit, OnChanges {
 
     private _getInstance() {
 
+
         if (!this.instance || !this.model) {
             this.value = "carregando...";
             return;
         }
 
-        var filter = eval("[{ " + this.filterid + ": " + this.model + " }]");
-        this.api.setResource(this.instance).getDataitem(filter[0]).subscribe(data => {
-            this.value = data.dataList[0].name;
-        });
+        if (this.instance != undefined && this.model != undefined) {
+            this.api.setResource(this.instance).getDataitem({ filterid: this.model }).subscribe(data => {
+                this.value = data.dataList[0].name;
+            });
+       }
     }
 
 }

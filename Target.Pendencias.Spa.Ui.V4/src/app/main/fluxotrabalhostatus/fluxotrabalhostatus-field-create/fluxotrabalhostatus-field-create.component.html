@@ -3,7 +3,7 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.nome }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required (change)='isValid()' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required (change)='isValid(vm)' />
                 </div>
 			</section>
 			<section class="col-md-12">
@@ -15,13 +15,19 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.corFundo }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.corFundo' name='corFundo'  (change)='isValid()' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.corFundo' name='corFundo'  (change)='isValid(vm)' />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.corFonte }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.corFonte' name='corFonte'  (change)='isValid()' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.corFonte' name='corFonte'  (change)='isValid(vm)' />
+                </div>
+			</section>
+			<section class="col-md-12">
+                <div class='form-group'>
+                    <label>{{ vm.labels.ordem }}</label>
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.ordem' name='ordem'  (change)='isValid(vm)' />
                 </div>
 			</section>
 

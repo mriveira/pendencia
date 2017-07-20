@@ -1,7 +1,7 @@
 <div class="modal-body">
   <dl>
     <dt>{{ vm.labels.projetoId }}:</dt>
-    <dd><bind-custom [model]="vm.model.projetoId" [format]="'int'" [tag]="'span'"  [instance]="'Projeto'" [filterid]="'vm.model.projetoId'"></bind-custom></dd>
+    <dd><bind-custom [model]="vm.model.projetoId" [format]="'instance'" [tag]="'span'"  [instance]="'Projeto'" [filterid]="'vm.model.projetoId'"></bind-custom></dd>
  
 
     <dt>{{ vm.labels.resumo }}:</dt>
@@ -10,6 +10,10 @@
 
     <dt>{{ vm.labels.requisitadoPor }}:</dt>
     <dd><bind-custom [model]="vm.model.requisitadoPor" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.tempoEstimado }}:</dt>
+    <dd><bind-custom [model]="vm.model.tempoEstimado" [format]="'int?'" [tag]="'span'" ></bind-custom></dd>
  
 
     <dt>{{ vm.labels.pontosEstimados }}:</dt>
@@ -21,19 +25,19 @@
  
 
     <dt>{{ vm.labels.usuarioId }}:</dt>
-    <dd><bind-custom [model]="vm.model.usuarioId" [format]="'int'" [tag]="'span'"  [instance]="'Usuario'" [filterid]="'vm.model.usuarioId'"></bind-custom></dd>
+    <dd><bind-custom [model]="vm.model.usuarioId" [format]="'instance'" [tag]="'span'"  [instance]="'Usuario'" [filterid]="'vm.model.usuarioId'"></bind-custom></dd>
  
 
     <dt>{{ vm.labels.pendenciaTipoId }}:</dt>
-    <dd><bind-custom [model]="vm.model.pendenciaTipoId" [format]="'int'" [tag]="'span'"  [instance]="'PendenciaTipo'" [filterid]="'vm.model.pendenciaTipoId'"></bind-custom></dd>
+    <dd><bind-custom [model]="vm.model.pendenciaTipoId" [format]="'instance'" [tag]="'span'"  [instance]="'PendenciaTipo'" [filterid]="'vm.model.pendenciaTipoId'"></bind-custom></dd>
  
 
     <dt>{{ vm.labels.fluxoTrabalhoStatusId }}:</dt>
-    <dd><bind-custom [model]="vm.model.fluxoTrabalhoStatusId" [format]="'int'" [tag]="'span'"  [instance]="'FluxoTrabalhoStatus'" [filterid]="'vm.model.fluxoTrabalhoStatusId'"></bind-custom></dd>
+    <dd><bind-custom [model]="vm.model.fluxoTrabalhoStatusId" [format]="'instance'" [tag]="'span'"  [instance]="'FluxoTrabalhoStatus'" [filterid]="'vm.model.fluxoTrabalhoStatusId'"></bind-custom></dd>
  
 
     <dt>{{ vm.labels.pendenciaPrioridadeId }}:</dt>
-    <dd><bind-custom [model]="vm.model.pendenciaPrioridadeId" [format]="'int'" [tag]="'span'"  [instance]="'PendeciaPrioridade'" [filterid]="'vm.model.pendenciaPrioridadeId'"></bind-custom></dd>
+    <dd><bind-custom [model]="vm.model.pendenciaPrioridadeId" [format]="'instance'" [tag]="'span'"  [instance]="'PendeciaPrioridade'" [filterid]="'vm.model.pendenciaPrioridadeId'"></bind-custom></dd>
  
 
     <dt>{{ vm.labels.tags }}:</dt>

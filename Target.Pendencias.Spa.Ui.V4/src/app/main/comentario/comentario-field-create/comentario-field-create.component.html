@@ -9,7 +9,7 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.data }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.data' name='data' ng-required='true' (change)='isValid()' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.data' name='data' required='true' (change)='isValid(vm)' />
                 </div>
 			</section>
 			<section class="col-md-12">

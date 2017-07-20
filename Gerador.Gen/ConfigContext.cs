@@ -39,7 +39,7 @@ namespace Cna.Erp.Gen
                 Arquiteture = ArquitetureType.DDD,
                 CamelCasing = true,
                 MakeFront = true,
-                MakeBack = true,
+                MakeBack = false,
 
                 TableInfo = new UniqueListTableInfo
                 {

@@ -1,27 +1,33 @@
-﻿<div class="row">
+<div class="row">
   <section class="col-md-6">
-    <div class='form-group'>
-      <label>{{ vm.labels.nome }}</label>
-      <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.nome' name='nome' />
-    </div>
+	<div class='form-group'>
+                    <label>{{ vm.labels.nome }}</label>
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.nome' name='nome' />
+                </div>
   </section>
   <section class="col-md-6">
-    <div class='form-group'>
-      <label>{{ vm.labels.fluxoTrabalhoTipoId }}</label>
-      <make-select [value]='vm.model.fluxoTrabalhoTipoId' [dataitem]='"FluxoTrabalhoTipo"' label='Selecione' [name]='fluxoTrabalhoTipoId' [required]='false'></make-select>
-    </div>
+	<div class='form-group'>
+                    <label>{{ vm.labels.fluxoTrabalhoTipoId }}</label>
+                    <make-select [value]='vm.modelFilter.fluxoTrabalhoTipoId' [dataitem]='"FluxoTrabalhoTipo"' label='Selecione' [name]='fluxoTrabalhoTipoId' [required]='false' (msChange)='onChangeMakeSelectfluxoTrabalhoTipoId($event)'></make-select>
+                </div>
   </section>
   <section class="col-md-6">
-    <div class='form-group'>
-      <label>{{ vm.labels.corFundo }}</label>
-      <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.corFundo' name='corFundo' />
-    </div>
+	<div class='form-group'>
+                    <label>{{ vm.labels.corFundo }}</label>
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.corFundo' name='corFundo' />
+                </div>
   </section>
   <section class="col-md-6">
-    <div class='form-group'>
-      <label>{{ vm.labels.corFonte }}</label>
-      <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.corFonte' name='corFonte' />
-    </div>
+	<div class='form-group'>
+                    <label>{{ vm.labels.corFonte }}</label>
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.corFonte' name='corFonte' />
+                </div>
+  </section>
+  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.labels.ordem }}</label>
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.ordem' name='ordem' />
+                </div>
   </section>
 
 </div>

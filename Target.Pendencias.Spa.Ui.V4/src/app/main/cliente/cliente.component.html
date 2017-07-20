@@ -87,12 +87,6 @@
                     <i class="fa fa-arrows-v"></i>
                   </button>
                 </th>
-				<th>
-                  {{ vm.labels.usuarioId }}
-                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('usuarioId')">
-                    <i class="fa fa-arrows-v"></i>
-                  </button>
-                </th>
 
                 <th width="175" class="text-center">Ações</th>
               </tr>
@@ -103,7 +97,6 @@
 				<td><bind-custom [model]="item.telefoneDeContato" [format]="'string'" [tag]="'span'" ></bind-custom></td>
 				<td><bind-custom [model]="item.emailDeContato" [format]="'string'" [tag]="'span'" ></bind-custom></td>
 				<td><bind-custom [model]="item.cpfcnpj" [format]="'string'" [tag]="'span'" ></bind-custom></td>
-				<td><bind-custom [model]="item.usuarioId" [format]="'int'" [tag]="'span'"  [instance]="'Usuario'" [filterid]="'vm.model.usuarioId'"></bind-custom></td>
 
                 <td>
                   <button (click)="onEdit({ clienteId: item.clienteId })" tooltip-placement="top" uib-tooltip="Editar" class="btn btn-sm btn-default">

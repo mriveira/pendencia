@@ -3,45 +3,33 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.nome }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required (change)='isValid()' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required (change)='isValid(vm)' />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
-                    <label>{{ vm.labels.foto }}</label>
-                    <label class='alert alert-danger'>Campo {{ vm.labels.foto }} é obrigatório</label>
-                    <p class='input-group'>
-                        <input type = 'text' name='foto'  [(ngModel)]='vm.model.foto' class='form-control' placeholder='Selecionar aqrquivo...' >
-                        <span class='input-group-btn'>
-                            <label class='btn btn-default btn-file'>
-                                Procurar<input type='file'  multiple>
-                            </label>
-                            <button class='btn btn-default' type='button' ng-click='vm.delete(vm.model.foto, vm.model)'>Excluir</button>
-                        </span>
-                     </p>
-                    <img src='{{vm.uploadUri}}{{vm.model.foto}}' style='width: 100px' />
-                    <p *ng-If='vm.model.foto != null' style='margin: 10px'>
-                         <button class='btn' ngclipboard data-clipboard-text='{{vm.uploadUri}}{{vm.model.foto}}' uib-tooltip='copiar'>
-                            <em class='text-muted'>{{vm.uploadUri}}{{vm.model.foto}}</em> <i class='fa fa-copy'></i>
-                        </button>
-                    </p>
+                    <label>{{ vm.labels.foto }}</label><br>
+                    <img src='{{vm.downloadUri}}{{vm.model.foto}}' style='width: 100px' /><br>
+                    Procurar<input type='file'  multiple><br>
+                    <em *ngIf='vm.model.foto != null' class='text-muted'>{{vm.downloadUri}}{{vm.model.foto}}</em><br>
+                    <button class='btn btn-default' type='button' (click)='vm.delete(vm.model.foto, vm.model)'>Excluir</button><br>
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.email }}</label>
-                    <input type='email' class='form-control'[(ngModel)]='vm.model.email' name='email' required (change)='isValid()' />
+                    <input type='email' class='form-control'[(ngModel)]='vm.model.email' name='email' required (change)='isValid(vm)' />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.senha }}</label>
-                    <input type='password' class='form-control' [(ngModel)]='vm.model.senha' name='senha' required />
+                    <input type='password' class='form-control' [(ngModel)]='vm.model.senha' name='senha' required (change)='isValid(vm)'/>
                 </div>
                 <div class='form-group'>
-                    <label ng-show='vm.model.senha == vm.model.confSenha || vm.model.confSenha == null'>Confirmar {{ vm.labels.senha }}</label>
-                    <label class='alert alert-danger' ng-show='vm.model.senha != vm.model.confSenha && vm.model.confSenha != null'>Confirme sua  {{ vm.labels.senha }}</label>
-                    <input type='password' class='form-control'  [(ngModel)]='vm.model.confSenha' name='confSenha' required />
+                    <label *ngIf='vm.model.senha == vm.model.confSenha || vm.model.confSenha == null'>Confirmar {{ vm.labels.senha }}</label>
+                    <label class='alert alert-danger' *ngIf='vm.model.senha != vm.model.confSenha && vm.model.confSenha != null'>Confirme sua  {{ vm.labels.senha }}</label>
+                    <input type='password' class='form-control'  [(ngModel)]='vm.model.confSenha' name='confSenha' required (change)='isValid(vm)' />
                 </div>
 			</section>
 			<section class="col-md-12">

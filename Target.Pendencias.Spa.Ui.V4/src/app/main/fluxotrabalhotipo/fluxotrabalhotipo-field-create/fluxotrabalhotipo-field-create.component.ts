@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { FluxoTrabalhoTipoService } from '../fluxotrabalhotipo.service';
 
 @Component({
     selector: 'app-fluxotrabalhotipo-field-create',
@@ -11,10 +11,10 @@ export class FluxoTrabalhoTipoFieldCreateComponent implements OnInit {
     @Input() vm: any;
 
 
-    constructor() { }
+   constructor(private fluxoTrabalhoTipoService: FluxoTrabalhoTipoService) { }
 
     ngOnInit() {
-        this.isValid();
+        this.fluxoTrabalhoTipoService.isValid(this.vm);
     }
 
     public onSave(model)
@@ -26,24 +26,10 @@ export class FluxoTrabalhoTipoFieldCreateComponent implements OnInit {
 
     }
 
-    
 
-    public isValid() {
 
-        for (let key in this.vm.required) {
-            if (this.vm.required.hasOwnProperty(key)) {
-
-                console.log("isValid", this.vm.model);
-
-                if (this.vm.model[key] == null || this.vm.model[key] == undefined || this.vm.model[key] == "undefined" || this.vm.model[key] == "") {
-                    this.vm.isValid = false;
-                    return false;
-                }
-            }
-        }
-        this.vm.isValid = true;
-        return true;
-
+	public isValid(vm) {
+        this.fluxoTrabalhoTipoService.isValid(this.vm);
     }
 
 }

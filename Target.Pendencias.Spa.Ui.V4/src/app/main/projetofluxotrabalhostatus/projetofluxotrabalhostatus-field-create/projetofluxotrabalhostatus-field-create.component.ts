@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { ProjetoFluxoTrabalhoStatusService } from '../projetofluxotrabalhostatus.service';
 
 @Component({
     selector: 'app-projetofluxotrabalhostatus-field-create',
@@ -11,10 +11,10 @@ export class ProjetoFluxoTrabalhoStatusFieldCreateComponent implements OnInit {
     @Input() vm: any;
 
 
-    constructor() { }
+   constructor(private projetoFluxoTrabalhoStatusService: ProjetoFluxoTrabalhoStatusService) { }
 
     ngOnInit() {
-        this.isValid();
+        this.projetoFluxoTrabalhoStatusService.isValid(this.vm);
     }
 
     public onSave(model)
@@ -26,32 +26,18 @@ export class ProjetoFluxoTrabalhoStatusFieldCreateComponent implements OnInit {
 
     }
 
-    public onChangeMakeSelectprojetoId(eventArgs) {
+	public onChangeMakeSelectprojetoId(eventArgs) {
         this.vm.model.projetoId = eventArgs;
-        this.isValid();
+        this.projetoFluxoTrabalhoStatusService.isValid(this.vm);
 	}
-public onChangeMakeSelectfluxoTrabalhoStatusId(eventArgs) {
+	public onChangeMakeSelectfluxoTrabalhoStatusId(eventArgs) {
         this.vm.model.fluxoTrabalhoStatusId = eventArgs;
-        this.isValid();
+        this.projetoFluxoTrabalhoStatusService.isValid(this.vm);
 	}
 
 
-    public isValid() {
-
-        for (let key in this.vm.required) {
-            if (this.vm.required.hasOwnProperty(key)) {
-
-                console.log("isValid", this.vm.model);
-
-                if (this.vm.model[key] == null || this.vm.model[key] == undefined || this.vm.model[key] == "undefined" || this.vm.model[key] == "") {
-                    this.vm.isValid = false;
-                    return false;
-                }
-            }
-        }
-        this.vm.isValid = true;
-        return true;
-
+	public isValid(vm) {
+        this.projetoFluxoTrabalhoStatusService.isValid(this.vm);
     }
 
 }

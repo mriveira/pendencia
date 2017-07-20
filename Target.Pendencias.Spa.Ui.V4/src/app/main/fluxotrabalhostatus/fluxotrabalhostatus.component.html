@@ -70,12 +70,6 @@
                   </button>
                 </th>
 				<th>
-                  {{ vm.labels.fluxoTrabalhoTipoId }}
-                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('fluxoTrabalhoTipoId')">
-                    <i class="fa fa-arrows-v"></i>
-                  </button>
-                </th>
-				<th>
                   {{ vm.labels.corFundo }}
                   <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('corFundo')">
                     <i class="fa fa-arrows-v"></i>
@@ -100,7 +94,6 @@
             <tbody>
               <tr *ngFor="let item of vm.filterResult">
 				<td><bind-custom [model]="item.nome" [format]="'string'" [tag]="'span'" ></bind-custom></td>
-				<td><bind-custom [model]="item.fluxoTrabalhoTipoId" [format]="'int'" [tag]="'span'"  [instance]="'FluxoTrabalhoTipo'" [filterid]="'vm.model.fluxoTrabalhoTipoId'"></bind-custom></td>
 				<td><bind-custom [model]="item.corFundo" [format]="'string'" [tag]="'span'" ></bind-custom></td>
 				<td><bind-custom [model]="item.corFonte" [format]="'string'" [tag]="'span'" ></bind-custom></td>
 				<td><bind-custom [model]="item.ordem" [format]="'int?'" [tag]="'span'" ></bind-custom></td>

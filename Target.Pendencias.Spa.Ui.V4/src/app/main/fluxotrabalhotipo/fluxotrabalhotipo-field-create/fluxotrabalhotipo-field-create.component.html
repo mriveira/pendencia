@@ -3,7 +3,7 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.nome }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required (change)='isValid()' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required (change)='isValid(vm)' />
                 </div>
 			</section>
 

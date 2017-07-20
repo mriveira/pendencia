@@ -3,6 +3,7 @@ import { Observable, Observer } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 
 import { ApiService } from 'app/common/services/api.service';
+import { GlobalService } from '../../global.service';
 
 @Injectable()
 export class UsuarioTipoService {
@@ -19,10 +20,9 @@ export class UsuarioTipoService {
             mostrarFiltros: false,
             actionTitle: "UsuarioTipo",
             actionDescription: "",
-            messageConfirmation: "Deseja relamente executar essa operação?",
+			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
             modelFilter: [],
-            createForm: {},
             summary: {},
             model: {},
             labels: {
@@ -67,6 +67,22 @@ export class UsuarioTipoService {
             IsPagination: true
         });
 
+    }
+
+	public isValid(vm) {
+
+        for (let key in vm.required) {
+            if (vm.required.hasOwnProperty(key)) {
+
+                if (vm.model[key] == null || vm.model[key] == undefined || vm.model[key] == "undefined" || vm.model[key] == "") {
+                    vm.isValid = false;
+                    return false;
+                }
+
+            }
+        }
+        vm.isValid = true;
+        return true;
     }
 
 }

@@ -15,9 +15,12 @@ export class PendenciaTemposFilterComponent implements OnInit {
     }
 
 
-    public onChange_makeSelect_modelFilter_fluxoTrabalhoTipoId(eventArgs) {
+    public onChangeMakeSelectpendenciaId(eventArgs) {
+        this.vm.modelFilter.pendenciaId = eventArgs;
+	}
+public onChangeMakeSelectusuarioId(eventArgs) {
+        this.vm.modelFilter.usuarioId = eventArgs;
+	}
 
-        this.vm.modelFilter.fluxoTrabalhoTipoId = eventArgs;
-    }
 
 }

@@ -15,9 +15,12 @@ export class ProjetoFluxoTrabalhoStatusFilterComponent implements OnInit {
     }
 
 
-    public onChange_makeSelect_modelFilter_fluxoTrabalhoTipoId(eventArgs) {
+    public onChangeMakeSelectprojetoId(eventArgs) {
+        this.vm.modelFilter.projetoId = eventArgs;
+	}
+public onChangeMakeSelectfluxoTrabalhoStatusId(eventArgs) {
+        this.vm.modelFilter.fluxoTrabalhoStatusId = eventArgs;
+	}
 
-        this.vm.modelFilter.fluxoTrabalhoTipoId = eventArgs;
-    }
 
 }

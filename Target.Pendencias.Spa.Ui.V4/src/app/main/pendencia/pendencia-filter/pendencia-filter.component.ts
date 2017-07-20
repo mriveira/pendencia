@@ -15,9 +15,18 @@ export class PendenciaFilterComponent implements OnInit {
     }
 
 
-    public onChange_makeSelect_modelFilter_fluxoTrabalhoTipoId(eventArgs) {
+    public onChangeMakeSelectprojetoId(eventArgs) {
+        this.vm.modelFilter.projetoId = eventArgs;
+	}
+public onChangeMakeSelectpendenciaTipoId(eventArgs) {
+        this.vm.modelFilter.pendenciaTipoId = eventArgs;
+	}
+public onChangeMakeSelectfluxoTrabalhoStatusId(eventArgs) {
+        this.vm.modelFilter.fluxoTrabalhoStatusId = eventArgs;
+	}
+public onChangeMakeSelectpendenciaPrioridadeId(eventArgs) {
+        this.vm.modelFilter.pendenciaPrioridadeId = eventArgs;
+	}
 
-        this.vm.modelFilter.fluxoTrabalhoTipoId = eventArgs;
-    }
 
 }

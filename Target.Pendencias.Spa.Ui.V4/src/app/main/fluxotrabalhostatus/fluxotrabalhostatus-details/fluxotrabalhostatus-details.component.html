@@ -5,7 +5,7 @@
  
 
     <dt>{{ vm.labels.fluxoTrabalhoTipoId }}:</dt>
-    <dd><bind-custom [model]="vm.model.fluxoTrabalhoTipoId" [format]="'int'" [tag]="'span'"  [instance]="'FluxoTrabalhoTipo'" [filterid]="'vm.model.fluxoTrabalhoTipoId'"></bind-custom></dd>
+    <dd><bind-custom [model]="vm.model.fluxoTrabalhoTipoId" [format]="'instance'" [tag]="'span'"  [instance]="'FluxoTrabalhoTipo'" [filterid]="'vm.model.fluxoTrabalhoTipoId'"></bind-custom></dd>
  
 
     <dt>{{ vm.labels.corFundo }}:</dt>
@@ -14,6 +14,10 @@
 
     <dt>{{ vm.labels.corFonte }}:</dt>
     <dd><bind-custom [model]="vm.model.corFonte" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.labels.ordem }}:</dt>
+    <dd><bind-custom [model]="vm.model.ordem" [format]="'int?'" [tag]="'span'" ></bind-custom></dd>
  
 
 
