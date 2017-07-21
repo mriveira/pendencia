@@ -6,7 +6,6 @@ import { PaginationModule } from 'ngx-bootstrap/pagination'
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { BindCustomComponent } from './components/bind-custom.component';
-import { MakeSelectComponent } from './components/select.component';
 import { MakePaginationComponent } from 'app/common/components/pagination.component';
 import { ConfirmModalComponent } from 'app/common/components/confirm-modal.component';
 import { DataSourceDirective } from './directives/select-datasource.directive';
@@ -22,14 +21,12 @@ import { DataSourceDirective } from './directives/select-datasource.directive';
     ],
     declarations: [
         BindCustomComponent,
-        MakeSelectComponent,
         MakePaginationComponent,
         ConfirmModalComponent,
         DataSourceDirective
     ],
     providers: [],
     exports: [BindCustomComponent,
-        MakeSelectComponent,
         MakePaginationComponent,
         ConfirmModalComponent, DataSourceDirective]
 })
