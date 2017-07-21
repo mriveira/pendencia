@@ -21,8 +21,8 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.clienteId }}</label>
-                    <make-select [value]='vm.model.clienteId' [dataitem]='"Cliente"' label='Selecione' [name]='clienteId' [required]='true' (msChange)='onChangeMakeSelectclienteId($event)' [form]='vm.form'></make-select>
-                </div>
+                    <select  name='clienteId' [(ngModel)]='vm.model.Cliente' required formControlName='clienteId' datasource [dataitem]="Cliente'"></select>
+                  </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>

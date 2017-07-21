@@ -3,14 +3,14 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.pendenciaId }}</label>
-                    <make-select [value]='vm.model.pendenciaId' [dataitem]='"Pendencia"' label='Selecione' [name]='pendenciaId' [required]='true' (msChange)='onChangeMakeSelectpendenciaId($event)' [form]='vm.form'></make-select>
-                </div>
+                    <select  name='pendenciaId' [(ngModel)]='vm.model.Pendencia' required formControlName='pendenciaId' datasource [dataitem]="Pendencia'"></select>
+                  </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.usuarioId }}</label>
-                    <make-select [value]='vm.model.usuarioId' [dataitem]='"Usuario"' label='Selecione' [name]='usuarioId' [required]='true' (msChange)='onChangeMakeSelectusuarioId($event)' [form]='vm.form'></make-select>
-                </div>
+                    <select  name='usuarioId' [(ngModel)]='vm.model.Usuario' required formControlName='usuarioId' datasource [dataitem]="Usuario'"></select>
+                  </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>

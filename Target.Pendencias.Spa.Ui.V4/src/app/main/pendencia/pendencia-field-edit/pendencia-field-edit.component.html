@@ -3,8 +3,8 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.projetoId }}</label>
-                    <make-select [value]='vm.model.projetoId' [dataitem]='"Projeto"' label='Selecione' [name]='projetoId' [required]='true' (msChange)='onChangeMakeSelectprojetoId($event)' [form]='vm.form'></make-select>
-                </div>
+                    <select  name='projetoId' [(ngModel)]='vm.model.Projeto' required formControlName='projetoId' datasource [dataitem]="Projeto'"></select>
+                  </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
@@ -45,20 +45,20 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.pendenciaTipoId }}</label>
-                    <make-select [value]='vm.model.pendenciaTipoId' [dataitem]='"PendenciaTipo"' label='Selecione' [name]='pendenciaTipoId' [required]='true' (msChange)='onChangeMakeSelectpendenciaTipoId($event)' [form]='vm.form'></make-select>
-                </div>
+                    <select  name='pendenciaTipoId' [(ngModel)]='vm.model.PendenciaTipo' required formControlName='pendenciaTipoId' datasource [dataitem]="PendenciaTipo'"></select>
+                  </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.fluxoTrabalhoStatusId }}</label>
-                    <make-select [value]='vm.model.fluxoTrabalhoStatusId' [dataitem]='"FluxoTrabalhoStatus"' label='Selecione' [name]='fluxoTrabalhoStatusId' [required]='true' (msChange)='onChangeMakeSelectfluxoTrabalhoStatusId($event)' [form]='vm.form'></make-select>
-                </div>
+                    <select  name='fluxoTrabalhoStatusId' [(ngModel)]='vm.model.FluxoTrabalhoStatus' required formControlName='fluxoTrabalhoStatusId' datasource [dataitem]="FluxoTrabalhoStatus'"></select>
+                  </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.pendenciaPrioridadeId }}</label>
-                    <make-select [value]='vm.model.pendenciaPrioridadeId' [dataitem]='"PendeciaPrioridade"' label='Selecione' [name]='pendenciaPrioridadeId' [required]='true' (msChange)='onChangeMakeSelectpendenciaPrioridadeId($event)' [form]='vm.form'></make-select>
-                </div>
+                    <select  name='pendenciaPrioridadeId' [(ngModel)]='vm.model.PendeciaPrioridade' required formControlName='pendenciaPrioridadeId' datasource [dataitem]="PendeciaPrioridade'"></select>
+                  </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
