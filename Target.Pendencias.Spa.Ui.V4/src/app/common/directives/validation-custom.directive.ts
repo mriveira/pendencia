@@ -11,7 +11,7 @@ export class ValidationCustom {
     constructor(private _elemetRef: ElementRef, private _renderer: Renderer) {
 
         //console.log(this._elemetRef);
-        console.log("ValidationCustom",this._elemetRef.nativeElement.innerHTML);
+        console.log("ValidationCustom",this._elemetRef.nativeElement.add);
         //console.log(this._elemetRef.nativeElement.querySelector('.ng-invalid'));
 
 

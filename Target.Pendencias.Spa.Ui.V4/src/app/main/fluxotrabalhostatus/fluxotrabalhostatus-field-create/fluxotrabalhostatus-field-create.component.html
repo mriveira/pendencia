@@ -1,4 +1,4 @@
-<div class="modal-body">
+﻿<div class="modal-body">
   <div class="row" [formGroup]="vm.form">
 			<section class="col-md-12">
                 <div class='form-group'>
@@ -9,7 +9,8 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.labels.fluxoTrabalhoTipoId }}</label>
-                    <make-select [value]='vm.model.fluxoTrabalhoTipoId' [dataitem]='"FluxoTrabalhoTipo"' label='Selecione' [name]='fluxoTrabalhoTipoId' [required]='true' (msChange)='onChangeMakeSelectfluxoTrabalhoTipoId($event)' [form]='vm.form'></make-select>
+                    <!--<make-select [value]='vm.model.fluxoTrabalhoTipoId' [dataitem]='"FluxoTrabalhoTipo"' label='Selecione' [name]='fluxoTrabalhoTipoId' [required]='true' (msChange)='onChangeMakeSelectfluxoTrabalhoTipoId($event)' [form]='vm.form'></make-select>-->
+                    <select class="form-control" name="fluxoTrabalhoTipoId" [(ngModel)]='vm.model.fluxoTrabalhoTipoId' required formControlName='fluxoTrabalhoTipoId' datasource [dataitem]="'FluxoTrabalhoTipo'" ></select>
                 </div>
 			</section>
 			<section class="col-md-12">
