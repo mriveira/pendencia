@@ -19,5 +19,4 @@ export class PendenciaEventosFilterComponent implements OnInit {
         this.vm.modelFilter.pendenciaId = eventArgs;
 	}
 
-
 }

@@ -35,5 +35,4 @@ export class ComentarioFieldCreateComponent implements OnInit {
         this.vm.model.pendenciaId = eventArgs;
 	}
 
-
 }

@@ -1,33 +1,32 @@
 <div class="row">
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.labels.pendenciaId }}</label>
-                    <make-select [value]='vm.modelFilter.pendenciaId' [dataitem]='"Pendencia"' label='Selecione' [name]='pendenciaId' [required]='false' (msChange)='onChangeMakeSelectpendenciaId($event)' [form]='vm.form'></make-select>
+                    <label>{{ vm.infos.pendenciaId.label }}</label>
+                    <select class='form-control'  name='pendenciaId' [(ngModel)]='vm.modelFilter.pendenciaId' datasource [dataitem]="'Pendencia'" (msChange)='onChangeMakeSelectpendenciaId($event)'></select>
                 </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.labels.usuarioId }}</label>
-                    <make-select [value]='vm.modelFilter.usuarioId' [dataitem]='"Usuario"' label='Selecione' [name]='usuarioId' [required]='false' (msChange)='onChangeMakeSelectusuarioId($event)' [form]='vm.form'></make-select>
+                    <label>{{ vm.infos.usuarioId.label }}</label>
+                    <select class='form-control'  name='usuarioId' [(ngModel)]='vm.modelFilter.usuarioId' datasource [dataitem]="'Usuario'" (msChange)='onChangeMakeSelectusuarioId($event)'></select>
                 </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.labels.inicio }}</label>
+                    <label>{{ vm.infos.inicio.label }}</label>
                     <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.inicio' name='inicio' />
                 </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.labels.fim }}</label>
+                    <label>{{ vm.infos.fim.label }}</label>
                     <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.fim' name='fim' />
                 </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.labels.nota }}</label>
+                    <label>{{ vm.infos.nota.label }}</label>
                     <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.nota' name='nota' />
                 </div>
   </section>
-
 </div>

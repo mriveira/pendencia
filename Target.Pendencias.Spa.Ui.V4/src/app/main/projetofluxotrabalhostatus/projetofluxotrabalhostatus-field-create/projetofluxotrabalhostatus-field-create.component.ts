@@ -35,5 +35,4 @@ export class ProjetoFluxoTrabalhoStatusFieldCreateComponent implements OnInit {
         this.vm.model.fluxoTrabalhoStatusId = eventArgs;
 	}
 
-
 }

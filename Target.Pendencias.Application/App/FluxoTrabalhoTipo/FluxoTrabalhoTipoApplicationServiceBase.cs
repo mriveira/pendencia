@@ -15,7 +15,7 @@ namespace Target.Pendencias.Application
     {
         protected readonly ValidatorAnnotations<FluxoTrabalhoTipoDto> _validatorAnnotations;
         protected readonly IFluxoTrabalhoTipoService _service;
-		    protected readonly CurrentUser _user;
+		protected readonly CurrentUser _user;
 
         public FluxoTrabalhoTipoApplicationServiceBase(IFluxoTrabalhoTipoService service, IUnitOfWork uow, ICache cache, CurrentUser user) :
             base(service, uow, cache)
@@ -23,23 +23,26 @@ namespace Target.Pendencias.Application
             base.SetTagNameCache("FluxoTrabalhoTipo");
             this._validatorAnnotations = new ValidatorAnnotations<FluxoTrabalhoTipoDto>();
             this._service = service;
-			      this._user = user;
+			this._user = user;
         }
 
         protected override FluxoTrabalhoTipo MapperDtoToDomain<TDS>(TDS dto)
         {
-			      var _dto = dto as FluxoTrabalhoTipoDtoSpecialized;
+			var _dto = dto as FluxoTrabalhoTipoDtoSpecialized;
             this._validatorAnnotations.Validate(_dto);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
-			      var domain = new FluxoTrabalhoTipo.FluxoTrabalhoTipoFactory().GetDefaultInstance(_dto, this._user);
+			var domain = new FluxoTrabalhoTipo.FluxoTrabalhoTipoFactory().GetDefaultInstance(_dto, this._user);
             return domain;
         }
 
         protected override async Task<FluxoTrabalhoTipo> AlterDomainWithDto<TDS>(TDS dto)
         {
-			      var fluxotrabalhotipo = dto as FluxoTrabalhoTipoDto;
-            var result = await this._serviceBase.GetOne(new FluxoTrabalhoTipoFilter { FluxoTrabalhoTipoId = fluxotrabalhotipo.FluxoTrabalhoTipoId });
-            return result;
+			return await Task.Run(() =>
+            {
+				var _dto = dto as FluxoTrabalhoTipoDto;
+				var domain = new FluxoTrabalhoTipo.FluxoTrabalhoTipoFactory().GetDefaultInstance(_dto, this._user);
+				return domain;
+			});
         }
 
     }

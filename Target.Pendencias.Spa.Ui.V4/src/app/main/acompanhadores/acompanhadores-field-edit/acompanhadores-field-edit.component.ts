@@ -31,6 +31,5 @@ export class AcompanhadoresFieldEditComponent implements OnInit {
 	public onChangeMakeSelectpendenciaId(eventArgs) {
         this.vm.model.pendenciaId = eventArgs;
 	}
-
    
 }

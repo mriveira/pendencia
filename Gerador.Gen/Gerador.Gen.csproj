@@ -286,7 +286,10 @@
     <None Include="Templates\FrontV4\app.routing.item.ts.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Templates\FrontV4\component.service.fields.ts.tpl">
+    <None Include="Templates\FrontV4\component.service.fields.info.ts.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\component.service.fields.required.ts.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\FrontV4\component.table.body.html.tpl">

@@ -32,5 +32,4 @@ export class UsuarioFieldCreateComponent implements OnInit {
         this.vm.model.usuarioTipoId = eventArgs;
 	}
 
-
 }

@@ -31,6 +31,5 @@ export class UsuarioFieldEditComponent implements OnInit {
 	public onChangeMakeSelectusuarioTipoId(eventArgs) {
         this.vm.model.usuarioTipoId = eventArgs;
 	}
-
    
 }

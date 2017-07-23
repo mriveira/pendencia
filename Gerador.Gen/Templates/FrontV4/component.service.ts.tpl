@@ -27,15 +27,29 @@ export class <#className#>Service {
             actionDescription: "",
 			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
-            modelFilter: [],
+            modelFilter: {},
             summary: {},
             model: {},
-            labels: {
-<#labels#>
-            },
+            infos: this.getInfos(),
+            grid: this.infosToArray(),
 			form: this._form
         };
 
+    }
+
+	infosToArray() {
+
+        var list = [];
+        for (let key in this.getInfos()) {
+            list.push(this.getInfos()[key])
+        }
+        return list;
+    }
+
+	getInfos() {
+        return {
+           <#infos#>
+        }
     }
 
     get(filters?: any): Observable<any> {
@@ -45,7 +59,7 @@ export class <#className#>Service {
 
     save(model: any): Observable<any> {
 
-        if (model.<#KeyName#> != undefined) {
+        if (<#ExpressionKeyNames#>) {
             return this.api.setResource('<#className#>').put(model);
         }
 

@@ -22,5 +22,4 @@ public onChangeMakeSelectfluxoTrabalhoStatusId(eventArgs) {
         this.vm.modelFilter.fluxoTrabalhoStatusId = eventArgs;
 	}
 
-
 }

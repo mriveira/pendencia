@@ -19,5 +19,4 @@ export class ProjetoFilterComponent implements OnInit {
         this.vm.modelFilter.clienteId = eventArgs;
 	}
 
-
 }

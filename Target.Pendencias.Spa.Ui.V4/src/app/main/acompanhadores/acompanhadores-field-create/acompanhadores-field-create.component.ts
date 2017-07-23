@@ -32,5 +32,4 @@ export class AcompanhadoresFieldCreateComponent implements OnInit {
         this.vm.model.pendenciaId = eventArgs;
 	}
 
-
 }

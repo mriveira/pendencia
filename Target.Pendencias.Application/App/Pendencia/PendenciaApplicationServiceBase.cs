@@ -15,7 +15,7 @@ namespace Target.Pendencias.Application
     {
         protected readonly ValidatorAnnotations<PendenciaDto> _validatorAnnotations;
         protected readonly IPendenciaService _service;
-		    protected readonly CurrentUser _user;
+		protected readonly CurrentUser _user;
 
         public PendenciaApplicationServiceBase(IPendenciaService service, IUnitOfWork uow, ICache cache, CurrentUser user) :
             base(service, uow, cache)
@@ -23,23 +23,26 @@ namespace Target.Pendencias.Application
             base.SetTagNameCache("Pendencia");
             this._validatorAnnotations = new ValidatorAnnotations<PendenciaDto>();
             this._service = service;
-			      this._user = user;
+			this._user = user;
         }
 
         protected override Pendencia MapperDtoToDomain<TDS>(TDS dto)
         {
-			      var _dto = dto as PendenciaDtoSpecialized;
+			var _dto = dto as PendenciaDtoSpecialized;
             this._validatorAnnotations.Validate(_dto);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
-			      var domain = new Pendencia.PendenciaFactory().GetDefaultInstance(_dto, this._user);
+			var domain = new Pendencia.PendenciaFactory().GetDefaultInstance(_dto, this._user);
             return domain;
         }
 
         protected override async Task<Pendencia> AlterDomainWithDto<TDS>(TDS dto)
         {
-			      var pendencia = dto as PendenciaDto;
-            var result = await this._serviceBase.GetOne(new PendenciaFilter { PendenciaId = pendencia.PendenciaId });
-            return result;
+			return await Task.Run(() =>
+            {
+				var _dto = dto as PendenciaDto;
+				var domain = new Pendencia.PendenciaFactory().GetDefaultInstance(_dto, this._user);
+				return domain;
+			});
         }
 
     }

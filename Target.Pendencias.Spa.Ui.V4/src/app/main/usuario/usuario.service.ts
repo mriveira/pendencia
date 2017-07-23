@@ -21,7 +21,6 @@ export class UsuarioService {
             usuarioTipoId : new FormControl(),
             ativo : new FormControl(),
             usuarioDonoId : new FormControl(),
-
         });
 
     }
@@ -34,23 +33,35 @@ export class UsuarioService {
             actionDescription: "",
 			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
-            modelFilter: [],
+            modelFilter: {},
             summary: {},
             model: {},
-            labels: {
-				usuarioId : 'usuarioId',
-				nome : 'nome',
-				foto : 'foto',
-				email : 'email',
-				senha : 'senha',
-				usuarioTipoId : 'usuarioTipoId',
-				ativo : 'ativo',
-				usuarioDonoId : 'usuarioDonoId',
-
-            },
+            infos: this.getInfos(),
+            grid: this.infosToArray(),
 			form: this._form
         };
 
+    }
+
+	infosToArray() {
+
+        var list = [];
+        for (let key in this.getInfos()) {
+            list.push(this.getInfos()[key])
+        }
+        return list;
+    }
+
+	getInfos() {
+        return {
+           				nome: { label: 'nome', type: 'string', isKey: false },
+				foto: { label: 'foto', type: 'string', isKey: false },
+				email: { label: 'email', type: 'string', isKey: false },
+				senha: { label: 'senha', type: 'string', isKey: false },
+				usuarioTipoId: { label: 'usuarioTipoId', type: 'int', isKey: false },
+				ativo: { label: 'ativo', type: 'bool', isKey: false },
+				usuarioDonoId: { label: 'usuarioDonoId', type: 'int?', isKey: false },
+        }
     }
 
     get(filters?: any): Observable<any> {
@@ -60,7 +71,7 @@ export class UsuarioService {
 
     save(model: any): Observable<any> {
 
-        if (model.UsuarioId != undefined) {
+        if ( model.usuarioId != undefined) {
             return this.api.setResource('Usuario').put(model);
         }
 

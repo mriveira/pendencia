@@ -32,5 +32,4 @@ export class PendenciaEventosFieldCreateComponent implements OnInit {
         this.vm.model.pendenciaId = eventArgs;
 	}
 
-
 }

@@ -34,6 +34,5 @@ export class PendenciaDocumentoFieldEditComponent implements OnInit {
 	public onChangeMakeSelectdocumentoId(eventArgs) {
         this.vm.model.documentoId = eventArgs;
 	}
-
    
 }

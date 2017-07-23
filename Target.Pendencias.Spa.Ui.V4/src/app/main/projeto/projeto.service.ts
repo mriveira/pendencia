@@ -22,7 +22,6 @@ export class ProjetoService {
             chaveUnica : new FormControl(),
             inicio : new FormControl(),
             fim : new FormControl(),
-
         });
 
     }
@@ -35,24 +34,36 @@ export class ProjetoService {
             actionDescription: "",
 			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
-            modelFilter: [],
+            modelFilter: {},
             summary: {},
             model: {},
-            labels: {
-				projetoId : 'projetoId',
-				nome : 'nome',
-				descricao : 'descricao',
-				visao : 'visao',
-				clienteId : 'clienteId',
-				usuarioId : 'usuarioId',
-				chaveUnica : 'chaveUnica',
-				inicio : 'inicio',
-				fim : 'fim',
-
-            },
+            infos: this.getInfos(),
+            grid: this.infosToArray(),
 			form: this._form
         };
 
+    }
+
+	infosToArray() {
+
+        var list = [];
+        for (let key in this.getInfos()) {
+            list.push(this.getInfos()[key])
+        }
+        return list;
+    }
+
+	getInfos() {
+        return {
+           				nome: { label: 'nome', type: 'string', isKey: false },
+				descricao: { label: 'descricao', type: 'string', isKey: false },
+				visao: { label: 'visao', type: 'string', isKey: false },
+				clienteId: { label: 'clienteId', type: 'int', isKey: false },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: false },
+				chaveUnica: { label: 'chaveUnica', type: 'string', isKey: false },
+				inicio: { label: 'inicio', type: 'DateTime?', isKey: false },
+				fim: { label: 'fim', type: 'DateTime?', isKey: false },
+        }
     }
 
     get(filters?: any): Observable<any> {
@@ -62,7 +73,7 @@ export class ProjetoService {
 
     save(model: any): Observable<any> {
 
-        if (model.ProjetoId != undefined) {
+        if ( model.projetoId != undefined) {
             return this.api.setResource('Projeto').put(model);
         }
 

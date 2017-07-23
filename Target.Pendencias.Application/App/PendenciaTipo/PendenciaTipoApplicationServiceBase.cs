@@ -15,7 +15,7 @@ namespace Target.Pendencias.Application
     {
         protected readonly ValidatorAnnotations<PendenciaTipoDto> _validatorAnnotations;
         protected readonly IPendenciaTipoService _service;
-		    protected readonly CurrentUser _user;
+		protected readonly CurrentUser _user;
 
         public PendenciaTipoApplicationServiceBase(IPendenciaTipoService service, IUnitOfWork uow, ICache cache, CurrentUser user) :
             base(service, uow, cache)
@@ -23,23 +23,26 @@ namespace Target.Pendencias.Application
             base.SetTagNameCache("PendenciaTipo");
             this._validatorAnnotations = new ValidatorAnnotations<PendenciaTipoDto>();
             this._service = service;
-			      this._user = user;
+			this._user = user;
         }
 
         protected override PendenciaTipo MapperDtoToDomain<TDS>(TDS dto)
         {
-			      var _dto = dto as PendenciaTipoDtoSpecialized;
+			var _dto = dto as PendenciaTipoDtoSpecialized;
             this._validatorAnnotations.Validate(_dto);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
-			      var domain = new PendenciaTipo.PendenciaTipoFactory().GetDefaultInstance(_dto, this._user);
+			var domain = new PendenciaTipo.PendenciaTipoFactory().GetDefaultInstance(_dto, this._user);
             return domain;
         }
 
         protected override async Task<PendenciaTipo> AlterDomainWithDto<TDS>(TDS dto)
         {
-			      var pendenciatipo = dto as PendenciaTipoDto;
-            var result = await this._serviceBase.GetOne(new PendenciaTipoFilter { PendenciaTipoId = pendenciatipo.PendenciaTipoId });
-            return result;
+			return await Task.Run(() =>
+            {
+				var _dto = dto as PendenciaTipoDto;
+				var domain = new PendenciaTipo.PendenciaTipoFactory().GetDefaultInstance(_dto, this._user);
+				return domain;
+			});
         }
 
     }

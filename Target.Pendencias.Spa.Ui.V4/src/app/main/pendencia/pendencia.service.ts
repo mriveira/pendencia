@@ -27,7 +27,6 @@ export class PendenciaService {
             pendenciaPrioridadeId : new FormControl(),
             tags : new FormControl(),
             dataConclusao : new FormControl(),
-
         });
 
     }
@@ -40,29 +39,41 @@ export class PendenciaService {
             actionDescription: "",
 			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
-            modelFilter: [],
+            modelFilter: {},
             summary: {},
             model: {},
-            labels: {
-				projetoId : 'projetoId',
-				pendenciaId : 'pendenciaId',
-				resumo : 'resumo',
-				descricao : 'descricao',
-				requisitadoPor : 'requisitadoPor',
-				tempoEstimado : 'tempoEstimado',
-				pontosEstimados : 'pontosEstimados',
-				prazo : 'prazo',
-				usuarioId : 'usuarioId',
-				pendenciaTipoId : 'pendenciaTipoId',
-				fluxoTrabalhoStatusId : 'fluxoTrabalhoStatusId',
-				pendenciaPrioridadeId : 'pendenciaPrioridadeId',
-				tags : 'tags',
-				dataConclusao : 'dataConclusao',
-
-            },
+            infos: this.getInfos(),
+            grid: this.infosToArray(),
 			form: this._form
         };
 
+    }
+
+	infosToArray() {
+
+        var list = [];
+        for (let key in this.getInfos()) {
+            list.push(this.getInfos()[key])
+        }
+        return list;
+    }
+
+	getInfos() {
+        return {
+           				projetoId: { label: 'projetoId', type: 'int', isKey: false },
+				resumo: { label: 'resumo', type: 'string', isKey: false },
+				descricao: { label: 'descricao', type: 'string', isKey: false },
+				requisitadoPor: { label: 'requisitadoPor', type: 'string', isKey: false },
+				tempoEstimado: { label: 'tempoEstimado', type: 'int?', isKey: false },
+				pontosEstimados: { label: 'pontosEstimados', type: 'int?', isKey: false },
+				prazo: { label: 'prazo', type: 'DateTime?', isKey: false },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: false },
+				pendenciaTipoId: { label: 'pendenciaTipoId', type: 'int', isKey: false },
+				fluxoTrabalhoStatusId: { label: 'fluxoTrabalhoStatusId', type: 'int', isKey: false },
+				pendenciaPrioridadeId: { label: 'pendenciaPrioridadeId', type: 'int', isKey: false },
+				tags: { label: 'tags', type: 'string', isKey: false },
+				dataConclusao: { label: 'dataConclusao', type: 'DateTime?', isKey: false },
+        }
     }
 
     get(filters?: any): Observable<any> {
@@ -72,7 +83,7 @@ export class PendenciaService {
 
     save(model: any): Observable<any> {
 
-        if (model.PendenciaId != undefined) {
+        if ( model.pendenciaId != undefined) {
             return this.api.setResource('Pendencia').put(model);
         }
 

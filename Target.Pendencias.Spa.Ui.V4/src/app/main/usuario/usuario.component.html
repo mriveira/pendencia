@@ -61,61 +61,7 @@
           Titulo
         </div>
         <div class="card-block gc-grid__body">
-          <table class="table">
-            <thead>
-              <tr>
-				<th>
-                  {{ vm.labels.nome }}
-                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('nome')">
-                    <i class="fa fa-arrows-v"></i>
-                  </button>
-                </th>
-				<th>
-                  {{ vm.labels.email }}
-                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('email')">
-                    <i class="fa fa-arrows-v"></i>
-                  </button>
-                </th>
-				<th>
-                  {{ vm.labels.senha }}
-                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('senha')">
-                    <i class="fa fa-arrows-v"></i>
-                  </button>
-                </th>
-				<th>
-                  {{ vm.labels.ativo }}
-                  <button class="btn btn-sm btn-default pull-right" (click)="onOrderBy('ativo')">
-                    <i class="fa fa-arrows-v"></i>
-                  </button>
-                </th>
-
-                <th width="175" class="text-center">Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of vm.filterResult">
-				<td><bind-custom [model]="item.nome" [format]="'string'" [tag]="'span'" ></bind-custom></td>
-				<td><bind-custom [model]="item.email" [format]="'string'" [tag]="'span'" ></bind-custom></td>
-				<td><bind-custom [model]="item.senha" [format]="'string'" [tag]="'span'" ></bind-custom></td>
-				<td><bind-custom [model]="item.ativo" [format]="'bool'" [tag]="'span'" ></bind-custom></td>
-
-                <td>
-                  <button (click)="onEdit({ usuarioId: item.usuarioId })" tooltip-placement="top" uib-tooltip="Editar" class="btn btn-sm btn-default">
-                    <i class="fa fa-pencil"></i>
-                  </button>
-                  <button (click)="onDetails({ usuarioId: item.usuarioId })" tooltip-placement="top" uib-tooltip="Detalhes" class="btn btn-sm">
-                    <i class="fa fa-table"></i>
-                  </button>
-                  <button (click)="onPrint({ usuarioId: item.usuarioId })" tooltip-placement="top" uib-tooltip="Imprimir" class="btn btn-sm btn-success">
-                    <i class="fa fa-print"></i>
-                  </button>
-                  <button (click)="onDeleteConfimation({ usuarioId: item.usuarioId })" tooltip-placement="top" uib-tooltip="Excluir" class="btn btn-sm btn-danger">
-                    <i class="fa fa-trash-o"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+			<make-grid [(vm)]="vm" (edit)="onEdit($event)" (details)="onDetails($event)" (print)="onPrint($event)" (deleteConfimation)="onDeleteConfimation($event)"></make-grid>
         </div>
         <div class="card-footer gc-grid__footer">
           <div class="gc-pagination">

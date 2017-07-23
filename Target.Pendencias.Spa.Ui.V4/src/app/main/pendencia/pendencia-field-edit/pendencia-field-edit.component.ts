@@ -31,9 +31,6 @@ export class PendenciaFieldEditComponent implements OnInit {
 	public onChangeMakeSelectprojetoId(eventArgs) {
         this.vm.model.projetoId = eventArgs;
 	}
-	public onChangeMakeSelectusuarioId(eventArgs) {
-        this.vm.model.usuarioId = eventArgs;
-	}
 	public onChangeMakeSelectpendenciaTipoId(eventArgs) {
         this.vm.model.pendenciaTipoId = eventArgs;
 	}
@@ -43,6 +40,5 @@ export class PendenciaFieldEditComponent implements OnInit {
 	public onChangeMakeSelectpendenciaPrioridadeId(eventArgs) {
         this.vm.model.pendenciaPrioridadeId = eventArgs;
 	}
-
    
 }

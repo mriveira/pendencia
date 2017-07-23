@@ -19,5 +19,4 @@ export class AcompanhadoresFilterComponent implements OnInit {
         this.vm.modelFilter.pendenciaId = eventArgs;
 	}
 
-
 }

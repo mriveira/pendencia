@@ -61,33 +61,7 @@
           Titulo
         </div>
         <div class="card-block gc-grid__body">
-          <table class="table">
-            <thead>
-              <tr>
-
-                <th width="175" class="text-center">Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of vm.filterResult">
-
-                <td>
-                  <button (click)="onEdit({ pendenciaId: item.pendenciaId, usuarioId: item.usuarioId })" tooltip-placement="top" uib-tooltip="Editar" class="btn btn-sm btn-default">
-                    <i class="fa fa-pencil"></i>
-                  </button>
-                  <button (click)="onDetails({ pendenciaId: item.pendenciaId, usuarioId: item.usuarioId })" tooltip-placement="top" uib-tooltip="Detalhes" class="btn btn-sm">
-                    <i class="fa fa-table"></i>
-                  </button>
-                  <button (click)="onPrint({ pendenciaId: item.pendenciaId, usuarioId: item.usuarioId })" tooltip-placement="top" uib-tooltip="Imprimir" class="btn btn-sm btn-success">
-                    <i class="fa fa-print"></i>
-                  </button>
-                  <button (click)="onDeleteConfimation({ pendenciaId: item.pendenciaId, usuarioId: item.usuarioId })" tooltip-placement="top" uib-tooltip="Excluir" class="btn btn-sm btn-danger">
-                    <i class="fa fa-trash-o"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+			<make-grid [(vm)]="vm" (edit)="onEdit($event)" (details)="onDetails($event)" (print)="onPrint($event)" (deleteConfimation)="onDeleteConfimation($event)"></make-grid>
         </div>
         <div class="card-footer gc-grid__footer">
           <div class="gc-pagination">

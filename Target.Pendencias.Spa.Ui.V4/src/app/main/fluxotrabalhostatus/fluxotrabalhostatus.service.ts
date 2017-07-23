@@ -19,7 +19,6 @@ export class FluxoTrabalhoStatusService {
             corFundo : new FormControl(),
             corFonte : new FormControl(),
             ordem : new FormControl(),
-
         });
 
     }
@@ -32,21 +31,33 @@ export class FluxoTrabalhoStatusService {
             actionDescription: "",
 			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
-            modelFilter: [],
+            modelFilter: {},
             summary: {},
             model: {},
-            labels: {
-				fluxoTrabalhoStatusId : 'fluxoTrabalhoStatusId',
-				nome : 'nome',
-				fluxoTrabalhoTipoId : 'fluxoTrabalhoTipoId',
-				corFundo : 'corFundo',
-				corFonte : 'corFonte',
-				ordem : 'ordem',
-
-            },
+            infos: this.getInfos(),
+            grid: this.infosToArray(),
 			form: this._form
         };
 
+    }
+
+	infosToArray() {
+
+        var list = [];
+        for (let key in this.getInfos()) {
+            list.push(this.getInfos()[key])
+        }
+        return list;
+    }
+
+	getInfos() {
+        return {
+           				nome: { label: 'nome', type: 'string', isKey: false },
+				fluxoTrabalhoTipoId: { label: 'fluxoTrabalhoTipoId', type: 'int', isKey: false },
+				corFundo: { label: 'corFundo', type: 'string', isKey: false },
+				corFonte: { label: 'corFonte', type: 'string', isKey: false },
+				ordem: { label: 'ordem', type: 'int?', isKey: false },
+        }
     }
 
     get(filters?: any): Observable<any> {
@@ -56,7 +67,7 @@ export class FluxoTrabalhoStatusService {
 
     save(model: any): Observable<any> {
 
-        if (model.FluxoTrabalhoStatusId != undefined) {
+        if ( model.fluxoTrabalhoStatusId != undefined) {
             return this.api.setResource('FluxoTrabalhoStatus').put(model);
         }
 

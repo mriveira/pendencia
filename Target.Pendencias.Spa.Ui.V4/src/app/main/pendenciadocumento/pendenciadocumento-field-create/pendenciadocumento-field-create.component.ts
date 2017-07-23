@@ -35,5 +35,4 @@ export class PendenciaDocumentoFieldCreateComponent implements OnInit {
         this.vm.model.documentoId = eventArgs;
 	}
 
-
 }

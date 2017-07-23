@@ -1,15 +1,14 @@
 <div class="row">
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.labels.projetoId }}</label>
-                    <make-select [value]='vm.modelFilter.projetoId' [dataitem]='"Projeto"' label='Selecione' [name]='projetoId' [required]='false' (msChange)='onChangeMakeSelectprojetoId($event)' [form]='vm.form'></make-select>
+                    <label>{{ vm.infos.projetoId.label }}</label>
+                    <select class='form-control'  name='projetoId' [(ngModel)]='vm.modelFilter.projetoId' datasource [dataitem]="'Projeto'" (msChange)='onChangeMakeSelectprojetoId($event)'></select>
                 </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.labels.fluxoTrabalhoStatusId }}</label>
-                    <make-select [value]='vm.modelFilter.fluxoTrabalhoStatusId' [dataitem]='"FluxoTrabalhoStatus"' label='Selecione' [name]='fluxoTrabalhoStatusId' [required]='false' (msChange)='onChangeMakeSelectfluxoTrabalhoStatusId($event)' [form]='vm.form'></make-select>
+                    <label>{{ vm.infos.fluxoTrabalhoStatusId.label }}</label>
+                    <select class='form-control'  name='fluxoTrabalhoStatusId' [(ngModel)]='vm.modelFilter.fluxoTrabalhoStatusId' datasource [dataitem]="'FluxoTrabalhoStatus'" (msChange)='onChangeMakeSelectfluxoTrabalhoStatusId($event)'></select>
                 </div>
   </section>
-
 </div>

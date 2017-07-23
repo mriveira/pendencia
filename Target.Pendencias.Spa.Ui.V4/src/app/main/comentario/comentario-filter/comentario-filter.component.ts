@@ -22,5 +22,4 @@ public onChangeMakeSelectpendenciaId(eventArgs) {
         this.vm.modelFilter.pendenciaId = eventArgs;
 	}
 
-
 }

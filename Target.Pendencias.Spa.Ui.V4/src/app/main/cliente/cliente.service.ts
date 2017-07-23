@@ -19,7 +19,6 @@ export class ClienteService {
             emailDeContato : new FormControl(),
             cpfcnpj : new FormControl(),
             usuarioId : new FormControl(),
-
         });
 
     }
@@ -32,21 +31,33 @@ export class ClienteService {
             actionDescription: "",
 			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
-            modelFilter: [],
+            modelFilter: {},
             summary: {},
             model: {},
-            labels: {
-				clienteId : 'clienteId',
-				nome : 'nome',
-				telefoneDeContato : 'telefoneDeContato',
-				emailDeContato : 'emailDeContato',
-				cpfcnpj : 'cpfcnpj',
-				usuarioId : 'usuarioId',
-
-            },
+            infos: this.getInfos(),
+            grid: this.infosToArray(),
 			form: this._form
         };
 
+    }
+
+	infosToArray() {
+
+        var list = [];
+        for (let key in this.getInfos()) {
+            list.push(this.getInfos()[key])
+        }
+        return list;
+    }
+
+	getInfos() {
+        return {
+           				nome: { label: 'nome', type: 'string', isKey: false },
+				telefoneDeContato: { label: 'telefoneDeContato', type: 'string', isKey: false },
+				emailDeContato: { label: 'emailDeContato', type: 'string', isKey: false },
+				cpfcnpj: { label: 'cpfcnpj', type: 'string', isKey: false },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: false },
+        }
     }
 
     get(filters?: any): Observable<any> {
@@ -56,7 +67,7 @@ export class ClienteService {
 
     save(model: any): Observable<any> {
 
-        if (model.ClienteId != undefined) {
+        if ( model.clienteId != undefined) {
             return this.api.setResource('Cliente').put(model);
         }
 

@@ -16,7 +16,6 @@ export class ComentarioDocumentoService {
 		this._form = new FormGroup({
             documentoId : new FormControl(),
             comentarioId : new FormControl(),
-
         });
 
     }
@@ -29,17 +28,30 @@ export class ComentarioDocumentoService {
             actionDescription: "",
 			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
-            modelFilter: [],
+            modelFilter: {},
             summary: {},
             model: {},
-            labels: {
-				documentoId : 'documentoId',
-				comentarioId : 'comentarioId',
-
-            },
+            infos: this.getInfos(),
+            grid: this.infosToArray(),
 			form: this._form
         };
 
+    }
+
+	infosToArray() {
+
+        var list = [];
+        for (let key in this.getInfos()) {
+            list.push(this.getInfos()[key])
+        }
+        return list;
+    }
+
+	getInfos() {
+        return {
+           				documentoId: { label: 'documentoId', type: 'int', isKey: true },
+				comentarioId: { label: 'comentarioId', type: 'int', isKey: true },
+        }
     }
 
     get(filters?: any): Observable<any> {
@@ -49,7 +61,7 @@ export class ComentarioDocumentoService {
 
     save(model: any): Observable<any> {
 
-        if (model.DocumentoId != undefined) {
+        if ( model.documentoId != undefined &&  model.comentarioId != undefined) {
             return this.api.setResource('ComentarioDocumento').put(model);
         }
 

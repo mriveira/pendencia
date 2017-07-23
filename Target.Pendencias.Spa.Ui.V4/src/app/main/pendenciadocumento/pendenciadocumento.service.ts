@@ -16,7 +16,6 @@ export class PendenciaDocumentoService {
 		this._form = new FormGroup({
             pendenciaId : new FormControl(),
             documentoId : new FormControl(),
-
         });
 
     }
@@ -29,17 +28,30 @@ export class PendenciaDocumentoService {
             actionDescription: "",
 			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
-            modelFilter: [],
+            modelFilter: {},
             summary: {},
             model: {},
-            labels: {
-				pendenciaId : 'pendenciaId',
-				documentoId : 'documentoId',
-
-            },
+            infos: this.getInfos(),
+            grid: this.infosToArray(),
 			form: this._form
         };
 
+    }
+
+	infosToArray() {
+
+        var list = [];
+        for (let key in this.getInfos()) {
+            list.push(this.getInfos()[key])
+        }
+        return list;
+    }
+
+	getInfos() {
+        return {
+           				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: true },
+				documentoId: { label: 'documentoId', type: 'int', isKey: true },
+        }
     }
 
     get(filters?: any): Observable<any> {
@@ -49,7 +61,7 @@ export class PendenciaDocumentoService {
 
     save(model: any): Observable<any> {
 
-        if (model.PendenciaId != undefined) {
+        if ( model.pendenciaId != undefined &&  model.documentoId != undefined) {
             return this.api.setResource('PendenciaDocumento').put(model);
         }
 

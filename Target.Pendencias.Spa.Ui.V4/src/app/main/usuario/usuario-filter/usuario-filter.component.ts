@@ -19,5 +19,4 @@ export class UsuarioFilterComponent implements OnInit {
         this.vm.modelFilter.usuarioTipoId = eventArgs;
 	}
 
-
 }

@@ -15,7 +15,7 @@ namespace Target.Pendencias.Application
     {
         protected readonly ValidatorAnnotations<DocumentoDto> _validatorAnnotations;
         protected readonly IDocumentoService _service;
-		    protected readonly CurrentUser _user;
+		protected readonly CurrentUser _user;
 
         public DocumentoApplicationServiceBase(IDocumentoService service, IUnitOfWork uow, ICache cache, CurrentUser user) :
             base(service, uow, cache)
@@ -23,23 +23,26 @@ namespace Target.Pendencias.Application
             base.SetTagNameCache("Documento");
             this._validatorAnnotations = new ValidatorAnnotations<DocumentoDto>();
             this._service = service;
-			      this._user = user;
+			this._user = user;
         }
 
         protected override Documento MapperDtoToDomain<TDS>(TDS dto)
         {
-			      var _dto = dto as DocumentoDtoSpecialized;
+			var _dto = dto as DocumentoDtoSpecialized;
             this._validatorAnnotations.Validate(_dto);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
-			      var domain = new Documento.DocumentoFactory().GetDefaultInstance(_dto, this._user);
+			var domain = new Documento.DocumentoFactory().GetDefaultInstance(_dto, this._user);
             return domain;
         }
 
         protected override async Task<Documento> AlterDomainWithDto<TDS>(TDS dto)
         {
-			      var documento = dto as DocumentoDto;
-            var result = await this._serviceBase.GetOne(new DocumentoFilter { DocumentoId = documento.DocumentoId });
-            return result;
+			return await Task.Run(() =>
+            {
+				var _dto = dto as DocumentoDto;
+				var domain = new Documento.DocumentoFactory().GetDefaultInstance(_dto, this._user);
+				return domain;
+			});
         }
 
     }

@@ -34,6 +34,5 @@ export class ComentarioDocumentoFieldEditComponent implements OnInit {
 	public onChangeMakeSelectcomentarioId(eventArgs) {
         this.vm.model.comentarioId = eventArgs;
 	}
-
    
 }

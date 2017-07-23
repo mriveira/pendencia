@@ -22,5 +22,4 @@ public onChangeMakeSelectusuarioId(eventArgs) {
         this.vm.modelFilter.usuarioId = eventArgs;
 	}
 
-
 }

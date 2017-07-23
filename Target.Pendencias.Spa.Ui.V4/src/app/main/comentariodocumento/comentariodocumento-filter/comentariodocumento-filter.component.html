@@ -1,15 +1,14 @@
 <div class="row">
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.labels.documentoId }}</label>
-                    <make-select [value]='vm.modelFilter.documentoId' [dataitem]='"Documento"' label='Selecione' [name]='documentoId' [required]='false' (msChange)='onChangeMakeSelectdocumentoId($event)' [form]='vm.form'></make-select>
+                    <label>{{ vm.infos.documentoId.label }}</label>
+                    <select class='form-control'  name='documentoId' [(ngModel)]='vm.modelFilter.documentoId' datasource [dataitem]="'Documento'" (msChange)='onChangeMakeSelectdocumentoId($event)'></select>
                 </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.labels.comentarioId }}</label>
-                    <make-select [value]='vm.modelFilter.comentarioId' [dataitem]='"Comentario"' label='Selecione' [name]='comentarioId' [required]='false' (msChange)='onChangeMakeSelectcomentarioId($event)' [form]='vm.form'></make-select>
+                    <label>{{ vm.infos.comentarioId.label }}</label>
+                    <select class='form-control'  name='comentarioId' [(ngModel)]='vm.modelFilter.comentarioId' datasource [dataitem]="'Comentario'" (msChange)='onChangeMakeSelectcomentarioId($event)'></select>
                 </div>
   </section>
-
 </div>

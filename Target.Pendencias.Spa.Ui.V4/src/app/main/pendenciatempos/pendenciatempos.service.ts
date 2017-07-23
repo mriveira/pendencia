@@ -19,7 +19,6 @@ export class PendenciaTemposService {
             inicio : new FormControl(),
             fim : new FormControl(),
             nota : new FormControl(),
-
         });
 
     }
@@ -32,21 +31,33 @@ export class PendenciaTemposService {
             actionDescription: "",
 			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
-            modelFilter: [],
+            modelFilter: {},
             summary: {},
             model: {},
-            labels: {
-				pendenciaTemposId : 'pendenciaTemposId',
-				pendenciaId : 'pendenciaId',
-				usuarioId : 'usuarioId',
-				inicio : 'inicio',
-				fim : 'fim',
-				nota : 'nota',
-
-            },
+            infos: this.getInfos(),
+            grid: this.infosToArray(),
 			form: this._form
         };
 
+    }
+
+	infosToArray() {
+
+        var list = [];
+        for (let key in this.getInfos()) {
+            list.push(this.getInfos()[key])
+        }
+        return list;
+    }
+
+	getInfos() {
+        return {
+           				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: false },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: false },
+				inicio: { label: 'inicio', type: 'DateTime', isKey: false },
+				fim: { label: 'fim', type: 'DateTime?', isKey: false },
+				nota: { label: 'nota', type: 'string', isKey: false },
+        }
     }
 
     get(filters?: any): Observable<any> {
@@ -56,7 +67,7 @@ export class PendenciaTemposService {
 
     save(model: any): Observable<any> {
 
-        if (model.PendenciaTemposId != undefined) {
+        if ( model.pendenciaTemposId != undefined) {
             return this.api.setResource('PendenciaTempos').put(model);
         }
 

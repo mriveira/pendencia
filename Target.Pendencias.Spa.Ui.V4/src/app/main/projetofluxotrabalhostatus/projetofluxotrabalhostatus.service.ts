@@ -16,7 +16,6 @@ export class ProjetoFluxoTrabalhoStatusService {
 		this._form = new FormGroup({
             projetoId : new FormControl(),
             fluxoTrabalhoStatusId : new FormControl(),
-
         });
 
     }
@@ -29,17 +28,30 @@ export class ProjetoFluxoTrabalhoStatusService {
             actionDescription: "",
 			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
-            modelFilter: [],
+            modelFilter: {},
             summary: {},
             model: {},
-            labels: {
-				projetoId : 'projetoId',
-				fluxoTrabalhoStatusId : 'fluxoTrabalhoStatusId',
-
-            },
+            infos: this.getInfos(),
+            grid: this.infosToArray(),
 			form: this._form
         };
 
+    }
+
+	infosToArray() {
+
+        var list = [];
+        for (let key in this.getInfos()) {
+            list.push(this.getInfos()[key])
+        }
+        return list;
+    }
+
+	getInfos() {
+        return {
+           				projetoId: { label: 'projetoId', type: 'int', isKey: true },
+				fluxoTrabalhoStatusId: { label: 'fluxoTrabalhoStatusId', type: 'int', isKey: true },
+        }
     }
 
     get(filters?: any): Observable<any> {
@@ -49,7 +61,7 @@ export class ProjetoFluxoTrabalhoStatusService {
 
     save(model: any): Observable<any> {
 
-        if (model.ProjetoId != undefined) {
+        if ( model.projetoId != undefined &&  model.fluxoTrabalhoStatusId != undefined) {
             return this.api.setResource('ProjetoFluxoTrabalhoStatus').put(model);
         }
 

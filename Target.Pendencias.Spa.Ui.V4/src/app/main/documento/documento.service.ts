@@ -16,7 +16,6 @@ export class DocumentoService {
 		this._form = new FormGroup({
             arquivo : new FormControl(),
             ext : new FormControl(),
-
         });
 
     }
@@ -29,18 +28,30 @@ export class DocumentoService {
             actionDescription: "",
 			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
-            modelFilter: [],
+            modelFilter: {},
             summary: {},
             model: {},
-            labels: {
-				documentoId : 'documentoId',
-				arquivo : 'arquivo',
-				ext : 'ext',
-
-            },
+            infos: this.getInfos(),
+            grid: this.infosToArray(),
 			form: this._form
         };
 
+    }
+
+	infosToArray() {
+
+        var list = [];
+        for (let key in this.getInfos()) {
+            list.push(this.getInfos()[key])
+        }
+        return list;
+    }
+
+	getInfos() {
+        return {
+           				arquivo: { label: 'arquivo', type: 'string', isKey: false },
+				ext: { label: 'ext', type: 'string', isKey: false },
+        }
     }
 
     get(filters?: any): Observable<any> {
@@ -50,7 +61,7 @@ export class DocumentoService {
 
     save(model: any): Observable<any> {
 
-        if (model.DocumentoId != undefined) {
+        if ( model.documentoId != undefined) {
             return this.api.setResource('Documento').put(model);
         }
 

@@ -15,7 +15,6 @@ export class PendeciaPrioridadeService {
 
 		this._form = new FormGroup({
             nome : new FormControl(),
-
         });
 
     }
@@ -28,17 +27,29 @@ export class PendeciaPrioridadeService {
             actionDescription: "",
 			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
-            modelFilter: [],
+            modelFilter: {},
             summary: {},
             model: {},
-            labels: {
-				pendeciaPrioridadeId : 'pendeciaPrioridadeId',
-				nome : 'nome',
-
-            },
+            infos: this.getInfos(),
+            grid: this.infosToArray(),
 			form: this._form
         };
 
+    }
+
+	infosToArray() {
+
+        var list = [];
+        for (let key in this.getInfos()) {
+            list.push(this.getInfos()[key])
+        }
+        return list;
+    }
+
+	getInfos() {
+        return {
+           				nome: { label: 'nome', type: 'string', isKey: false },
+        }
     }
 
     get(filters?: any): Observable<any> {
@@ -48,7 +59,7 @@ export class PendeciaPrioridadeService {
 
     save(model: any): Observable<any> {
 
-        if (model.PendeciaPrioridadeId != undefined) {
+        if ( model.pendeciaPrioridadeId != undefined) {
             return this.api.setResource('PendeciaPrioridade').put(model);
         }
 

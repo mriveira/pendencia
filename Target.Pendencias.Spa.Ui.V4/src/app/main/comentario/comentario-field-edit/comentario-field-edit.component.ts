@@ -34,6 +34,5 @@ export class ComentarioFieldEditComponent implements OnInit {
 	public onChangeMakeSelectpendenciaId(eventArgs) {
         this.vm.model.pendenciaId = eventArgs;
 	}
-
    
 }

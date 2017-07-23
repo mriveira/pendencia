@@ -22,5 +22,4 @@ public onChangeMakeSelectcomentarioId(eventArgs) {
         this.vm.modelFilter.comentarioId = eventArgs;
 	}
 
-
 }

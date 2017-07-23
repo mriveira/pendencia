@@ -17,7 +17,6 @@ export class PendenciaEventosService {
             pendenciaId : new FormControl(),
             descricao : new FormControl(),
             data : new FormControl(),
-
         });
 
     }
@@ -30,19 +29,31 @@ export class PendenciaEventosService {
             actionDescription: "",
 			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
-            modelFilter: [],
+            modelFilter: {},
             summary: {},
             model: {},
-            labels: {
-				pendenciaEventosId : 'pendenciaEventosId',
-				pendenciaId : 'pendenciaId',
-				descricao : 'descricao',
-				data : 'data',
-
-            },
+            infos: this.getInfos(),
+            grid: this.infosToArray(),
 			form: this._form
         };
 
+    }
+
+	infosToArray() {
+
+        var list = [];
+        for (let key in this.getInfos()) {
+            list.push(this.getInfos()[key])
+        }
+        return list;
+    }
+
+	getInfos() {
+        return {
+           				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: false },
+				descricao: { label: 'descricao', type: 'string', isKey: false },
+				data: { label: 'data', type: 'DateTime?', isKey: false },
+        }
     }
 
     get(filters?: any): Observable<any> {
@@ -52,7 +63,7 @@ export class PendenciaEventosService {
 
     save(model: any): Observable<any> {
 
-        if (model.PendenciaEventosId != undefined) {
+        if ( model.pendenciaEventosId != undefined) {
             return this.api.setResource('PendenciaEventos').put(model);
         }
 

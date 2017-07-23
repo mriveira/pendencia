@@ -2,34 +2,33 @@
   <div class="row" [formGroup]="vm.form">
 			<section class="col-md-12">
                 <div class='form-group'>
-                    <label>{{ vm.labels.pendenciaId }}</label>
-                    <select  name='pendenciaId' [(ngModel)]='vm.model.Pendencia' required formControlName='pendenciaId' datasource [dataitem]="Pendencia'"></select>
+                    <label>{{ vm.infos.pendenciaId.label }}</label>
+                    <select class='form-control'  name='pendenciaId' [(ngModel)]='vm.model.pendenciaId' required formControlName='pendenciaId' datasource [dataitem]="'Pendencia'"></select>
                   </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
-                    <label>{{ vm.labels.usuarioId }}</label>
-                    <select  name='usuarioId' [(ngModel)]='vm.model.Usuario' required formControlName='usuarioId' datasource [dataitem]="Usuario'"></select>
+                    <label>{{ vm.infos.usuarioId.label }}</label>
+                    <select class='form-control'  name='usuarioId' [(ngModel)]='vm.model.usuarioId' required formControlName='usuarioId' datasource [dataitem]="'Usuario'"></select>
                   </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
-                    <label>{{ vm.labels.inicio }}</label>
+                    <label>{{ vm.infos.inicio.label }}</label>
                     <input type='text' class='form-control'[(ngModel)]='vm.model.inicio' name='inicio' required='true' formControlName='inicio' />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
-                    <label>{{ vm.labels.fim }}</label>
+                    <label>{{ vm.infos.fim.label }}</label>
                     <input type='text' class='form-control'[(ngModel)]='vm.model.fim' name='fim'  formControlName='fim' />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
-                    <label>{{ vm.labels.nota }}</label>
+                    <label>{{ vm.infos.nota.label }}</label>
                     <textarea class='form-control'  [(ngModel)]='vm.model.nota' name='nota'  rows='10' formControlName='nota' ></textarea>
                 </div>
 			</section>
-
   </div>
 </div>

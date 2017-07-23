@@ -15,7 +15,7 @@ namespace Target.Pendencias.Application
     {
         protected readonly ValidatorAnnotations<UsuarioDto> _validatorAnnotations;
         protected readonly IUsuarioService _service;
-		    protected readonly CurrentUser _user;
+		protected readonly CurrentUser _user;
 
         public UsuarioApplicationServiceBase(IUsuarioService service, IUnitOfWork uow, ICache cache, CurrentUser user) :
             base(service, uow, cache)
@@ -23,23 +23,26 @@ namespace Target.Pendencias.Application
             base.SetTagNameCache("Usuario");
             this._validatorAnnotations = new ValidatorAnnotations<UsuarioDto>();
             this._service = service;
-			      this._user = user;
+			this._user = user;
         }
 
         protected override Usuario MapperDtoToDomain<TDS>(TDS dto)
         {
-			      var _dto = dto as UsuarioDtoSpecialized;
+			var _dto = dto as UsuarioDtoSpecialized;
             this._validatorAnnotations.Validate(_dto);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
-			      var domain = new Usuario.UsuarioFactory().GetDefaultInstance(_dto, this._user);
+			var domain = new Usuario.UsuarioFactory().GetDefaultInstance(_dto, this._user);
             return domain;
         }
 
         protected override async Task<Usuario> AlterDomainWithDto<TDS>(TDS dto)
         {
-			      var usuario = dto as UsuarioDto;
-            var result = await this._serviceBase.GetOne(new UsuarioFilter { UsuarioId = usuario.UsuarioId });
-            return result;
+			return await Task.Run(() =>
+            {
+				var _dto = dto as UsuarioDto;
+				var domain = new Usuario.UsuarioFactory().GetDefaultInstance(_dto, this._user);
+				return domain;
+			});
         }
 
     }

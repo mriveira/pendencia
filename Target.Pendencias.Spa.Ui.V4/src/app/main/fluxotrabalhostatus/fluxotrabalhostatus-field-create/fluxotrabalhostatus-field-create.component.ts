@@ -32,5 +32,4 @@ export class FluxoTrabalhoStatusFieldCreateComponent implements OnInit {
         this.vm.model.fluxoTrabalhoTipoId = eventArgs;
 	}
 
-
 }

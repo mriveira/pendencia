@@ -35,5 +35,4 @@ export class PendenciaTemposFieldCreateComponent implements OnInit {
         this.vm.model.usuarioId = eventArgs;
 	}
 
-
 }

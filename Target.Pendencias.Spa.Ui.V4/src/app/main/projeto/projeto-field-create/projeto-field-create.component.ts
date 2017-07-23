@@ -31,9 +31,5 @@ export class ProjetoFieldCreateComponent implements OnInit {
 	public onChangeMakeSelectclienteId(eventArgs) {
         this.vm.model.clienteId = eventArgs;
 	}
-	public onChangeMakeSelectusuarioId(eventArgs) {
-        this.vm.model.usuarioId = eventArgs;
-	}
-
 
 }

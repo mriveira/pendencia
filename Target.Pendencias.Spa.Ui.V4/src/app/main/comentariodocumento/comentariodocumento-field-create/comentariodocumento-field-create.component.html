@@ -2,16 +2,15 @@
   <div class="row" [formGroup]="vm.form">
 			<section class="col-md-12">
                 <div class='form-group'>
-                    <label>{{ vm.labels.documentoId }}</label>
-                    <select  name='documentoId' [(ngModel)]='vm.model.Documento' required formControlName='documentoId' datasource [dataitem]="Documento'"></select>
+                    <label>{{ vm.infos.documentoId.label }}</label>
+                    <select class='form-control'  name='documentoId' [(ngModel)]='vm.model.documentoId' required formControlName='documentoId' datasource [dataitem]="'Documento'"></select>
                   </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
-                    <label>{{ vm.labels.comentarioId }}</label>
-                    <select  name='comentarioId' [(ngModel)]='vm.model.Comentario' required formControlName='comentarioId' datasource [dataitem]="Comentario'"></select>
+                    <label>{{ vm.infos.comentarioId.label }}</label>
+                    <select class='form-control'  name='comentarioId' [(ngModel)]='vm.model.comentarioId' required formControlName='comentarioId' datasource [dataitem]="'Comentario'"></select>
                   </div>
 			</section>
-
   </div>
 </div>

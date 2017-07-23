@@ -19,5 +19,4 @@ export class FluxoTrabalhoStatusFilterComponent implements OnInit {
         this.vm.modelFilter.fluxoTrabalhoTipoId = eventArgs;
 	}
 
-
 }

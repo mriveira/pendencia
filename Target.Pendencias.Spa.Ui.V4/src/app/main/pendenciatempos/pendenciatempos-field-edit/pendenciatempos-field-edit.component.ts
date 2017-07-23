@@ -34,6 +34,5 @@ export class PendenciaTemposFieldEditComponent implements OnInit {
 	public onChangeMakeSelectusuarioId(eventArgs) {
         this.vm.model.usuarioId = eventArgs;
 	}
-
    
 }

@@ -28,5 +28,4 @@ public onChangeMakeSelectpendenciaPrioridadeId(eventArgs) {
         this.vm.modelFilter.pendenciaPrioridadeId = eventArgs;
 	}
 
-
 }

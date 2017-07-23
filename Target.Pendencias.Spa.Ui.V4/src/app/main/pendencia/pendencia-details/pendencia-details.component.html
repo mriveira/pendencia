@@ -1,53 +1,52 @@
 <div class="modal-body">
   <dl>
-    <dt>{{ vm.labels.projetoId }}:</dt>
+    <dt>{{ vm.infos.projetoId.label }}:</dt>
     <dd><bind-custom [model]="vm.model.projetoId" [format]="'instance'" [tag]="'span'"  [instance]="'Projeto'" [filterid]="'vm.model.projetoId'"></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.resumo }}:</dt>
+    <dt>{{ vm.infos.resumo.label }}:</dt>
     <dd><bind-custom [model]="vm.model.resumo" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.requisitadoPor }}:</dt>
+    <dt>{{ vm.infos.requisitadoPor.label }}:</dt>
     <dd><bind-custom [model]="vm.model.requisitadoPor" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.tempoEstimado }}:</dt>
+    <dt>{{ vm.infos.tempoEstimado.label }}:</dt>
     <dd><bind-custom [model]="vm.model.tempoEstimado" [format]="'int?'" [tag]="'span'" ></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.pontosEstimados }}:</dt>
+    <dt>{{ vm.infos.pontosEstimados.label }}:</dt>
     <dd><bind-custom [model]="vm.model.pontosEstimados" [format]="'int?'" [tag]="'span'" ></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.prazo }}:</dt>
+    <dt>{{ vm.infos.prazo.label }}:</dt>
     <dd><bind-custom [model]="vm.model.prazo" [format]="'DateTime?'" [tag]="'span'" ></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.usuarioId }}:</dt>
+    <dt>{{ vm.infos.usuarioId.label }}:</dt>
     <dd><bind-custom [model]="vm.model.usuarioId" [format]="'instance'" [tag]="'span'"  [instance]="'Usuario'" [filterid]="'vm.model.usuarioId'"></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.pendenciaTipoId }}:</dt>
+    <dt>{{ vm.infos.pendenciaTipoId.label }}:</dt>
     <dd><bind-custom [model]="vm.model.pendenciaTipoId" [format]="'instance'" [tag]="'span'"  [instance]="'PendenciaTipo'" [filterid]="'vm.model.pendenciaTipoId'"></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.fluxoTrabalhoStatusId }}:</dt>
+    <dt>{{ vm.infos.fluxoTrabalhoStatusId.label }}:</dt>
     <dd><bind-custom [model]="vm.model.fluxoTrabalhoStatusId" [format]="'instance'" [tag]="'span'"  [instance]="'FluxoTrabalhoStatus'" [filterid]="'vm.model.fluxoTrabalhoStatusId'"></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.pendenciaPrioridadeId }}:</dt>
+    <dt>{{ vm.infos.pendenciaPrioridadeId.label }}:</dt>
     <dd><bind-custom [model]="vm.model.pendenciaPrioridadeId" [format]="'instance'" [tag]="'span'"  [instance]="'PendeciaPrioridade'" [filterid]="'vm.model.pendenciaPrioridadeId'"></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.tags }}:</dt>
+    <dt>{{ vm.infos.tags.label }}:</dt>
     <dd><bind-custom [model]="vm.model.tags" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.dataConclusao }}:</dt>
+    <dt>{{ vm.infos.dataConclusao.label }}:</dt>
     <dd><bind-custom [model]="vm.model.dataConclusao" [format]="'DateTime?'" [tag]="'span'" ></bind-custom></dd>
  
-
 
   </dl> 
 </div>

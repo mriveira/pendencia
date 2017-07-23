@@ -15,7 +15,6 @@ export class AcompanhadoresService {
 
 		this._form = new FormGroup({
             pendenciaId : new FormControl(),
-
         });
 
     }
@@ -28,17 +27,29 @@ export class AcompanhadoresService {
             actionDescription: "",
 			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
-            modelFilter: [],
+            modelFilter: {},
             summary: {},
             model: {},
-            labels: {
-				pendenciaId : 'pendenciaId',
-				usuarioId : 'usuarioId',
-
-            },
+            infos: this.getInfos(),
+            grid: this.infosToArray(),
 			form: this._form
         };
 
+    }
+
+	infosToArray() {
+
+        var list = [];
+        for (let key in this.getInfos()) {
+            list.push(this.getInfos()[key])
+        }
+        return list;
+    }
+
+	getInfos() {
+        return {
+           				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: true },
+        }
     }
 
     get(filters?: any): Observable<any> {
@@ -48,7 +59,7 @@ export class AcompanhadoresService {
 
     save(model: any): Observable<any> {
 
-        if (model.PendenciaId != undefined) {
+        if ( model.pendenciaId != undefined &&  model.usuarioId != undefined) {
             return this.api.setResource('Acompanhadores').put(model);
         }
 

@@ -15,7 +15,6 @@ export class FluxoTrabalhoTipoService {
 
 		this._form = new FormGroup({
             nome : new FormControl(),
-
         });
 
     }
@@ -28,17 +27,29 @@ export class FluxoTrabalhoTipoService {
             actionDescription: "",
 			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
-            modelFilter: [],
+            modelFilter: {},
             summary: {},
             model: {},
-            labels: {
-				fluxoTrabalhoTipoId : 'fluxoTrabalhoTipoId',
-				nome : 'nome',
-
-            },
+            infos: this.getInfos(),
+            grid: this.infosToArray(),
 			form: this._form
         };
 
+    }
+
+	infosToArray() {
+
+        var list = [];
+        for (let key in this.getInfos()) {
+            list.push(this.getInfos()[key])
+        }
+        return list;
+    }
+
+	getInfos() {
+        return {
+           				nome: { label: 'nome', type: 'string', isKey: false },
+        }
     }
 
     get(filters?: any): Observable<any> {
@@ -48,7 +59,7 @@ export class FluxoTrabalhoTipoService {
 
     save(model: any): Observable<any> {
 
-        if (model.FluxoTrabalhoTipoId != undefined) {
+        if ( model.fluxoTrabalhoTipoId != undefined) {
             return this.api.setResource('FluxoTrabalhoTipo').put(model);
         }
 

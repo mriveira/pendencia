@@ -15,7 +15,7 @@ namespace Target.Pendencias.Application
     {
         protected readonly ValidatorAnnotations<ComentarioDto> _validatorAnnotations;
         protected readonly IComentarioService _service;
-		    protected readonly CurrentUser _user;
+		protected readonly CurrentUser _user;
 
         public ComentarioApplicationServiceBase(IComentarioService service, IUnitOfWork uow, ICache cache, CurrentUser user) :
             base(service, uow, cache)
@@ -23,23 +23,26 @@ namespace Target.Pendencias.Application
             base.SetTagNameCache("Comentario");
             this._validatorAnnotations = new ValidatorAnnotations<ComentarioDto>();
             this._service = service;
-			      this._user = user;
+			this._user = user;
         }
 
         protected override Comentario MapperDtoToDomain<TDS>(TDS dto)
         {
-			      var _dto = dto as ComentarioDtoSpecialized;
+			var _dto = dto as ComentarioDtoSpecialized;
             this._validatorAnnotations.Validate(_dto);
             this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
-			      var domain = new Comentario.ComentarioFactory().GetDefaultInstance(_dto, this._user);
+			var domain = new Comentario.ComentarioFactory().GetDefaultInstance(_dto, this._user);
             return domain;
         }
 
         protected override async Task<Comentario> AlterDomainWithDto<TDS>(TDS dto)
         {
-			      var comentario = dto as ComentarioDto;
-            var result = await this._serviceBase.GetOne(new ComentarioFilter { ComentarioId = comentario.ComentarioId });
-            return result;
+			return await Task.Run(() =>
+            {
+				var _dto = dto as ComentarioDto;
+				var domain = new Comentario.ComentarioFactory().GetDefaultInstance(_dto, this._user);
+				return domain;
+			});
         }
 
     }

@@ -1,13 +1,12 @@
 <div class="modal-body">
   <dl>
-    <dt>{{ vm.labels.projetoId }}:</dt>
+    <dt>{{ vm.infos.projetoId.label }}:</dt>
     <dd><bind-custom [model]="vm.model.projetoId" [format]="'instance'" [tag]="'span'"  [instance]="'Projeto'" [filterid]="'vm.model.projetoId'"></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.fluxoTrabalhoStatusId }}:</dt>
+    <dt>{{ vm.infos.fluxoTrabalhoStatusId.label }}:</dt>
     <dd><bind-custom [model]="vm.model.fluxoTrabalhoStatusId" [format]="'instance'" [tag]="'span'"  [instance]="'FluxoTrabalhoStatus'" [filterid]="'vm.model.fluxoTrabalhoStatusId'"></bind-custom></dd>
  
-
 
   </dl> 
 </div>

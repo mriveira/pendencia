@@ -15,7 +15,6 @@ export class PendenciaTipoService {
 
 		this._form = new FormGroup({
             nome : new FormControl(),
-
         });
 
     }
@@ -28,17 +27,29 @@ export class PendenciaTipoService {
             actionDescription: "",
 			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
-            modelFilter: [],
+            modelFilter: {},
             summary: {},
             model: {},
-            labels: {
-				pendenciaTipoId : 'pendenciaTipoId',
-				nome : 'nome',
-
-            },
+            infos: this.getInfos(),
+            grid: this.infosToArray(),
 			form: this._form
         };
 
+    }
+
+	infosToArray() {
+
+        var list = [];
+        for (let key in this.getInfos()) {
+            list.push(this.getInfos()[key])
+        }
+        return list;
+    }
+
+	getInfos() {
+        return {
+           				nome: { label: 'nome', type: 'string', isKey: false },
+        }
     }
 
     get(filters?: any): Observable<any> {
@@ -48,7 +59,7 @@ export class PendenciaTipoService {
 
     save(model: any): Observable<any> {
 
-        if (model.PendenciaTipoId != undefined) {
+        if ( model.pendenciaTipoId != undefined) {
             return this.api.setResource('PendenciaTipo').put(model);
         }
 

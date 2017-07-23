@@ -28,9 +28,6 @@ export class ClienteFieldEditComponent implements OnInit {
 
     }
     
-	public onChangeMakeSelectusuarioId(eventArgs) {
-        this.vm.model.usuarioId = eventArgs;
-	}
 
    
 }

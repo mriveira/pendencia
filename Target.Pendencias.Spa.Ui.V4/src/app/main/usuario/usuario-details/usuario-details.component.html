@@ -1,29 +1,28 @@
 <div class="modal-body">
   <dl>
-    <dt>{{ vm.labels.nome }}:</dt>
+    <dt>{{ vm.infos.nome.label }}:</dt>
     <dd><bind-custom [model]="vm.model.nome" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.email }}:</dt>
+    <dt>{{ vm.infos.email.label }}:</dt>
     <dd><bind-custom [model]="vm.model.email" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.senha }}:</dt>
+    <dt>{{ vm.infos.senha.label }}:</dt>
     <dd><bind-custom [model]="vm.model.senha" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.usuarioTipoId }}:</dt>
+    <dt>{{ vm.infos.usuarioTipoId.label }}:</dt>
     <dd><bind-custom [model]="vm.model.usuarioTipoId" [format]="'instance'" [tag]="'span'"  [instance]="'UsuarioTipo'" [filterid]="'vm.model.usuarioTipoId'"></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.ativo }}:</dt>
+    <dt>{{ vm.infos.ativo.label }}:</dt>
     <dd><bind-custom [model]="vm.model.ativo" [format]="'bool'" [tag]="'span'" ></bind-custom></dd>
  
 
-    <dt>{{ vm.labels.usuarioDonoId }}:</dt>
+    <dt>{{ vm.infos.usuarioDonoId.label }}:</dt>
     <dd><bind-custom [model]="vm.model.usuarioDonoId" [format]="'int?'" [tag]="'span'" ></bind-custom></dd>
  
-
 
   </dl> 
 </div>

@@ -1,27 +1,26 @@
 <div class="row">
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.labels.descricao }}</label>
+                    <label>{{ vm.infos.descricao.label }}</label>
                     <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.descricao' name='descricao' />
                 </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.labels.data }}</label>
+                    <label>{{ vm.infos.data.label }}</label>
                     <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.data' name='data' />
                 </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.labels.usuarioId }}</label>
-                    <make-select [value]='vm.modelFilter.usuarioId' [dataitem]='"Usuario"' label='Selecione' [name]='usuarioId' [required]='false' (msChange)='onChangeMakeSelectusuarioId($event)' [form]='vm.form'></make-select>
+                    <label>{{ vm.infos.usuarioId.label }}</label>
+                    <select class='form-control'  name='usuarioId' [(ngModel)]='vm.modelFilter.usuarioId' datasource [dataitem]="'Usuario'" (msChange)='onChangeMakeSelectusuarioId($event)'></select>
                 </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.labels.pendenciaId }}</label>
-                    <make-select [value]='vm.modelFilter.pendenciaId' [dataitem]='"Pendencia"' label='Selecione' [name]='pendenciaId' [required]='false' (msChange)='onChangeMakeSelectpendenciaId($event)' [form]='vm.form'></make-select>
+                    <label>{{ vm.infos.pendenciaId.label }}</label>
+                    <select class='form-control'  name='pendenciaId' [(ngModel)]='vm.modelFilter.pendenciaId' datasource [dataitem]="'Pendencia'" (msChange)='onChangeMakeSelectpendenciaId($event)'></select>
                 </div>
   </section>
-
 </div>
