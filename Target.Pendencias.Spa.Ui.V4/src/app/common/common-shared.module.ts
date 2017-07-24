@@ -10,6 +10,7 @@ import { MakeGridComponent } from './components/grid/grid.component'
 import { MakePaginationComponent } from 'app/common/components/pagination.component';
 import { ConfirmModalComponent } from 'app/common/components/confirm-modal.component';
 import { DataSourceDirective } from './directives/select-datasource.directive';
+import { MaskInputDirective } from './directives/mask-input.directive';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { DataSourceDirective } from './directives/select-datasource.directive';
         MakePaginationComponent,
         ConfirmModalComponent,
         DataSourceDirective,
+        MaskInputDirective,
         MakeGridComponent
     ],
     providers: [],
@@ -33,6 +35,7 @@ import { DataSourceDirective } from './directives/select-datasource.directive';
         MakePaginationComponent,
         ConfirmModalComponent,
         DataSourceDirective,
+        MaskInputDirective,
         MakeGridComponent]
 })
 export class CommonSharedModule {

@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { LoadingComponent } from './common/components/loading.component';
 
+
 @NgModule({
     declarations: [
         AppComponent,
