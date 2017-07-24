@@ -14,6 +14,7 @@ export class UsuarioService {
     constructor(private api: ApiService<any>) {
 
 		this._form = new FormGroup({
+            usuarioId : new FormControl(),
             nome : new FormControl(),
             foto : new FormControl(),
             email : new FormControl(),
@@ -37,30 +38,33 @@ export class UsuarioService {
             summary: {},
             model: {},
             infos: this.getInfos(),
-            grid: this.infosToArray(),
+            grid: this.getInfoGrid(),
 			form: this._form
         };
 
     }
 
-	infosToArray() {
+	getInfoGrid() {
 
         var list = [];
         for (let key in this.getInfos()) {
-            list.push(this.getInfos()[key])
+            var info = this.getInfos()[key];
+            if (info.list == true)
+                list.push(info);
         }
         return list;
     }
 
 	getInfos() {
-        return {
-           				nome: { label: 'nome', type: 'string', isKey: false },
-				foto: { label: 'foto', type: 'string', isKey: false },
-				email: { label: 'email', type: 'string', isKey: false },
-				senha: { label: 'senha', type: 'string', isKey: false },
-				usuarioTipoId: { label: 'usuarioTipoId', type: 'int', isKey: false },
-				ativo: { label: 'ativo', type: 'bool', isKey: false },
-				usuarioDonoId: { label: 'usuarioDonoId', type: 'int?', isKey: false },
+		return {
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: true, list:true },
+				nome: { label: 'nome', type: 'string', isKey: false, list:true },
+				foto: { label: 'foto', type: 'string', isKey: false, list:false },
+				email: { label: 'email', type: 'string', isKey: false, list:true },
+				senha: { label: 'senha', type: 'string', isKey: false, list:true },
+				usuarioTipoId: { label: 'usuarioTipoId', type: 'int', isKey: false, list:true },
+				ativo: { label: 'ativo', type: 'bool', isKey: false, list:true },
+				usuarioDonoId: { label: 'usuarioDonoId', type: 'int?', isKey: false, list:false },
         }
     }
 

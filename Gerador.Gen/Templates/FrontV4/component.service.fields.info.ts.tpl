@@ -1,1 +1,1 @@
-﻿				<#propertyName#>: { label: '<#propertyName#>', type: '<#type#>', isKey: <#isKey#> },
+﻿				<#propertyName#>: { label: '<#propertyName#>', type: '<#type#>', isKey: <#isKey#>, list:<#viewInList#> },

@@ -31,24 +31,26 @@ export class <#className#>Service {
             summary: {},
             model: {},
             infos: this.getInfos(),
-            grid: this.infosToArray(),
+            grid: this.getInfoGrid(),
 			form: this._form
         };
 
     }
 
-	infosToArray() {
+	getInfoGrid() {
 
         var list = [];
         for (let key in this.getInfos()) {
-            list.push(this.getInfos()[key])
+            var info = this.getInfos()[key];
+            if (info.list == true)
+                list.push(info);
         }
         return list;
     }
 
 	getInfos() {
-        return {
-           <#infos#>
+		return {
+<#infos#>
         }
     }
 

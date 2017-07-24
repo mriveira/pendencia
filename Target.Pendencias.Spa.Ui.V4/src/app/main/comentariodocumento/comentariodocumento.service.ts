@@ -32,25 +32,27 @@ export class ComentarioDocumentoService {
             summary: {},
             model: {},
             infos: this.getInfos(),
-            grid: this.infosToArray(),
+            grid: this.getInfoGrid(),
 			form: this._form
         };
 
     }
 
-	infosToArray() {
+	getInfoGrid() {
 
         var list = [];
         for (let key in this.getInfos()) {
-            list.push(this.getInfos()[key])
+            var info = this.getInfos()[key];
+            if (info.list == true)
+                list.push(info);
         }
         return list;
     }
 
 	getInfos() {
-        return {
-           				documentoId: { label: 'documentoId', type: 'int', isKey: true },
-				comentarioId: { label: 'comentarioId', type: 'int', isKey: true },
+		return {
+				documentoId: { label: 'documentoId', type: 'int', isKey: true, list:true },
+				comentarioId: { label: 'comentarioId', type: 'int', isKey: true, list:true },
         }
     }
 

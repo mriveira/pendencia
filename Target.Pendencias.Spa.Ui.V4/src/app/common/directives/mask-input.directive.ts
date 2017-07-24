@@ -33,6 +33,10 @@ export class MaskInputDirective implements ControlValueAccessor {
 
     @HostListener('keyup', ['$event'])
     onKeyup($event: any) {
+
+        if (this.mask == "")
+            return;
+
         var valor = $event.target.value.replace(/\D/g, '');
         var pad = this.mask.replace(/\D/g, '').replace(/9/g, '_');
         var valorMask = valor + pad.substring(0, pad.length - valor.length);

@@ -14,6 +14,7 @@ export class ClienteService {
     constructor(private api: ApiService<any>) {
 
 		this._form = new FormGroup({
+            clienteId : new FormControl(),
             nome : new FormControl(),
             telefoneDeContato : new FormControl(),
             emailDeContato : new FormControl(),
@@ -35,28 +36,31 @@ export class ClienteService {
             summary: {},
             model: {},
             infos: this.getInfos(),
-            grid: this.infosToArray(),
+            grid: this.getInfoGrid(),
 			form: this._form
         };
 
     }
 
-	infosToArray() {
+	getInfoGrid() {
 
         var list = [];
         for (let key in this.getInfos()) {
-            list.push(this.getInfos()[key])
+            var info = this.getInfos()[key];
+            if (info.list == true)
+                list.push(info);
         }
         return list;
     }
 
 	getInfos() {
-        return {
-           				nome: { label: 'nome', type: 'string', isKey: false },
-				telefoneDeContato: { label: 'telefoneDeContato', type: 'string', isKey: false },
-				emailDeContato: { label: 'emailDeContato', type: 'string', isKey: false },
-				cpfcnpj: { label: 'cpfcnpj', type: 'string', isKey: false },
-				usuarioId: { label: 'usuarioId', type: 'int', isKey: false },
+		return {
+				clienteId: { label: 'clienteId', type: 'int', isKey: true, list:true },
+				nome: { label: 'nome', type: 'string', isKey: false, list:true },
+				telefoneDeContato: { label: 'telefoneDeContato', type: 'string', isKey: false, list:true },
+				emailDeContato: { label: 'emailDeContato', type: 'string', isKey: false, list:true },
+				cpfcnpj: { label: 'cpfcnpj', type: 'string', isKey: false, list:true },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:true },
         }
     }
 

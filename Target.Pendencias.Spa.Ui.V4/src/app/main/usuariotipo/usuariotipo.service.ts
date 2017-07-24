@@ -14,6 +14,7 @@ export class UsuarioTipoService {
     constructor(private api: ApiService<any>) {
 
 		this._form = new FormGroup({
+            usuarioTipoId : new FormControl(),
             nome : new FormControl(),
         });
 
@@ -31,24 +32,27 @@ export class UsuarioTipoService {
             summary: {},
             model: {},
             infos: this.getInfos(),
-            grid: this.infosToArray(),
+            grid: this.getInfoGrid(),
 			form: this._form
         };
 
     }
 
-	infosToArray() {
+	getInfoGrid() {
 
         var list = [];
         for (let key in this.getInfos()) {
-            list.push(this.getInfos()[key])
+            var info = this.getInfos()[key];
+            if (info.list == true)
+                list.push(info);
         }
         return list;
     }
 
 	getInfos() {
-        return {
-           				nome: { label: 'nome', type: 'string', isKey: false },
+		return {
+				usuarioTipoId: { label: 'usuarioTipoId', type: 'int', isKey: true, list:true },
+				nome: { label: 'nome', type: 'string', isKey: false, list:true },
         }
     }
 

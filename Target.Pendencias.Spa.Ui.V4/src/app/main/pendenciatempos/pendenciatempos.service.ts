@@ -14,6 +14,7 @@ export class PendenciaTemposService {
     constructor(private api: ApiService<any>) {
 
 		this._form = new FormGroup({
+            pendenciaTemposId : new FormControl(),
             pendenciaId : new FormControl(),
             usuarioId : new FormControl(),
             inicio : new FormControl(),
@@ -35,28 +36,31 @@ export class PendenciaTemposService {
             summary: {},
             model: {},
             infos: this.getInfos(),
-            grid: this.infosToArray(),
+            grid: this.getInfoGrid(),
 			form: this._form
         };
 
     }
 
-	infosToArray() {
+	getInfoGrid() {
 
         var list = [];
         for (let key in this.getInfos()) {
-            list.push(this.getInfos()[key])
+            var info = this.getInfos()[key];
+            if (info.list == true)
+                list.push(info);
         }
         return list;
     }
 
 	getInfos() {
-        return {
-           				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: false },
-				usuarioId: { label: 'usuarioId', type: 'int', isKey: false },
-				inicio: { label: 'inicio', type: 'DateTime', isKey: false },
-				fim: { label: 'fim', type: 'DateTime?', isKey: false },
-				nota: { label: 'nota', type: 'string', isKey: false },
+		return {
+				pendenciaTemposId: { label: 'pendenciaTemposId', type: 'int', isKey: true, list:true },
+				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: false, list:true },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:true },
+				inicio: { label: 'inicio', type: 'DateTime', isKey: false, list:true },
+				fim: { label: 'fim', type: 'DateTime?', isKey: false, list:true },
+				nota: { label: 'nota', type: 'string', isKey: false, list:true },
         }
     }
 

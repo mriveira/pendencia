@@ -14,6 +14,7 @@ export class ProjetoService {
     constructor(private api: ApiService<any>) {
 
 		this._form = new FormGroup({
+            projetoId : new FormControl(),
             nome : new FormControl(),
             descricao : new FormControl(),
             visao : new FormControl(),
@@ -38,31 +39,34 @@ export class ProjetoService {
             summary: {},
             model: {},
             infos: this.getInfos(),
-            grid: this.infosToArray(),
+            grid: this.getInfoGrid(),
 			form: this._form
         };
 
     }
 
-	infosToArray() {
+	getInfoGrid() {
 
         var list = [];
         for (let key in this.getInfos()) {
-            list.push(this.getInfos()[key])
+            var info = this.getInfos()[key];
+            if (info.list == true)
+                list.push(info);
         }
         return list;
     }
 
 	getInfos() {
-        return {
-           				nome: { label: 'nome', type: 'string', isKey: false },
-				descricao: { label: 'descricao', type: 'string', isKey: false },
-				visao: { label: 'visao', type: 'string', isKey: false },
-				clienteId: { label: 'clienteId', type: 'int', isKey: false },
-				usuarioId: { label: 'usuarioId', type: 'int', isKey: false },
-				chaveUnica: { label: 'chaveUnica', type: 'string', isKey: false },
-				inicio: { label: 'inicio', type: 'DateTime?', isKey: false },
-				fim: { label: 'fim', type: 'DateTime?', isKey: false },
+		return {
+				projetoId: { label: 'projetoId', type: 'int', isKey: true, list:true },
+				nome: { label: 'nome', type: 'string', isKey: false, list:true },
+				descricao: { label: 'descricao', type: 'string', isKey: false, list:true },
+				visao: { label: 'visao', type: 'string', isKey: false, list:true },
+				clienteId: { label: 'clienteId', type: 'int', isKey: false, list:true },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:true },
+				chaveUnica: { label: 'chaveUnica', type: 'string', isKey: false, list:true },
+				inicio: { label: 'inicio', type: 'DateTime?', isKey: false, list:true },
+				fim: { label: 'fim', type: 'DateTime?', isKey: false, list:true },
         }
     }
 

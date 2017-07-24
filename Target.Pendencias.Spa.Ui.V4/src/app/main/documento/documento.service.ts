@@ -14,6 +14,7 @@ export class DocumentoService {
     constructor(private api: ApiService<any>) {
 
 		this._form = new FormGroup({
+            documentoId : new FormControl(),
             arquivo : new FormControl(),
             ext : new FormControl(),
         });
@@ -32,25 +33,28 @@ export class DocumentoService {
             summary: {},
             model: {},
             infos: this.getInfos(),
-            grid: this.infosToArray(),
+            grid: this.getInfoGrid(),
 			form: this._form
         };
 
     }
 
-	infosToArray() {
+	getInfoGrid() {
 
         var list = [];
         for (let key in this.getInfos()) {
-            list.push(this.getInfos()[key])
+            var info = this.getInfos()[key];
+            if (info.list == true)
+                list.push(info);
         }
         return list;
     }
 
 	getInfos() {
-        return {
-           				arquivo: { label: 'arquivo', type: 'string', isKey: false },
-				ext: { label: 'ext', type: 'string', isKey: false },
+		return {
+				documentoId: { label: 'documentoId', type: 'int', isKey: true, list:true },
+				arquivo: { label: 'arquivo', type: 'string', isKey: false, list:true },
+				ext: { label: 'ext', type: 'string', isKey: false, list:true },
         }
     }
 

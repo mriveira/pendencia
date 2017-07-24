@@ -14,6 +14,7 @@ export class PendeciaPrioridadeService {
     constructor(private api: ApiService<any>) {
 
 		this._form = new FormGroup({
+            pendeciaPrioridadeId : new FormControl(),
             nome : new FormControl(),
         });
 
@@ -31,24 +32,27 @@ export class PendeciaPrioridadeService {
             summary: {},
             model: {},
             infos: this.getInfos(),
-            grid: this.infosToArray(),
+            grid: this.getInfoGrid(),
 			form: this._form
         };
 
     }
 
-	infosToArray() {
+	getInfoGrid() {
 
         var list = [];
         for (let key in this.getInfos()) {
-            list.push(this.getInfos()[key])
+            var info = this.getInfos()[key];
+            if (info.list == true)
+                list.push(info);
         }
         return list;
     }
 
 	getInfos() {
-        return {
-           				nome: { label: 'nome', type: 'string', isKey: false },
+		return {
+				pendeciaPrioridadeId: { label: 'pendeciaPrioridadeId', type: 'int', isKey: true, list:true },
+				nome: { label: 'nome', type: 'string', isKey: false, list:true },
         }
     }
 

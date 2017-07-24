@@ -23,7 +23,7 @@ namespace Cna.Erp.Gen
 
                 Namespace = "Target.Pendencias",
                 ContextName = "Target",
-                ShowKeysInFront = false,
+                ShowKeysInFront = true,
                 LengthBigField = 250,
 
                 OutputClassDomain = ConfigurationManager.AppSettings[string.Format("outputClassDomain{0}", contextName)],

@@ -14,6 +14,7 @@ export class ComentarioService {
     constructor(private api: ApiService<any>) {
 
 		this._form = new FormGroup({
+            comentarioId : new FormControl(),
             descricao : new FormControl(),
             data : new FormControl(),
             usuarioId : new FormControl(),
@@ -34,27 +35,30 @@ export class ComentarioService {
             summary: {},
             model: {},
             infos: this.getInfos(),
-            grid: this.infosToArray(),
+            grid: this.getInfoGrid(),
 			form: this._form
         };
 
     }
 
-	infosToArray() {
+	getInfoGrid() {
 
         var list = [];
         for (let key in this.getInfos()) {
-            list.push(this.getInfos()[key])
+            var info = this.getInfos()[key];
+            if (info.list == true)
+                list.push(info);
         }
         return list;
     }
 
 	getInfos() {
-        return {
-           				descricao: { label: 'descricao', type: 'string', isKey: false },
-				data: { label: 'data', type: 'DateTime', isKey: false },
-				usuarioId: { label: 'usuarioId', type: 'int', isKey: false },
-				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: false },
+		return {
+				comentarioId: { label: 'comentarioId', type: 'int', isKey: true, list:true },
+				descricao: { label: 'descricao', type: 'string', isKey: false, list:true },
+				data: { label: 'data', type: 'DateTime', isKey: false, list:true },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:true },
+				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: false, list:true },
         }
     }
 

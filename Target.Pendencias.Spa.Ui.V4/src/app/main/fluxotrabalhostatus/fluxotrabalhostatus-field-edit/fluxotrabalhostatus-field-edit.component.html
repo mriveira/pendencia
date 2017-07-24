@@ -3,7 +3,7 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.infos.nome.label }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required formControlName='nome' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required formControlName='nome'  />
                 </div>
 			</section>
 			<section class="col-md-12">
@@ -15,19 +15,19 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.infos.corFundo.label }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.corFundo' name='corFundo'  formControlName='corFundo' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.corFundo' name='corFundo'  formControlName='corFundo'  />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.infos.corFonte.label }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.corFonte' name='corFonte'  formControlName='corFonte' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.corFonte' name='corFonte'  formControlName='corFonte'  />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.infos.ordem.label }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.ordem' name='ordem'  formControlName='ordem' />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.ordem' name='ordem'  formControlName='ordem' maski='9999999999' />
                 </div>
 			</section>
   </div>

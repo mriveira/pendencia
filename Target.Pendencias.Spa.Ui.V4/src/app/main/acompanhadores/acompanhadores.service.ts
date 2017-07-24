@@ -15,6 +15,7 @@ export class AcompanhadoresService {
 
 		this._form = new FormGroup({
             pendenciaId : new FormControl(),
+            usuarioId : new FormControl(),
         });
 
     }
@@ -31,24 +32,27 @@ export class AcompanhadoresService {
             summary: {},
             model: {},
             infos: this.getInfos(),
-            grid: this.infosToArray(),
+            grid: this.getInfoGrid(),
 			form: this._form
         };
 
     }
 
-	infosToArray() {
+	getInfoGrid() {
 
         var list = [];
         for (let key in this.getInfos()) {
-            list.push(this.getInfos()[key])
+            var info = this.getInfos()[key];
+            if (info.list == true)
+                list.push(info);
         }
         return list;
     }
 
 	getInfos() {
-        return {
-           				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: true },
+		return {
+				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: true, list:true },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: true, list:true },
         }
     }
 

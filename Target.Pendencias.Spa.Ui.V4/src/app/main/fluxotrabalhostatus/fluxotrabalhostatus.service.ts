@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -14,6 +14,7 @@ export class FluxoTrabalhoStatusService {
     constructor(private api: ApiService<any>) {
 
 		this._form = new FormGroup({
+            fluxoTrabalhoStatusId : new FormControl(),
             nome : new FormControl(),
             fluxoTrabalhoTipoId : new FormControl(),
             corFundo : new FormControl(),
@@ -35,28 +36,31 @@ export class FluxoTrabalhoStatusService {
             summary: {},
             model: {},
             infos: this.getInfos(),
-            grid: this.infosToArray(),
+            grid: this.getInfoGrid(),
 			form: this._form
         };
 
     }
 
-	infosToArray() {
+	getInfoGrid() {
 
         var list = [];
         for (let key in this.getInfos()) {
-            list.push(this.getInfos()[key])
+            var info = this.getInfos()[key];
+            if (info.list == true)
+                list.push(info);
         }
         return list;
     }
 
 	getInfos() {
-        return {
-           				nome: { label: 'nome', type: 'string', isKey: false },
-				fluxoTrabalhoTipoId: { label: 'fluxoTrabalhoTipoId', type: 'int', isKey: false },
-				corFundo: { label: 'corFundo', type: 'string', isKey: false },
-				corFonte: { label: 'corFonte', type: 'string', isKey: false },
-				ordem: { label: 'ordem', type: 'int?', isKey: false },
+		return {
+				fluxoTrabalhoStatusId: { label: 'fluxoTrabalhoStatusId', type: 'int', isKey: true, list:true },
+				nome: { label: 'nome', type: 'string', isKey: false, list:true },
+				fluxoTrabalhoTipoId: { label: 'fluxoTrabalhoTipoId', type: 'int', isKey: false, list:true },
+				corFundo: { label: 'corFundo', type: 'string', isKey: false, list:true },
+				corFonte: { label: 'corFonte', type: 'string', isKey: false, list:true },
+				ordem: { label: 'ordem', type: 'int?', isKey: false, list:true },
         }
     }
 

@@ -1,16 +1,5 @@
 <div class="modal-body">
   <div class="row" [formGroup]="vm.form">
-			<section class="col-md-12">
-                <div class='form-group'>
-                    <label>{{ vm.infos.documentoId.label }}</label>
-                    <select class='form-control'  name='documentoId' [(ngModel)]='vm.model.documentoId' required formControlName='documentoId' datasource [dataitem]="'Documento'"></select>
-                  </div>
-			</section>
-			<section class="col-md-12">
-                <div class='form-group'>
-                    <label>{{ vm.infos.comentarioId.label }}</label>
-                    <select class='form-control'  name='comentarioId' [(ngModel)]='vm.model.comentarioId' required formControlName='comentarioId' datasource [dataitem]="'Comentario'"></select>
-                  </div>
-			</section>
+
   </div>
 </div>

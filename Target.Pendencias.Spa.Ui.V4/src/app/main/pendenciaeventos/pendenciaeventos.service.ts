@@ -14,6 +14,7 @@ export class PendenciaEventosService {
     constructor(private api: ApiService<any>) {
 
 		this._form = new FormGroup({
+            pendenciaEventosId : new FormControl(),
             pendenciaId : new FormControl(),
             descricao : new FormControl(),
             data : new FormControl(),
@@ -33,26 +34,29 @@ export class PendenciaEventosService {
             summary: {},
             model: {},
             infos: this.getInfos(),
-            grid: this.infosToArray(),
+            grid: this.getInfoGrid(),
 			form: this._form
         };
 
     }
 
-	infosToArray() {
+	getInfoGrid() {
 
         var list = [];
         for (let key in this.getInfos()) {
-            list.push(this.getInfos()[key])
+            var info = this.getInfos()[key];
+            if (info.list == true)
+                list.push(info);
         }
         return list;
     }
 
 	getInfos() {
-        return {
-           				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: false },
-				descricao: { label: 'descricao', type: 'string', isKey: false },
-				data: { label: 'data', type: 'DateTime?', isKey: false },
+		return {
+				pendenciaEventosId: { label: 'pendenciaEventosId', type: 'int', isKey: true, list:true },
+				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: false, list:true },
+				descricao: { label: 'descricao', type: 'string', isKey: false, list:true },
+				data: { label: 'data', type: 'DateTime?', isKey: false, list:true },
         }
     }
 
