@@ -28,6 +28,20 @@ export class ClienteFieldCreateComponent implements OnInit {
 
     }
 
-
+	public onChangeMakeSelectclienteId(eventArgs) {
+        this.vm.model.clienteId = eventArgs;
+	}
+	public onChangeMakeSelectnome(eventArgs) {
+        this.vm.model.nome = eventArgs;
+	}
+	public onChangeMakeSelecttelefoneDeContato(eventArgs) {
+        this.vm.model.telefoneDeContato = eventArgs;
+	}
+	public onChangeMakeSelectemailDeContato(eventArgs) {
+        this.vm.model.emailDeContato = eventArgs;
+	}
+	public onChangeMakeSelectcpfcnpj(eventArgs) {
+        this.vm.model.cpfcnpj = eventArgs;
+	}
 
 }

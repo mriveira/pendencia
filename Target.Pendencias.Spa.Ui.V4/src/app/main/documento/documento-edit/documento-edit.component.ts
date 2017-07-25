@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ViewModel } from 'app/common/model/viewmodel';
 import { DocumentoService } from '../documento.service';
 
 @Component({
@@ -11,13 +12,14 @@ import { DocumentoService } from '../documento.service';
 })
 export class DocumentoEditComponent implements OnInit {
 
-    vm: any;
+    vm: ViewModel;
     id: number;
     private sub: any;
 
     constructor(private documentoService: DocumentoService, private route: ActivatedRoute, private router: Router) {
 
-        this.vm = {};
+		this.vm = this.documentoService.initVM();
+
     }
 
     ngOnInit() {
@@ -26,7 +28,6 @@ export class DocumentoEditComponent implements OnInit {
             this.id = params['id']; 
         });
 
-        this.vm = this.documentoService.initVM();
 
         this.documentoService.get({ id: this.id }).subscribe((data) => {
             this.vm.model = data.data;

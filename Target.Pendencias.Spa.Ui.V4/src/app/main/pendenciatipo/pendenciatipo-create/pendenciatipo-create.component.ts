@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ViewModel } from 'app/common/model/viewmodel';
 import { PendenciaTipoService } from '../pendenciatipo.service';
 
 @Component({
@@ -11,13 +12,13 @@ import { PendenciaTipoService } from '../pendenciatipo.service';
 })
 export class PendenciaTipoCreateComponent implements OnInit {
 
-    vm: any;
+    vm: ViewModel;
     id: number;
     private sub: any;
 
     constructor(private pendenciaTipoService: PendenciaTipoService, private route: ActivatedRoute, private router: Router) {
 
-        this.vm = {};
+        this.vm = this.pendenciaTipoService.initVM();
     }
 
     ngOnInit() {
@@ -25,8 +26,6 @@ export class PendenciaTipoCreateComponent implements OnInit {
         this.sub = this.route.params.subscribe(params => {
             this.id = params['id']; 
         });
-
-        this.vm = this.pendenciaTipoService.initVM();
 
         this.pendenciaTipoService.get({ id: this.id }).subscribe((data) => {
             this.vm.model = data.data;

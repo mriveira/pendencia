@@ -28,6 +28,11 @@ export class PendenciaTipoFieldEditComponent implements OnInit {
 
     }
     
-
+	public onChangeMakeSelectpendenciaTipoId(eventArgs) {
+        this.vm.model.pendenciaTipoId = eventArgs;
+	}
+	public onChangeMakeSelectnome(eventArgs) {
+        this.vm.model.nome = eventArgs;
+	}
    
 }

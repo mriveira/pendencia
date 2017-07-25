@@ -2,6 +2,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ViewModel } from 'app/common/model/viewmodel';
 import { <#className#>Service } from '../<#classNameLowerAndSeparator#>.service';
 
 @Component({
@@ -11,13 +12,13 @@ import { <#className#>Service } from '../<#classNameLowerAndSeparator#>.service'
 })
 export class <#className#>CreateComponent implements OnInit {
 
-    vm: any;
+    vm: ViewModel;
     id: number;
     private sub: any;
 
     constructor(private <#classNameInstance#>Service: <#className#>Service, private route: ActivatedRoute, private router: Router) {
 
-        this.vm = {};
+        this.vm = this.<#classNameInstance#>Service.initVM();
     }
 
     ngOnInit() {
@@ -25,8 +26,6 @@ export class <#className#>CreateComponent implements OnInit {
         this.sub = this.route.params.subscribe(params => {
             this.id = params['id']; 
         });
-
-        this.vm = this.<#classNameInstance#>Service.initVM();
 
         this.<#classNameInstance#>Service.get({ id: this.id }).subscribe((data) => {
             this.vm.model = data.data;

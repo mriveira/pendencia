@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ViewModel } from 'app/common/model/viewmodel';
 import { ProjetoFluxoTrabalhoStatusService } from '../projetofluxotrabalhostatus.service';
 
 @Component({
@@ -11,13 +12,13 @@ import { ProjetoFluxoTrabalhoStatusService } from '../projetofluxotrabalhostatus
 })
 export class ProjetoFluxoTrabalhoStatusCreateComponent implements OnInit {
 
-    vm: any;
+    vm: ViewModel;
     id: number;
     private sub: any;
 
     constructor(private projetoFluxoTrabalhoStatusService: ProjetoFluxoTrabalhoStatusService, private route: ActivatedRoute, private router: Router) {
 
-        this.vm = {};
+        this.vm = this.projetoFluxoTrabalhoStatusService.initVM();
     }
 
     ngOnInit() {
@@ -25,8 +26,6 @@ export class ProjetoFluxoTrabalhoStatusCreateComponent implements OnInit {
         this.sub = this.route.params.subscribe(params => {
             this.id = params['id']; 
         });
-
-        this.vm = this.projetoFluxoTrabalhoStatusService.initVM();
 
         this.projetoFluxoTrabalhoStatusService.get({ id: this.id }).subscribe((data) => {
             this.vm.model = data.data;

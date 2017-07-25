@@ -4,6 +4,7 @@ import { FormsModule, FormGroup, FormControl} from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { FluxoTrabalhoTipoService } from './fluxotrabalhotipo.service';
+import { ViewModel } from 'app/common/model/viewmodel';
 import { GlobalService } from '../../global.service';
 
 
@@ -14,7 +15,7 @@ import { GlobalService } from '../../global.service';
 })
 export class FluxoTrabalhoTipoComponent implements OnInit {
 
-    vm: any;
+    vm: ViewModel;
 
     operationConfimationYes: any;
 
@@ -24,13 +25,12 @@ export class FluxoTrabalhoTipoComponent implements OnInit {
 
     constructor(private fluxoTrabalhoTipoService: FluxoTrabalhoTipoService, private router: Router) {
 
-        this.vm = {};
+        this.vm = null;
     }
 
     ngOnInit() {
 
-
-        this.vm = this.fluxoTrabalhoTipoService.initVM();
+		this.vm = this.fluxoTrabalhoTipoService.initVM();
 
         this.fluxoTrabalhoTipoService.get().subscribe((result) => {
             this.vm.filterResult = result.dataList;
@@ -118,8 +118,7 @@ export class FluxoTrabalhoTipoComponent implements OnInit {
                     });
                     this.vm.summary.total = this.vm.filterResult.length
                 });
-            },
-            this.vm.messageConfirmation
+            }
         );
 
         GlobalService.operationExecuted.emit(conf);

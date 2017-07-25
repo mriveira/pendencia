@@ -31,6 +31,27 @@ export class PendenciaFieldEditComponent implements OnInit {
 	public onChangeMakeSelectprojetoId(eventArgs) {
         this.vm.model.projetoId = eventArgs;
 	}
+	public onChangeMakeSelectpendenciaId(eventArgs) {
+        this.vm.model.pendenciaId = eventArgs;
+	}
+	public onChangeMakeSelectresumo(eventArgs) {
+        this.vm.model.resumo = eventArgs;
+	}
+	public onChangeMakeSelectdescricao(eventArgs) {
+        this.vm.model.descricao = eventArgs;
+	}
+	public onChangeMakeSelectrequisitadoPor(eventArgs) {
+        this.vm.model.requisitadoPor = eventArgs;
+	}
+	public onChangeMakeSelecttempoEstimado(eventArgs) {
+        this.vm.model.tempoEstimado = eventArgs;
+	}
+	public onChangeMakeSelectpontosEstimados(eventArgs) {
+        this.vm.model.pontosEstimados = eventArgs;
+	}
+	public onChangeMakeSelectprazo(eventArgs) {
+        this.vm.model.prazo = eventArgs;
+	}
 	public onChangeMakeSelectpendenciaTipoId(eventArgs) {
         this.vm.model.pendenciaTipoId = eventArgs;
 	}
@@ -39,6 +60,9 @@ export class PendenciaFieldEditComponent implements OnInit {
 	}
 	public onChangeMakeSelectpendenciaPrioridadeId(eventArgs) {
         this.vm.model.pendenciaPrioridadeId = eventArgs;
+	}
+	public onChangeMakeSelecttags(eventArgs) {
+        this.vm.model.tags = eventArgs;
 	}
    
 }

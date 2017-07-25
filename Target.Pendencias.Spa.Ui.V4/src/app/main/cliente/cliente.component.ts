@@ -4,6 +4,7 @@ import { FormsModule, FormGroup, FormControl} from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ClienteService } from './cliente.service';
+import { ViewModel } from 'app/common/model/viewmodel';
 import { GlobalService } from '../../global.service';
 
 
@@ -14,7 +15,7 @@ import { GlobalService } from '../../global.service';
 })
 export class ClienteComponent implements OnInit {
 
-    vm: any;
+    vm: ViewModel;
 
     operationConfimationYes: any;
 
@@ -24,13 +25,12 @@ export class ClienteComponent implements OnInit {
 
     constructor(private clienteService: ClienteService, private router: Router) {
 
-        this.vm = {};
+        this.vm = null;
     }
 
     ngOnInit() {
 
-
-        this.vm = this.clienteService.initVM();
+		this.vm = this.clienteService.initVM();
 
         this.clienteService.get().subscribe((result) => {
             this.vm.filterResult = result.dataList;
@@ -118,8 +118,7 @@ export class ClienteComponent implements OnInit {
                     });
                     this.vm.summary.total = this.vm.filterResult.length
                 });
-            },
-            this.vm.messageConfirmation
+            }
         );
 
         GlobalService.operationExecuted.emit(conf);

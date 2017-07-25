@@ -28,8 +28,29 @@ export class ProjetoFieldEditComponent implements OnInit {
 
     }
     
+	public onChangeMakeSelectprojetoId(eventArgs) {
+        this.vm.model.projetoId = eventArgs;
+	}
+	public onChangeMakeSelectnome(eventArgs) {
+        this.vm.model.nome = eventArgs;
+	}
+	public onChangeMakeSelectdescricao(eventArgs) {
+        this.vm.model.descricao = eventArgs;
+	}
+	public onChangeMakeSelectvisao(eventArgs) {
+        this.vm.model.visao = eventArgs;
+	}
 	public onChangeMakeSelectclienteId(eventArgs) {
         this.vm.model.clienteId = eventArgs;
+	}
+	public onChangeMakeSelectchaveUnica(eventArgs) {
+        this.vm.model.chaveUnica = eventArgs;
+	}
+	public onChangeMakeSelectinicio(eventArgs) {
+        this.vm.model.inicio = eventArgs;
+	}
+	public onChangeMakeSelectfim(eventArgs) {
+        this.vm.model.fim = eventArgs;
 	}
    
 }

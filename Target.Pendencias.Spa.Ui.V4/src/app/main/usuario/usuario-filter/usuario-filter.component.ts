@@ -15,8 +15,26 @@ export class UsuarioFilterComponent implements OnInit {
     }
 
 
-    public onChangeMakeSelectusuarioTipoId(eventArgs) {
+    public onChangeMakeSelectusuarioId(eventArgs) {
+        this.vm.modelFilter.usuarioId = eventArgs;
+	}
+public onChangeMakeSelectnome(eventArgs) {
+        this.vm.modelFilter.nome = eventArgs;
+	}
+public onChangeMakeSelectfoto(eventArgs) {
+        this.vm.modelFilter.foto = eventArgs;
+	}
+public onChangeMakeSelectemail(eventArgs) {
+        this.vm.modelFilter.email = eventArgs;
+	}
+public onChangeMakeSelectsenha(eventArgs) {
+        this.vm.modelFilter.senha = eventArgs;
+	}
+public onChangeMakeSelectusuarioTipoId(eventArgs) {
         this.vm.modelFilter.usuarioTipoId = eventArgs;
+	}
+public onChangeMakeSelectativo(eventArgs) {
+        this.vm.modelFilter.ativo = eventArgs;
 	}
 
 }

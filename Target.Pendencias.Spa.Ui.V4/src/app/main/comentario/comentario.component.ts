@@ -4,6 +4,7 @@ import { FormsModule, FormGroup, FormControl} from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ComentarioService } from './comentario.service';
+import { ViewModel } from 'app/common/model/viewmodel';
 import { GlobalService } from '../../global.service';
 
 
@@ -14,7 +15,7 @@ import { GlobalService } from '../../global.service';
 })
 export class ComentarioComponent implements OnInit {
 
-    vm: any;
+    vm: ViewModel;
 
     operationConfimationYes: any;
 
@@ -24,13 +25,12 @@ export class ComentarioComponent implements OnInit {
 
     constructor(private comentarioService: ComentarioService, private router: Router) {
 
-        this.vm = {};
+        this.vm = null;
     }
 
     ngOnInit() {
 
-
-        this.vm = this.comentarioService.initVM();
+		this.vm = this.comentarioService.initVM();
 
         this.comentarioService.get().subscribe((result) => {
             this.vm.filterResult = result.dataList;
@@ -118,8 +118,7 @@ export class ComentarioComponent implements OnInit {
                     });
                     this.vm.summary.total = this.vm.filterResult.length
                 });
-            },
-            this.vm.messageConfirmation
+            }
         );
 
         GlobalService.operationExecuted.emit(conf);

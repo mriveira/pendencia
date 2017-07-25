@@ -4,14 +4,18 @@ import { Subject } from 'rxjs/Subject';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { ApiService } from 'app/common/services/api.service';
+import { ServiceBase } from 'app/common/services/service.base';
+import { ViewModel } from 'app/common/model/viewmodel';
 import { GlobalService } from '../../global.service';
 
 @Injectable()
-export class ClienteService {
+export class ClienteService extends ServiceBase {
 
 	private _form : FormGroup;
 
     constructor(private api: ApiService<any>) {
+
+		super();
 
 		this._form = new FormGroup({
             clienteId : new FormControl(),
@@ -24,33 +28,21 @@ export class ClienteService {
 
     }
 
-    initVM() {
+    initVM(): ViewModel {
 
-        return  {
+        return new ViewModel({
             mostrarFiltros: false,
             actionTitle: "Cliente",
             actionDescription: "",
-			downloadUri : GlobalService.getEndPoints().DOWNLOAD,
+            downloadUri: GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
             modelFilter: {},
             summary: {},
             model: {},
             infos: this.getInfos(),
-            grid: this.getInfoGrid(),
-			form: this._form
-        };
-
-    }
-
-	getInfoGrid() {
-
-        var list = [];
-        for (let key in this.getInfos()) {
-            var info = this.getInfos()[key];
-            if (info.list == true)
-                list.push(info);
-        }
-        return list;
+            grid: super.getInfoGrid(this.getInfos()),
+            form: this._form
+        });
     }
 
 	getInfos() {
@@ -81,16 +73,6 @@ export class ClienteService {
     delete(model: any): Observable<any> {
 
         return this.api.setResource('Cliente').delete(model);
-
-    }
-
-    pagingConfig(modelFilter, pageConfig) {
-
-        return Object.assign(modelFilter, {
-            PageIndex: pageConfig.PageIndex,
-            PageSize: pageConfig.PageSize,
-            IsPagination: true
-        });
 
     }
 

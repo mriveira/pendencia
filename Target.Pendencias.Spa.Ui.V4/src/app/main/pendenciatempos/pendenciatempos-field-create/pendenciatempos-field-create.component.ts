@@ -28,11 +28,23 @@ export class PendenciaTemposFieldCreateComponent implements OnInit {
 
     }
 
+	public onChangeMakeSelectpendenciaTemposId(eventArgs) {
+        this.vm.model.pendenciaTemposId = eventArgs;
+	}
 	public onChangeMakeSelectpendenciaId(eventArgs) {
         this.vm.model.pendenciaId = eventArgs;
 	}
 	public onChangeMakeSelectusuarioId(eventArgs) {
         this.vm.model.usuarioId = eventArgs;
+	}
+	public onChangeMakeSelectinicio(eventArgs) {
+        this.vm.model.inicio = eventArgs;
+	}
+	public onChangeMakeSelectfim(eventArgs) {
+        this.vm.model.fim = eventArgs;
+	}
+	public onChangeMakeSelectnota(eventArgs) {
+        this.vm.model.nota = eventArgs;
 	}
 
 }

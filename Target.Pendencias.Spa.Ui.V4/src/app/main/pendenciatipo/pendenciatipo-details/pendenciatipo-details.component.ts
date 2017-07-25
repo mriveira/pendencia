@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ViewModel } from 'app/common/model/viewmodel';
 
 @Component({
     selector: 'app-pendenciatipo-details',
@@ -8,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PendenciaTipoDetailsComponent implements OnInit {
 
 
-    @Input() vm: any;
+    @Input() vm: ViewModel;
 
     constructor() { }
 

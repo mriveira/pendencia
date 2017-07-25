@@ -4,6 +4,7 @@ import { FormsModule, FormGroup, FormControl} from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { PendeciaPrioridadeService } from './pendeciaprioridade.service';
+import { ViewModel } from 'app/common/model/viewmodel';
 import { GlobalService } from '../../global.service';
 
 
@@ -14,7 +15,7 @@ import { GlobalService } from '../../global.service';
 })
 export class PendeciaPrioridadeComponent implements OnInit {
 
-    vm: any;
+    vm: ViewModel;
 
     operationConfimationYes: any;
 
@@ -24,13 +25,12 @@ export class PendeciaPrioridadeComponent implements OnInit {
 
     constructor(private pendeciaPrioridadeService: PendeciaPrioridadeService, private router: Router) {
 
-        this.vm = {};
+        this.vm = null;
     }
 
     ngOnInit() {
 
-
-        this.vm = this.pendeciaPrioridadeService.initVM();
+		this.vm = this.pendeciaPrioridadeService.initVM();
 
         this.pendeciaPrioridadeService.get().subscribe((result) => {
             this.vm.filterResult = result.dataList;
@@ -118,8 +118,7 @@ export class PendeciaPrioridadeComponent implements OnInit {
                     });
                     this.vm.summary.total = this.vm.filterResult.length
                 });
-            },
-            this.vm.messageConfirmation
+            }
         );
 
         GlobalService.operationExecuted.emit(conf);
