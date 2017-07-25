@@ -15,19 +15,19 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.infos.inicio.label }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.inicio' name='inicio' required='true' formControlName='inicio'  />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.inicio' name='inicio' required='true' formControlName='inicio' datetimepicker />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.infos.fim.label }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.fim' name='fim'  formControlName='fim'  />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.fim' name='fim'  formControlName='fim' datetimepicker />
                 </div>
 			</section>
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.infos.nota.label }}</label>
-                    <textarea class='form-control'  [(ngModel)]='vm.model.nota' name='nota'  rows='10' formControlName='nota' ></textarea>
+                    <textarea class='form-control'  [(ngModel)]='vm.model.nota' name='nota'  rows='10' formControlName='nota'  editorhtml='nota'></textarea>
                 </div>
 			</section>
   </div>

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -23,6 +23,7 @@ export class UsuarioService extends ServiceBase {
             foto : new FormControl(),
             email : new FormControl(),
             senha : new FormControl(),
+            confSenha: new FormControl(),
             usuarioTipoId : new FormControl(),
             ativo : new FormControl(),
             usuarioDonoId : new FormControl(),
@@ -54,6 +55,7 @@ export class UsuarioService extends ServiceBase {
 				foto: { label: 'foto', type: 'string', isKey: false, list:false },
 				email: { label: 'email', type: 'string', isKey: false, list:true },
 				senha: { label: 'senha', type: 'string', isKey: false, list:true },
+            confSenha: new FormControl(),
 				usuarioTipoId: { label: 'usuarioTipoId', type: 'int', isKey: false, list:true },
 				ativo: { label: 'ativo', type: 'bool', isKey: false, list:true },
 				usuarioDonoId: { label: 'usuarioDonoId', type: 'int?', isKey: false, list:false },

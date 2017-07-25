@@ -15,7 +15,7 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.infos.descricao.label }}</label>
-                    <textarea class='form-control'  [(ngModel)]='vm.model.descricao' name='descricao'  rows='10' formControlName='descricao' ></textarea>
+                    <textarea class='form-control'  [(ngModel)]='vm.model.descricao' name='descricao'  rows='10' formControlName='descricao'  editorhtml='descricao'></textarea>
                 </div>
 			</section>
 			<section class="col-md-12">
@@ -39,7 +39,7 @@
 			<section class="col-md-12">
                 <div class='form-group'>
                     <label>{{ vm.infos.prazo.label }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.prazo' name='prazo'  formControlName='prazo'  />
+                    <input type='text' class='form-control'[(ngModel)]='vm.model.prazo' name='prazo'  formControlName='prazo' datetimepicker />
                 </div>
 			</section>
 			<section class="col-md-12">
