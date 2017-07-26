@@ -28,11 +28,6 @@ export class PendenciaDocumentoFieldCreateComponent implements OnInit {
 
     }
 
-	public onChangeMakeSelectpendenciaId(eventArgs) {
-        this.vm.model.pendenciaId = eventArgs;
-	}
-	public onChangeMakeSelectdocumentoId(eventArgs) {
-        this.vm.model.documentoId = eventArgs;
-	}
+
 
 }

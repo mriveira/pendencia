@@ -28,17 +28,6 @@ export class PendenciaEventosFieldEditComponent implements OnInit {
 
     }
     
-	public onChangeMakeSelectpendenciaEventosId(eventArgs) {
-        this.vm.model.pendenciaEventosId = eventArgs;
-	}
-	public onChangeMakeSelectpendenciaId(eventArgs) {
-        this.vm.model.pendenciaId = eventArgs;
-	}
-	public onChangeMakeSelectdescricao(eventArgs) {
-        this.vm.model.descricao = eventArgs;
-	}
-	public onChangeMakeSelectdata(eventArgs) {
-        this.vm.model.data = eventArgs;
-	}
+
    
 }

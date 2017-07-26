@@ -15,20 +15,6 @@ export class ComentarioFilterComponent implements OnInit {
     }
 
 
-    public onChangeMakeSelectcomentarioId(eventArgs) {
-        this.vm.modelFilter.comentarioId = eventArgs;
-	}
-public onChangeMakeSelectdescricao(eventArgs) {
-        this.vm.modelFilter.descricao = eventArgs;
-	}
-public onChangeMakeSelectdata(eventArgs) {
-        this.vm.modelFilter.data = eventArgs;
-	}
-public onChangeMakeSelectusuarioId(eventArgs) {
-        this.vm.modelFilter.usuarioId = eventArgs;
-	}
-public onChangeMakeSelectpendenciaId(eventArgs) {
-        this.vm.modelFilter.pendenciaId = eventArgs;
-	}
+    
 
 }

@@ -15,11 +15,6 @@ export class AcompanhadoresFilterComponent implements OnInit {
     }
 
 
-    public onChangeMakeSelectpendenciaId(eventArgs) {
-        this.vm.modelFilter.pendenciaId = eventArgs;
-	}
-public onChangeMakeSelectusuarioId(eventArgs) {
-        this.vm.modelFilter.usuarioId = eventArgs;
-	}
+    
 
 }

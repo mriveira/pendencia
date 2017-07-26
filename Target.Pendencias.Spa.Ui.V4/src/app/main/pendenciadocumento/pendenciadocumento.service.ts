@@ -20,6 +20,7 @@ export class PendenciaDocumentoService extends ServiceBase {
 		this._form = new FormGroup({
             pendenciaId : new FormControl(),
             documentoId : new FormControl(),
+
         });
 
     }
@@ -45,6 +46,7 @@ export class PendenciaDocumentoService extends ServiceBase {
 		return {
 				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: true, list:true },
 				documentoId: { label: 'documentoId', type: 'int', isKey: true, list:true },
+
         }
     }
 

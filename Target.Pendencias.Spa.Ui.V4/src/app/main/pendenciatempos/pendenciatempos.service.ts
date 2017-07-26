@@ -24,6 +24,7 @@ export class PendenciaTemposService extends ServiceBase {
             inicio : new FormControl(),
             fim : new FormControl(),
             nota : new FormControl(),
+
         });
 
     }
@@ -53,6 +54,7 @@ export class PendenciaTemposService extends ServiceBase {
 				inicio: { label: 'inicio', type: 'DateTime', isKey: false, list:true },
 				fim: { label: 'fim', type: 'DateTime?', isKey: false, list:true },
 				nota: { label: 'nota', type: 'string', isKey: false, list:true },
+
         }
     }
 

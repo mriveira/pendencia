@@ -28,11 +28,6 @@ export class UsuarioTipoFieldCreateComponent implements OnInit {
 
     }
 
-	public onChangeMakeSelectusuarioTipoId(eventArgs) {
-        this.vm.model.usuarioTipoId = eventArgs;
-	}
-	public onChangeMakeSelectnome(eventArgs) {
-        this.vm.model.nome = eventArgs;
-	}
+
 
 }

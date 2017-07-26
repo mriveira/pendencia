@@ -24,6 +24,7 @@ export class FluxoTrabalhoStatusService extends ServiceBase {
             corFundo : new FormControl(),
             corFonte : new FormControl(),
             ordem : new FormControl(),
+
         });
 
     }
@@ -53,6 +54,7 @@ export class FluxoTrabalhoStatusService extends ServiceBase {
 				corFundo: { label: 'corFundo', type: 'string', isKey: false, list:true },
 				corFonte: { label: 'corFonte', type: 'string', isKey: false, list:true },
 				ordem: { label: 'ordem', type: 'int?', isKey: false, list:true },
+
         }
     }
 

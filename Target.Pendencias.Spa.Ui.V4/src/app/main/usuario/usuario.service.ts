@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -27,6 +27,7 @@ export class UsuarioService extends ServiceBase {
             usuarioTipoId : new FormControl(),
             ativo : new FormControl(),
             usuarioDonoId : new FormControl(),
+
         });
 
     }
@@ -50,15 +51,16 @@ export class UsuarioService extends ServiceBase {
 
 	getInfos() {
 		return {
-				usuarioId: { label: 'usuarioId', type: 'int', isKey: true, list:true },
-				nome: { label: 'nome', type: 'string', isKey: false, list:true },
-				foto: { label: 'foto', type: 'string', isKey: false, list:false },
-				email: { label: 'email', type: 'string', isKey: false, list:true },
-				senha: { label: 'senha', type: 'string', isKey: false, list:true },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: true, list:false },
+				nome: { label: 'nome', type: 'string', isKey: false, list:false },
+				foto: { label: 'foto', type: 'string', isKey: false, list:true },
+				email: { label: 'email', type: 'string', isKey: false, list:false },
+				senha: { label: 'senha', type: 'string', isKey: false, list:false },
             confSenha: new FormControl(),
-				usuarioTipoId: { label: 'usuarioTipoId', type: 'int', isKey: false, list:true },
-				ativo: { label: 'ativo', type: 'bool', isKey: false, list:true },
-				usuarioDonoId: { label: 'usuarioDonoId', type: 'int?', isKey: false, list:false },
+				usuarioTipoId: { label: 'usuarioTipoId', type: 'int', isKey: false, list:false },
+				ativo: { label: 'ativo', type: 'bool', isKey: false, list:false },
+				usuarioDonoId: { label: 'usuarioDonoId', type: 'int?', isKey: false, list:true },
+
         }
     }
 

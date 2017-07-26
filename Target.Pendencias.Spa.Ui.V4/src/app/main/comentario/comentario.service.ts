@@ -23,6 +23,7 @@ export class ComentarioService extends ServiceBase {
             data : new FormControl(),
             usuarioId : new FormControl(),
             pendenciaId : new FormControl(),
+
         });
 
     }
@@ -51,6 +52,7 @@ export class ComentarioService extends ServiceBase {
 				data: { label: 'data', type: 'DateTime', isKey: false, list:true },
 				usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:true },
 				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: false, list:true },
+
         }
     }
 

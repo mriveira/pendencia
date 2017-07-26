@@ -28,11 +28,6 @@ export class ProjetoFluxoTrabalhoStatusFieldEditComponent implements OnInit {
 
     }
     
-	public onChangeMakeSelectprojetoId(eventArgs) {
-        this.vm.model.projetoId = eventArgs;
-	}
-	public onChangeMakeSelectfluxoTrabalhoStatusId(eventArgs) {
-        this.vm.model.fluxoTrabalhoStatusId = eventArgs;
-	}
+
    
 }

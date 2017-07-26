@@ -15,11 +15,6 @@ export class PendenciaTipoFilterComponent implements OnInit {
     }
 
 
-    public onChangeMakeSelectpendenciaTipoId(eventArgs) {
-        this.vm.modelFilter.pendenciaTipoId = eventArgs;
-	}
-public onChangeMakeSelectnome(eventArgs) {
-        this.vm.modelFilter.nome = eventArgs;
-	}
+    
 
 }

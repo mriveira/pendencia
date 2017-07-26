@@ -20,6 +20,7 @@ export class UsuarioTipoService extends ServiceBase {
 		this._form = new FormGroup({
             usuarioTipoId : new FormControl(),
             nome : new FormControl(),
+
         });
 
     }
@@ -45,6 +46,7 @@ export class UsuarioTipoService extends ServiceBase {
 		return {
 				usuarioTipoId: { label: 'usuarioTipoId', type: 'int', isKey: true, list:true },
 				nome: { label: 'nome', type: 'string', isKey: false, list:true },
+
         }
     }
 

@@ -20,6 +20,7 @@ export class PendeciaPrioridadeService extends ServiceBase {
 		this._form = new FormGroup({
             pendeciaPrioridadeId : new FormControl(),
             nome : new FormControl(),
+
         });
 
     }
@@ -45,6 +46,7 @@ export class PendeciaPrioridadeService extends ServiceBase {
 		return {
 				pendeciaPrioridadeId: { label: 'pendeciaPrioridadeId', type: 'int', isKey: true, list:true },
 				nome: { label: 'nome', type: 'string', isKey: false, list:true },
+
         }
     }
 

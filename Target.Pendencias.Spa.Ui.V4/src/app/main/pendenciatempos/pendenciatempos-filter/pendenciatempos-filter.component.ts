@@ -15,23 +15,6 @@ export class PendenciaTemposFilterComponent implements OnInit {
     }
 
 
-    public onChangeMakeSelectpendenciaTemposId(eventArgs) {
-        this.vm.modelFilter.pendenciaTemposId = eventArgs;
-	}
-public onChangeMakeSelectpendenciaId(eventArgs) {
-        this.vm.modelFilter.pendenciaId = eventArgs;
-	}
-public onChangeMakeSelectusuarioId(eventArgs) {
-        this.vm.modelFilter.usuarioId = eventArgs;
-	}
-public onChangeMakeSelectinicio(eventArgs) {
-        this.vm.modelFilter.inicio = eventArgs;
-	}
-public onChangeMakeSelectfim(eventArgs) {
-        this.vm.modelFilter.fim = eventArgs;
-	}
-public onChangeMakeSelectnota(eventArgs) {
-        this.vm.modelFilter.nota = eventArgs;
-	}
+    
 
 }

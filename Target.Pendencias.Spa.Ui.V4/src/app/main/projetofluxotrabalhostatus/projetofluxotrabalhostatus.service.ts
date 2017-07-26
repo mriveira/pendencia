@@ -20,6 +20,7 @@ export class ProjetoFluxoTrabalhoStatusService extends ServiceBase {
 		this._form = new FormGroup({
             projetoId : new FormControl(),
             fluxoTrabalhoStatusId : new FormControl(),
+
         });
 
     }
@@ -45,6 +46,7 @@ export class ProjetoFluxoTrabalhoStatusService extends ServiceBase {
 		return {
 				projetoId: { label: 'projetoId', type: 'int', isKey: true, list:true },
 				fluxoTrabalhoStatusId: { label: 'fluxoTrabalhoStatusId', type: 'int', isKey: true, list:true },
+
         }
     }
 

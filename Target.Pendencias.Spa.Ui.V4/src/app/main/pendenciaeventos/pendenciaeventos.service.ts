@@ -22,6 +22,7 @@ export class PendenciaEventosService extends ServiceBase {
             pendenciaId : new FormControl(),
             descricao : new FormControl(),
             data : new FormControl(),
+
         });
 
     }
@@ -49,6 +50,7 @@ export class PendenciaEventosService extends ServiceBase {
 				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: false, list:true },
 				descricao: { label: 'descricao', type: 'string', isKey: false, list:true },
 				data: { label: 'data', type: 'DateTime?', isKey: false, list:true },
+
         }
     }
 

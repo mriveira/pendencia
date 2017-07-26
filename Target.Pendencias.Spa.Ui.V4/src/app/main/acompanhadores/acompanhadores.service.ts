@@ -20,6 +20,7 @@ export class AcompanhadoresService extends ServiceBase {
 		this._form = new FormGroup({
             pendenciaId : new FormControl(),
             usuarioId : new FormControl(),
+
         });
 
     }
@@ -45,6 +46,7 @@ export class AcompanhadoresService extends ServiceBase {
 		return {
 				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: true, list:true },
 				usuarioId: { label: 'usuarioId', type: 'int', isKey: true, list:true },
+
         }
     }
 

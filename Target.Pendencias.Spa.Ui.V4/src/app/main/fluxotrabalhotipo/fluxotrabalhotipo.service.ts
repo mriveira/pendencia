@@ -20,6 +20,7 @@ export class FluxoTrabalhoTipoService extends ServiceBase {
 		this._form = new FormGroup({
             fluxoTrabalhoTipoId : new FormControl(),
             nome : new FormControl(),
+
         });
 
     }
@@ -45,6 +46,7 @@ export class FluxoTrabalhoTipoService extends ServiceBase {
 		return {
 				fluxoTrabalhoTipoId: { label: 'fluxoTrabalhoTipoId', type: 'int', isKey: true, list:true },
 				nome: { label: 'nome', type: 'string', isKey: false, list:true },
+
         }
     }
 

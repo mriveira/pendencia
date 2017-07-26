@@ -21,6 +21,7 @@ export class DocumentoService extends ServiceBase {
             documentoId : new FormControl(),
             arquivo : new FormControl(),
             ext : new FormControl(),
+
         });
 
     }
@@ -47,6 +48,7 @@ export class DocumentoService extends ServiceBase {
 				documentoId: { label: 'documentoId', type: 'int', isKey: true, list:true },
 				arquivo: { label: 'arquivo', type: 'string', isKey: false, list:true },
 				ext: { label: 'ext', type: 'string', isKey: false, list:true },
+
         }
     }
 

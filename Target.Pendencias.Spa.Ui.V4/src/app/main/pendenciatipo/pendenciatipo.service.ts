@@ -20,6 +20,7 @@ export class PendenciaTipoService extends ServiceBase {
 		this._form = new FormGroup({
             pendenciaTipoId : new FormControl(),
             nome : new FormControl(),
+
         });
 
     }
@@ -45,6 +46,7 @@ export class PendenciaTipoService extends ServiceBase {
 		return {
 				pendenciaTipoId: { label: 'pendenciaTipoId', type: 'int', isKey: true, list:true },
 				nome: { label: 'nome', type: 'string', isKey: false, list:true },
+
         }
     }
 

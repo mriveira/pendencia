@@ -20,6 +20,7 @@ export class ComentarioDocumentoService extends ServiceBase {
 		this._form = new FormGroup({
             documentoId : new FormControl(),
             comentarioId : new FormControl(),
+
         });
 
     }
@@ -45,6 +46,7 @@ export class ComentarioDocumentoService extends ServiceBase {
 		return {
 				documentoId: { label: 'documentoId', type: 'int', isKey: true, list:true },
 				comentarioId: { label: 'comentarioId', type: 'int', isKey: true, list:true },
+
         }
     }
 
