@@ -28,6 +28,11 @@ export class FluxoTrabalhoTipoFieldCreateComponent implements OnInit {
 
     }
 
-
+	public onChangeMakeSelectfluxoTrabalhoTipoId(eventArgs) {
+        this.vm.model.fluxoTrabalhoTipoId = eventArgs;
+	}
+	public onChangeMakeSelectnome(eventArgs) {
+        this.vm.model.nome = eventArgs;
+	}
 
 }

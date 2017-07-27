@@ -15,6 +15,14 @@ export class DocumentoFilterComponent implements OnInit {
     }
 
 
-    
+    public onChangeMakeSelectdocumentoId(eventArgs) {
+        this.vm.modelFilter.documentoId = eventArgs;
+	}
+public onChangeMakeSelectarquivo(eventArgs) {
+        this.vm.modelFilter.arquivo = eventArgs;
+	}
+public onChangeMakeSelectext(eventArgs) {
+        this.vm.modelFilter.ext = eventArgs;
+	}
 
 }

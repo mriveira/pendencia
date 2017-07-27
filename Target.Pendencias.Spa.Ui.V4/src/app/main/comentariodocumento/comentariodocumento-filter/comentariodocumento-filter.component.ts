@@ -15,6 +15,11 @@ export class ComentarioDocumentoFilterComponent implements OnInit {
     }
 
 
-    
+    public onChangeMakeSelectdocumentoId(eventArgs) {
+        this.vm.modelFilter.documentoId = eventArgs;
+	}
+public onChangeMakeSelectcomentarioId(eventArgs) {
+        this.vm.modelFilter.comentarioId = eventArgs;
+	}
 
 }

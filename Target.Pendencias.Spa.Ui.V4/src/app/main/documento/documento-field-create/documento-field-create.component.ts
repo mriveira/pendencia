@@ -28,6 +28,14 @@ export class DocumentoFieldCreateComponent implements OnInit {
 
     }
 
-
+	public onChangeMakeSelectdocumentoId(eventArgs) {
+        this.vm.model.documentoId = eventArgs;
+	}
+	public onChangeMakeSelectarquivo(eventArgs) {
+        this.vm.model.arquivo = eventArgs;
+	}
+	public onChangeMakeSelectext(eventArgs) {
+        this.vm.model.ext = eventArgs;
+	}
 
 }

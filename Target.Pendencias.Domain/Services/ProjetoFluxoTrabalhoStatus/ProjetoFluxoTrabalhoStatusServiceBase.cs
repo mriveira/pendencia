@@ -166,5 +166,13 @@ namespace Target.Pendencias.Domain.Services
             projetofluxotrabalhostatus = this._rep.Update(projetofluxotrabalhostatus);
             return projetofluxotrabalhostatus;
         }
+				
+		public virtual async Task<ProjetoFluxoTrabalhoStatus> GetDefaultInstance(dynamic model, CurrentUser user)
+        {
+            return await Task.Run(() =>
+            {
+                return new ProjetoFluxoTrabalhoStatus.ProjetoFluxoTrabalhoStatusFactory().GetDefaultInstance(model, user);
+            });
+         }
     }
 }

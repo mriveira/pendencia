@@ -1,5 +1,20 @@
 <div class="modal-body">
   <dl>
+    <dt>{{ vm.infos.pendenciaId.label }}:</dt>
+    <dd><bind-custom [model]="vm.model.pendenciaId" [format]="'instance'" [tag]="'span'"  [instance]="'Pendencia'" [filterid]="'vm.model.pendenciaId'"></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.usuarioId.label }}:</dt>
+    <dd><bind-custom [model]="vm.model.usuarioId" [format]="'instance'" [tag]="'span'"  [instance]="'Usuario'" [filterid]="'vm.model.usuarioId'"></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.inicio.label }}:</dt>
+    <dd><bind-custom [model]="vm.model.inicio" [format]="'DateTime'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.fim.label }}:</dt>
+    <dd><bind-custom [model]="vm.model.fim" [format]="'DateTime?'" [tag]="'span'" ></bind-custom></dd>
+ 
 
   </dl> 
 </div>

@@ -166,5 +166,13 @@ namespace Target.Pendencias.Domain.Services
             acompanhadores = this._rep.Update(acompanhadores);
             return acompanhadores;
         }
+				
+		public virtual async Task<Acompanhadores> GetDefaultInstance(dynamic model, CurrentUser user)
+        {
+            return await Task.Run(() =>
+            {
+                return new Acompanhadores.AcompanhadoresFactory().GetDefaultInstance(model, user);
+            });
+         }
     }
 }

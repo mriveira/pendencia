@@ -28,6 +28,11 @@ export class PendeciaPrioridadeFieldCreateComponent implements OnInit {
 
     }
 
-
+	public onChangeMakeSelectpendeciaPrioridadeId(eventArgs) {
+        this.vm.model.pendeciaPrioridadeId = eventArgs;
+	}
+	public onChangeMakeSelectnome(eventArgs) {
+        this.vm.model.nome = eventArgs;
+	}
 
 }

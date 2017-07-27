@@ -166,5 +166,13 @@ namespace Target.Pendencias.Domain.Services
             pendenciadocumento = this._rep.Update(pendenciadocumento);
             return pendenciadocumento;
         }
+				
+		public virtual async Task<PendenciaDocumento> GetDefaultInstance(dynamic model, CurrentUser user)
+        {
+            return await Task.Run(() =>
+            {
+                return new PendenciaDocumento.PendenciaDocumentoFactory().GetDefaultInstance(model, user);
+            });
+         }
     }
 }

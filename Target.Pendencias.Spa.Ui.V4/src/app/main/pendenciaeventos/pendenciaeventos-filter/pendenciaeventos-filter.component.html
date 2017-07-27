@@ -1,3 +1,20 @@
 <div class="row">
-
+  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.infos.pendenciaId.label }}</label>
+                    <select class='form-control'  name='pendenciaId' [(ngModel)]='vm.modelFilter.pendenciaId' datasource [dataitem]="'Pendencia'" (msChange)='onChangeMakeSelectpendenciaId($event)'></select>
+                </div>
+  </section>
+  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.infos.descricao.label }}</label>
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.descricao' name='descricao' />
+                </div>
+  </section>
+  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.infos.data.label }}</label>
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.data' name='data' />
+                </div>
+  </section>
 </div>

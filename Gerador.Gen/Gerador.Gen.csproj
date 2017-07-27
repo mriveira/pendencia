@@ -178,6 +178,7 @@
     <None Include="Templates\Back\Filter.partial">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Templates\Back\README.md" />
     <None Include="Templates\Back\sso.configauth">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -28,6 +28,11 @@ export class AcompanhadoresFieldEditComponent implements OnInit {
 
     }
     
-
+	public onChangeMakeSelectpendenciaId(eventArgs) {
+        this.vm.model.pendenciaId = eventArgs;
+	}
+	public onChangeMakeSelectusuarioId(eventArgs) {
+        this.vm.model.usuarioId = eventArgs;
+	}
    
 }

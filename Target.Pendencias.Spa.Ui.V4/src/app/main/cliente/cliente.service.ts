@@ -48,12 +48,12 @@ export class ClienteService extends ServiceBase {
 
 	getInfos() {
 		return {
-				clienteId: { label: 'clienteId', type: 'int', isKey: true, list:false },
-				nome: { label: 'nome', type: 'string', isKey: false, list:false },
-				telefoneDeContato: { label: 'telefoneDeContato', type: 'string', isKey: false, list:false },
-				emailDeContato: { label: 'emailDeContato', type: 'string', isKey: false, list:false },
-				cpfcnpj: { label: 'cpfcnpj', type: 'string', isKey: false, list:false },
-				usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:false },
+				clienteId: { label: 'clienteId', type: 'int', isKey: true, list:true },
+				nome: { label: 'nome', type: 'string', isKey: false, list:true },
+				telefoneDeContato: { label: 'telefoneDeContato', type: 'string', isKey: false, list:true },
+				emailDeContato: { label: 'emailDeContato', type: 'string', isKey: false, list:true },
+				cpfcnpj: { label: 'cpfcnpj', type: 'string', isKey: false, list:true },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:true },
 
         }
     }

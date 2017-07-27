@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -19,8 +19,6 @@ export class FluxoTrabalhoTipoService extends ServiceBase {
 
 		this._form = new FormGroup({
             fluxoTrabalhoTipoId : new FormControl(),
-            nome : new FormControl(),
-
         });
 
     }

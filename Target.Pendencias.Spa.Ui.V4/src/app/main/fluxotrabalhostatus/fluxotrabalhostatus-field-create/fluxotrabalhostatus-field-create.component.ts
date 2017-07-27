@@ -28,6 +28,23 @@ export class FluxoTrabalhoStatusFieldCreateComponent implements OnInit {
 
     }
 
-
+	public onChangeMakeSelectfluxoTrabalhoStatusId(eventArgs) {
+        this.vm.model.fluxoTrabalhoStatusId = eventArgs;
+	}
+	public onChangeMakeSelectnome(eventArgs) {
+        this.vm.model.nome = eventArgs;
+	}
+	public onChangeMakeSelectfluxoTrabalhoTipoId(eventArgs) {
+        this.vm.model.fluxoTrabalhoTipoId = eventArgs;
+	}
+	public onChangeMakeSelectcorFundo(eventArgs) {
+        this.vm.model.corFundo = eventArgs;
+	}
+	public onChangeMakeSelectcorFonte(eventArgs) {
+        this.vm.model.corFonte = eventArgs;
+	}
+	public onChangeMakeSelectordem(eventArgs) {
+        this.vm.model.ordem = eventArgs;
+	}
 
 }

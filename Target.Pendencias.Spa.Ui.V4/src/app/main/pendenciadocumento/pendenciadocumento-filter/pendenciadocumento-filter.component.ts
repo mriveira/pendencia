@@ -15,6 +15,11 @@ export class PendenciaDocumentoFilterComponent implements OnInit {
     }
 
 
-    
+    public onChangeMakeSelectpendenciaId(eventArgs) {
+        this.vm.modelFilter.pendenciaId = eventArgs;
+	}
+public onChangeMakeSelectdocumentoId(eventArgs) {
+        this.vm.modelFilter.documentoId = eventArgs;
+	}
 
 }

@@ -25,6 +25,7 @@ namespace Target.Pendencias.Domain.Services
 
         public void Play(Pendencia entity)
         {
+            
             entity.Play(this._user);
         }
 

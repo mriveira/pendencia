@@ -1,3 +1,14 @@
 <div class="row">
-
+  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.infos.arquivo.label }}</label>
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.arquivo' name='arquivo' />
+                </div>
+  </section>
+  <section class="col-md-6">
+	<div class='form-group'>
+                    <label>{{ vm.infos.ext.label }}</label>
+                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.ext' name='ext' />
+                </div>
+  </section>
 </div>

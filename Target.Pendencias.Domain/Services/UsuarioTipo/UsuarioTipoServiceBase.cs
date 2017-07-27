@@ -166,5 +166,13 @@ namespace Target.Pendencias.Domain.Services
             usuariotipo = this._rep.Update(usuariotipo);
             return usuariotipo;
         }
+				
+		public virtual async Task<UsuarioTipo> GetDefaultInstance(dynamic model, CurrentUser user)
+        {
+            return await Task.Run(() =>
+            {
+                return new UsuarioTipo.UsuarioTipoFactory().GetDefaultInstance(model, user);
+            });
+         }
     }
 }

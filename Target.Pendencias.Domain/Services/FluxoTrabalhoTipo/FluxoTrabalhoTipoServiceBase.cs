@@ -166,5 +166,13 @@ namespace Target.Pendencias.Domain.Services
             fluxotrabalhotipo = this._rep.Update(fluxotrabalhotipo);
             return fluxotrabalhotipo;
         }
+				
+		public virtual async Task<FluxoTrabalhoTipo> GetDefaultInstance(dynamic model, CurrentUser user)
+        {
+            return await Task.Run(() =>
+            {
+                return new FluxoTrabalhoTipo.FluxoTrabalhoTipoFactory().GetDefaultInstance(model, user);
+            });
+         }
     }
 }

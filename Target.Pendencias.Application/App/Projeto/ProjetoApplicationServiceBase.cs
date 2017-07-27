@@ -8,6 +8,7 @@ using Target.Pendencias.Domain.Interfaces.Services;
 using Target.Pendencias.Dto;
 using System.Threading.Tasks;
 using Common.Domain.Model;
+using System.Collections.Generic;
 
 namespace Target.Pendencias.Application
 {
@@ -26,21 +27,40 @@ namespace Target.Pendencias.Application
 			this._user = user;
         }
 
-        protected override Projeto MapperDtoToDomain<TDS>(TDS dto)
+        protected override async Task<Projeto> MapperDtoToDomain<TDS>(TDS dto)
         {
-			var _dto = dto as ProjetoDtoSpecialized;
-            this._validatorAnnotations.Validate(_dto);
-            this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
-			var domain = new Projeto.ProjetoFactory().GetDefaultInstance(_dto, this._user);
-            return domain;
+			return await Task.Run(() =>
+            {
+				var _dto = dto as ProjetoDtoSpecialized;
+				this._validatorAnnotations.Validate(_dto);
+				this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
+				var domain = this._service.GetDefaultInstance(_dto, this._user);
+				return domain;
+			});
         }
+
+		protected override async Task<IEnumerable<Projeto>> MapperDtoToDomain<TDS>(IEnumerable<TDS> dtos)
+        {
+			var domains = new List<Projeto>();
+			foreach (var dto in dtos)
+			{
+				var _dto = dto as ProjetoDtoSpecialized;
+				this._validatorAnnotations.Validate(_dto);
+				this._serviceBase.AddDomainValidation(this._validatorAnnotations.GetErros());
+				var domain = await this._service.GetDefaultInstance(_dto, this._user);
+				domains.Add(domain);
+			}
+			return domains;
+			
+        }
+
 
         protected override async Task<Projeto> AlterDomainWithDto<TDS>(TDS dto)
         {
 			return await Task.Run(() =>
             {
 				var _dto = dto as ProjetoDto;
-				var domain = new Projeto.ProjetoFactory().GetDefaultInstance(_dto, this._user);
+				var domain = this._service.GetDefaultInstance(_dto, this._user);
 				return domain;
 			});
         }
