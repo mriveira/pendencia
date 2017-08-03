@@ -1,5 +1,4 @@
 export class FluxoTrabalhoStatus {
-	fluxoTrabalhoStatusId : number;
 	nome : string;
 	fluxoTrabalhoTipoId : number;
 	corFundo : string;

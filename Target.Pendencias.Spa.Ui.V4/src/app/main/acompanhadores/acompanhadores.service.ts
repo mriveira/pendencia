@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -29,13 +29,14 @@ export class AcompanhadoresService extends ServiceBase {
 
         return new ViewModel({
             mostrarFiltros: false,
-            actionTitle: "Cliente",
+            actionTitle: " Acompanhadores",
             actionDescription: "",
             downloadUri: GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
             modelFilter: {},
             summary: {},
             model: {},
+			details: {},
             infos: this.getInfos(),
             grid: super.getInfoGrid(this.getInfos()),
             form: this._form
@@ -44,8 +45,8 @@ export class AcompanhadoresService extends ServiceBase {
 
 	getInfos() {
 		return {
-				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: true, list:true },
-				usuarioId: { label: 'usuarioId', type: 'int', isKey: true, list:true },
+				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: true, list:false },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: true, list:false },
 
         }
     }

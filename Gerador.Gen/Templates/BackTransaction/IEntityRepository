@@ -1,0 +1,24 @@
+﻿using <#namespace#>.Domain.Filter.Transaction;
+using <#namespace#>.Dto.Transaction;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace <#namespace#>.Data.Repository.Transaction
+{
+    public interface <#className#>IRepository
+    {
+		
+        Task<IEnumerable<dynamic>> GetDataItem(<#className#>Filter filters);
+
+        Task<IEnumerable<dynamic>> GetDataListCustom(<#className#>Filter filters);
+
+        Task<dynamic> GetDataCustom(<#className#>Filter filters);
+
+		Task<dynamic> Save(<#className#>DtoSpecialized dto);
+
+		Task<dynamic> SavePartial(<#className#>DtoSpecialized dto);
+
+		Task<bool> Remove(<#className#>Dto dto);
+
+    }
+}

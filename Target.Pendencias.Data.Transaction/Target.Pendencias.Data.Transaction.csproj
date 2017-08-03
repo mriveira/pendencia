@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.2" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.2" />
+    
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Dto\Common.Dto.csproj" />
+    <ProjectReference Include="..\Target.Pendencias.Domain.Filter\Target.Pendencias.Domain.Filter.csproj" />
+    <ProjectReference Include="..\Target.Pendencias.Dto.Transaction\Target.Pendencias.Dto.Transaction.csproj" />
+  </ItemGroup>
+
+</Project>

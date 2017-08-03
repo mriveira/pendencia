@@ -23,14 +23,7 @@ export class FluxoTrabalhoTipoCreateComponent implements OnInit {
 
     ngOnInit() {
 
-        this.sub = this.route.params.subscribe(params => {
-            this.id = params['id']; 
-        });
-
-        this.fluxoTrabalhoTipoService.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
-        })
-
+       
     }
 
     onSave(model) {

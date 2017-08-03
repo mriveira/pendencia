@@ -1,10 +1,9 @@
-<div class="modal-body">
-  <div class="row" [formGroup]="vm.form">
-			<section class="col-md-12">
-                <div class='form-group'>
-                    <label>{{ vm.infos.nome.label }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required formControlName='nome'  />
-                </div>
-			</section>
-  </div>
+<div class="row" [formGroup]="vm.form">
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.nome.label }}</label>
+      <input type='text' class='form-control'[(ngModel)]='vm.model.nome' name='nome' required formControlName='nome'  />
+    </div>
+  </section>
 </div>
+

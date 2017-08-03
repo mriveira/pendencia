@@ -19,20 +19,7 @@ export class PendeciaPrioridadeFieldEditComponent implements OnInit {
        this.ref.detectChanges()
 	}
 
-    public onSave(model)
-    {
+        
 
-    }
-
-    public onCancel() {
-
-    }
-    
-	public onChangeMakeSelectpendeciaPrioridadeId(eventArgs) {
-        this.vm.model.pendeciaPrioridadeId = eventArgs;
-	}
-	public onChangeMakeSelectnome(eventArgs) {
-        this.vm.model.nome = eventArgs;
-	}
    
 }

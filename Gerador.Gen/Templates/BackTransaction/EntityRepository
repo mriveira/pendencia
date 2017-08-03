@@ -1,0 +1,85 @@
+﻿using <#namespace#>.Domain.Filter.Transaction;
+using <#namespace#>.Dto.Transaction;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Data;
+using System.Linq;
+using System.Data.SqlClient;
+using Common.Domain.Base;
+using Microsoft.Extensions.Options;
+using Dapper;
+
+namespace <#namespace#>.Data.Repository.Transaction
+{
+    public class <#className#>Repository : <#className#>IRepository
+    {
+
+        private IDbConnection _connection;
+
+        public <#className#>Repository(IOptions<Connectionstring> configSettingsBase)
+        {
+            _connection = new SqlConnection(configSettingsBase.Value.Default);
+        }
+
+		public async Task<dynamic> GetDataCustom(<#className#>Filter parameters)
+        {
+            var result = await _connection.QueryAsync("<#className#>_GetDataCustom", 
+			new
+            {
+<#property#>
+            },commandType: CommandType.StoredProcedure);
+            return result.SingleOrDefault();
+        }
+
+        public async Task<IEnumerable<dynamic>> GetDataItem(<#className#>Filter parameters)
+        {
+            var result = await _connection.QueryAsync("<#className#>_GetDataItem", 
+			new
+            {
+<#property#>
+            },commandType: CommandType.StoredProcedure);
+            return result;
+        }
+
+        public async Task<IEnumerable<dynamic>> GetDataListCustom(<#className#>Filter parameters)
+        {
+            var result = await _connection.QueryAsync("<#className#>_GetDataListCustom", 
+			new
+            {
+<#property#>
+            }, commandType: CommandType.StoredProcedure);
+            return result;
+        }
+
+        public async Task<bool> Remove(<#className#>Dto parameters)
+        {
+            var result = await _connection.ExecuteScalarAsync("<#className#>_Remove",
+			new
+            {
+<#property#>
+            },commandType: CommandType.StoredProcedure);
+            return true;
+        }
+
+        public async Task<dynamic> Save(<#className#>DtoSpecialized parameters)
+        {
+            var result = await _connection.ExecuteScalarAsync("<#className#>_Save", 
+			new
+            {
+<#property#>
+            }, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+
+		public async Task<dynamic> SavePartial(<#className#>DtoSpecialized parameters)
+        {
+            var result = await _connection.ExecuteScalarAsync("<#className#>_SavePartial", 
+			new
+            {
+<#property#>
+            }, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+       
+    }
+}

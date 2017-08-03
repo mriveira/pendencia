@@ -29,7 +29,7 @@ export class AcompanhadoresPrintComponent implements OnInit {
         this.vm = this.acompanhadoresService.initVM();
 
         this.acompanhadoresService.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
+            this.vm.details = data.data;
         })
 
     }

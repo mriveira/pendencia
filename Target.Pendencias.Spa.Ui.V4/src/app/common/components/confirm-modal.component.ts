@@ -11,8 +11,10 @@ import { GlobalService } from '../../global.service';
                     <div class="modal-header">
                       <h3 class="modal-title">Confirmação</h3>
                     </div>
-                    <div class="modal-body">
-                      {{ vm.messageConfirmation }}
+                    <div class="card">
+                      <h5 class="card-block">
+                        {{ vm.messageConfirmation }}
+                      </h5>
                     </div>
                     <div class="modal-footer">
                       <button class="btn btn-danger" type="button" (click)="onConfimationYes()">Sim</button>
@@ -36,15 +38,14 @@ export class ConfirmModalComponent implements OnInit {
     _operationVM: any;
 
     constructor() {
-       
+        this.vm = {};
+        this.vm.messageConfirmation = "tem certeza que deseja Executar Essa operação?"
     }
 
 
     ngOnInit() {
 
-        this.vm = {};
-        this.vm.messageConfirmation = "tem certeza que deseja Executar Essa operação?";
-
+        
         GlobalService.operationExecuted.subscribe((result) => {
             if (result.selector == "confirm-modal") {
                 this.vm.messageConfirmation = result.message || this.vm.messageConfirmation;

@@ -19,20 +19,7 @@ export class ProjetoFluxoTrabalhoStatusFieldCreateComponent implements OnInit {
        this.ref.detectChanges()
 	}
 
-    public onSave(model)
-    {
+   
 
-    }
-
-    public onCancel() {
-
-    }
-
-	public onChangeMakeSelectprojetoId(eventArgs) {
-        this.vm.model.projetoId = eventArgs;
-	}
-	public onChangeMakeSelectfluxoTrabalhoStatusId(eventArgs) {
-        this.vm.model.fluxoTrabalhoStatusId = eventArgs;
-	}
 
 }

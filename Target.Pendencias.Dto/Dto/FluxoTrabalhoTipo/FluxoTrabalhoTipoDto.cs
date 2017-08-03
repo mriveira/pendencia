@@ -15,6 +15,10 @@ namespace Target.Pendencias.Dto
         [MaxLength(100, ErrorMessage = "FluxoTrabalhoTipo - Quantidade de caracteres maior que o permitido para o campo Nome")]
         public virtual string Nome {get; set;}
 
+        
+
+        public virtual string Descricao {get; set;}
+
 
 		
 	}

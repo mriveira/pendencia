@@ -55,7 +55,11 @@ namespace Target.Pendencias.Api
             ConfigContainerTarget.Config(services);			
 
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.Converters.Add(new DateTimePtBrConverter());
+            });
+
 
         }
 

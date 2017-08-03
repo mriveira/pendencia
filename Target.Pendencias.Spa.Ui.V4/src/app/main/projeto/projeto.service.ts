@@ -36,13 +36,14 @@ export class ProjetoService extends ServiceBase {
 
         return new ViewModel({
             mostrarFiltros: false,
-            actionTitle: "Cliente",
+            actionTitle: " Projeto",
             actionDescription: "",
             downloadUri: GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
             modelFilter: {},
             summary: {},
             model: {},
+			details: {},
             infos: this.getInfos(),
             grid: super.getInfoGrid(this.getInfos()),
             form: this._form
@@ -51,12 +52,12 @@ export class ProjetoService extends ServiceBase {
 
 	getInfos() {
 		return {
-				projetoId: { label: 'projetoId', type: 'int', isKey: true, list:true },
+				projetoId: { label: 'projetoId', type: 'int', isKey: true, list:false },
 				nome: { label: 'nome', type: 'string', isKey: false, list:true },
-				descricao: { label: 'descricao', type: 'string', isKey: false, list:true },
-				visao: { label: 'visao', type: 'string', isKey: false, list:true },
-				clienteId: { label: 'clienteId', type: 'int', isKey: false, list:true },
-				usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:true },
+				descricao: { label: 'descricao', type: 'string', isKey: false, list:false },
+				visao: { label: 'visao', type: 'string', isKey: false, list:false },
+				clienteId: { label: 'clienteId', type: 'int', isKey: false, list:false },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:false },
 				chaveUnica: { label: 'chaveUnica', type: 'string', isKey: false, list:true },
 				inicio: { label: 'inicio', type: 'DateTime?', isKey: false, list:true },
 				fim: { label: 'fim', type: 'DateTime?', isKey: false, list:true },

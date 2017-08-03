@@ -30,7 +30,7 @@ export class ProjetoFluxoTrabalhoStatusEditComponent implements OnInit {
 
 
         this.projetoFluxoTrabalhoStatusService.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
+            this.vm.details = data.data;
         })
 
     }

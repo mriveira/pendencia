@@ -19,20 +19,7 @@ export class UsuarioTipoFieldCreateComponent implements OnInit {
        this.ref.detectChanges()
 	}
 
-    public onSave(model)
-    {
+   
 
-    }
-
-    public onCancel() {
-
-    }
-
-	public onChangeMakeSelectusuarioTipoId(eventArgs) {
-        this.vm.model.usuarioTipoId = eventArgs;
-	}
-	public onChangeMakeSelectnome(eventArgs) {
-        this.vm.model.nome = eventArgs;
-	}
 
 }

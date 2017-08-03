@@ -1,5 +1,4 @@
 export class Projeto {
-	projetoId : number;
 	nome : string;
 	descricao : string;
 	visao : string;

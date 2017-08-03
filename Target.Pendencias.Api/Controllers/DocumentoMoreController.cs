@@ -81,5 +81,22 @@ namespace Target.Pendencias.Api.Controllers
 
         }
 
+		[HttpPost]
+        public async Task<IActionResult> Put([FromBody]IEnumerable<DocumentoDtoSpecialized> dtos)
+        {
+            var result = new HttpResult<DocumentoDto>(this._logger);
+            try
+            {
+                var returnModels = await this._app.SavePartial(dtos);
+                return result.ReturnCustomResponse(this._app, returnModels);
+
+            }
+            catch (Exception ex)
+            {
+                return result.ReturnCustomException(ex, "Target.Pendencias - #className#>", dtos);
+            }
+
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 using Target.Pendencias.Domain.Validations;
 using System;
 using Common.Domain.Model;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Target.Pendencias.Domain.Entitys
 {
@@ -18,7 +19,10 @@ namespace Target.Pendencias.Domain.Entitys
 
         }
 
-		public class AcompanhadoresFactory
+        [NotMapped]
+        public int MyProperty { get; set; }
+
+        public class AcompanhadoresFactory
         {
             public Acompanhadores GetDefaultInstance(dynamic data, CurrentUser user)
             {

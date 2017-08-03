@@ -53,6 +53,17 @@ export class <#className#>Component implements OnInit {
 
     }
 
+	onFileChange(event) {
+
+        let fileList: FileList = event.target.files;
+        if (fileList.length > 0) {
+            let file: File = fileList[0];
+            this.<#classNameInstance#>Service.upload(file).subscribe((result) => {
+
+            });
+        }
+    }
+
     public onCreate() {
 
         this.vm.model = {};
@@ -88,7 +99,7 @@ export class <#className#>Component implements OnInit {
 
         this.detailsModal.show();
         this.<#classNameInstance#>Service.get(model).subscribe((result) => {
-            this.vm.model = result.dataList[0];
+            this.vm.details = result.dataList[0];
         })
 
     }

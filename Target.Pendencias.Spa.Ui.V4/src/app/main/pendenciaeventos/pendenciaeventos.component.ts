@@ -88,7 +88,7 @@ export class PendenciaEventosComponent implements OnInit {
 
         this.detailsModal.show();
         this.pendenciaEventosService.get(model).subscribe((result) => {
-            this.vm.model = result.dataList[0];
+            this.vm.details = result.dataList[0];
         })
 
     }

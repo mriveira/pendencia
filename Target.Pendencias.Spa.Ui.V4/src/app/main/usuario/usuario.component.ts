@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, FormGroup, FormControl} from '@angular/forms';
 
@@ -53,6 +53,17 @@ export class UsuarioComponent implements OnInit {
 
     }
 
+    onFileChange(event) {
+
+        let fileList: FileList = event.target.files;
+        if (fileList.length > 0) {
+            let file: File = fileList[0];
+            this.usuarioService.upload(file).subscribe((result) => {
+
+            });
+        }
+    }
+
     public onCreate() {
 
         this.vm.model = {};
@@ -88,7 +99,7 @@ export class UsuarioComponent implements OnInit {
 
         this.detailsModal.show();
         this.usuarioService.get(model).subscribe((result) => {
-            this.vm.model = result.dataList[0];
+            this.vm.details = result.dataList[0];
         })
 
     }

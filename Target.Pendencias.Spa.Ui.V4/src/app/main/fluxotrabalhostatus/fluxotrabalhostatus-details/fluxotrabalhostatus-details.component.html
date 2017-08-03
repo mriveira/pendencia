@@ -1,24 +1,23 @@
-<div class="modal-body">
-  <dl>
+<dl>
     <dt>{{ vm.infos.nome.label }}:</dt>
-    <dd><bind-custom [model]="vm.model.nome" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+    <dd><bind-custom [model]="vm.details.nome" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
  
 
     <dt>{{ vm.infos.fluxoTrabalhoTipoId.label }}:</dt>
-    <dd><bind-custom [model]="vm.model.fluxoTrabalhoTipoId" [format]="'instance'" [tag]="'span'"  [instance]="'FluxoTrabalhoTipo'" [filterid]="'vm.model.fluxoTrabalhoTipoId'"></bind-custom></dd>
+    <dd><bind-custom [model]="vm.details.fluxoTrabalhoTipoId" [format]="'instance'" [tag]="'span'"  [instance]="'FluxoTrabalhoTipo'" [filterid]="'vm.model.fluxoTrabalhoTipoId'"></bind-custom></dd>
  
 
     <dt>{{ vm.infos.corFundo.label }}:</dt>
-    <dd><bind-custom [model]="vm.model.corFundo" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+    <dd><bind-custom [model]="vm.details.corFundo" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
  
 
     <dt>{{ vm.infos.corFonte.label }}:</dt>
-    <dd><bind-custom [model]="vm.model.corFonte" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+    <dd><bind-custom [model]="vm.details.corFonte" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
  
 
     <dt>{{ vm.infos.ordem.label }}:</dt>
-    <dd><bind-custom [model]="vm.model.ordem" [format]="'int?'" [tag]="'span'" ></bind-custom></dd>
+    <dd><bind-custom [model]="vm.details.ordem" [format]="'int?'" [tag]="'span'" ></bind-custom></dd>
  
 
-  </dl> 
-</div>
+</dl> 
+

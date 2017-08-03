@@ -16,6 +16,7 @@ namespace Target.Pendencias.Data.Map
            
 
             type.Property(t => t.Nome).HasColumnName("Nome");
+            type.Property(t => t.Descricao).HasColumnName("Descricao");
 
 
             type.HasKey(d => new { d.FluxoTrabalhoTipoId, }); 

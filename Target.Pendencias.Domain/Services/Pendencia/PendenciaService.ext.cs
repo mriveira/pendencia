@@ -23,9 +23,10 @@ namespace Target.Pendencias.Domain.Services
             this._repPendenciaEventos = repPendenciaEventos;
         }
 
-        public void Play(Pendencia entity)
+        public async void Play(Pendencia entity)
         {
-            
+
+
             entity.Play(this._user);
         }
 

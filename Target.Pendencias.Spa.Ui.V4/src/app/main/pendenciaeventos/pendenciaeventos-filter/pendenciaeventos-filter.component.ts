@@ -15,10 +15,7 @@ export class PendenciaEventosFilterComponent implements OnInit {
     }
 
 
-    public onChangeMakeSelectpendenciaEventosId(eventArgs) {
-        this.vm.modelFilter.pendenciaEventosId = eventArgs;
-	}
-public onChangeMakeSelectpendenciaId(eventArgs) {
+    public onChangeMakeSelectpendenciaId(eventArgs) {
         this.vm.modelFilter.pendenciaId = eventArgs;
 	}
 public onChangeMakeSelectdescricao(eventArgs) {

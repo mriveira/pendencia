@@ -15,10 +15,7 @@ export class UsuarioTipoFilterComponent implements OnInit {
     }
 
 
-    public onChangeMakeSelectusuarioTipoId(eventArgs) {
-        this.vm.modelFilter.usuarioTipoId = eventArgs;
-	}
-public onChangeMakeSelectnome(eventArgs) {
+    public onChangeMakeSelectnome(eventArgs) {
         this.vm.modelFilter.nome = eventArgs;
 	}
 

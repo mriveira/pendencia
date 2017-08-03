@@ -23,14 +23,7 @@ export class PendenciaCreateComponent implements OnInit {
 
     ngOnInit() {
 
-        this.sub = this.route.params.subscribe(params => {
-            this.id = params['id']; 
-        });
-
-        this.pendenciaService.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
-        })
-
+       
     }
 
     onSave(model) {

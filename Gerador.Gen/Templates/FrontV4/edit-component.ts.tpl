@@ -30,7 +30,7 @@ export class <#className#>EditComponent implements OnInit {
 
 
         this.<#classNameInstance#>Service.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
+            this.vm.details = data.data;
         })
 
     }

@@ -29,7 +29,7 @@ export class UsuarioPrintComponent implements OnInit {
         this.vm = this.usuarioService.initVM();
 
         this.usuarioService.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
+            this.vm.details = data.data;
         })
 
     }

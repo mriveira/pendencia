@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, FormGroup, FormControl} from '@angular/forms';
 
@@ -88,7 +88,7 @@ export class AcompanhadoresComponent implements OnInit {
 
         this.detailsModal.show();
         this.acompanhadoresService.get(model).subscribe((result) => {
-            this.vm.model = result.dataList[0];
+            this.vm.details = result.dataList[0];
         })
 
     }

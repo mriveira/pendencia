@@ -19,20 +19,7 @@ export class PendenciaDocumentoFieldEditComponent implements OnInit {
        this.ref.detectChanges()
 	}
 
-    public onSave(model)
-    {
+        
 
-    }
-
-    public onCancel() {
-
-    }
-    
-	public onChangeMakeSelectpendenciaId(eventArgs) {
-        this.vm.model.pendenciaId = eventArgs;
-	}
-	public onChangeMakeSelectdocumentoId(eventArgs) {
-        this.vm.model.documentoId = eventArgs;
-	}
    
 }

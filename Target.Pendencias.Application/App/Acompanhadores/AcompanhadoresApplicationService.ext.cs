@@ -25,6 +25,11 @@ namespace Target.Pendencias.Application
             return base.MapperDomainToResult<AcompanhadoresDtoSpecializedResult>(filter, dataList) as IEnumerable<TDS>;
         }
 
+        protected override TDS MapperDomainToDto<TDS>(Acompanhadores model)
+        {
+            return base.MapperDomainToDto<TDS>(model);
+        }
+
 
     }
 }

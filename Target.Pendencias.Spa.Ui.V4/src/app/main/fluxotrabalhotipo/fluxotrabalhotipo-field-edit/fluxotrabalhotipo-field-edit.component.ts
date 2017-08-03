@@ -19,20 +19,10 @@ export class FluxoTrabalhoTipoFieldEditComponent implements OnInit {
        this.ref.detectChanges()
 	}
 
-    public onSave(model)
-    {
+        
+	 public onEditorKeyupdescricao(model) {
 
+        this.vm.model.descricao = model;
     }
-
-    public onCancel() {
-
-    }
-    
-	public onChangeMakeSelectfluxoTrabalhoTipoId(eventArgs) {
-        this.vm.model.fluxoTrabalhoTipoId = eventArgs;
-	}
-	public onChangeMakeSelectnome(eventArgs) {
-        this.vm.model.nome = eventArgs;
-	}
    
 }

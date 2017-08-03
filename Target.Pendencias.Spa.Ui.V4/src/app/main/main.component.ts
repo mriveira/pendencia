@@ -40,7 +40,7 @@ export class MainComponent implements OnInit {
         this.menuIsOpen = !this.menuIsOpen
     }
 
-    onLogout(e) {
+  onLogout(e) {
         e.preventDefault();
         this.authService.logout();
     }

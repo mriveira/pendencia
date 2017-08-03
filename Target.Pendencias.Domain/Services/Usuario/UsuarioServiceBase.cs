@@ -38,7 +38,7 @@ namespace Target.Pendencias.Domain.Services
             return this._rep.PagingAndDefineFields(filters, queryBase);
         }
 
-        public virtual void Remove(Usuario usuario)
+        public override void Remove(Usuario usuario)
         {
             this._rep.Remove(usuario);
         }

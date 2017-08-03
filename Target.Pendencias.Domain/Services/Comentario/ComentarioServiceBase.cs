@@ -38,7 +38,7 @@ namespace Target.Pendencias.Domain.Services
             return this._rep.PagingAndDefineFields(filters, queryBase);
         }
 
-        public virtual void Remove(Comentario comentario)
+        public override void Remove(Comentario comentario)
         {
             this._rep.Remove(comentario);
         }

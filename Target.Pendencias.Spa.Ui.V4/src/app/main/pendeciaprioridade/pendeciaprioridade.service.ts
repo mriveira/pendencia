@@ -29,13 +29,14 @@ export class PendeciaPrioridadeService extends ServiceBase {
 
         return new ViewModel({
             mostrarFiltros: false,
-            actionTitle: "Cliente",
+            actionTitle: " PendeciaPrioridade",
             actionDescription: "",
             downloadUri: GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
             modelFilter: {},
             summary: {},
             model: {},
+			details: {},
             infos: this.getInfos(),
             grid: super.getInfoGrid(this.getInfos()),
             form: this._form
@@ -44,7 +45,7 @@ export class PendeciaPrioridadeService extends ServiceBase {
 
 	getInfos() {
 		return {
-				pendeciaPrioridadeId: { label: 'pendeciaPrioridadeId', type: 'int', isKey: true, list:true },
+				pendeciaPrioridadeId: { label: 'pendeciaPrioridadeId', type: 'int', isKey: true, list:false },
 				nome: { label: 'nome', type: 'string', isKey: false, list:true },
 
         }

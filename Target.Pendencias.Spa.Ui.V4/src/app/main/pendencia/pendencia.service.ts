@@ -41,13 +41,14 @@ export class PendenciaService extends ServiceBase {
 
         return new ViewModel({
             mostrarFiltros: false,
-            actionTitle: "Cliente",
+            actionTitle: " Pendencia",
             actionDescription: "",
             downloadUri: GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
             modelFilter: {},
             summary: {},
             model: {},
+			details: {},
             infos: this.getInfos(),
             grid: super.getInfoGrid(this.getInfos()),
             form: this._form
@@ -56,18 +57,18 @@ export class PendenciaService extends ServiceBase {
 
 	getInfos() {
 		return {
-				projetoId: { label: 'projetoId', type: 'int', isKey: false, list:true },
-				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: true, list:true },
+				projetoId: { label: 'projetoId', type: 'int', isKey: false, list:false },
+				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: true, list:false },
 				resumo: { label: 'resumo', type: 'string', isKey: false, list:true },
-				descricao: { label: 'descricao', type: 'string', isKey: false, list:true },
+				descricao: { label: 'descricao', type: 'string', isKey: false, list:false },
 				requisitadoPor: { label: 'requisitadoPor', type: 'string', isKey: false, list:true },
 				tempoEstimado: { label: 'tempoEstimado', type: 'int?', isKey: false, list:true },
 				pontosEstimados: { label: 'pontosEstimados', type: 'int?', isKey: false, list:true },
 				prazo: { label: 'prazo', type: 'DateTime?', isKey: false, list:true },
-				usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:true },
-				pendenciaTipoId: { label: 'pendenciaTipoId', type: 'int', isKey: false, list:true },
-				fluxoTrabalhoStatusId: { label: 'fluxoTrabalhoStatusId', type: 'int', isKey: false, list:true },
-				pendenciaPrioridadeId: { label: 'pendenciaPrioridadeId', type: 'int', isKey: false, list:true },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:false },
+				pendenciaTipoId: { label: 'pendenciaTipoId', type: 'int', isKey: false, list:false },
+				fluxoTrabalhoStatusId: { label: 'fluxoTrabalhoStatusId', type: 'int', isKey: false, list:false },
+				pendenciaPrioridadeId: { label: 'pendenciaPrioridadeId', type: 'int', isKey: false, list:false },
 				tags: { label: 'tags', type: 'string', isKey: false, list:true },
 				dataConclusao: { label: 'dataConclusao', type: 'DateTime?', isKey: false, list:true },
 

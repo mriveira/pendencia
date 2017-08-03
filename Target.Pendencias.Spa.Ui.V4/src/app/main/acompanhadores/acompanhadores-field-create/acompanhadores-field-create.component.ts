@@ -19,20 +19,7 @@ export class AcompanhadoresFieldCreateComponent implements OnInit {
        this.ref.detectChanges()
 	}
 
-    public onSave(model)
-    {
+   
 
-    }
-
-    public onCancel() {
-
-    }
-
-	public onChangeMakeSelectpendenciaId(eventArgs) {
-        this.vm.model.pendenciaId = eventArgs;
-	}
-	public onChangeMakeSelectusuarioId(eventArgs) {
-        this.vm.model.usuarioId = eventArgs;
-	}
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -23,14 +23,7 @@ export class ClienteCreateComponent implements OnInit {
 
     ngOnInit() {
 
-        this.sub = this.route.params.subscribe(params => {
-            this.id = params['id']; 
-        });
-
-        this.clienteService.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
-        })
-
+       
     }
 
     onSave(model) {

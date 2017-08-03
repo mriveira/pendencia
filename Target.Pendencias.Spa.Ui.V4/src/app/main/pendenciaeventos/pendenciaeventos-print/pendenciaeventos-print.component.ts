@@ -29,7 +29,7 @@ export class PendenciaEventosPrintComponent implements OnInit {
         this.vm = this.pendenciaEventosService.initVM();
 
         this.pendenciaEventosService.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
+            this.vm.details = data.data;
         })
 
     }

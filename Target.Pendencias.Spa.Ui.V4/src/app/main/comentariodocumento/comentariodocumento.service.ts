@@ -29,13 +29,14 @@ export class ComentarioDocumentoService extends ServiceBase {
 
         return new ViewModel({
             mostrarFiltros: false,
-            actionTitle: "Cliente",
+            actionTitle: " ComentarioDocumento",
             actionDescription: "",
             downloadUri: GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
             modelFilter: {},
             summary: {},
             model: {},
+			details: {},
             infos: this.getInfos(),
             grid: super.getInfoGrid(this.getInfos()),
             form: this._form
@@ -44,8 +45,8 @@ export class ComentarioDocumentoService extends ServiceBase {
 
 	getInfos() {
 		return {
-				documentoId: { label: 'documentoId', type: 'int', isKey: true, list:true },
-				comentarioId: { label: 'comentarioId', type: 'int', isKey: true, list:true },
+				documentoId: { label: 'documentoId', type: 'int', isKey: true, list:false },
+				comentarioId: { label: 'comentarioId', type: 'int', isKey: true, list:false },
 
         }
     }

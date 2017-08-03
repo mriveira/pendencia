@@ -88,7 +88,7 @@ export class PendeciaPrioridadeComponent implements OnInit {
 
         this.detailsModal.show();
         this.pendeciaPrioridadeService.get(model).subscribe((result) => {
-            this.vm.model = result.dataList[0];
+            this.vm.details = result.dataList[0];
         })
 
     }

@@ -30,7 +30,7 @@ export class PendenciaEventosEditComponent implements OnInit {
 
 
         this.pendenciaEventosService.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
+            this.vm.details = data.data;
         })
 
     }

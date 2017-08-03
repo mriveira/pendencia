@@ -19,20 +19,7 @@ export class PendenciaTipoFieldCreateComponent implements OnInit {
        this.ref.detectChanges()
 	}
 
-    public onSave(model)
-    {
+   
 
-    }
-
-    public onCancel() {
-
-    }
-
-	public onChangeMakeSelectpendenciaTipoId(eventArgs) {
-        this.vm.model.pendenciaTipoId = eventArgs;
-	}
-	public onChangeMakeSelectnome(eventArgs) {
-        this.vm.model.nome = eventArgs;
-	}
 
 }

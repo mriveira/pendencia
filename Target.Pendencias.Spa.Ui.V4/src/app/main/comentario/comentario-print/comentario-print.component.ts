@@ -29,7 +29,7 @@ export class ComentarioPrintComponent implements OnInit {
         this.vm = this.comentarioService.initVM();
 
         this.comentarioService.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
+            this.vm.details = data.data;
         })
 
     }

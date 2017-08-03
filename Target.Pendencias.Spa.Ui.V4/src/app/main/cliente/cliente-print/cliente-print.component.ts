@@ -29,7 +29,7 @@ export class ClientePrintComponent implements OnInit {
         this.vm = this.clienteService.initVM();
 
         this.clienteService.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
+            this.vm.details = data.data;
         })
 
     }

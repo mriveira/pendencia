@@ -15,10 +15,7 @@ export class ProjetoFilterComponent implements OnInit {
     }
 
 
-    public onChangeMakeSelectprojetoId(eventArgs) {
-        this.vm.modelFilter.projetoId = eventArgs;
-	}
-public onChangeMakeSelectnome(eventArgs) {
+    public onChangeMakeSelectnome(eventArgs) {
         this.vm.modelFilter.nome = eventArgs;
 	}
 public onChangeMakeSelectdescricao(eventArgs) {

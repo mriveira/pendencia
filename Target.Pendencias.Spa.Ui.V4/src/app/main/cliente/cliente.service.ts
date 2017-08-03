@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -33,13 +33,14 @@ export class ClienteService extends ServiceBase {
 
         return new ViewModel({
             mostrarFiltros: false,
-            actionTitle: "Cliente",
+            actionTitle: " Cliente",
             actionDescription: "",
             downloadUri: GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
             modelFilter: {},
             summary: {},
             model: {},
+			details: {},
             infos: this.getInfos(),
             grid: super.getInfoGrid(this.getInfos()),
             form: this._form
@@ -48,12 +49,12 @@ export class ClienteService extends ServiceBase {
 
 	getInfos() {
 		return {
-				clienteId: { label: 'clienteId', type: 'int', isKey: true, list:true },
+				clienteId: { label: 'clienteId', type: 'int', isKey: true, list:false },
 				nome: { label: 'nome', type: 'string', isKey: false, list:true },
 				telefoneDeContato: { label: 'telefoneDeContato', type: 'string', isKey: false, list:true },
 				emailDeContato: { label: 'emailDeContato', type: 'string', isKey: false, list:true },
 				cpfcnpj: { label: 'cpfcnpj', type: 'string', isKey: false, list:true },
-				usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:true },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:false },
 
         }
     }

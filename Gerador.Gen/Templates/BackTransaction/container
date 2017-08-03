@@ -1,0 +1,17 @@
+﻿using Microsoft.Extensions.DependencyInjection;
+using Target.Pendencias.Data.Repository.Transaction;
+
+namespace <#namespace#>.Api
+{
+    public static partial class ConfigContainer<#contextName#>
+    {
+
+        public static void Config(IServiceCollection services)
+        {
+            
+<#injections#>
+
+            RegisterOtherComponents(services);
+        }
+    }
+}

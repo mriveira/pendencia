@@ -88,7 +88,7 @@ export class PendenciaTipoComponent implements OnInit {
 
         this.detailsModal.show();
         this.pendenciaTipoService.get(model).subscribe((result) => {
-            this.vm.model = result.dataList[0];
+            this.vm.details = result.dataList[0];
         })
 
     }

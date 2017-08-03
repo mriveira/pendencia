@@ -15,11 +15,11 @@ export class FluxoTrabalhoTipoFilterComponent implements OnInit {
     }
 
 
-    public onChangeMakeSelectfluxoTrabalhoTipoId(eventArgs) {
-        this.vm.modelFilter.fluxoTrabalhoTipoId = eventArgs;
-	}
-public onChangeMakeSelectnome(eventArgs) {
+    public onChangeMakeSelectnome(eventArgs) {
         this.vm.modelFilter.nome = eventArgs;
+	}
+public onChangeMakeSelectdescricao(eventArgs) {
+        this.vm.modelFilter.descricao = eventArgs;
 	}
 
 }

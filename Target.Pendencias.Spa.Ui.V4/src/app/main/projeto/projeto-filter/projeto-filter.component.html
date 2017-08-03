@@ -1,44 +1,32 @@
 <div class="row">
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.infos.nome.label }}</label>
-                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.nome' name='nome' />
-                </div>
+      <label>{{ vm.infos.nome.label }}</label>
+      <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.nome' name='nome' />
+    </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.infos.descricao.label }}</label>
-                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.descricao' name='descricao' />
-                </div>
+      <label>{{ vm.infos.clienteId.label }}</label>
+      <select class='form-control'  name='clienteId' [(ngModel)]='vm.modelFilter.clienteId' datasource [dataitem]="'Cliente'" (msChange)='onChangeMakeSelectclienteId($event)'></select>
+    </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.infos.visao.label }}</label>
-                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.visao' name='visao' />
-                </div>
+      <label>{{ vm.infos.chaveUnica.label }}</label>
+      <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.chaveUnica' name='chaveUnica' />
+    </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.infos.clienteId.label }}</label>
-                    <select class='form-control'  name='clienteId' [(ngModel)]='vm.modelFilter.clienteId' datasource [dataitem]="'Cliente'" (msChange)='onChangeMakeSelectclienteId($event)'></select>
-                </div>
+      <label>{{ vm.infos.inicio.label }}</label>
+      <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.inicio' name='inicio' />
+    </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.infos.chaveUnica.label }}</label>
-                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.chaveUnica' name='chaveUnica' />
-                </div>
-  </section>
-  <section class="col-md-6">
-	<div class='form-group'>
-                    <label>{{ vm.infos.inicio.label }}</label>
-                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.inicio' name='inicio' />
-                </div>
-  </section>
-  <section class="col-md-6">
-	<div class='form-group'>
-                    <label>{{ vm.infos.fim.label }}</label>
-                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.fim' name='fim' />
-                </div>
+      <label>{{ vm.infos.fim.label }}</label>
+      <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.fim' name='fim' />
+    </div>
   </section>
 </div>

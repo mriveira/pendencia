@@ -38,7 +38,7 @@ namespace Target.Pendencias.Domain.Services
             return this._rep.PagingAndDefineFields(filters, queryBase);
         }
 
-        public virtual void Remove(PendenciaDocumento pendenciadocumento)
+        public override void Remove(PendenciaDocumento pendenciadocumento)
         {
             this._rep.Remove(pendenciadocumento);
         }

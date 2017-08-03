@@ -1,6 +1,6 @@
 ﻿import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
@@ -30,7 +30,11 @@ import { LoadingComponent } from './common/components/loading.component';
         routingCustom,
         SimpleNotificationsModule.forRoot()
     ],
-    providers: [AuthService, ApiService],
+    providers: [
+        AuthService,
+        ApiService,
+        { provide: LOCALE_ID, useValue: "pt-BR" }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

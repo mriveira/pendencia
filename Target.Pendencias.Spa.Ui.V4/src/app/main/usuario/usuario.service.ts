@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -36,13 +36,14 @@ export class UsuarioService extends ServiceBase {
 
         return new ViewModel({
             mostrarFiltros: false,
-            actionTitle: "Cliente",
+            actionTitle: " Usuario",
             actionDescription: "",
             downloadUri: GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
             modelFilter: {},
             summary: {},
             model: {},
+			details: {},
             infos: this.getInfos(),
             grid: super.getInfoGrid(this.getInfos()),
             form: this._form
@@ -51,13 +52,13 @@ export class UsuarioService extends ServiceBase {
 
 	getInfos() {
 		return {
-				usuarioId: { label: 'usuarioId', type: 'int', isKey: true, list:true },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: true, list:false },
 				nome: { label: 'nome', type: 'string', isKey: false, list:true },
 				foto: { label: 'foto', type: 'string', isKey: false, list:false },
 				email: { label: 'email', type: 'string', isKey: false, list:true },
 				senha: { label: 'senha', type: 'string', isKey: false, list:true },
             confSenha: new FormControl(),
-				usuarioTipoId: { label: 'usuarioTipoId', type: 'int', isKey: false, list:true },
+				usuarioTipoId: { label: 'usuarioTipoId', type: 'int', isKey: false, list:false },
 				ativo: { label: 'ativo', type: 'bool', isKey: false, list:true },
 				usuarioDonoId: { label: 'usuarioDonoId', type: 'int?', isKey: false, list:false },
 
@@ -76,6 +77,11 @@ export class UsuarioService extends ServiceBase {
         }
 
         return this.api.setResource('Usuario').post(model);
+    }
+
+    upload(file: File)
+    {
+        return this.api.setResource('Usuario').upload(file);
     }
 
     delete(model: any): Observable<any> {

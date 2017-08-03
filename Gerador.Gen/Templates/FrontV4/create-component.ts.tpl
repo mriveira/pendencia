@@ -23,14 +23,7 @@ export class <#className#>CreateComponent implements OnInit {
 
     ngOnInit() {
 
-        this.sub = this.route.params.subscribe(params => {
-            this.id = params['id']; 
-        });
-
-        this.<#classNameInstance#>Service.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
-        })
-
+       
     }
 
     onSave(model) {

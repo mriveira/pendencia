@@ -1,0 +1,14 @@
+﻿using Microsoft.Extensions.DependencyInjection;
+using Common.Domain.Model;
+
+namespace <#namespace#>.Api
+{
+    public static partial class ConfigContainer<#contextName#> 
+    {
+
+        public static void RegisterOtherComponents(IServiceCollection services)
+        {
+			services.AddScoped<CurrentUser>();
+        }
+    }
+}

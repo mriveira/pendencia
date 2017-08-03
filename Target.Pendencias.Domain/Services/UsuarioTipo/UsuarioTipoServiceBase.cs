@@ -38,7 +38,7 @@ namespace Target.Pendencias.Domain.Services
             return this._rep.PagingAndDefineFields(filters, queryBase);
         }
 
-        public virtual void Remove(UsuarioTipo usuariotipo)
+        public override void Remove(UsuarioTipo usuariotipo)
         {
             this._rep.Remove(usuariotipo);
         }

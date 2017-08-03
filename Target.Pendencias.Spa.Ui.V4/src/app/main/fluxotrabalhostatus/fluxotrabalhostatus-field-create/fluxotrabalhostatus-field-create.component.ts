@@ -19,32 +19,7 @@ export class FluxoTrabalhoStatusFieldCreateComponent implements OnInit {
        this.ref.detectChanges()
 	}
 
-    public onSave(model)
-    {
+   
 
-    }
-
-    public onCancel() {
-
-    }
-
-	public onChangeMakeSelectfluxoTrabalhoStatusId(eventArgs) {
-        this.vm.model.fluxoTrabalhoStatusId = eventArgs;
-	}
-	public onChangeMakeSelectnome(eventArgs) {
-        this.vm.model.nome = eventArgs;
-	}
-	public onChangeMakeSelectfluxoTrabalhoTipoId(eventArgs) {
-        this.vm.model.fluxoTrabalhoTipoId = eventArgs;
-	}
-	public onChangeMakeSelectcorFundo(eventArgs) {
-        this.vm.model.corFundo = eventArgs;
-	}
-	public onChangeMakeSelectcorFonte(eventArgs) {
-        this.vm.model.corFonte = eventArgs;
-	}
-	public onChangeMakeSelectordem(eventArgs) {
-        this.vm.model.ordem = eventArgs;
-	}
 
 }

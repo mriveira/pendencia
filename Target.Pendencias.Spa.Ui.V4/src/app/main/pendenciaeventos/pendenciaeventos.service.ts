@@ -31,13 +31,14 @@ export class PendenciaEventosService extends ServiceBase {
 
         return new ViewModel({
             mostrarFiltros: false,
-            actionTitle: "Cliente",
+            actionTitle: " PendenciaEventos",
             actionDescription: "",
             downloadUri: GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
             modelFilter: {},
             summary: {},
             model: {},
+			details: {},
             infos: this.getInfos(),
             grid: super.getInfoGrid(this.getInfos()),
             form: this._form
@@ -46,9 +47,9 @@ export class PendenciaEventosService extends ServiceBase {
 
 	getInfos() {
 		return {
-				pendenciaEventosId: { label: 'pendenciaEventosId', type: 'int', isKey: true, list:true },
-				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: false, list:true },
-				descricao: { label: 'descricao', type: 'string', isKey: false, list:true },
+				pendenciaEventosId: { label: 'pendenciaEventosId', type: 'int', isKey: true, list:false },
+				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: false, list:false },
+				descricao: { label: 'descricao', type: 'string', isKey: false, list:false },
 				data: { label: 'data', type: 'DateTime?', isKey: false, list:true },
 
         }

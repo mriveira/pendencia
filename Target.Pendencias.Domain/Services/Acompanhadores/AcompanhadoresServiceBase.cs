@@ -38,7 +38,7 @@ namespace Target.Pendencias.Domain.Services
             return this._rep.PagingAndDefineFields(filters, queryBase);
         }
 
-        public virtual void Remove(Acompanhadores acompanhadores)
+        public override void Remove(Acompanhadores acompanhadores)
         {
             this._rep.Remove(acompanhadores);
         }

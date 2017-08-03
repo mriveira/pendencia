@@ -1,70 +1,69 @@
-<div class="modal-body">
-  <div class="row" [formGroup]="vm.form">
-			<section class="col-md-12">
-                <div class='form-group'>
-                    <label>{{ vm.infos.projetoId.label }}</label>
-                    <select class='form-control'  name='projetoId' [(ngModel)]='vm.model.projetoId' required formControlName='projetoId' datasource [dataitem]="'Projeto'"></select>
-                  </div>
-			</section>
-			<section class="col-md-12">
-                <div class='form-group'>
-                    <label>{{ vm.infos.resumo.label }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.resumo' name='resumo' required formControlName='resumo'  />
-                </div>
-			</section>
-			<section class="col-md-12">
-                <div class='form-group'>
-                    <label>{{ vm.infos.descricao.label }}</label>
-                    <textarea class='form-control'  [(ngModel)]='vm.model.descricao' name='descricao'  rows='10' formControlName='descricao'  editorhtml='descricao'></textarea>
-                </div>
-			</section>
-			<section class="col-md-12">
-                <div class='form-group'>
-                    <label>{{ vm.infos.requisitadoPor.label }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.requisitadoPor' name='requisitadoPor'  formControlName='requisitadoPor'  />
-                </div>
-			</section>
-			<section class="col-md-12">
-                <div class='form-group'>
-                    <label>{{ vm.infos.tempoEstimado.label }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.tempoEstimado' name='tempoEstimado'  formControlName='tempoEstimado' maski='9999999999' />
-                </div>
-			</section>
-			<section class="col-md-12">
-                <div class='form-group'>
-                    <label>{{ vm.infos.pontosEstimados.label }}</label>
-                    <div class='radio'><label><input type='radio' name='pontosEstimados' value='0' ng-model='vm.model.pontosEstimados'>0 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='1' ng-model='vm.model.pontosEstimados'>1 Ponto</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='2' ng-model='vm.model.pontosEstimados'>2 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='3' ng-model='vm.model.pontosEstimados'>3 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='5' ng-model='vm.model.pontosEstimados'>5 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='8' ng-model='vm.model.pontosEstimados'>8 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='13' ng-model='vm.model.pontosEstimados'>13 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='20' ng-model='vm.model.pontosEstimados'>20 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='40' ng-model='vm.model.pontosEstimados'>40 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='100' ng-model='vm.model.pontosEstimados'>100 Pontos</label></div>
-                </div>
-			</section>
-			<section class="col-md-12">
-                <div class='form-group'>
-                    <label>{{ vm.infos.prazo.label }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.prazo' name='prazo'  formControlName='prazo' datetimepicker />
-                </div>
-			</section>
-			<section class="col-md-12">
-                <div class='form-group'>
-                    <label>{{ vm.infos.pendenciaTipoId.label }}</label>
-                    <select class='form-control'  name='pendenciaTipoId' [(ngModel)]='vm.model.pendenciaTipoId' required formControlName='pendenciaTipoId' datasource [dataitem]="'PendenciaTipo'"></select>
-                  </div>
-			</section>
-			<section class="col-md-12">
-                <div class='form-group'>
-                    <label>{{ vm.infos.fluxoTrabalhoStatusId.label }}</label>
-                    <select class='form-control'  name='fluxoTrabalhoStatusId' [(ngModel)]='vm.model.fluxoTrabalhoStatusId' required formControlName='fluxoTrabalhoStatusId' datasource [dataitem]="'FluxoTrabalhoStatus'"></select>
-                  </div>
-			</section>
-			<section class="col-md-12">
-                <div class='form-group'>
-                    <label>{{ vm.infos.pendenciaPrioridadeId.label }}</label>
-                    <select class='form-control'  name='pendenciaPrioridadeId' [(ngModel)]='vm.model.pendenciaPrioridadeId' required formControlName='pendenciaPrioridadeId' datasource [dataitem]="'PendeciaPrioridade'"></select>
-                  </div>
-			</section>
-			<section class="col-md-12">
-                <div class='form-group'>
-                    <label>{{ vm.infos.tags.label }}</label>
-                    <input type='text' class='form-control'[(ngModel)]='vm.model.tags' name='tags'  formControlName='tags'  />
-                </div>
-			</section>
-  </div>
+<div class="row" [formGroup]="vm.form">
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.projetoId.label }}</label>
+      <select class='form-control'  name='projetoId' [(ngModel)]='vm.model.projetoId' required formControlName='projetoId' datasource [dataitem]="'Projeto'"></select>
+      </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.resumo.label }}</label>
+      <input type='text' class='form-control'[(ngModel)]='vm.model.resumo' name='resumo' required formControlName='resumo'  />
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.descricao.label }}</label>
+      <textarea class='form-control'  [(ngModel)]='vm.model.descricao' name='descricao'  rows='10' formControlName='descricao'  editorhtml='descricao' (editorKeyup)='onEditorKeyupdescricao($event)'></textarea>
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.requisitadoPor.label }}</label>
+      <input type='text' class='form-control'[(ngModel)]='vm.model.requisitadoPor' name='requisitadoPor'  formControlName='requisitadoPor'  />
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.tempoEstimado.label }}</label>
+      <input type='text' class='form-control'[(ngModel)]='vm.model.tempoEstimado' name='tempoEstimado'  formControlName='tempoEstimado' maski='9999999999' />
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.pontosEstimados.label }}</label>
+      <div class='radio'><label><input type='radio' name='pontosEstimados' value='0' ng-model='vm.model.pontosEstimados'>0 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='1' ng-model='vm.model.pontosEstimados'>1 Ponto</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='2' ng-model='vm.model.pontosEstimados'>2 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='3' ng-model='vm.model.pontosEstimados'>3 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='5' ng-model='vm.model.pontosEstimados'>5 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='8' ng-model='vm.model.pontosEstimados'>8 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='13' ng-model='vm.model.pontosEstimados'>13 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='20' ng-model='vm.model.pontosEstimados'>20 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='40' ng-model='vm.model.pontosEstimados'>40 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='100' ng-model='vm.model.pontosEstimados'>100 Pontos</label></div>
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.prazo.label }}</label>
+      <input type='text' class='form-control'[(ngModel)]='vm.model.prazo' name='prazo'  formControlName='prazo' datetimepicker />
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.pendenciaTipoId.label }}</label>
+      <select class='form-control'  name='pendenciaTipoId' [(ngModel)]='vm.model.pendenciaTipoId' required formControlName='pendenciaTipoId' datasource [dataitem]="'PendenciaTipo'"></select>
+      </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.fluxoTrabalhoStatusId.label }}</label>
+      <select class='form-control'  name='fluxoTrabalhoStatusId' [(ngModel)]='vm.model.fluxoTrabalhoStatusId' required formControlName='fluxoTrabalhoStatusId' datasource [dataitem]="'FluxoTrabalhoStatus'"></select>
+      </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.pendenciaPrioridadeId.label }}</label>
+      <select class='form-control'  name='pendenciaPrioridadeId' [(ngModel)]='vm.model.pendenciaPrioridadeId' required formControlName='pendenciaPrioridadeId' datasource [dataitem]="'PendeciaPrioridade'"></select>
+      </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.tags.label }}</label>
+      <input type='text' class='form-control'[(ngModel)]='vm.model.tags' name='tags'  formControlName='tags'  />
+    </div>
+  </section>
 </div>
+

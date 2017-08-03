@@ -12,7 +12,7 @@ namespace Cna.Erp.Gen
     {
         #region Config Contexts
 
-        private Context ConfigContextTargetPendencia()
+        private Context ConfigContextTargetPendenciaDDD()
         {
             var contextName = "Target";
 
@@ -23,7 +23,7 @@ namespace Cna.Erp.Gen
 
                 Namespace = "Target.Pendencias",
                 ContextName = "Target",
-                ShowKeysInFront = true,
+                ShowKeysInFront = false,
                 LengthBigField = 250,
 
                 OutputClassDomain = ConfigurationManager.AppSettings[string.Format("outputClassDomain{0}", contextName)],
@@ -49,7 +49,7 @@ namespace Cna.Erp.Gen
                             new FieldConfig {  Name ="projetoId" , Order=-1},
                             new FieldConfig()
                             {
-                                Name ="usuarioId", Edit = false, Create = false , Filter=  false,
+                                Name ="usuarioId", Edit = false, Create = false , Filter=  false, Attributes = new List<string> {"maki='99999-999'"}
                             },
                              new FieldConfig()
                             {
@@ -124,7 +124,15 @@ namespace Cna.Erp.Gen
                     new TableInfo { TableName = "ComentarioDocumento", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true},
                     new TableInfo { TableName = "Documento", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true},
                     new TableInfo { TableName = "FluxoTrabalhoStatus", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true},
-                    new TableInfo { TableName = "FluxoTrabalhoTipo", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true},
+                    new TableInfo { TableName = "FluxoTrabalhoTipo", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true,
+                    FieldsConfig = new List<FieldConfig>{
+                         new FieldConfig()
+                            {
+                                Name ="Descricao",
+                                TextEditor = true
+                            }
+                        }
+                    },
                     new TableInfo { TableName = "PendeciaPrioridade", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true},
                     new TableInfo { TableName = "PendenciaEventos", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true },
                     new TableInfo { TableName = "PendenciaDocumento", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true},
@@ -149,6 +157,38 @@ namespace Cna.Erp.Gen
             };
         }
 
+        private Context ConfigContextTargetPendenciaTransaction()
+        {
+            var contextName = "Target";
+
+            return new Context
+            {
+
+                ConnectionString = ConfigurationManager.ConnectionStrings["Target"].ConnectionString,
+
+                Namespace = "Target.Pendencias",
+                ContextName = "Target",
+                ShowKeysInFront = false,
+                LengthBigField = 250,
+
+
+                OutputClassInfra = ConfigurationManager.AppSettings[string.Format("outputClassInfraTransaction{0}", contextName)],
+                OutputClassApi = ConfigurationManager.AppSettings[string.Format("outputClassApiTransaction{0}", contextName)],
+                OutputClassFilter = ConfigurationManager.AppSettings[string.Format("outputClassFilter{0}", contextName)],
+                OutputClassDto = ConfigurationManager.AppSettings[string.Format("outputClassDtoTransaction{0}", contextName)],
+
+                Arquiteture = ArquitetureType.TransactionScript,
+                CamelCasing = true,
+                MakeFront = false,
+                MakeBack = true,
+
+                TableInfo = new UniqueListTableInfo
+                {
+                    new TableInfo { TableName = "UsuarioTipo", MakeCrud = true, MakeApi= true},
+                }
+            };
+        }
+
 
 
         public IEnumerable<Context> GetConfigContext()
@@ -157,7 +197,8 @@ namespace Cna.Erp.Gen
             return new List<Context>
             {
 
-                ConfigContextTargetPendencia(),
+                //ConfigContextTargetPendenciaDDD(),
+                ConfigContextTargetPendenciaTransaction(),
 
             };
 

@@ -74,6 +74,7 @@ namespace Target.Pendencias.Gen
             {
                 ReplaceLocalFilesApplication = true,
                 DownloadOneTime = true,
+                DownloadOneTimeFileVerify = "package.json",
                 ResouceRepositoryName = "Seed-layout-front-bs4-angular2.0",
                 ResourceUrlRepository = "https://github.com/wilsonsantosnet/Seed-layout-front-bs4-angular2.0.git",
                 ResourceLocalPathFolderExecuteCloning = @"C:\Projetos\Outros\Repositorios",

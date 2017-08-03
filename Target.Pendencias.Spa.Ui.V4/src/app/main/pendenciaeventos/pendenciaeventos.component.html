@@ -82,7 +82,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" novalidate>
+      <form (ngSubmit)="onSave(vm.model)" novalidate>
         <div class="modal-body">
           <app-pendenciaeventos-field-create [(vm)]="vm"></app-pendenciaeventos-field-create>
         </div>
@@ -104,8 +104,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" novalidate>
-        <app-pendenciaeventos-field-edit [(vm)]="vm"></app-pendenciaeventos-field-edit>
+      <form (ngSubmit)="onSave(vm.model)" novalidate>
+		<div class="modal-body">
+			<app-pendenciaeventos-field-edit [(vm)]="vm"></app-pendenciaeventos-field-edit>
+		</div>
         <div class="modal-footer">
           <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
           <button type="submit" class="btn btn-success" [disabled]="vm.form.invalid">Salvar</button>
@@ -124,13 +126,12 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
-      <app-pendenciaeventos-details [(vm)]="vm"></app-pendenciaeventos-details>
-
+	  <div class="modal-body">
+		<app-pendenciaeventos-details [(vm)]="vm"></app-pendenciaeventos-details>
+	  </div>
       <div class="modal-footer">
         <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
       </div>
-
     </div>
   </div>
 </div>

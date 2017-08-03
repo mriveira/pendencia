@@ -29,13 +29,14 @@ export class ProjetoFluxoTrabalhoStatusService extends ServiceBase {
 
         return new ViewModel({
             mostrarFiltros: false,
-            actionTitle: "Cliente",
+            actionTitle: " ProjetoFluxoTrabalhoStatus",
             actionDescription: "",
             downloadUri: GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
             modelFilter: {},
             summary: {},
             model: {},
+			details: {},
             infos: this.getInfos(),
             grid: super.getInfoGrid(this.getInfos()),
             form: this._form
@@ -44,8 +45,8 @@ export class ProjetoFluxoTrabalhoStatusService extends ServiceBase {
 
 	getInfos() {
 		return {
-				projetoId: { label: 'projetoId', type: 'int', isKey: true, list:true },
-				fluxoTrabalhoStatusId: { label: 'fluxoTrabalhoStatusId', type: 'int', isKey: true, list:true },
+				projetoId: { label: 'projetoId', type: 'int', isKey: true, list:false },
+				fluxoTrabalhoStatusId: { label: 'fluxoTrabalhoStatusId', type: 'int', isKey: true, list:false },
 
         }
     }

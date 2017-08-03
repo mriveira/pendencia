@@ -156,17 +156,22 @@ namespace Common.API
         }
         public ObjectResult ReturnCustomResponse(IApplicationServiceBase<T> _app, SearchResult<T> searchResult, FilterBase filter)
         {
-            this.Summary = searchResult.Summary;
-            this.Warning = _app.GetDomainWarning(filter);
-            this.Confirm = _app.GetDomainConfirm(filter);
-            this.Result = _app.GetDomainValidation(filter);
+            return this.ReturnCustomResponse(searchResult.Summary, _app.GetDomainWarning(filter), _app.GetDomainConfirm(filter), _app.GetDomainValidation(filter), searchResult.DataList);
+        }
 
-            this.Success(searchResult.DataList);
+
+        public ObjectResult ReturnCustomResponse(Summary summary, WarningSpecificationResult warning, ConfirmEspecificationResult confirm, ValidationSpecificationResult result, IEnumerable<T> dataList)
+        {
+            this.Summary = summary;
+            this.Warning = warning;
+            this.Confirm = confirm;
+            this.Result = result;
+
+            this.Success(dataList);
             return new ObjectResult(this)
             {
                 StatusCode = (int)this.StatusCode
             };
-
 
         }
         public ObjectResult ReturnCustomResponse(IApplicationServiceBase<T> _app, IEnumerable<T> returnModel)

@@ -1,42 +1,42 @@
 <div class="row">
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.infos.nome.label }}</label>
-                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.nome' name='nome' />
-                </div>
+      <label>{{ vm.infos.nome.label }}</label>
+      <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.nome' name='nome' />
+    </div>
   </section>
   <section class="col-md-6">
-	                <div class='form-group'>
-                    <label>{{ vm.infos.foto.label }}</label><br>
-                    <img src='{{vm.downloadUri}}{{vm.model.foto}}' style='width: 100px' /><br>
-                    Procurar<input type='file'  multiple><br>
-                    <em *ngIf='vm.model.foto != null' class='text-muted'>{{vm.downloadUri}}{{vm.model.foto}}</em><br>
-                    <button class='btn btn-default' type='button' (click)='vm.delete(vm.model.foto, vm.model)'>Excluir</button><br>
-                </div>
-  </section>
-  <section class="col-md-6">
-	<div class='form-group'>
-                    <label>{{ vm.infos.email.label }}</label>
-                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.email' name='email' />
-                </div>
+	    <div class='form-group'>
+      <label>{{ vm.infos.foto.label }}</label><br>
+      <img src='{{vm.downloadUri}}{{vm.model.foto}}' style='width: 100px' /><br>
+      Procurar<input type='file'  multiple><br>
+      <em *ngIf='vm.model.foto != null' class='text-muted'>{{vm.downloadUri}}{{vm.model.foto}}</em><br>
+      <button class='btn btn-default' type='button' (click)='vm.delete(vm.model.foto, vm.model)'>Excluir</button><br>
+    </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.infos.senha.label }}</label>
-                    <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.senha' name='senha' />
-                </div>
+      <label>{{ vm.infos.email.label }}</label>
+      <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.email' name='email' />
+    </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-                    <label>{{ vm.infos.usuarioTipoId.label }}</label>
-                    <select class='form-control'  name='usuarioTipoId' [(ngModel)]='vm.modelFilter.usuarioTipoId' datasource [dataitem]="'UsuarioTipo'" (msChange)='onChangeMakeSelectusuarioTipoId($event)'></select>
-                </div>
+      <label>{{ vm.infos.senha.label }}</label>
+      <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.senha' name='senha' />
+    </div>
   </section>
   <section class="col-md-6">
-	                <div class='checkbox'>
-                    <label>
-                        <input type='checkbox'  [(ngModel)]='vm.modelFilter.ativo' name='ativo' /> {{ vm.infos.ativo.label }}?
-                    </label>
-                </div>
+	<div class='form-group'>
+      <label>{{ vm.infos.usuarioTipoId.label }}</label>
+      <select class='form-control'  name='usuarioTipoId' [(ngModel)]='vm.modelFilter.usuarioTipoId' datasource [dataitem]="'UsuarioTipo'" (msChange)='onChangeMakeSelectusuarioTipoId($event)'></select>
+    </div>
+  </section>
+  <section class="col-md-6">
+	    <div class='checkbox'>
+      <label>
+          <input type='checkbox'  [(ngModel)]='vm.modelFilter.ativo' name='ativo' /> {{ vm.infos.ativo.label }}?
+      </label>
+    </div>
   </section>
 </div>

@@ -29,7 +29,7 @@ export class PendeciaPrioridadePrintComponent implements OnInit {
         this.vm = this.pendeciaPrioridadeService.initVM();
 
         this.pendeciaPrioridadeService.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
+            this.vm.details = data.data;
         })
 
     }

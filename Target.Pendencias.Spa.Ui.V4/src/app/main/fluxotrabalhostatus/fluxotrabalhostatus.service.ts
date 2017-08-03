@@ -33,13 +33,14 @@ export class FluxoTrabalhoStatusService extends ServiceBase {
 
         return new ViewModel({
             mostrarFiltros: false,
-            actionTitle: "Cliente",
+            actionTitle: " FluxoTrabalhoStatus",
             actionDescription: "",
             downloadUri: GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
             modelFilter: {},
             summary: {},
             model: {},
+			details: {},
             infos: this.getInfos(),
             grid: super.getInfoGrid(this.getInfos()),
             form: this._form
@@ -48,9 +49,9 @@ export class FluxoTrabalhoStatusService extends ServiceBase {
 
 	getInfos() {
 		return {
-				fluxoTrabalhoStatusId: { label: 'fluxoTrabalhoStatusId', type: 'int', isKey: true, list:true },
+				fluxoTrabalhoStatusId: { label: 'fluxoTrabalhoStatusId', type: 'int', isKey: true, list:false },
 				nome: { label: 'nome', type: 'string', isKey: false, list:true },
-				fluxoTrabalhoTipoId: { label: 'fluxoTrabalhoTipoId', type: 'int', isKey: false, list:true },
+				fluxoTrabalhoTipoId: { label: 'fluxoTrabalhoTipoId', type: 'int', isKey: false, list:false },
 				corFundo: { label: 'corFundo', type: 'string', isKey: false, list:true },
 				corFonte: { label: 'corFonte', type: 'string', isKey: false, list:true },
 				ordem: { label: 'ordem', type: 'int?', isKey: false, list:true },

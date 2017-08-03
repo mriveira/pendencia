@@ -88,7 +88,7 @@ export class FluxoTrabalhoTipoComponent implements OnInit {
 
         this.detailsModal.show();
         this.fluxoTrabalhoTipoService.get(model).subscribe((result) => {
-            this.vm.model = result.dataList[0];
+            this.vm.details = result.dataList[0];
         })
 
     }

@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -19,6 +19,9 @@ export class FluxoTrabalhoTipoService extends ServiceBase {
 
 		this._form = new FormGroup({
             fluxoTrabalhoTipoId : new FormControl(),
+            nome : new FormControl(),
+            descricao : new FormControl(),
+
         });
 
     }
@@ -27,13 +30,14 @@ export class FluxoTrabalhoTipoService extends ServiceBase {
 
         return new ViewModel({
             mostrarFiltros: false,
-            actionTitle: "Cliente",
+            actionTitle: " FluxoTrabalhoTipo",
             actionDescription: "",
             downloadUri: GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
             modelFilter: {},
             summary: {},
             model: {},
+			details: {},
             infos: this.getInfos(),
             grid: super.getInfoGrid(this.getInfos()),
             form: this._form
@@ -42,8 +46,9 @@ export class FluxoTrabalhoTipoService extends ServiceBase {
 
 	getInfos() {
 		return {
-				fluxoTrabalhoTipoId: { label: 'fluxoTrabalhoTipoId', type: 'int', isKey: true, list:true },
+				fluxoTrabalhoTipoId: { label: 'fluxoTrabalhoTipoId', type: 'int', isKey: true, list:false },
 				nome: { label: 'nome', type: 'string', isKey: false, list:true },
+				descricao: { label: 'descricao', type: 'string', isKey: false, list:false },
 
         }
     }

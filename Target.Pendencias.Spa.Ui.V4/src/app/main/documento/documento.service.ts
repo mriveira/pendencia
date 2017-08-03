@@ -30,13 +30,14 @@ export class DocumentoService extends ServiceBase {
 
         return new ViewModel({
             mostrarFiltros: false,
-            actionTitle: "Cliente",
+            actionTitle: " Documento",
             actionDescription: "",
             downloadUri: GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
             modelFilter: {},
             summary: {},
             model: {},
+			details: {},
             infos: this.getInfos(),
             grid: super.getInfoGrid(this.getInfos()),
             form: this._form
@@ -45,7 +46,7 @@ export class DocumentoService extends ServiceBase {
 
 	getInfos() {
 		return {
-				documentoId: { label: 'documentoId', type: 'int', isKey: true, list:true },
+				documentoId: { label: 'documentoId', type: 'int', isKey: true, list:false },
 				arquivo: { label: 'arquivo', type: 'string', isKey: false, list:true },
 				ext: { label: 'ext', type: 'string', isKey: false, list:true },
 

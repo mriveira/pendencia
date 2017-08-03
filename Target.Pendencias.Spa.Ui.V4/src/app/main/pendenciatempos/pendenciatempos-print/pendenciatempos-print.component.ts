@@ -29,7 +29,7 @@ export class PendenciaTemposPrintComponent implements OnInit {
         this.vm = this.pendenciaTemposService.initVM();
 
         this.pendenciaTemposService.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
+            this.vm.details = data.data;
         })
 
     }

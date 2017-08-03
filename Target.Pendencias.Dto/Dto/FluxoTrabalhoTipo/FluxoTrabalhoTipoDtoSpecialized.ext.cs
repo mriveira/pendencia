@@ -11,8 +11,6 @@ namespace Target.Pendencias.Dto
 
         public IEnumerable<FluxoTrabalhoStatusDto> CollectionFluxoTrabalhoStatus { get; set;}
 
-        [RequiredAllowAll]
-        public override string Nome { get => base.Nome; set => base.Nome = value; }
 
 
     }

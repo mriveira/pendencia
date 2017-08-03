@@ -19,20 +19,7 @@ export class ComentarioDocumentoFieldEditComponent implements OnInit {
        this.ref.detectChanges()
 	}
 
-    public onSave(model)
-    {
+        
 
-    }
-
-    public onCancel() {
-
-    }
-    
-	public onChangeMakeSelectdocumentoId(eventArgs) {
-        this.vm.model.documentoId = eventArgs;
-	}
-	public onChangeMakeSelectcomentarioId(eventArgs) {
-        this.vm.model.comentarioId = eventArgs;
-	}
    
 }

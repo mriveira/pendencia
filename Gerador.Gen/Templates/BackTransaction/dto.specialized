@@ -1,0 +1,13 @@
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+
+namespace <#namespace#>.Dto.Transaction
+{
+	public class <#className#>DtoSpecialized : <#className#>Dto
+	{
+
+		
+	}
+}

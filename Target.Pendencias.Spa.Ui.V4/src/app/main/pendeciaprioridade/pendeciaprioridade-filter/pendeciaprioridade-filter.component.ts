@@ -15,10 +15,7 @@ export class PendeciaPrioridadeFilterComponent implements OnInit {
     }
 
 
-    public onChangeMakeSelectpendeciaPrioridadeId(eventArgs) {
-        this.vm.modelFilter.pendeciaPrioridadeId = eventArgs;
-	}
-public onChangeMakeSelectnome(eventArgs) {
+    public onChangeMakeSelectnome(eventArgs) {
         this.vm.modelFilter.nome = eventArgs;
 	}
 

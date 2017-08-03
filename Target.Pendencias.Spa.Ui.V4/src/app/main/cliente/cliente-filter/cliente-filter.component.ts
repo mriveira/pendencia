@@ -15,10 +15,7 @@ export class ClienteFilterComponent implements OnInit {
     }
 
 
-    public onChangeMakeSelectclienteId(eventArgs) {
-        this.vm.modelFilter.clienteId = eventArgs;
-	}
-public onChangeMakeSelectnome(eventArgs) {
+    public onChangeMakeSelectnome(eventArgs) {
         this.vm.modelFilter.nome = eventArgs;
 	}
 public onChangeMakeSelecttelefoneDeContato(eventArgs) {

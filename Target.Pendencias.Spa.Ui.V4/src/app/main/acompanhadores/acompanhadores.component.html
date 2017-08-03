@@ -1,4 +1,4 @@
-<div class="gc-body__heading">
+﻿<div class="gc-body__heading">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Home</a></li>
   </ol>
@@ -82,7 +82,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" novalidate>
+      <form (ngSubmit)="onSave(vm.model)" novalidate>
         <div class="modal-body">
           <app-acompanhadores-field-create [(vm)]="vm"></app-acompanhadores-field-create>
         </div>
@@ -104,8 +104,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" novalidate>
-        <app-acompanhadores-field-edit [(vm)]="vm"></app-acompanhadores-field-edit>
+      <form (ngSubmit)="onSave(vm.model)" novalidate>
+		<div class="modal-body">
+			<app-acompanhadores-field-edit [(vm)]="vm"></app-acompanhadores-field-edit>
+		</div>
         <div class="modal-footer">
           <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
           <button type="submit" class="btn btn-success" [disabled]="vm.form.invalid">Salvar</button>
@@ -124,13 +126,12 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
-      <app-acompanhadores-details [(vm)]="vm"></app-acompanhadores-details>
-
+	  <div class="modal-body">
+		<app-acompanhadores-details [(vm)]="vm"></app-acompanhadores-details>
+	  </div>
       <div class="modal-footer">
         <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
       </div>
-
     </div>
   </div>
 </div>

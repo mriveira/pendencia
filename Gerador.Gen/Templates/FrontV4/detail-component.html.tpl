@@ -1,5 +1,4 @@
-﻿<div class="modal-body">
-  <dl>
+﻿<dl>
 <#fieldItems#>
-  </dl> 
-</div>
+</dl> 
+

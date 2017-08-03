@@ -38,7 +38,7 @@ namespace Target.Pendencias.Domain.Services
             return this._rep.PagingAndDefineFields(filters, queryBase);
         }
 
-        public virtual void Remove(FluxoTrabalhoStatus fluxotrabalhostatus)
+        public override void Remove(FluxoTrabalhoStatus fluxotrabalhostatus)
         {
             this._rep.Remove(fluxotrabalhostatus);
         }

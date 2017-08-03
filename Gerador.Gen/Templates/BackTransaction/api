@@ -1,0 +1,115 @@
+﻿using System;
+using Common.API;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
+using <#namespace#>.Domain.Filter.Transaction;
+using <#namespace#>.Dto.Transaction;
+using <#namespace#>.Data.Repository.Transaction;
+
+namespace <#namespace#>.Api.ControllersTransactions
+{
+	[Authorize]
+    [Route("api/transaction/<#className#>")]
+    public class <#className#>Controller : Controller
+    {
+
+        private readonly <#className#>IRepository _rep;
+		private readonly ILogger _logger;
+
+
+        public <#className#>Controller(<#className#>IRepository rep, ILoggerFactory logger)
+        {
+            this._rep = rep;
+			this._logger = logger.CreateLogger<<#className#>Controller>();
+			
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get([FromQuery]<#className#>Filter filters)
+        {
+			var result = new HttpResult<dynamic>(this._logger);
+            try
+            {
+                var searchResult = await this._rep.GetDataListCustom(filters);
+                return result.ReturnCustomResponse(searchResult, filters);
+
+
+            }
+            catch (Exception ex)
+            {
+                return result.ReturnCustomException(ex,"<#namespace#> - <#className#>", filters);
+            }
+
+        }
+
+		[HttpGet("{id}")]
+		public async Task<IActionResult> Get(<#KeyType#> id, [FromQuery]<#className#>Filter filters)
+		{
+			var result = new HttpResult<dynamic>(this._logger);
+            try
+            {
+				filters.<#KeyName#> = id;
+                var returnModel = await this._rep.GetDataCustom(filters);
+                return result.ReturnCustomResponse(returnModel, filters);
+            }
+            catch (Exception ex)
+            {
+                return result.ReturnCustomException(ex,"<#namespace#> - <#className#>", id);
+            }
+
+		}
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody]<#className#>DtoSpecialized dto)
+        {
+           var result = new HttpResult<dynamic>(this._logger);
+            try
+            {
+                var returnModel = await this._rep.Save(dto);
+                return result.ReturnCustomResponse(returnModel);
+
+            }
+            catch (Exception ex)
+            {
+                return result.ReturnCustomException(ex,"<#namespace#> - <#className#>", dto);
+            }
+        }
+
+
+
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody]<#className#>DtoSpecialized dto)
+        {
+            var result = new HttpResult<dynamic>(this._logger);
+            try
+            {
+                var returnModel = await this._rep.SavePartial(dto);
+                return result.ReturnCustomResponse(returnModel);
+
+            }
+            catch (Exception ex)
+            {
+                return result.ReturnCustomException(ex,"<#namespace#> - <#className#>", dto);
+            }
+        }
+
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(<#className#>Dto dto)
+        {
+            var result = new HttpResult<dynamic>(this._logger);
+            try
+            {
+                await this._rep.Remove(dto);
+                return result.ReturnCustomResponse(dto);
+            }
+            catch (Exception ex)
+            {
+                return result.ReturnCustomException(ex,"<#namespace#> - <#className#>", dto);
+            }
+        }
+    }
+}

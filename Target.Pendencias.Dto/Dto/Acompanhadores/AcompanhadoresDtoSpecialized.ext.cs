@@ -8,8 +8,9 @@ namespace Target.Pendencias.Dto
 	public class AcompanhadoresDtoSpecialized : AcompanhadoresDto
 	{
 
-        public  PendenciaDto Pendencia { get; set;} 
+        public  PendenciaDto Pendencia { get; set;}
+        public int MyProperty { get; set; }
 
-		
-	}
+
+    }
 }

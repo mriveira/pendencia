@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace Cna.Erp.Gen
 {
-    public class HelperSysObjects : HelperSysObjectsDDD
+    public class HelperSysObjects : HelperSysObjectsTransaction
     {
 
         public HelperSysObjects(IEnumerable<Context> contexts)
-            : base(contexts)
+            : base(contexts, "Templates\\BackTransaction")
         {
+
 
         }
 

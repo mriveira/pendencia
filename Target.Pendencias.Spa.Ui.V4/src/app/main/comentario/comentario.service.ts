@@ -32,13 +32,14 @@ export class ComentarioService extends ServiceBase {
 
         return new ViewModel({
             mostrarFiltros: false,
-            actionTitle: "Cliente",
+            actionTitle: " Comentario",
             actionDescription: "",
             downloadUri: GlobalService.getEndPoints().DOWNLOAD,
             filterResult: [],
             modelFilter: {},
             summary: {},
             model: {},
+			details: {},
             infos: this.getInfos(),
             grid: super.getInfoGrid(this.getInfos()),
             form: this._form
@@ -47,11 +48,11 @@ export class ComentarioService extends ServiceBase {
 
 	getInfos() {
 		return {
-				comentarioId: { label: 'comentarioId', type: 'int', isKey: true, list:true },
-				descricao: { label: 'descricao', type: 'string', isKey: false, list:true },
+				comentarioId: { label: 'comentarioId', type: 'int', isKey: true, list:false },
+				descricao: { label: 'descricao', type: 'string', isKey: false, list:false },
 				data: { label: 'data', type: 'DateTime', isKey: false, list:true },
-				usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:true },
-				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: false, list:true },
+				usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:false },
+				pendenciaId: { label: 'pendenciaId', type: 'int', isKey: false, list:false },
 
         }
     }

@@ -8,6 +8,7 @@ namespace Target.Pendencias.Domain.Filter
 
         public int FluxoTrabalhoTipoId { get; set;} 
         public string Nome { get; set;} 
+        public string Descricao { get; set;} 
 
 
     }

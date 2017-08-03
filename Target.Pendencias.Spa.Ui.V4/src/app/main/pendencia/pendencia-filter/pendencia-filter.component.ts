@@ -18,9 +18,6 @@ export class PendenciaFilterComponent implements OnInit {
     public onChangeMakeSelectprojetoId(eventArgs) {
         this.vm.modelFilter.projetoId = eventArgs;
 	}
-public onChangeMakeSelectpendenciaId(eventArgs) {
-        this.vm.modelFilter.pendenciaId = eventArgs;
-	}
 public onChangeMakeSelectresumo(eventArgs) {
         this.vm.modelFilter.resumo = eventArgs;
 	}

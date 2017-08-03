@@ -82,7 +82,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" novalidate>
+      <form (ngSubmit)="onSave(vm.model)" novalidate>
         <div class="modal-body">
           <app-<#classNameLowerAndSeparator#>-field-create [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-field-create>
         </div>
@@ -104,8 +104,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" novalidate>
-        <app-<#classNameLowerAndSeparator#>-field-edit [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-field-edit>
+      <form (ngSubmit)="onSave(vm.model)" novalidate>
+		<div class="modal-body">
+			<app-<#classNameLowerAndSeparator#>-field-edit [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-field-edit>
+		</div>
         <div class="modal-footer">
           <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
           <button type="submit" class="btn btn-success" [disabled]="vm.form.invalid">Salvar</button>
@@ -124,13 +126,12 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
-      <app-<#classNameLowerAndSeparator#>-details [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-details>
-
+	  <div class="modal-body">
+		<app-<#classNameLowerAndSeparator#>-details [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-details>
+	  </div>
       <div class="modal-footer">
         <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
       </div>
-
     </div>
   </div>
 </div>

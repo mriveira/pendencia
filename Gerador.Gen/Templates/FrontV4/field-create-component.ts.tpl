@@ -19,15 +19,7 @@ export class <#className#>FieldCreateComponent implements OnInit {
        this.ref.detectChanges()
 	}
 
-    public onSave(model)
-    {
-
-    }
-
-    public onCancel() {
-
-    }
-
+   
 <#fieldItems#>
 
 }

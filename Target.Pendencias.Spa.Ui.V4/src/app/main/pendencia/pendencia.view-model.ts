@@ -1,6 +1,5 @@
 export class Pendencia {
 	projetoId : number;
-	pendenciaId : number;
 	resumo : string;
 	descricao : string;
 	requisitadoPor : string;

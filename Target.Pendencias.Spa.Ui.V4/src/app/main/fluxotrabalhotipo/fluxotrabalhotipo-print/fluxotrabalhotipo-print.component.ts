@@ -29,7 +29,7 @@ export class FluxoTrabalhoTipoPrintComponent implements OnInit {
         this.vm = this.fluxoTrabalhoTipoService.initVM();
 
         this.fluxoTrabalhoTipoService.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
+            this.vm.details = data.data;
         })
 
     }

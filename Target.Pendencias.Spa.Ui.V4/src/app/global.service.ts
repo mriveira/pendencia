@@ -44,6 +44,7 @@ export class EndPoints {
     public readonly AUTH: string;
     public readonly APP: string;
     public readonly DOWNLOAD: string;
+    public readonly UPLOAD: string;
 
     constructor() {
         this.DEFAULT = 'http://localhost:8122/api';
@@ -51,6 +52,7 @@ export class EndPoints {
         this.AUTH = 'http://localhost:4000/';
         this.APP = 'http://localhost:4200';
         this.DOWNLOAD = this.DEFAULT + + "document/download/";
+        this.UPLOAD = this.DEFAULT + + "document/upload/";
 
     }
 };

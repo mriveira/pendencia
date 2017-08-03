@@ -38,7 +38,7 @@ namespace Target.Pendencias.Domain.Services
             return this._rep.PagingAndDefineFields(filters, queryBase);
         }
 
-        public virtual void Remove(PendeciaPrioridade pendeciaprioridade)
+        public override void Remove(PendeciaPrioridade pendeciaprioridade)
         {
             this._rep.Remove(pendeciaprioridade);
         }

@@ -30,7 +30,7 @@ export class AcompanhadoresEditComponent implements OnInit {
 
 
         this.acompanhadoresService.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
+            this.vm.details = data.data;
         })
 
     }

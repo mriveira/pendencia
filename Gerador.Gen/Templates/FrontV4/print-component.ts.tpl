@@ -29,7 +29,7 @@ export class <#className#>PrintComponent implements OnInit {
         this.vm = this.<#classNameInstance#>Service.initVM();
 
         this.<#classNameInstance#>Service.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
+            this.vm.details = data.data;
         })
 
     }

@@ -88,7 +88,7 @@ export class UsuarioTipoComponent implements OnInit {
 
         this.detailsModal.show();
         this.usuarioTipoService.get(model).subscribe((result) => {
-            this.vm.model = result.dataList[0];
+            this.vm.details = result.dataList[0];
         })
 
     }

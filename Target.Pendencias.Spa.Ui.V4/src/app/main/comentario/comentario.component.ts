@@ -88,7 +88,7 @@ export class ComentarioComponent implements OnInit {
 
         this.detailsModal.show();
         this.comentarioService.get(model).subscribe((result) => {
-            this.vm.model = result.dataList[0];
+            this.vm.details = result.dataList[0];
         })
 
     }
