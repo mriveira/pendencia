@@ -7,19 +7,17 @@ import { ApiService } from 'app/common/services/api.service';
 import { ServiceBase } from 'app/common/services/service.base';
 import { ViewModel } from 'app/common/model/viewmodel';
 import { GlobalService } from '../../global.service';
+import { <#className#>ServiceFields } from './<#classNameLowerAndSeparator#>.service.fields';
 
 @Injectable()
 export class <#className#>Service extends ServiceBase {
 
 	private _form : FormGroup;
 
-    constructor(private api: ApiService<any>) {
+    constructor(private api: ApiService<any>,private serviceFields: <#className#>ServiceFields) {
 
 		super();
-
-		this._form = new FormGroup({
-<#riquered#>
-        });
+		this._form = this.serviceFields.getFormFields();
 
     }
 
@@ -42,9 +40,7 @@ export class <#className#>Service extends ServiceBase {
     }
 
 	getInfos() {
-		return {
-<#infos#>
-        }
+		return this.serviceFields.getInfosFields();
     }
 
     get(filters?: any): Observable<any> {

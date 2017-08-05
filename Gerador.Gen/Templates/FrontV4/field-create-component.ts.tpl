@@ -1,6 +1,8 @@
 ﻿import { Component, OnInit, Input, ChangeDetectorRef} from '@angular/core';
 import { <#className#>Service } from '../<#classNameLowerAndSeparator#>.service';
 
+import { ViewModel } from 'app/common/model/viewmodel';
+
 @Component({
     selector: 'app-<#classNameLowerAndSeparator#>-field-create',
     templateUrl: './<#classNameLowerAndSeparator#>-field-create.component.html',
@@ -8,7 +10,7 @@ import { <#className#>Service } from '../<#classNameLowerAndSeparator#>.service'
 })
 export class <#className#>FieldCreateComponent implements OnInit {
 
-    @Input() vm: any;
+    @Input() vm: ViewModel;
 
 
    constructor(private <#classNameInstance#>Service: <#className#>Service, private ref: ChangeDetectorRef) { }

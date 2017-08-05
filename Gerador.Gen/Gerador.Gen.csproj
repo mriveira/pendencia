@@ -353,10 +353,43 @@
     <None Include="Templates\FrontV4\component.service.fields.required.ts.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Templates\FrontV4\component.service.fields.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\component.service.fields.ts.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Templates\FrontV4\component.table.body.html.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\FrontV4\component.table.head.html.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\create-container-component.css.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\create-container-component.html.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\create-container-component.ts.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\details-container-component.css.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\details-container-component.html.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\details-container-component.ts.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\edit-container-component.css.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\edit-container-component.html.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\edit-container-component.ts.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\FrontV4\entity.viewmodel.item.ts.tpl">
@@ -381,6 +414,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\FrontV4\field-component.section.html.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\field-detail-component.css.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\field-detail-component.html.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\field-detail-component.ts.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Templates\FrontV4\field-editor-html-on-keyup.tpl">

@@ -6,8 +6,10 @@ import { <#className#>PrintRoutingModule } from './<#classNameLowerAndSeparator#
 
 import { <#className#>Service } from '../<#classNameLowerAndSeparator#>.service';
 import { ApiService } from 'app/common/services/api.service';
+import { <#className#>ServiceFields } from '../<#classNameLowerAndSeparator#>.service.fields';
 
-import { <#className#>DetailsComponent } from '../<#classNameLowerAndSeparator#>-details/<#classNameLowerAndSeparator#>-details.component';
+import { <#className#>ContainerDetailsComponent } from '../<#classNameLowerAndSeparator#>-container-details/<#classNameLowerAndSeparator#>-container-details.component';
+import { <#className#>FieldDetailsComponent } from '../<#classNameLowerAndSeparator#>-field-details/<#classNameLowerAndSeparator#>-field-details.component';
 import { CommonSharedModule } from 'app/common/common-shared.module';
 
 @NgModule({
@@ -18,10 +20,11 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
     ],
     declarations: [
         <#className#>PrintComponent,
-        <#className#>DetailsComponent
+        <#className#>ContainerDetailsComponent,
+		<#className#>FieldDetailsComponent
     ],
-    providers: [<#className#>Service, ApiService],
-    exports: [<#className#>DetailsComponent]
+    providers: [<#className#>Service, ApiService, <#className#>ServiceFields],
+    exports: [<#className#>ContainerDetailsComponent,<#className#>FieldDetailsComponent]
 })
 export class <#className#>PrintModule {
 

@@ -25,6 +25,9 @@ namespace Cna.Erp.Gen
                 ContextName = "Target",
                 ShowKeysInFront = false,
                 LengthBigField = 250,
+                OverrideFiles = true,
+                TemplatePathBack = "Templates/Back",
+                TemplatePathFront = "Templates/FrontV4",
 
                 OutputClassDomain = ConfigurationManager.AppSettings[string.Format("outputClassDomain{0}", contextName)],
                 OutputClassInfra = ConfigurationManager.AppSettings[string.Format("outputClassInfra{0}", contextName)],
@@ -170,6 +173,8 @@ namespace Cna.Erp.Gen
                 ContextName = "Target",
                 ShowKeysInFront = false,
                 LengthBigField = 250,
+                TemplatePathBack = "Templates/BackTransaction",
+                TemplatePathFront = "Templates/FrontV4",
 
 
                 OutputClassInfra = ConfigurationManager.AppSettings[string.Format("outputClassInfraTransaction{0}", contextName)],
@@ -185,6 +190,7 @@ namespace Cna.Erp.Gen
                 TableInfo = new UniqueListTableInfo
                 {
                     new TableInfo { TableName = "UsuarioTipo", MakeCrud = true, MakeApi= true},
+                    new TableInfo { TableName = "PendenciaTipo", MakeCrud = true, MakeApi= true},
                 }
             };
         }
@@ -197,7 +203,7 @@ namespace Cna.Erp.Gen
             return new List<Context>
             {
 
-                //ConfigContextTargetPendenciaDDD(),
+                ConfigContextTargetPendenciaDDD(),
                 ConfigContextTargetPendenciaTransaction(),
 
             };

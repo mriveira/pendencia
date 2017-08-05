@@ -167,7 +167,15 @@ namespace Target.Pendencias.Domain.Services
             return comentariodocumento;
         }
 				
-		public virtual async Task<ComentarioDocumento> GetDefaultInstance(dynamic model, CurrentUser user)
+		public virtual async Task<ComentarioDocumento> GetNewInstance(dynamic model, CurrentUser user)
+        {
+            return await Task.Run(() =>
+            {
+                return new ComentarioDocumento.ComentarioDocumentoFactory().GetDefaultInstance(model, user);
+            });
+         }
+
+		public virtual async Task<ComentarioDocumento> GetUpdateInstance(dynamic model, CurrentUser user)
         {
             return await Task.Run(() =>
             {

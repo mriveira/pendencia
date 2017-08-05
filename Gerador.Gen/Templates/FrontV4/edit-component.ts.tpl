@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -12,7 +12,7 @@ import { <#className#>Service } from '../<#classNameLowerAndSeparator#>.service'
 })
 export class <#className#>EditComponent implements OnInit {
 
-    vm: ViewModel;
+    @Input() vm: ViewModel;
     id: number;
     private sub: any;
 
@@ -30,7 +30,7 @@ export class <#className#>EditComponent implements OnInit {
 
 
         this.<#classNameInstance#>Service.get({ id: this.id }).subscribe((data) => {
-            this.vm.details = data.data;
+            this.vm.model = data.data;
         })
 
     }

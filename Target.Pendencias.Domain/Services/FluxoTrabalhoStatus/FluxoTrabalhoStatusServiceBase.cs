@@ -167,7 +167,15 @@ namespace Target.Pendencias.Domain.Services
             return fluxotrabalhostatus;
         }
 				
-		public virtual async Task<FluxoTrabalhoStatus> GetDefaultInstance(dynamic model, CurrentUser user)
+		public virtual async Task<FluxoTrabalhoStatus> GetNewInstance(dynamic model, CurrentUser user)
+        {
+            return await Task.Run(() =>
+            {
+                return new FluxoTrabalhoStatus.FluxoTrabalhoStatusFactory().GetDefaultInstance(model, user);
+            });
+         }
+
+		public virtual async Task<FluxoTrabalhoStatus> GetUpdateInstance(dynamic model, CurrentUser user)
         {
             return await Task.Run(() =>
             {

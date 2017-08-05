@@ -167,7 +167,15 @@ namespace Target.Pendencias.Domain.Services
             return pendenciatempos;
         }
 				
-		public virtual async Task<PendenciaTempos> GetDefaultInstance(dynamic model, CurrentUser user)
+		public virtual async Task<PendenciaTempos> GetNewInstance(dynamic model, CurrentUser user)
+        {
+            return await Task.Run(() =>
+            {
+                return new PendenciaTempos.PendenciaTemposFactory().GetDefaultInstance(model, user);
+            });
+         }
+
+		public virtual async Task<PendenciaTempos> GetUpdateInstance(dynamic model, CurrentUser user)
         {
             return await Task.Run(() =>
             {

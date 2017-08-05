@@ -4,7 +4,7 @@
       <p>{{ vm.actionDescription }}</p>
     </div>
 	<div class="card-block">
-		<app-<#classNameLowerAndSeparator#>-details [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-details>
+		<app-<#classNameLowerAndSeparator#>-container-details [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-container-details>
 	</div>
 	<div class="card-footer">
 		<a href="javascript:history.back()" class="btn btn-sm btn-outline-secondary mr-auto p-2">

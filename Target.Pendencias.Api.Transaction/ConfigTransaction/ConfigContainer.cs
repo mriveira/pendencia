@@ -11,6 +11,8 @@ namespace Target.Pendencias.Api
             
 			services.AddScoped<UsuarioTipoIRepository, UsuarioTipoRepository>();
 
+			services.AddScoped<PendenciaTipoIRepository, PendenciaTipoRepository>();
+
 
             RegisterOtherComponents(services);
         }

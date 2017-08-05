@@ -5,7 +5,7 @@
 
 <form (ngSubmit)="onSave(vm.model)" (keyup.enter)="onSave(vm.model)" novalidate>
 
-  <app-<#classNameLowerAndSeparator#>-field-create [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-field-create>
+  <app-<#classNameLowerAndSeparator#>-container-create [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-container-create>
 
   <div class="modal-footer">
     <a href="javascript:history.back()" class="btn btn-primary btn-sm" data-original-title="" title="" style="margin-left:10px;width:100px" tooltip-placement="top" uib-tooltip="Voltar">

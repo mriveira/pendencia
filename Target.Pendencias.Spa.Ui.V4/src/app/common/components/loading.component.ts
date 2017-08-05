@@ -35,8 +35,6 @@ export class LoadingComponent implements OnInit {
     }
     
 
-    constructor() {
-
-    }
+    constructor() { }
 
 }

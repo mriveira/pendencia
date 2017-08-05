@@ -167,7 +167,15 @@ namespace Target.Pendencias.Domain.Services
             return usuario;
         }
 				
-		public virtual async Task<Usuario> GetDefaultInstance(dynamic model, CurrentUser user)
+		public virtual async Task<Usuario> GetNewInstance(dynamic model, CurrentUser user)
+        {
+            return await Task.Run(() =>
+            {
+                return new Usuario.UsuarioFactory().GetDefaultInstance(model, user);
+            });
+         }
+
+		public virtual async Task<Usuario> GetUpdateInstance(dynamic model, CurrentUser user)
         {
             return await Task.Run(() =>
             {

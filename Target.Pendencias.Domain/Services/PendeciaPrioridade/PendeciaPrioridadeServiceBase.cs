@@ -167,7 +167,15 @@ namespace Target.Pendencias.Domain.Services
             return pendeciaprioridade;
         }
 				
-		public virtual async Task<PendeciaPrioridade> GetDefaultInstance(dynamic model, CurrentUser user)
+		public virtual async Task<PendeciaPrioridade> GetNewInstance(dynamic model, CurrentUser user)
+        {
+            return await Task.Run(() =>
+            {
+                return new PendeciaPrioridade.PendeciaPrioridadeFactory().GetDefaultInstance(model, user);
+            });
+         }
+
+		public virtual async Task<PendeciaPrioridade> GetUpdateInstance(dynamic model, CurrentUser user)
         {
             return await Task.Run(() =>
             {

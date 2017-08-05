@@ -4,12 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PaginationModule } from 'ngx-bootstrap/pagination'
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { MomentModule } from 'angular2-moment';
 
 import { BindCustomComponent } from './components/bind-custom.component';
 import { MakeGridComponent } from './components/grid.component'
 import { MakePaginationComponent } from 'app/common/components/pagination.component';
 import { ConfirmModalComponent } from 'app/common/components/confirm-modal.component';
+import { CepComponent } from 'app/common/components/cep.component';
 
 import { DataSourceDirective } from './directives/select-datasource.directive';
 import { MaskInputDirective } from './directives/mask-input.directive';
@@ -24,8 +24,7 @@ import { EditorHtmlDiretive } from './directives/editor-html.directive';
         CommonModule,
         ReactiveFormsModule,
         PaginationModule.forRoot(),
-        ModalModule.forRoot(), 
-        MomentModule
+        ModalModule.forRoot() 
     ],
     declarations: [
         BindCustomComponent,
@@ -35,7 +34,8 @@ import { EditorHtmlDiretive } from './directives/editor-html.directive';
         MaskInputDirective,
         DateDirective,
         EditorHtmlDiretive,
-        MakeGridComponent
+        MakeGridComponent,
+        CepComponent
     ],
     providers: [
     ],
@@ -43,9 +43,10 @@ import { EditorHtmlDiretive } from './directives/editor-html.directive';
         BindCustomComponent,
         MakePaginationComponent,
         ConfirmModalComponent,
+        MakeGridComponent,
+        CepComponent,
         DataSourceDirective,
         MaskInputDirective,
-        MakeGridComponent,
         DateDirective,
         EditorHtmlDiretive]
 })

@@ -7,22 +7,10 @@ using System.Threading.Tasks;
 
 namespace Cna.Erp.Gen
 {
-    public class HelperSysObjects : HelperSysObjectsTransaction
+    public class HelperSysObjects : HelperSysObjectsDDDWithTransaction
     {
 
-        public HelperSysObjects(IEnumerable<Context> contexts)
-            : base(contexts, "Templates\\BackTransaction")
-        {
-
-
-        }
-
-        public override HelperSysObjectsBase DefineFrontTemplateClass(Context config)
-        {
-            //return new HelperSysObjectsAngular(config, "Templates\\FrontV2");
-            //return new HelperSysObjectsAngularJs(config, "Templates\\Front");
-            return new HelperSysObjectsAngular20(config, "Templates\\FrontV4");
-        }
+        public HelperSysObjects(IEnumerable<Context> contexts) : base(contexts) { }
 
     }
 }

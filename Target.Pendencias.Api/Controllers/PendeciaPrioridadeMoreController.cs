@@ -81,7 +81,7 @@ namespace Target.Pendencias.Api.Controllers
 
         }
 
-		[HttpPost]
+	[HttpPut]
         public async Task<IActionResult> Put([FromBody]IEnumerable<PendeciaPrioridadeDtoSpecialized> dtos)
         {
             var result = new HttpResult<PendeciaPrioridadeDto>(this._logger);
@@ -93,7 +93,7 @@ namespace Target.Pendencias.Api.Controllers
             }
             catch (Exception ex)
             {
-                return result.ReturnCustomException(ex, "Target.Pendencias - #className#>", dtos);
+                return result.ReturnCustomException(ex, "Target.Pendencias - PendeciaPrioridade", dtos);
             }
 
         }

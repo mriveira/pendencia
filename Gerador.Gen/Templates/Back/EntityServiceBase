@@ -167,7 +167,15 @@ namespace <#namespace#>.Domain.Services
             return <#classNameLower#>;
         }
 				
-		public virtual async Task<<#className#>> GetDefaultInstance(dynamic model, CurrentUser user)
+		public virtual async Task<<#className#>> GetNewInstance(dynamic model, CurrentUser user)
+        {
+            return await Task.Run(() =>
+            {
+                return new <#className#>.<#className#>Factory().GetDefaultInstance(model, user);
+            });
+         }
+
+		public virtual async Task<<#className#>> GetUpdateInstance(dynamic model, CurrentUser user)
         {
             return await Task.Run(() =>
             {

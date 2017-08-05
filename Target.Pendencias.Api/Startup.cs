@@ -60,21 +60,16 @@ namespace Target.Pendencias.Api
                 options.SerializerSettings.Converters.Add(new DateTimePtBrConverter());
             });
 
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IOptions<ConfigSettingsBase> configSettingsBase)
         {
 
-			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+	    loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
             app.UseDeveloperExceptionPage();
-
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-            loggerFactory.AddFile("Logs/sm-sso-server-api-{Date}.log");
 
 
             app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
@@ -100,6 +95,7 @@ namespace Target.Pendencias.Api
 
             app.AddTokenMiddleware();
             app.UseMvc();
+	    app.UseCors("AllowAnyOrigin");
             AutoMapperConfigTarget.RegisterMappings();
         }
 

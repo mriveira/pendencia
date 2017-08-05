@@ -84,7 +84,7 @@
       </div>
       <form (ngSubmit)="onSave(vm.model)" novalidate>
         <div class="modal-body">
-          <app-<#classNameLowerAndSeparator#>-field-create [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-field-create>
+          <app-<#classNameLowerAndSeparator#>-container-create [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-container-create>
         </div>
         <div class="modal-footer">
           <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
@@ -106,7 +106,7 @@
       </div>
       <form (ngSubmit)="onSave(vm.model)" novalidate>
 		<div class="modal-body">
-			<app-<#classNameLowerAndSeparator#>-field-edit [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-field-edit>
+			<app-<#classNameLowerAndSeparator#>-container-edit [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-container-edit>
 		</div>
         <div class="modal-footer">
           <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
@@ -127,7 +127,7 @@
         </button>
       </div>
 	  <div class="modal-body">
-		<app-<#classNameLowerAndSeparator#>-details [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-details>
+		<app-<#classNameLowerAndSeparator#>-container-details [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-container-details>
 	  </div>
       <div class="modal-footer">
         <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
