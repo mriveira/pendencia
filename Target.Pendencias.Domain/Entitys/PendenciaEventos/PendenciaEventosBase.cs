@@ -17,10 +17,10 @@ namespace Target.Pendencias.Domain.Entitys
 
         }
 
-        public int PendenciaEventosId { get; protected set; }
-        public int PendenciaId { get; protected set; }
-        public string Descricao { get; protected set; }
-        public DateTime? Data { get; protected set; }
+        public virtual int PendenciaEventosId { get; protected set; }
+        public virtual int PendenciaId { get; protected set; }
+        public virtual string Descricao { get; protected set; }
+        public virtual DateTime? Data { get; protected set; }
 
 
 		public virtual void SetarData(DateTime? data)

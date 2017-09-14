@@ -28,7 +28,13 @@ namespace Target.Pendencias.Domain.Entitys
 
 
 
-				return construction;
+                return construction;
+            }
+
+            public Comentario GetPendenciaInstance(dynamic data, CurrentUser user)
+            {
+                var construction = new Comentario(data.ComentarioId, data.Descricao, data.Data, user.GetSubjectId<int>(), data.PendenciaId);
+                return construction;
             }
 
         }
@@ -39,6 +45,6 @@ namespace Target.Pendencias.Domain.Entitys
             return base._validationResult.IsValid;
 
         }
-        
+
     }
 }

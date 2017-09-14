@@ -48,6 +48,7 @@ namespace Target.Pendencias.Domain.Services
             return new Summary
             {
                 Total = paginateResult.TotalCount,
+				PageSize = paginateResult.PageSize,
             };
         }
 

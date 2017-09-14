@@ -1,0 +1,30 @@
+<dl>
+    <dt>{{ vm.infos.nome.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.nome" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.foto.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.foto" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.email.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.email" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.senha.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.senha" [format]="'changevalue'" [tag]="'span'" [aux]="vm.infos.senha.aux"></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.usuarioTipoId.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.usuarioTipoId" [format]="'instance'" [tag]="'span'"  [instance]="'UsuarioTipo'"  [key]="'UsuarioTipoId'"></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.usuarioDonoId.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.usuarioDonoId" [format]="'int?'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.ativo.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.ativo" [format]="'bool'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+</dl> 

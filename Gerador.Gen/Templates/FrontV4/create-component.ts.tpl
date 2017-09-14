@@ -12,10 +12,8 @@ import { <#className#>Service } from '../<#classNameLowerAndSeparator#>.service'
 })
 export class <#className#>CreateComponent implements OnInit {
 
-    @Input() vm: ViewModel;
-    id: number;
-    private sub: any;
-
+    @Input() vm: ViewModel<any>;
+ 
     constructor(private <#classNameInstance#>Service: <#className#>Service, private route: ActivatedRoute, private router: Router) {
 
         this.vm = this.<#classNameInstance#>Service.initVM();

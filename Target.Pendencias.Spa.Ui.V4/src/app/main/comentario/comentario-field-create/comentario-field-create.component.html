@@ -1,0 +1,27 @@
+<div class="row" [formGroup]="vm.form">
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.descricao.label }}</label>
+      <textarea class='form-control'  [(ngModel)]='vm.model.descricao' name='descricao' required rows='10' formControlName='descricao' ></textarea>
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.data.label }}</label>
+      <input type='text' class='form-control' [(ngModel)]='vm.model.data' name='data' required formControlName='data' datetimepicker />
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.usuarioId.label }}</label>
+      <select class='form-control'  name='usuarioId' [(ngModel)]='vm.model.usuarioId' required formControlName='usuarioId' datasource [dataitem]="'Usuario'"></select>
+      </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.pendenciaId.label }}</label>
+      <select class='form-control'  name='pendenciaId' [(ngModel)]='vm.model.pendenciaId' required formControlName='pendenciaId' datasource [dataitem]="'Pendencia'"></select>
+      </div>
+  </section>
+</div>
+

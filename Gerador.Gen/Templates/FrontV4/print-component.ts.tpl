@@ -2,7 +2,9 @@
 import { ActivatedRoute } from '@angular/router';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
+
 import { <#className#>Service } from '../<#classNameLowerAndSeparator#>.service';
+import { ViewModel } from 'app/common/model/viewmodel';
 
 @Component({
     selector: 'app-<#classNameLowerAndSeparator#>-print',
@@ -11,13 +13,12 @@ import { <#className#>Service } from '../<#classNameLowerAndSeparator#>.service'
 })
 export class <#className#>PrintComponent implements OnInit {
 
-    vm: any;
+    vm: ViewModel<any>;
     id: number;
     private sub: any;
 
     constructor(private <#classNameInstance#>Service: <#className#>Service, private route: ActivatedRoute) {
-
-        this.vm = {};
+		this.vm = null;
     }
 
     ngOnInit() {

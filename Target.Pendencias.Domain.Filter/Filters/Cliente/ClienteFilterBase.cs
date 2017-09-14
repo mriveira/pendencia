@@ -6,20 +6,20 @@ namespace Target.Pendencias.Domain.Filter
     public class ClienteFilterBase : FilterBase
     {
 
-        public int ClienteId { get; set;} 
-        public string Nome { get; set;} 
-        public string TelefoneDeContato { get; set;} 
-        public string EmailDeContato { get; set;} 
-        public string CPFCNPJ { get; set;} 
-        public int UsuarioId { get; set;} 
-        public int UserCreateId { get; set;} 
-        public DateTime UserCreateDateStart { get; set;} 
-        public DateTime UserCreateDateEnd { get; set;} 
-        public DateTime UserCreateDate { get; set;} 
-        public int? UserAlterId { get; set;} 
-        public DateTime? UserAlterDateStart { get; set;} 
-        public DateTime? UserAlterDateEnd { get; set;} 
-        public DateTime? UserAlterDate { get; set;} 
+        public virtual int ClienteId { get; set;} 
+        public virtual string Nome { get; set;} 
+        public virtual string TelefoneDeContato { get; set;} 
+        public virtual string EmailDeContato { get; set;} 
+        public virtual string CPFCNPJ { get; set;} 
+        public virtual int UsuarioId { get; set;} 
+        public virtual int UserCreateId { get; set;} 
+        public virtual DateTime UserCreateDateStart { get; set;} 
+        public virtual DateTime UserCreateDateEnd { get; set;} 
+        public virtual DateTime UserCreateDate { get; set;} 
+        public virtual int? UserAlterId { get; set;} 
+        public virtual DateTime? UserAlterDateStart { get; set;} 
+        public virtual DateTime? UserAlterDateEnd { get; set;} 
+        public virtual DateTime? UserAlterDate { get; set;} 
 
 
     }

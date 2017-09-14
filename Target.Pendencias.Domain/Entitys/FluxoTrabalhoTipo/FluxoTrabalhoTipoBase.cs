@@ -16,9 +16,9 @@ namespace Target.Pendencias.Domain.Entitys
 
         }
 
-        public int FluxoTrabalhoTipoId { get; protected set; }
-        public string Nome { get; protected set; }
-        public string Descricao { get; protected set; }
+        public virtual int FluxoTrabalhoTipoId { get; protected set; }
+        public virtual string Nome { get; protected set; }
+        public virtual string Descricao { get; protected set; }
 
 
 		public virtual void SetarDescricao(string descricao)

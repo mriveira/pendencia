@@ -16,8 +16,8 @@ namespace Target.Pendencias.Domain.Entitys
 
         }
 
-        public int PendeciaPrioridadeId { get; protected set; }
-        public string Nome { get; protected set; }
+        public virtual int PendeciaPrioridadeId { get; protected set; }
+        public virtual string Nome { get; protected set; }
 
 
 

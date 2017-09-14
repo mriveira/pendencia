@@ -6,8 +6,8 @@ namespace Target.Pendencias.Domain.Filter
     public class ComentarioDocumentoFilterBase : FilterBase
     {
 
-        public int DocumentoId { get; set;} 
-        public int ComentarioId { get; set;} 
+        public virtual int DocumentoId { get; set;} 
+        public virtual int ComentarioId { get; set;} 
 
 
     }

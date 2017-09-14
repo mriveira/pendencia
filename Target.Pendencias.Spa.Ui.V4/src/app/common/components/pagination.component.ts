@@ -2,18 +2,18 @@
 
 import { GlobalService } from 'app/global.service';
 import { ApiService } from '../services/api.service';
+import { ViewModel } from '../model/viewmodel';
 
 @Component({
     selector: 'make-pagination',
     template: `
         <pagination 
-            (pageChanged)="onPageChanged($event)" 
-            itemsPerPage="10" 
-            totalItems="{{vm.summary.total}}" 
+           (pageChanged)="onPageChanged($event)" 
+            [itemsPerPage]="vm.summary.pageSize" 
+            [totalItems]="vm.summary.total" 
+            [maxSize]="5"
             previousText="Anterior"
-            nextText="Próximo" 
-            maxSize="5" 
-            rotate="true">
+            nextText="Próximo">
         </pagination>
 
         <div class="pull-right">
@@ -25,9 +25,13 @@ import { ApiService } from '../services/api.service';
 })
 export class MakePaginationComponent {
 
-    @Input() vm: any;
+    @Input() vm: ViewModel<any>
     @Output() pageChanged = new EventEmitter<any>();
-    constructor() { }
+    public initialPage: number;
+    constructor() {
+
+        this.initialPage = 1;
+    }
 
     onPageChanged(e: any) {
 

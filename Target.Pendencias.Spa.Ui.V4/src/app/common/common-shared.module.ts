@@ -8,15 +8,17 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BindCustomComponent } from './components/bind-custom.component';
 import { MakeGridComponent } from './components/grid.component'
 import { MakePaginationComponent } from 'app/common/components/pagination.component';
-import { ConfirmModalComponent } from 'app/common/components/confirm-modal.component';
+
 import { CepComponent } from 'app/common/components/cep.component';
+import { UploadCustomComponent } from 'app/common/components/upload-file.component';
+import { MultiSelectComponent } from 'app/common/components/multiselect.component';
 
 import { DataSourceDirective } from './directives/select-datasource.directive';
 import { MaskInputDirective } from './directives/mask-input.directive';
 import { DateDirective } from './directives/date.directive';
 import { EditorHtmlDiretive } from './directives/editor-html.directive';
 
-
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 @NgModule({
@@ -24,31 +26,37 @@ import { EditorHtmlDiretive } from './directives/editor-html.directive';
         CommonModule,
         ReactiveFormsModule,
         PaginationModule.forRoot(),
-        ModalModule.forRoot() 
+        ModalModule.forRoot(),
+        FormsModule,
+        TextMaskModule
     ],
     declarations: [
         BindCustomComponent,
         MakePaginationComponent,
-        ConfirmModalComponent,
         DataSourceDirective,
         MaskInputDirective,
         DateDirective,
         EditorHtmlDiretive,
         MakeGridComponent,
-        CepComponent
+        CepComponent,
+        UploadCustomComponent,
+		MultiSelectComponent
     ],
     providers: [
     ],
     exports: [
         BindCustomComponent,
         MakePaginationComponent,
-        ConfirmModalComponent,
         MakeGridComponent,
         CepComponent,
+        UploadCustomComponent,
         DataSourceDirective,
         MaskInputDirective,
         DateDirective,
-        EditorHtmlDiretive]
+        EditorHtmlDiretive,
+        MultiSelectComponent,
+		TextMaskModule
+	]
 })
 export class CommonSharedModule {
 

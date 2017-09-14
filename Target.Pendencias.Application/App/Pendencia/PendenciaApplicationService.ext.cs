@@ -27,78 +27,78 @@ namespace Target.Pendencias.Application
         }
 
 
-        protected override async Task<Pendencia> AlterDomainWithDto<TDS>(TDS dto)
-        {
-            var _pendencia = dto as PendenciaDtoSpecialized;
+        //protected override async Task<Pendencia> AlterDomainWithDto<TDS>(TDS dto)
+        //{
+        //    var _pendencia = dto as PendenciaDtoSpecialized;
 
-            if (_pendencia.AttributeBehavior == "Play")
-            {
-                var result = await this._serviceBase.GetOne(new PendenciaFilter
-                {
-                    PendenciaId = _pendencia.PendenciaId,
-                    QueryOptimizerBehavior = "Play"
-                });
+        //    if (_pendencia.AttributeBehavior == "Play")
+        //    {
+        //        var result = await this._serviceBase.GetOne(new PendenciaFilter
+        //        {
+        //            PendenciaId = _pendencia.PendenciaId,
+        //            QueryOptimizerBehavior = "Play"
+        //        });
 
-                result.SetAttributeBehavior("Play");
-                this._service.Play(result);
-                return result;
-            }
+        //        result.SetAttributeBehavior("Play");
+        //        this._service.Play(result);
+        //        return result;
+        //    }
 
-            if (_pendencia.AttributeBehavior == "Stop")
-            {
-                var result = await this._serviceBase.GetOne(new PendenciaFilter
-                {
-                    PendenciaId = _pendencia.PendenciaId,
-                    QueryOptimizerBehavior = "Stop"
-                });
+        //    if (_pendencia.AttributeBehavior == "Stop")
+        //    {
+        //        var result = await this._serviceBase.GetOne(new PendenciaFilter
+        //        {
+        //            PendenciaId = _pendencia.PendenciaId,
+        //            QueryOptimizerBehavior = "Stop"
+        //        });
 
-                this._service.Stop(result, _pendencia.Nota);
-                return result;
-            }
+        //        this._service.Stop(result, _pendencia.Nota);
+        //        return result;
+        //    }
 
-            if (_pendencia.AttributeBehavior == "ConcluirPendencia")
-            {
-                var result = await this._serviceBase.GetOne(new PendenciaFilter
-                {
-                    PendenciaId = _pendencia.PendenciaId,
-                    QueryOptimizerBehavior = "ConcluirPendencia"
-                });
+        //    if (_pendencia.AttributeBehavior == "ConcluirPendencia")
+        //    {
+        //        var result = await this._serviceBase.GetOne(new PendenciaFilter
+        //        {
+        //            PendenciaId = _pendencia.PendenciaId,
+        //            QueryOptimizerBehavior = "ConcluirPendencia"
+        //        });
 
-                var comentario = _pendencia.CollectionComentario.FirstOrDefault().Descricao;
-                this._service.Concluir(result, _pendencia.Nota, comentario);
-                return result;
-            }
+        //        var comentario = _pendencia.CollectionComentario.FirstOrDefault().Descricao;
+        //        this._service.Concluir(result, _pendencia.Nota, comentario);
+        //        return result;
+        //    }
 
-            if (_pendencia.AttributeBehavior == "ComentarPendencia")
-            {
-                var result = await this._serviceBase.GetOne(new PendenciaFilter
-                {
-                    PendenciaId = _pendencia.PendenciaId,
-                    QueryOptimizerBehavior = "ComentarPendencia"
-                });
+        //    if (_pendencia.AttributeBehavior == "ComentarPendencia")
+        //    {
+        //        var result = await this._serviceBase.GetOne(new PendenciaFilter
+        //        {
+        //            PendenciaId = _pendencia.PendenciaId,
+        //            QueryOptimizerBehavior = "ComentarPendencia"
+        //        });
 
-                var comentario = _pendencia.CollectionComentario.FirstOrDefault().Descricao;
-                this._service.Comentar(result, comentario);
-                return result;
-            }
+        //        var comentario = _pendencia.CollectionComentario.FirstOrDefault().Descricao;
+        //        this._service.Comentar(result, comentario);
+        //        return result;
+        //    }
 
-            if (_pendencia.AttributeBehavior == "Reclassificar")
-            {
-                var result = await this._serviceBase.GetOne(new PendenciaFilter
-                {
-                    PendenciaId = _pendencia.PendenciaId,
-                    QueryOptimizerBehavior = "Reclassificar"
-                });
+        //    if (_pendencia.AttributeBehavior == "Reclassificar")
+        //    {
+        //        var result = await this._serviceBase.GetOne(new PendenciaFilter
+        //        {
+        //            PendenciaId = _pendencia.PendenciaId,
+        //            QueryOptimizerBehavior = "Reclassificar"
+        //        });
 
-                var comentario = _pendencia.CollectionComentario.FirstOrDefault().Descricao;
-                this._service.Reclassificar(result, comentario, _pendencia.FluxoTrabalhoStatusId);
-                return result;
-            }
+        //        var comentario = _pendencia.CollectionComentario.FirstOrDefault().Descricao;
+        //        this._service.Reclassificar(result, comentario, _pendencia.FluxoTrabalhoStatusId);
+        //        return result;
+        //    }
 
 
-            var resultDefault = await this._serviceBase.GetOne(new PendenciaFilter { PendenciaId = _pendencia.PendenciaId });
-            return resultDefault;
-        }
+        //    var resultDefault = await this._serviceBase.GetOne(new PendenciaFilter { PendenciaId = _pendencia.PendenciaId });
+        //    return resultDefault;
+        //}
 
     }
 }

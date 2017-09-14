@@ -9,10 +9,6 @@ namespace Target.Pendencias.Dto
 	
         
 
-        public virtual int ProjetoId {get; set;}
-
-        
-
         public virtual int PendenciaId {get; set;}
 
         [Required(ErrorMessage="Pendencia - Campo Resumo é Obrigatório")]
@@ -38,6 +34,10 @@ namespace Target.Pendencias.Dto
         
 
         public virtual DateTime? Prazo {get; set;}
+
+        
+
+        public virtual int ProjetoId {get; set;}
 
         
 

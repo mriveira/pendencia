@@ -23,7 +23,7 @@ namespace Sso.Server.Api
             };
         }
 
-        public static List<Claim> ClaimsForTenantOwner(int tenantId, int? tenantOwnerId, string type, string name, string email)
+        public static List<Claim> ClaimsForTenantOwner(int tenantId, int? tenantOwnerId, string type, string name, string email, string avatar)
         {
 
             var tools = new List<dynamic>
@@ -32,8 +32,9 @@ namespace Sso.Server.Api
                 new { Name = "Crud Clientes", Value = "/cliente" },
                 new { Name = "Crud Projeto", Value = "/projeto" },
                 new { Name = "Crud Pendencia", Value = "/pendencia" },
-                new { Name = "Dash Time", Value = "/dashboard/team" },
-                new { Name = "Dash PO", Value = "/dashboard/po" },
+                new { Name = "Crud Tempos", Value = "/pendenciatempos" },
+                new { Name = "Dash Time", Value = "/dashboard/timesheet" },
+                new { Name = "Dash PO", Value = "/dashboard/burndown" },
             };
 
             var _toolsForSubscriber = JsonConvert.SerializeObject(tools);
@@ -46,18 +47,20 @@ namespace Sso.Server.Api
                 new Claim("role","tenant"),
                 new Claim("typerole", type),
                 new Claim("owner",  (tenantOwnerId ?? tenantId).ToString()),
+                new Claim("avatar",  avatar)
             };
         }
 
-        public static List<Claim> ClaimsForTenantTeam(int tenantId, int? tenantOwnerId, string type, string name, string email)
+        public static List<Claim> ClaimsForTenantTeam(int tenantId, int? tenantOwnerId, string type, string name, string email,string avatar)
         {
 
             var tools = new List<dynamic>
             {
                 new { Name = "Editar Usuario", Value = $"/usuario/edit/{tenantId}" },
+                new { Name = "Crud Tempos", Value = "/pendenciatempos" },
                 new { Name = "Crud Pendencia", Value = "/pendencia" },
-                new { Name = "Dash Time", Value = "/dashboard/team" },
-                new { Name = "Dash PO", Value = "/dashboard/po" },
+                new { Name = "Dash Time", Value = "/dashboard/timesheet" },
+                new { Name = "Dash PO", Value = "/dashboard/burndown" },
             };
 
             var _toolsForSubscriber = JsonConvert.SerializeObject(tools);
@@ -70,6 +73,7 @@ namespace Sso.Server.Api
                 new Claim("role","tenant"),
                 new Claim("typerole", type),
                 new Claim("owner",  (tenantOwnerId ?? tenantId).ToString()),
+                new Claim("avatar",  avatar)
             };
         }
 
@@ -110,7 +114,7 @@ namespace Sso.Server.Api
                     {
                         new Scope
                         {
-                            UserClaims = new List<string> {"name", "openid", "email", "role", "tools","owner","typerole"},
+                            UserClaims = new List<string> {"name", "openid", "email", "role", "tools","owner","typerole","avatar"},
                             Name = "ssosa",
                             Description = "sso basic",
                         }
@@ -175,35 +179,7 @@ namespace Sso.Server.Api
                         StandardScopes.Email,
                         "ssosa"
                     }
-                },
-
-
-                 new Client
-                {
-                    ClientId = "Target-spa-v2",
-                    ClientSecrets = { new Secret("segredo".Sha256()) },
-
-                    AllowedGrantTypes = GrantTypes.Implicit,
-                    AllowAccessTokensViaBrowser = true,
-
-                    RedirectUris = {
-                        settings.RedirectUris
-                    },
-                    PostLogoutRedirectUris =
-                    {
-                        settings.PostLogoutRedirectUris
-                    },
-
-                    AllowedCorsOrigins = { settings.ClientAuthorityEndPoint },
-
-                    AllowedScopes =
-                    {
-                        StandardScopes.OpenId,
-                        StandardScopes.Profile,
-                        StandardScopes.Email,
-                        "ssosa"
-                    }
-                },
+                }
 
             };
         }

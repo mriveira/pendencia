@@ -17,12 +17,12 @@ namespace Target.Pendencias.Domain.Entitys
 
         }
 
-        public int ClienteId { get; protected set; }
-        public string Nome { get; protected set; }
-        public string TelefoneDeContato { get; protected set; }
-        public string EmailDeContato { get; protected set; }
-        public string CPFCNPJ { get; protected set; }
-        public int UsuarioId { get; protected set; }
+        public virtual int ClienteId { get; protected set; }
+        public virtual string Nome { get; protected set; }
+        public virtual string TelefoneDeContato { get; protected set; }
+        public virtual string EmailDeContato { get; protected set; }
+        public virtual string CPFCNPJ { get; protected set; }
+        public virtual int UsuarioId { get; protected set; }
 
 
 		public virtual void SetarTelefoneDeContato(string telefonedecontato)

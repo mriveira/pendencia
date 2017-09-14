@@ -15,16 +15,17 @@ namespace Target.Pendencias.Data.Repository
 			{ 
 				
 				queryFilter = queryFilter.Where(_=>_.PendeciaPrioridadeId == filters.PendeciaPrioridadeId);
-			};
+			}
             if (filters.Nome.IsSent()) 
 			{ 
 				
 				queryFilter = queryFilter.Where(_=>_.Nome.Contains(filters.Nome));
-			};
+			}
 
 
             return queryFilter;
         }
 
+		
     }
 }

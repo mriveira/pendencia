@@ -5,73 +5,91 @@ using Target.Pendencias.Enums;
 using System.Collections.Generic;
 using System.Linq;
 using Common.Domain;
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace Target.Pendencias.Domain.Entitys
 {
     public class Pendencia : PendenciaBase
     {
+        public virtual Projeto Projeto { get; set; }
+        public virtual FluxoTrabalhoStatus FluxoTrabalhoStatus { get; set; }
+        public virtual PendenciaTipo PendenciaTipo { get; set; }
+        public virtual Usuario Usuario { get; set; }
+        public virtual ICollection<PendenciaTempos> CollectionPendenciaTempos { get; set; }
+        public virtual ICollection<Comentario> CollectionComentarios { get; private set; }
+        public virtual ICollection<PendenciaEventos> CollectionPendenciaEventos { get; private set; }
+
+        [NotMapped]
+        public string Nota { get; private set; }
+
 
         public Pendencia()
         {
 
         }
 
-        public Pendencia(int projetoid, int pendenciaid, string resumo, int usuarioid, int pendenciatipoid, int fluxotrabalhostatusid, int pendenciaprioridadeid) : base(projetoid, pendenciaid, resumo, usuarioid, pendenciatipoid, fluxotrabalhostatusid, pendenciaprioridadeid)
+        public Pendencia(int pendenciaid, string resumo, int projetoid, int assinanteid, int pendenciatipoid, int fluxotrabalhostatusid, int pendenciaprioridadeid) :
+            base(pendenciaid, resumo, projetoid, assinanteid, pendenciatipoid, fluxotrabalhostatusid, pendenciaprioridadeid)
         {
+
         }
 
         public class PendenciaFactory
         {
             public Pendencia GetDefaultInstance(dynamic data, CurrentUser user)
             {
+                var construction = new Pendencia(data.PendenciaId,
+                                        data.Resumo,
+                                        data.ProjetoId,
+                                        data.UsuarioId,
+                                        data.PendenciaTipoId,
+                                        data.FluxoTrabalhoStatusId,
+                                        data.PendenciaPrioridadeId);
 
-                var construction = new Pendencia(data.ProjetoId,
-                                                data.PendenciaId,
-                                                data.Resumo,
-                                                data.UsuarioId,
-                                                data.PendenciaTipoId,
-                                                data.FluxoTrabalhoStatusId,
-                                                data.PendenciaPrioridadeId);
-
-                
                 construction.SetarDescricao(data.Descricao);
                 construction.SetarRequisitadoPor(data.RequisitadoPor);
                 construction.SetarTempoEstimado(data.TempoEstimado);
                 construction.SetarPontosEstimados(data.PontosEstimados);
-                construction.SetarDataConclusao(data.DataConclusao);
                 construction.SetarPrazo(data.Prazo);
                 construction.SetarTags(data.Tags);
+                construction.SetarDataConclusao(data.DataConclusao);
+                construction.SetarComentarios(data.CollectionComentarios, user);
 
-
+                construction.SetAttributeBehavior(data.AttributeBehavior);
                 return construction;
             }
 
         }
 
-        public virtual Projeto Projeto { get; protected set; }
-
-        public virtual PendenciaTipo PendenciaTipo { get; protected set; }
-
-        public virtual FluxoTrabalhoStatus FluxoTrabalhoStatus { get; protected set; }
-
-        public virtual Usuario Usuario { get; set; }
-
-        public virtual ICollection<PendenciaTempos> CollectionPendenciaTempos { get; protected set; }
-
-        public virtual ICollection<Comentario> CollectionComentarios { get; protected set; }
-
-        public virtual ICollection<PendenciaEventos> CollectionPendenciaEventos { get; protected set; }
-
-        public override void SetarDataConclusao(DateTime? dataconclusao)
+        internal void Comentar(string comentario, CurrentUser user)
         {
-            this.DataConclusao = dataconclusao.IsNotNull() ? dataconclusao.Value.ToTimeZone().TodayZeroHours() : dataconclusao;
+            if (comentario.IsNullOrEmpty())
+                return;
+
+            if (this.CollectionComentarios.IsNotAny())
+                this.CollectionComentarios = new List<Comentario>();
+
+            this.CollectionComentarios.Add(new Comentario.ComentarioFactory().GetPendenciaInstance(new
+            {
+                ComentarioId = 0,
+                Tipo = (int)ETipoComentario.Pessoal,
+                Descricao = comentario,
+                Data = DateTime.Now,
+                PendenciaId = this.PendenciaId
+
+            }, user));
         }
 
-        public override void SetarPrazo(DateTime? prazo)
-        {
-            this.Prazo = prazo.IsNotNull() ? prazo.Value.ToTimeZone() : prazo;
-        }
 
+        internal void SetarComentarios(IEnumerable<dynamic> comentarios, CurrentUser user)
+        {
+            if (comentarios.IsAny())
+            {
+                foreach (var comentario in comentarios)
+                    this.Comentar(comentario.Descricao, user);
+            }
+        }
 
         internal void Play(CurrentUser user)
         {
@@ -79,6 +97,7 @@ namespace Target.Pendencias.Domain.Entitys
             this.registraEventoDeMudancaDeFluxoPara(user, EFluxoTrabalhoStatus.EmAndamento, "Play");
             this.FluxoTrabalhoStatusId = (int)EFluxoTrabalhoStatus.EmAndamento;
             this.SetarDataConclusao(null);
+
 
             var pendenciaEmAndamento = this.CollectionPendenciaTempos
                 .Where(_ => _.Fim == null)
@@ -90,11 +109,15 @@ namespace Target.Pendencias.Domain.Entitys
                     this.CollectionPendenciaTempos = new List<PendenciaTempos>();
 
                 this.CollectionPendenciaTempos.Add(new PendenciaTempos.PendenciaTemposFactory()
-                   .GetBasicInstance(new
+                   .GetPlayInstance(new
                    {
+                       AttributeBehavior = "Play",
                        PendenciaTemposId = 0,
                        PendenciaId = this.PendenciaId,
-                       Inicio = DateTime.Now.ToTimeZone()
+                       Inicio = DateTime.Now.ToTimeZone(),
+                       UsuarioId = user.GetSubjectId<int>(),
+                       Fim = default(DateTime),
+                       Nota = default(string)
                    }, user));
             }
 
@@ -119,32 +142,13 @@ namespace Target.Pendencias.Domain.Entitys
 
 
             this.registraEventoDeMudancaDeFluxoPara(user, (EFluxoTrabalhoStatus)fluxoTrabalhoStatusId, "Reclassificar");
-
             this.FluxoTrabalhoStatusId = fluxoTrabalhoStatusId;
             this.SetarDataConclusao(null);
-
             this.Comentar(comentario, user);
 
         }
 
-        internal void Comentar(string comentario, CurrentUser user)
-        {
-            if (comentario.IsNullOrEmpty())
-                return;
 
-            if (this.CollectionComentarios.IsNotAny())
-                this.CollectionComentarios = new List<Comentario>();
-
-            this.CollectionComentarios.Add(new Comentario.ComentarioFactory().GetDefaultInstance(new
-            {
-                ComentarioId = 0,
-                Descricao = comentario,
-                Data = DateTime.Now,
-                UsuarioId = user.GetTenantId<int>(),
-                PendenciaId = this.PendenciaId
-
-            }, user));
-        }
 
         internal void Concluir(string nota, string comentario, CurrentUser user)
         {
@@ -153,10 +157,8 @@ namespace Target.Pendencias.Domain.Entitys
             this.FluxoTrabalhoStatusId = (int)EFluxoTrabalhoStatus.Pronto;
             this.SetarDataConclusao(DateTime.Now);
             this.Stop(nota);
-
             this.Comentar(comentario, user);
         }
-
 
         private void registraEventoDeMudancaDeFluxoPara(CurrentUser user, EFluxoTrabalhoStatus fluxoTrabalhoStatusIdFuturo, string processo)
         {
@@ -174,8 +176,8 @@ namespace Target.Pendencias.Domain.Entitys
                     PendenciaEventosId = 0,
                     PendenciaId = this.PendenciaId,
                     Descricao = descricaoDoEvento,
-                    Data = DateTime.Now
-
+                    Data = DateTime.Now,
+                    AttributeBehavior = this.AttributeBehavior
                 }, user));
         }
 

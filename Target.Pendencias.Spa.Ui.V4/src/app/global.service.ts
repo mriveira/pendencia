@@ -1,19 +1,35 @@
 ﻿import { Injectable, EventEmitter } from '@angular/core'
+import { Routes } from '@angular/router';
+import { CacheService } from 'app/common/services/cache.service';
+import { ECacheType } from 'app/common/type-cache.enum';
 
 export class GlobalService {
 
     static operationExecuted = new EventEmitter<OperationExecutedParameters>();
     static operationRequesting = new EventEmitter<boolean>();
+    static notification = new EventEmitter<NotificationParameters>();
+    static changeCulture = new EventEmitter<string>();
 
+    private static _endpoint: EndPoints;
 
     public static getEndPoints() {
-        return new EndPoints();
+
+        if (!this._endpoint) {
+            this._endpoint = new EndPoints();
+            return this._endpoint;
+        }
+
+        return this._endpoint;
+    }
+
+    public static setEndPoints(config: any) {
+        GlobalService.getEndPoints().setConfigSettings(config);
     }
 
     public static getAuthSettings() {
         return new AuthSettings();
     }
-   
+
     public static operationExecutedParameters(_selector: string, _operation: any, _message: string = null) {
         return new OperationExecutedParameters(_selector, _operation, _message);
     }
@@ -32,6 +48,19 @@ export class OperationExecutedParameters {
         this.selector = _selector;
         this.operation = _operation;
         this.message = _message;
+    }
+
+}
+
+export class NotificationParameters {
+
+    public event: string;
+    public data?: any;
+
+    constructor(_event: string, _data?: any) {
+
+        this.event = _event;
+        this.data = _data;
 
     }
 
@@ -39,22 +68,33 @@ export class OperationExecutedParameters {
 
 export class EndPoints {
 
-    public readonly DEFAULT: string;
-    public readonly AUTHAPI: string;
-    public readonly AUTH: string;
-    public readonly APP: string;
-    public readonly DOWNLOAD: string;
-    public readonly UPLOAD: string;
+    public DEFAULT: string;
+    public AUTHAPI: string;
+    public AUTH: string;
+    public APP: string;
+    public DOWNLOAD: string;
 
     constructor() {
-        this.DEFAULT = 'http://localhost:8122/api';
-        this.AUTHAPI = 'http://localhost:4000/api';
-        this.AUTH = 'http://localhost:4000/';
-        this.APP = 'http://localhost:4200';
-        this.DOWNLOAD = this.DEFAULT + + "document/download/";
-        this.UPLOAD = this.DEFAULT + + "document/upload/";
+
+        
+    }
+
+    setConfigSettings(configSettings) {
+        if (configSettings) {
+            this.init(configSettings);
+        }
+    }
+
+    init(configSettings) {
+
+        this.DEFAULT = configSettings.DEFAULT;
+        this.AUTHAPI = configSettings.AUTHAPI;
+        this.AUTH = configSettings.AUTH;
+        this.APP = configSettings.APP;
+        this.DOWNLOAD = this.DEFAULT + "/document/download/";
 
     }
+
 };
 
 export class AuthSettings {
@@ -62,12 +102,12 @@ export class AuthSettings {
     public readonly TYPE_LOGIN: string;
     public readonly CLIENT_ID: string;
     public readonly SCOPE: string;
-   
+
 
     constructor() {
         this.TYPE_LOGIN = "SSO";
-        this.CLIENT_ID = 'Target-spa-v2';
+        this.CLIENT_ID = 'Target-spa';
         this.SCOPE = 'ssosa';
-    
     }
 };
+

@@ -15,13 +15,13 @@ namespace Target.Pendencias.Data.Map
             type.Property(t => t.PendenciaId).HasColumnName("Id");
            
 
-            type.Property(t => t.ProjetoId).HasColumnName("ProjetoId");
             type.Property(t => t.Resumo).HasColumnName("Resumo");
             type.Property(t => t.Descricao).HasColumnName("Descricao");
             type.Property(t => t.RequisitadoPor).HasColumnName("RequisitadoPor");
             type.Property(t => t.TempoEstimado).HasColumnName("TempoEstimado");
             type.Property(t => t.PontosEstimados).HasColumnName("PontosEstimados");
             type.Property(t => t.Prazo).HasColumnName("Prazo");
+            type.Property(t => t.ProjetoId).HasColumnName("ProjetoId");
             type.Property(t => t.UsuarioId).HasColumnName("UsuarioId");
             type.Property(t => t.PendenciaTipoId).HasColumnName("PendenciaTipoId");
             type.Property(t => t.FluxoTrabalhoStatusId).HasColumnName("FluxoTrabalhoStatusId");

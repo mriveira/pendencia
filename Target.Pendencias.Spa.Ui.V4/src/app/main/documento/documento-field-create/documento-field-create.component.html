@@ -1,0 +1,15 @@
+<div class="row" [formGroup]="vm.form">
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.arquivo.label }}</label>
+      <input type='text' class='form-control' [(ngModel)]='vm.model.arquivo' name='arquivo' required formControlName='arquivo'  />
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.ext.label }}</label>
+      <input type='text' class='form-control' [(ngModel)]='vm.model.ext' name='ext' required formControlName='ext'  />
+    </div>
+  </section>
+</div>
+

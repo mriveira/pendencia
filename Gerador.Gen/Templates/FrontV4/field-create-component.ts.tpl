@@ -10,7 +10,7 @@ import { ViewModel } from 'app/common/model/viewmodel';
 })
 export class <#className#>FieldCreateComponent implements OnInit {
 
-    @Input() vm: ViewModel;
+    @Input() vm: ViewModel<any>;
 
 
    constructor(private <#classNameInstance#>Service: <#className#>Service, private ref: ChangeDetectorRef) { }

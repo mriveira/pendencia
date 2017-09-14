@@ -68,6 +68,17 @@ namespace Common.Orm
         {
             dbSet.Remove(entity);
         }
+        
+        public virtual void RemoveRangeAndCommit(IEnumerable<T> entitys)
+        {
+            dbSet.RemoveRange(entitys);
+            ctx.SaveChanges();
+        }
+        
+        public virtual void RemoveRange(IEnumerable<T> entitys)
+        {
+            dbSet.RemoveRange(entitys);
+        }
 
         public virtual async Task<PaginateResult<T>> PagingAndDefineFields(FilterBase filters, IQueryable<T> queryFilter)
         {
@@ -80,6 +91,7 @@ namespace Common.Orm
             return new PaginateResult<T>
             {
                 TotalCount = totalCount,
+                PageSize = filters.PageSize,
                 ResultPaginatedData = queryMapped,
                 Source = queryFilter
             };

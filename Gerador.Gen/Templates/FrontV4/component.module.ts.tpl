@@ -5,7 +5,9 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { <#className#>Component } from './<#classNameLowerAndSeparator#>.component';
-import { <#className#>FilterComponent } from './<#classNameLowerAndSeparator#>-filter/<#classNameLowerAndSeparator#>-filter.component';
+
+import { <#className#>ContainerFilterComponent } from './<#classNameLowerAndSeparator#>-container-filter/<#classNameLowerAndSeparator#>-container-filter.component';
+import { <#className#>FieldFilterComponent } from './<#classNameLowerAndSeparator#>-field-filter/<#classNameLowerAndSeparator#>-field-filter.component';
 
 import { <#className#>EditComponent } from './<#classNameLowerAndSeparator#>-edit/<#classNameLowerAndSeparator#>-edit.component';
 import { <#className#>CreateComponent } from './<#classNameLowerAndSeparator#>-create/<#classNameLowerAndSeparator#>-create.component';
@@ -38,7 +40,8 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
     ],
     declarations: [
         <#className#>Component,
-		<#className#>FilterComponent,
+		<#className#>ContainerFilterComponent,
+		<#className#>FieldFilterComponent,
         <#className#>EditComponent,
 		<#className#>CreateComponent,
 		<#className#>DetailsComponent,
@@ -50,7 +53,6 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
     providers: [<#className#>Service,<#className#>ServiceFields, ApiService],
 })
 export class <#className#>Module {
-
 
 
 }

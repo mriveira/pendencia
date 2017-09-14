@@ -20,15 +20,15 @@ namespace Target.Pendencias.Domain.Entitys
 
         }
 
-        public int ProjetoId { get; protected set; }
-        public string Nome { get; protected set; }
-        public string Descricao { get; protected set; }
-        public string Visao { get; protected set; }
-        public int ClienteId { get; protected set; }
-        public int UsuarioId { get; protected set; }
-        public string ChaveUnica { get; protected set; }
-        public DateTime? Inicio { get; protected set; }
-        public DateTime? Fim { get; protected set; }
+        public virtual int ProjetoId { get; protected set; }
+        public virtual string Nome { get; protected set; }
+        public virtual string Descricao { get; protected set; }
+        public virtual string Visao { get; protected set; }
+        public virtual int ClienteId { get; protected set; }
+        public virtual int UsuarioId { get; protected set; }
+        public virtual string ChaveUnica { get; protected set; }
+        public virtual DateTime? Inicio { get; protected set; }
+        public virtual DateTime? Fim { get; protected set; }
 
 
 		public virtual void SetarVisao(string visao)

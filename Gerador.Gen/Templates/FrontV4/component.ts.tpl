@@ -1,11 +1,11 @@
-﻿import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, FormGroup, FormControl} from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { <#className#>Service } from './<#classNameLowerAndSeparator#>.service';
 import { ViewModel } from 'app/common/model/viewmodel';
-import { GlobalService } from '../../global.service';
+import { GlobalService, NotificationParameters} from '../../global.service';
 
 
 @Component({
@@ -15,15 +15,15 @@ import { GlobalService } from '../../global.service';
 })
 export class <#className#>Component implements OnInit {
 
-    vm: ViewModel;
+    vm: ViewModel<any>;
 
     operationConfimationYes: any;
 
     @ViewChild('saveModal') private saveModal: ModalDirective;
     @ViewChild('editModal') private editModal: ModalDirective;
     @ViewChild('detailsModal') private detailsModal: ModalDirective;
-
-    constructor(private <#classNameInstance#>Service: <#className#>Service, private router: Router) {
+	
+    constructor(private <#classNameInstance#>Service: <#className#>Service, private router: Router, private ref: ChangeDetectorRef) {
 
         this.vm = null;
     }
@@ -31,12 +31,26 @@ export class <#className#>Component implements OnInit {
     ngOnInit() {
 
 		this.vm = this.<#classNameInstance#>Service.initVM();
+		this.<#classNameInstance#>Service.detectChanges(this.ref);
 
         this.<#classNameInstance#>Service.get().subscribe((result) => {
             this.vm.filterResult = result.dataList;
             this.vm.summary = result.summary;
-        })
+        });
 
+		this.updateCulture();
+        GlobalService.changeCulture.subscribe((culture) => {
+            this.updateCulture(culture);
+        });
+
+    }
+
+	updateCulture(culture: string = null)
+    {
+        this.<#classNameInstance#>Service.updateCulture(culture).then(infos => {
+            this.vm.infos = infos;
+            this.vm.grid = this.<#classNameInstance#>Service.getInfoGrid(infos);
+        });
     }
 
 
@@ -49,22 +63,16 @@ export class <#className#>Component implements OnInit {
     }
 
     public onExport() {
-
-
-    }
-
-	onFileChange(event) {
-
-        let fileList: FileList = event.target.files;
-        if (fileList.length > 0) {
-            let file: File = fileList[0];
-            this.<#classNameInstance#>Service.upload(file).subscribe((result) => {
-
+        this.<#classNameInstance#>Service.export().subscribe((result) => {
+            var blob = new Blob([result._body], {
+                type: 'application/vnd.ms-excel'
             });
-        }
+            var downloadUrl = window.URL.createObjectURL(blob);
+            window.location.href = downloadUrl;
+        })
     }
 
-    public onCreate() {
+	public onCreate() {
 
         this.vm.model = {};
         this.saveModal.show();
@@ -75,6 +83,9 @@ export class <#className#>Component implements OnInit {
         this.editModal.show();
         this.<#classNameInstance#>Service.get(model).subscribe((result) => {
             this.vm.model = result.dataList[0];
+			 GlobalService.notification.emit(new NotificationParameters("edit", {
+                model: this.vm.model
+            }));
         })
 
     }
@@ -89,10 +100,12 @@ export class <#className#>Component implements OnInit {
 
             this.vm.filterResult.push(result.data);
             this.vm.summary.total = this.vm.filterResult.length
+
+			this.saveModal.hide();
+	        this.editModal.hide();
+
         });
 
-        this.saveModal.hide();
-        this.editModal.hide();
     }
 
     public onDetails(model) {

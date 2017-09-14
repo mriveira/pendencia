@@ -50,21 +50,21 @@ namespace Sso.Server.Api
 
             services.AddDbContext<DbContextTarget>(options => options.UseSqlServer(cns));
 
-            var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
-            services.AddDbContext<DbContextTarget>(options => options.UseSqlServer(cns));
+            //var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+            //services.AddDbContext<DbContextTarget>(options => options.UseSqlServer(cns));
 
             services.AddIdentityServer()
                 .AddSigningCredential(GetRSAParameters())
                 //.AddTemporarySigningCredential()
-                //.AddInMemoryApiResources(Config.GetApiResources())
-                //.AddInMemoryIdentityResources(Config.GetIdentityResources())
-                //.AddInMemoryClients(Config.GetClients());
-                .AddConfigurationStore(builder =>
-                        builder.UseSqlServer(cns, options =>
-                            options.MigrationsAssembly(migrationAssembly)))
-                    .AddOperationalStore(builder =>
-                        builder.UseSqlServer(cns, options =>
-                            options.MigrationsAssembly(migrationAssembly)));
+                .AddInMemoryApiResources(Config.GetApiResources())
+                .AddInMemoryIdentityResources(Config.GetIdentityResources())
+                .AddInMemoryClients(Config.GetClients(Configuration.GetSection("ConfigSettings").Get<ConfigSettingsBase>()));
+                //.AddConfigurationStore(builder =>
+                //        builder.UseSqlServer(cns, options =>
+                //            options.MigrationsAssembly(migrationAssembly)))
+                //    .AddOperationalStore(builder =>
+                //        builder.UseSqlServer(cns, options =>
+                //            options.MigrationsAssembly(migrationAssembly)));
 
             //for clarity of the next piece of code
             services.AddScoped<CurrentUser>();
@@ -73,18 +73,8 @@ namespace Sso.Server.Api
             services.Configure<ConfigSettingsBase>(Configuration.GetSection("ConfigSettings"));
             services.AddSingleton<IConfiguration>(Configuration);
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("frontcore", policy =>
-                {
-                    policy.WithOrigins(Configuration.GetSection("ConfigSettings")["ClientAuthorityEndPoint"])
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
-                });
-            });
-
-            // Add cross-origin resource sharing services Configurations
-            //Cors.Enable(services);
+            //Add cross-origin resource sharing services Configurations
+            Cors.Enable(services);
             services.AddMvc();
 
 
@@ -95,16 +85,15 @@ namespace Sso.Server.Api
             loggerFactory.AddConsole(LogLevel.Debug);
             app.UseDeveloperExceptionPage();
 
-            InitializeDatabase(app, configSettingsBase.Value);
+            //InitializeDatabase(app, configSettingsBase.Value);
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
             loggerFactory.AddFile("Logs/sm-sso-server-api-{Date}.log");
 
-            app.UseCors("frontcore");
+            app.UseCors("AllowAnyOrigin");
 
             app.UseIdentityServer();
-
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
         }

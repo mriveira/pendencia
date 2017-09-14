@@ -1,0 +1,45 @@
+<div class="row" [formGroup]="vm.form">
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.nome.label }}</label>
+      <input type='text' class='form-control' [(ngModel)]='vm.model.nome' name='nome' required formControlName='nome'  />
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.descricao.label }}</label>
+      <textarea class='form-control'  [(ngModel)]='vm.model.descricao' name='descricao' required rows='10' formControlName='descricao' ></textarea>
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.visao.label }}</label>
+      <textarea class='form-control'  [(ngModel)]='vm.model.visao' name='visao'  rows='10' formControlName='visao' ></textarea>
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.chaveUnica.label }}</label>
+      <input type='text' class='form-control' [(ngModel)]='vm.model.chaveUnica' name='chaveUnica' required formControlName='chaveUnica'  />
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.inicio.label }}</label>
+      <input type='text' class='form-control' [(ngModel)]='vm.model.inicio' name='inicio'  formControlName='inicio' datetimepicker />
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.fim.label }}</label>
+      <input type='text' class='form-control' [(ngModel)]='vm.model.fim' name='fim'  formControlName='fim' datetimepicker />
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.clienteId.label }}</label>
+      <select class='form-control'  name='clienteId' [(ngModel)]='vm.model.clienteId' required formControlName='clienteId' datasource [dataitem]="'Cliente'"></select>
+      </div>
+  </section>
+</div>
+

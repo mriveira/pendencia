@@ -15,10 +15,11 @@ namespace Target.Pendencias.Domain.Interfaces.Repository
 		
         Task<IEnumerable<dynamic>> GetDataItem(PendenciaTemposFilter filters);
 
-        bool ExisteCronometroAtivo();
 
         Task<IEnumerable<dynamic>> GetDataListCustom(PendenciaTemposFilter filters);
 
         Task<dynamic> GetDataCustom(PendenciaTemposFilter filters);
+
+        bool ExisteCronometroAtivo();
     }
 }

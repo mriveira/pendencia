@@ -1,0 +1,169 @@
+﻿import { Component, OnInit, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormsModule, FormGroup, FormControl} from '@angular/forms';
+
+import { ModalDirective } from 'ngx-bootstrap/modal';
+import { UsuarioService } from './usuario.service';
+import { ViewModel } from 'app/common/model/viewmodel';
+import { GlobalService, NotificationParameters} from '../../global.service';
+
+
+@Component({
+    selector: 'app-usuario',
+    templateUrl: './usuario.component.html',
+    styleUrls: ['./usuario.component.css'],
+})
+export class UsuarioComponent implements OnInit {
+
+    vm: ViewModel<any>;
+
+    operationConfimationYes: any;
+
+    @ViewChild('saveModal') private saveModal: ModalDirective;
+    @ViewChild('editModal') private editModal: ModalDirective;
+    @ViewChild('detailsModal') private detailsModal: ModalDirective;
+	
+    constructor(private usuarioService: UsuarioService, private router: Router, private ref: ChangeDetectorRef) {
+
+        this.vm = null;
+    }
+
+    ngOnInit() {
+
+		this.vm = this.usuarioService.initVM();
+		this.usuarioService.detectChanges(this.ref);
+
+        this.usuarioService.get().subscribe((result) => {
+            this.vm.filterResult = result.dataList;
+            this.vm.summary = result.summary;
+        });
+
+		this.updateCulture();
+        GlobalService.changeCulture.subscribe((culture) => {
+            this.updateCulture(culture);
+        });
+
+    }
+
+	updateCulture(culture: string = null)
+    {
+        this.usuarioService.updateCulture(culture).then(infos => {
+            this.vm.infos = infos;
+            this.vm.grid = this.usuarioService.getInfoGrid(infos);
+        });
+    }
+
+
+    public onFilter(modelFilter) {
+
+        this.usuarioService.get(modelFilter).subscribe((result) => {
+            this.vm.filterResult = result.dataList;
+            this.vm.summary = result.summary;
+        })
+    }
+
+    public onExport() {
+        this.usuarioService.export().subscribe((result) => {
+            var blob = new Blob([result._body], {
+                type: 'application/vnd.ms-excel'
+            });
+            var downloadUrl = window.URL.createObjectURL(blob);
+            window.location.href = downloadUrl;
+        })
+    }
+
+	public onCreate() {
+
+        this.vm.model = {};
+        this.saveModal.show();
+    }
+
+    public onEdit(model) {
+
+        this.editModal.show();
+        this.usuarioService.get(model).subscribe((result) => {
+            this.vm.model = result.dataList[0];
+			 GlobalService.notification.emit(new NotificationParameters("edit", {
+                model: this.vm.model
+            }));
+        })
+
+    }
+
+    public onSave(model) {
+
+        this.usuarioService.save(model).subscribe((result) => {
+
+            this.vm.filterResult = this.vm.filterResult.filter(function (model) {
+                return  model.usuarioId != result.data.usuarioId;
+            });
+
+            this.vm.filterResult.push(result.data);
+            this.vm.summary.total = this.vm.filterResult.length
+
+			this.saveModal.hide();
+	        this.editModal.hide();
+
+        });
+
+    }
+
+    public onDetails(model) {
+
+        this.detailsModal.show();
+        this.usuarioService.get(model).subscribe((result) => {
+            this.vm.details = result.dataList[0];
+        })
+
+    }
+
+    public onCancel() {
+
+        this.saveModal.hide();
+        this.editModal.hide();
+        this.detailsModal.hide();
+    }
+
+
+    public onPrint(model) {
+        this.router.navigate(['/usuario/print', model.usuarioId]);
+    }
+
+    public onDeleteConfimation(model) {
+
+
+
+        var conf = GlobalService.operationExecutedParameters(
+            "confirm-modal",
+            () => {
+                this.usuarioService.delete(model).subscribe((result) => {
+                    this.vm.filterResult = this.vm.filterResult.filter(function (model) {
+                        return  model.usuarioId != result.data.usuarioId;
+                    });
+                    this.vm.summary.total = this.vm.filterResult.length
+                });
+            }
+        );
+
+        GlobalService.operationExecuted.emit(conf);
+    }
+
+    public onConfimationYes() {
+        this.operationConfimationYes();
+    }
+
+    public onPageChanged(e) {
+
+        let modelFilter = this.usuarioService.pagingConfig(this.vm.modelFilter, e);
+
+        this.usuarioService.get(modelFilter).subscribe((result) => {
+            this.vm.filterResult = result.dataList;
+            this.vm.summary = result.summary;
+        });
+    }
+
+    public onOrderBy(field) {
+        
+    }
+
+}

@@ -16,8 +16,8 @@ namespace Target.Pendencias.Domain.Entitys
 
         }
 
-        public int UsuarioTipoId { get; protected set; }
-        public string Nome { get; protected set; }
+        public virtual int UsuarioTipoId { get; protected set; }
+        public virtual string Nome { get; protected set; }
 
 
 

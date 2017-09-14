@@ -6,20 +6,20 @@ namespace Target.Pendencias.Domain.Filter
     public class PendenciaEventosFilterBase : FilterBase
     {
 
-        public int PendenciaEventosId { get; set;} 
-        public int PendenciaId { get; set;} 
-        public string Descricao { get; set;} 
-        public DateTime? DataStart { get; set;} 
-        public DateTime? DataEnd { get; set;} 
-        public DateTime? Data { get; set;} 
-        public int UserCreateId { get; set;} 
-        public DateTime UserCreateDateStart { get; set;} 
-        public DateTime UserCreateDateEnd { get; set;} 
-        public DateTime UserCreateDate { get; set;} 
-        public int? UserAlterId { get; set;} 
-        public DateTime? UserAlterDateStart { get; set;} 
-        public DateTime? UserAlterDateEnd { get; set;} 
-        public DateTime? UserAlterDate { get; set;} 
+        public virtual int PendenciaEventosId { get; set;} 
+        public virtual int PendenciaId { get; set;} 
+        public virtual string Descricao { get; set;} 
+        public virtual DateTime? DataStart { get; set;} 
+        public virtual DateTime? DataEnd { get; set;} 
+        public virtual DateTime? Data { get; set;} 
+        public virtual int UserCreateId { get; set;} 
+        public virtual DateTime UserCreateDateStart { get; set;} 
+        public virtual DateTime UserCreateDateEnd { get; set;} 
+        public virtual DateTime UserCreateDate { get; set;} 
+        public virtual int? UserAlterId { get; set;} 
+        public virtual DateTime? UserAlterDateStart { get; set;} 
+        public virtual DateTime? UserAlterDateEnd { get; set;} 
+        public virtual DateTime? UserAlterDate { get; set;} 
 
 
     }

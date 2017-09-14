@@ -17,12 +17,12 @@ namespace Target.Pendencias.Domain.Entitys
 
         }
 
-        public int FluxoTrabalhoStatusId { get; protected set; }
-        public string Nome { get; protected set; }
-        public int FluxoTrabalhoTipoId { get; protected set; }
-        public string CorFundo { get; protected set; }
-        public string CorFonte { get; protected set; }
-        public int? Ordem { get; protected set; }
+        public virtual int FluxoTrabalhoStatusId { get; protected set; }
+        public virtual string Nome { get; protected set; }
+        public virtual int FluxoTrabalhoTipoId { get; protected set; }
+        public virtual string CorFundo { get; protected set; }
+        public virtual string CorFonte { get; protected set; }
+        public virtual int? Ordem { get; protected set; }
 
 
 		public virtual void SetarCorFundo(string corfundo)

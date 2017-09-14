@@ -1,0 +1,68 @@
+﻿<div class="col-lg-12">
+  <div class="card gc-grid">
+    <div class="card-header gc-grid__header">
+      <i class="fa fa-tasks"></i> Projetos
+    </div>
+    <div class="card-block gc-grid__body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>inicio</th>
+            <th>Fim</th>
+            <th>Team</th>
+            <th>Abertas</th>
+            <th>Concluidas</th>
+            <th>Pontos Estimas</th>
+            <th>Horas Estimas</th>
+            <th>Horas Reais</th>
+            <th>Burning-down</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let projeto of vm.reletedViewModel.projetos">
+            <td>{{projeto.nome}}</td>
+            <td><bind-custom [model]="projeto.inicio" [format]="'date'" [tag]="'span'"></bind-custom></td>
+            <td><bind-custom [model]="projeto.fim" [format]="'date'" [tag]="'span'"></bind-custom></td>
+            <td>
+              <ul *ngFor="let user of projeto.time">
+                <li>{{user}}</li>
+              </ul>
+            </td>
+            <td>{{projeto.totalPendencias}}</td>
+            <td>{{projeto.totalConcluidas}}</td>
+            <td>{{projeto.totalPontos}}</td>
+            <td>{{projeto.totalHoras}}</td>
+            <td><bind-custom [model]="projeto.totalHorasReais" [format]="'decimal'" [tag]="'span'"></bind-custom></td>
+            <td>
+              <button class="btn btn-sm btn-success" (click)="onChart(projeto)"><i class="fa fa-area-chart"></i></button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div bsModal #chartModal="bs-modal" class="gc-modal modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Burndown</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="chart-area">
+        <canvas *ngIf="chart" baseChart class="chart chart-line" [datasets]="chart.buningDown.dataset" [labels]="chart.buningDown.dias" [colors]="chart.buningDown.colors" [chartType]="'line'"></canvas>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" type="button" (click)="onCancel()">{{vm.generalInfo.cancelar.label}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

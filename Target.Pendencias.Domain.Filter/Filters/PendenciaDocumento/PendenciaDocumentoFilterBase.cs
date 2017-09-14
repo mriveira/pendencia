@@ -6,8 +6,8 @@ namespace Target.Pendencias.Domain.Filter
     public class PendenciaDocumentoFilterBase : FilterBase
     {
 
-        public int PendenciaId { get; set;} 
-        public int DocumentoId { get; set;} 
+        public virtual int PendenciaId { get; set;} 
+        public virtual int DocumentoId { get; set;} 
 
 
     }

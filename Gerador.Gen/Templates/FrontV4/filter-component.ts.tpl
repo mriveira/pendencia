@@ -1,5 +1,7 @@
 ﻿import { Component, OnInit, Input } from '@angular/core';
 
+import { ViewModel } from 'app/common/model/viewmodel';
+
 @Component({
     selector: 'app-<#classNameLowerAndSeparator#>-filter',
     templateUrl: './<#classNameLowerAndSeparator#>-filter.component.html',
@@ -7,14 +9,11 @@
 })
 export class <#className#>FilterComponent implements OnInit {
 
-    @Input() vm: any;
+    @Input() vm: ViewModel<any>
 
     constructor() { }
 
     ngOnInit() {
     }
-
-
-    <#fieldItems#>
 
 }

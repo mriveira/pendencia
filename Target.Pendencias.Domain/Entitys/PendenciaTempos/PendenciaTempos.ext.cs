@@ -34,15 +34,11 @@ namespace Target.Pendencias.Domain.Entitys
                 return construction;
             }
 
-            public PendenciaTempos GetBasicInstance(dynamic data, CurrentUser user)
+           
+            public PendenciaTempos GetPlayInstance(dynamic data, CurrentUser user)
             {
-                var construction = new PendenciaTempos(data.PendenciaTemposId,
-                                        data.PendenciaId,
-                                        user.GetTenantId<int>(),
-                                        data.Inicio);
-
-
-
+                var construction = new PendenciaTempos(0, data.PendenciaId, data.UsuarioId, data.Inicio);
+                construction.SetUserCreate(user.GetSubjectId<int>());
                 return construction;
             }
 

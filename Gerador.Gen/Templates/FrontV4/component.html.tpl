@@ -8,13 +8,13 @@
       <div class="row">
         <div class="col d-flex justify-content-end">
           <a href="javascript:history.back()" class="btn btn-sm btn-outline-secondary mr-auto p-2">
-            <span class="fa fa-arrow-left" aria-hidden="true"></span> Voltar
+            <span class="fa fa-arrow-left" aria-hidden="true"></span> {{vm.generalInfo.voltar.label}}
           </a>
           <button type="button" class="btn btn-sm btn-primary p-2" (click)="vm.mostrarFiltros = !vm.mostrarFiltros">
-            <span class="fa fa-filter" aria-hidden="true"></span> Filtros
+            <span class="fa fa-filter" aria-hidden="true"></span> {{vm.generalInfo.filtro.label}}
           </button>
           <button type="button" class="btn btn-sm btn-success p-2" (click)="onCreate()">
-            <span class="fa fa-plus" aria-hidden="true"></span> Novo item
+            <span class="fa fa-plus" aria-hidden="true"></span> {{vm.generalInfo.novoItem.label}}
           </button>
         </div>
       </div>
@@ -37,14 +37,14 @@
       <div class="gc-filter">
         <form #formFilter="ngForm" (ngSubmit)="onFilter(vm.modelFilter)">
           <div class="card gc-card card-primary">
-            <div class="card-header">Filtros</div>
+            <div class="card-header">{{vm.generalInfo.filtro.label}}</div>
             <div class="card-block">
-              <app-<#classNameLowerAndSeparator#>-filter [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-filter>
+              <app-<#classNameLowerAndSeparator#>-container-filter [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-container-filter>
             </div>
             <div class="card-footer d-flex justify-content-end">
               <button class="btn btn-primary" type="submit">
                 <span class="fa fa-search"></span>
-                Filtrar
+                {{vm.generalInfo.filtrar.label}}
               </button>
 			  <button class="btn btn-default" type="button" (click)="vm.mostrarFiltros =! vm.mostrarFiltros">Cancelar</button>
             </div>
@@ -58,8 +58,7 @@
     <div class="col">
       <div class="card gc-grid">
         <div class="card-header gc-grid__header">
-          Titulo
-        </div>
+		</div>
         <div class="card-block gc-grid__body">
 			<make-grid [(vm)]="vm" (edit)="onEdit($event)" (details)="onDetails($event)" (print)="onPrint($event)" (deleteConfimation)="onDeleteConfimation($event)"></make-grid>
         </div>
@@ -87,8 +86,8 @@
           <app-<#classNameLowerAndSeparator#>-container-create [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-container-create>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
-          <button type="submit" class="btn btn-success" [disabled]="vm.form.invalid" >Salvar</button>
+          <button class="btn btn-default" type="button" (click)="onCancel()">{{vm.generalInfo.cancelar.label}}</button>
+          <button type="submit" class="btn btn-success" [disabled]="vm != null && vm.form.invalid" >{{vm.generalInfo.salvar.label}}</button>
         </div>
       </form>
     </div>
@@ -109,8 +108,8 @@
 			<app-<#classNameLowerAndSeparator#>-container-edit [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-container-edit>
 		</div>
         <div class="modal-footer">
-          <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
-          <button type="submit" class="btn btn-success" [disabled]="vm.form.invalid">Salvar</button>
+          <button class="btn btn-default" type="button" (click)="onCancel()">{{vm.generalInfo.cancelar.label}}</button>
+          <button type="submit" class="btn btn-success" [disabled]="vm != null && vm.form.invalid">{{vm.generalInfo.salvar.label}}</button>
         </div>
       </form>
     </div>
@@ -130,10 +129,9 @@
 		<app-<#classNameLowerAndSeparator#>-container-details [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-container-details>
 	  </div>
       <div class="modal-footer">
-        <button class="btn btn-default" type="button" (click)="onCancel()">Cancelar</button>
+        <button class="btn btn-default" type="button" (click)="onCancel()">{{vm.generalInfo.cancelar.label}}</button>
       </div>
     </div>
   </div>
 </div>
 
-<confirm-modal></confirm-modal>

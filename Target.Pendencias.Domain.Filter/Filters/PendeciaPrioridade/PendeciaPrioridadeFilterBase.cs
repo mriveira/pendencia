@@ -6,8 +6,8 @@ namespace Target.Pendencias.Domain.Filter
     public class PendeciaPrioridadeFilterBase : FilterBase
     {
 
-        public int PendeciaPrioridadeId { get; set;} 
-        public string Nome { get; set;} 
+        public virtual int PendeciaPrioridadeId { get; set;} 
+        public virtual string Nome { get; set;} 
 
 
     }

@@ -6,8 +6,8 @@ namespace Target.Pendencias.Domain.Filter
     public class AcompanhadoresFilterBase : FilterBase
     {
 
-        public int PendenciaId { get; set;} 
-        public int UsuarioId { get; set;} 
+        public virtual int PendenciaId { get; set;} 
+        public virtual int UsuarioId { get; set;} 
 
 
     }

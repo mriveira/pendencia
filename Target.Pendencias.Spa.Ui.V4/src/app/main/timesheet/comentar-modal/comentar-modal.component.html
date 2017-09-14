@@ -1,0 +1,26 @@
+﻿<div bsModal #comentarModal="bs-modal" class="gc-modal modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">{{title}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form (ngSubmit)="onSave(vm.model)" novalidate>
+        <div class="modal-body">
+          <section class="col-md-12" [formGroup]="form">
+            <div class='form-group'>
+              <label>Comentário</label>
+              <textarea class='form-control' [(ngModel)]='vm.model.comentario' name='comentario' required formControlName='comentario' rows=10></textarea>
+            </div>
+          </section>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" type="button" (click)="onCancel()">{{vm.generalInfo.cancelar.label}}</button>
+          <button type="submit" class="btn btn-success" [disabled]="vm != null && form.invalid">{{vm.generalInfo.salvar.label}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

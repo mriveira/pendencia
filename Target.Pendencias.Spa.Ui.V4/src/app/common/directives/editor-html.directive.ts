@@ -1,5 +1,6 @@
 ﻿import { Directive, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { NgModel } from '@angular/forms';
+import { GlobalService, NotificationParameters } from "../../global.service";
 declare var $: any;
 
 @Directive({
@@ -8,7 +9,6 @@ declare var $: any;
 })
 
 export class EditorHtmlDiretive implements OnInit {
-    @Input() elementId: String;
     @Output() editorKeyup = new EventEmitter<number>();
 
     constructor(private el: ElementRef, private ngModel: NgModel) {
@@ -17,19 +17,27 @@ export class EditorHtmlDiretive implements OnInit {
 
     ngOnInit() {
         this.render();
+
+        GlobalService.notification.subscribe((not) => {
+            if (not.event == "edit") {
+                let element = $(this.el.nativeElement);
+                var selector = element.attr("editorhtml");
+                tinymce.get(selector).getBody().innerHTML = not.data.model[selector];
+                
+            }
+        })
     }
 
     render() {
 
         let element = $(this.el.nativeElement);
-        console.log(element.attr("editorhtml"), tinymce);
 
         tinymce.init({
             selector: '[editorhtml=' + element.attr("editorhtml") + ']',
             plugins: ['link', 'paste', 'table'],
-            skin_url: 'assets/css/skins/lightgray',
+            skin_url: '/assets/css/skins/lightgray',
             setup: editor => {
-                editor.on('keyup', () => {
+                editor.on('change', () => {
                     const content = editor.getContent();
                     this.editorKeyup.emit(content);
                   });

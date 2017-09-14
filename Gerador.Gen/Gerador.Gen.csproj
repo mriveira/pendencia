@@ -428,6 +428,27 @@
     <None Include="Templates\FrontV4\field-editor-html-on-keyup.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Templates\FrontV4\field-filter-component.css.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\field-filter-component.html.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\field-filter-component.section.html.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\field-filter-component.ts.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\filter-container-component.css.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\filter-container-component.html.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\FrontV4\filter-container-component.ts.tpl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Templates\FrontV4\filter-makeselect-on-change.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

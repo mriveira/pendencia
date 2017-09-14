@@ -1,0 +1,15 @@
+<div class="row" [formGroup]="vm.form">
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.nome.label }}</label>
+      <input type='text' class='form-control' [(ngModel)]='vm.model.nome' name='nome' required formControlName='nome'  />
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.descricao.label }}</label>
+      <textarea class='form-control'  [(ngModel)]='vm.model.descricao' name='descricao'  rows='10' formControlName='descricao' id='descricao' editorhtml='descricao' (editorKeyup)='onEditorKeyupdescricao($event)'></textarea>
+    </div>
+  </section>
+</div>
+

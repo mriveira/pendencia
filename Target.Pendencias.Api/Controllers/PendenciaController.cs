@@ -8,6 +8,7 @@ using Target.Pendencias.Domain.Filter;
 using Target.Pendencias.Dto;
 using Common.API;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Target.Pendencias.Api.Controllers
 {
@@ -18,13 +19,13 @@ namespace Target.Pendencias.Api.Controllers
 
         private readonly IPendenciaApplicationService _app;
 		private readonly ILogger _logger;
-
-
-        public PendenciaController(IPendenciaApplicationService app, ILoggerFactory logger)
+		private readonly IHostingEnvironment _env;
+      
+        public PendenciaController(IPendenciaApplicationService app, ILoggerFactory logger, IHostingEnvironment env)
         {
             this._app = app;
 			this._logger = logger.CreateLogger<PendenciaController>();
-			
+			this._env = env;
         }
 
         [HttpGet]
@@ -115,5 +116,8 @@ namespace Target.Pendencias.Api.Controllers
                 return result.ReturnCustomException(ex,"Target.Pendencias - Pendencia", dto);
             }
         }
+
+
+
     }
 }

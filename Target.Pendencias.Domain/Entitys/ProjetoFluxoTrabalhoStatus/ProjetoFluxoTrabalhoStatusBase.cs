@@ -16,8 +16,8 @@ namespace Target.Pendencias.Domain.Entitys
 
         }
 
-        public int ProjetoId { get; protected set; }
-        public int FluxoTrabalhoStatusId { get; protected set; }
+        public virtual int ProjetoId { get; protected set; }
+        public virtual int FluxoTrabalhoStatusId { get; protected set; }
 
 
 

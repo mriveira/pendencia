@@ -8,8 +8,7 @@ namespace Target.Pendencias.Dto
 	public class PendenciaDtoSpecialized : PendenciaDto
 	{
 
-        public IEnumerable<ComentarioDto> CollectionComentario { get; set;}
-
+        public IEnumerable<ComentarioDto> CollectionComentarios { get; set;}
         public string Nota { get; set; }
 
 

@@ -12,7 +12,7 @@ import { <#className#>Service } from '../<#classNameLowerAndSeparator#>.service'
 })
 export class <#className#>EditComponent implements OnInit {
 
-    @Input() vm: ViewModel;
+    @Input() vm: ViewModel<any>;
     id: number;
     private sub: any;
 

@@ -17,9 +17,9 @@ namespace Target.Pendencias.Domain.Entitys
 
         }
 
-        public int DocumentoId { get; protected set; }
-        public string Arquivo { get; protected set; }
-        public string ext { get; protected set; }
+        public virtual int DocumentoId { get; protected set; }
+        public virtual string Arquivo { get; protected set; }
+        public virtual string ext { get; protected set; }
 
 
 

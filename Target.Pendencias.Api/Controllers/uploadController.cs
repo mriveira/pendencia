@@ -19,11 +19,13 @@ namespace Target.Pendencias.Api.Controllers
 
         private readonly ILogger _logger;
         private readonly IHostingEnvironment _env;
+        private readonly string _uploadRoot;
 
         public UplaodController(ILoggerFactory logger, IHostingEnvironment env)
         {
             this._logger = logger.CreateLogger<UplaodController>();
             this._env = env;
+            this._uploadRoot = "upload";
         }
 
         [HttpPost]
@@ -33,7 +35,7 @@ namespace Target.Pendencias.Api.Controllers
             var result = new HttpResult<List<string>>(this._logger);
             try
             {
-                var uploads = Path.Combine(this._env.ContentRootPath, folder);
+                var uploads = Path.Combine(this._env.ContentRootPath, this._uploadRoot, folder);
                 if (!Directory.Exists(uploads))
                     Directory.CreateDirectory(uploads);
 
@@ -66,7 +68,7 @@ namespace Target.Pendencias.Api.Controllers
             var result = new HttpResult<List<string>>(this._logger);
             try
             {
-                var uploads = Path.Combine(this._env.ContentRootPath, folder);
+                var uploads = Path.Combine(this._env.ContentRootPath, this._uploadRoot, folder);
                 await Task.Run(() => {
                     new FileInfo(Path.Combine(uploads, fileName)).Delete();
                 });

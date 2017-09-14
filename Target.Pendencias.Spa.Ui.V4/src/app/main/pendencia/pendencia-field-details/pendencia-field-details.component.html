@@ -1,0 +1,54 @@
+<dl>
+    <dt>{{ vm.infos.projetoId.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.projetoId" [format]="'instance'" [tag]="'span'"  [instance]="'Projeto'"  [key]="'ProjetoId'"></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.resumo.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.resumo" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.descricao.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.descricao" [format]="'html'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.requisitadoPor.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.requisitadoPor" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.tags.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.tags" [format]="'string'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.prazo.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.prazo" [format]="'DateTime?'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.dataConclusao.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.dataConclusao" [format]="'DateTime?'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.tempoEstimado.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.tempoEstimado" [format]="'int?'" [tag]="'span'" ></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.pontosEstimados.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.pontosEstimados" [format]="'dataitem'" [tag]="'span'" [aux]="vm.infos.pontosEstimados.aux"></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.usuarioId.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.usuarioId" [format]="'instance'" [tag]="'span'"  [instance]="'Usuario'"  [key]="'UsuarioId'"></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.pendenciaTipoId.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.pendenciaTipoId" [format]="'instance'" [tag]="'span'"  [instance]="'PendenciaTipo'"  [key]="'PendenciaTipoId'"></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.fluxoTrabalhoStatusId.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.fluxoTrabalhoStatusId" [format]="'instance'" [tag]="'span'"  [instance]="'FluxoTrabalhoStatus'"  [key]="'FluxoTrabalhoStatusId'"></bind-custom></dd>
+ 
+
+    <dt>{{ vm.infos.pendenciaPrioridadeId.label }}:</dt>
+    <dd><bind-custom [model]="vm.details.pendenciaPrioridadeId" [format]="'instance'" [tag]="'span'"  [instance]="'PendeciaPrioridade'"  [key]="'PendenciaPrioridadeId'"></bind-custom></dd>
+ 
+
+</dl> 

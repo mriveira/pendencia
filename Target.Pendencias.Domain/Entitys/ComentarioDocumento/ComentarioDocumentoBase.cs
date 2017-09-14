@@ -16,8 +16,8 @@ namespace Target.Pendencias.Domain.Entitys
 
         }
 
-        public int DocumentoId { get; protected set; }
-        public int ComentarioId { get; protected set; }
+        public virtual int DocumentoId { get; protected set; }
+        public virtual int ComentarioId { get; protected set; }
 
 
 

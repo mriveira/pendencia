@@ -20,14 +20,14 @@ namespace Target.Pendencias.Domain.Entitys
 
         }
 
-        public int UsuarioId { get; protected set; }
-        public string Nome { get; protected set; }
-        public string Foto { get; protected set; }
-        public string Email { get; protected set; }
-        public string Senha { get; protected set; }
-        public int UsuarioTipoId { get; protected set; }
-        public bool Ativo { get; protected set; }
-        public int? UsuarioDonoId { get; protected set; }
+        public virtual int UsuarioId { get; protected set; }
+        public virtual string Nome { get; protected set; }
+        public virtual string Foto { get; protected set; }
+        public virtual string Email { get; protected set; }
+        public virtual string Senha { get; protected set; }
+        public virtual int UsuarioTipoId { get; protected set; }
+        public virtual bool Ativo { get; protected set; }
+        public virtual int? UsuarioDonoId { get; protected set; }
 
 
 		public virtual void SetarFoto(string foto)

@@ -8,10 +8,11 @@ export class <#className#>ServiceFields {
 
     constructor() {}
 
-	getFormFields() {
-		return new FormGroup({
+	getFormFields(moreFormControls? : any) {
+		var formControls = Object.assign(moreFormControls || {},{
 <#riquered#>
         });
+		return new FormGroup(formControls);
 	}
 
 	getInfosFields() {

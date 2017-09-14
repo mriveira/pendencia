@@ -43,7 +43,8 @@ namespace Target.Pendencias.Data.Repository
         {
             var querybase = await this.ToListAsync(this.GetBySimplefilters(filters).Select(_ => new
             {
-                Id = _.PendenciaId
+                Id = _.PendenciaId,
+                Name = _.Resumo
 
             })); 
 

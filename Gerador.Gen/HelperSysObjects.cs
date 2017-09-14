@@ -7,10 +7,19 @@ using System.Threading.Tasks;
 
 namespace Cna.Erp.Gen
 {
-    public class HelperSysObjects : HelperSysObjectsDDDWithTransaction
+    public class HelperSysObjects : HelperSysObjectsDDD
     {
 
-        public HelperSysObjects(IEnumerable<Context> contexts) : base(contexts) { }
+        public HelperSysObjects(IEnumerable<Context> contexts)
+            : base(contexts)
+        {
+
+        }
+
+        public override HelperSysObjectsBase DefineFrontTemplateClass(Context config)
+        {
+            return new HelperSysObjectsAngular20(config, "Templates\\FrontV4");
+        }
 
     }
 }

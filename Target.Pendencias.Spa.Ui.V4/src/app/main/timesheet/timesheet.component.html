@@ -1,0 +1,225 @@
+﻿<div class="gc-body__heading">
+
+  <div class="gc-heading__controls">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col d-flex justify-content-end">
+
+
+          <a class="pull-right btn btn-sm btn-primary" placement="top" href="/pendencia/create" title="Nova" style="margin-left:10px;margin-right:10px">
+            <i class="fa fa-tasks"></i>
+          </a>
+          <button class="pull-right btn btn-sm btn-success" (click)="vm.mostrarFiltros =! vm.mostrarFiltros" style="margin-left:10px" placement="top" title="Filtros">
+            <i class="fa fa-search"></i>
+          </button>
+          <button class="pull-right btn btn-sm btn-default" (click)="onMinhasPendencias()" style="margin-left:10px" placement="top" title="Minhas Pendências">
+            <i class="fa fa-user"></i>
+          </button>
+          <button class="pull-right btn btn-sm btn-default" (click)="onTodasPendencias()" style="margin-left:10px" placement="top" title="Todas Pendências">
+            <i class="fa fa-users"></i>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row" *ngIf="vm.mostrarFiltros">
+      <div class="col">
+        <div class="gc-filter">
+          <form #formFilter="ngForm" (ngSubmit)="onFilter(vm.modelFilter)">
+            <div class="card gc-card card-primary">
+              <div class="card-header">{{vm.generalInfo.filtro.label}}</div>
+              <div class="card-block">
+                <div class="row">
+                  <section class="col-md-6">
+                    <div class='form-group'>
+                      <label>{{ vm.infos.projetoId.label }}</label>
+                      <select class='form-control' name='projetoId' [(ngModel)]='vm.modelFilter.projetoId' datasource [dataitem]="'Projeto'"></select>
+                    </div>
+                  </section>
+                  <section class="col-md-6">
+                    <div class='form-group'>
+                      <label>{{ vm.infos.pendenciaTipoId.label }}</label>
+                      <select class='form-control' name='pendenciaTipoId' [(ngModel)]='vm.modelFilter.pendenciaTipoId' datasource [dataitem]="'PendenciaTipo'"></select>
+                    </div>
+                  </section>
+                  <section class="col-md-6">
+                    <div class='form-group'>
+                      <label>{{ vm.infos.fluxoTrabalhoStatusId.label }}</label>
+                      <select class='form-control' name='fluxoTrabalhoStatusId' [(ngModel)]='vm.modelFilter.fluxoTrabalhoStatusId' datasource [dataitem]="'FluxoTrabalhoStatus'"></select>
+                    </div>
+                  </section>
+                  <section class="col-md-6">
+                    <div class='form-group'>
+                      <label>{{ vm.infos.pendenciaPrioridadeId.label }}</label>
+                      <select class='form-control' name='pendenciaPrioridadeId' [(ngModel)]='vm.modelFilter.pendenciaPrioridadeId' datasource [dataitem]="'PendeciaPrioridade'"></select>
+                    </div>
+                  </section>
+                  <section class="col-md-6">
+                    <div class='form-group'>
+                      <label>{{ vm.infos.tags.label }}</label>
+                      <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.tags' name='tags' />
+                    </div>
+                  </section>
+                </div>
+              </div>
+              <div class="card-footer d-flex justify-content-end">
+                <button class="btn btn-primary" type="submit">
+                  <span class="fa fa-search"></span>
+                  {{vm.generalInfo.filtrar.label}}
+                </button>
+                <button class="btn btn-default" type="button" (click)="vm.mostrarFiltros =! vm.mostrarFiltros">Cancelar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h2 class="title--main">
+          <span class="fa fa-home" aria-hidden="true"></span> Minhas Pendencias <small>{{ vm.actionDescription }}</small>
+        </h2>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div>
+  <div class="row">
+
+    <div class="col-lg-8">
+      <div class="card gc-grid">
+        <div class="card-header gc-grid__header">
+          <i class="fa fa-tasks"></i> Minhas Pendências
+        </div>
+        <div class="card-block gc-grid__body">
+          <div class="list-group" *ngFor="let pendencia of vm.reletedViewModel.pendencias">
+
+            <div class="list-group-item">
+              <dl>
+                <dd>
+                  <small class="badge badge-pill badge-default pull-right" [ngStyle]="{'background-color': pendencia.corFundo,'color':pendencia.corFonte}">{{pendencia.status}}</small>
+                </dd>
+                <dd>
+
+                  <div class="text-muted small" style="float: left;margin-right: 10px;text-align:center">
+                    <div [ngStyle]="{'background-image': san(pendencia.foto), 'width': '30px', 'height': '30px','background-size': 'cover','background-position': 'center','border-radius': '50%' }" *ngIf="pendencia.foto != null"></div>
+                    <div style="background-image: url('../../../assets/img/logo-basic.png');width: 30px; height: 30px;background-size: cover;background-position: center;border-radius: 50%;" *ngIf="pendencia.foto == null"></div>
+                    <em><strong>{{pendencia.user}}</strong></em>
+                  </div>
+
+                  <strong>[ {{pendencia.codigo}} ]</strong> - {{pendencia.resumo}}
+                </dd>
+
+                <dd><hr></dd>
+
+                <dd>
+                  <div class="text-muted small">
+                    <em><strong>Estimativa:</strong></em>
+                    <bind-custom [model]="pendencia.tempoEstimado" [format]="'int'" [tag]="'span'"></bind-custom> hora(s)
+                    <bind-custom [model]="pendencia.pontosEstimados" [format]="'int'" [tag]="'span'"></bind-custom> ponto(s)
+                    entrega em :<bind-custom [model]="pendencia.prazo" [format]="'Datetime'" [tag]="'span'"></bind-custom>
+                  </div>
+                </dd>
+                <dd>
+
+                  <button placement="top" (click)="onReclassificarWithNotes(pendencia.id)" title="Reclassificar" class="pull-right btn btn-sm btn-default" style="margin-left:10px">
+                    <i class="fa fa-recycle"></i>
+                  </button>
+
+                  <button placement="top" (click)="onComentar(pendencia.id)" title="Comentar" class="pull-right btn btn-sm btn-default" style="margin-left:10px">
+                    <i class="fa fa-comment"></i>
+                  </button>
+
+                  <button placement="top" (click)="onConcluirWithNotes(pendencia.id)" title="Concluir" class="pull-right btn btn-sm btn-primary" style="margin-left:10px">
+                    <i class="fa fa-check"></i>
+                  </button>
+
+                  <a href="/pendencia/edit/{{pendencia.id}}" placement="top" title="Editar" class="pull-right btn btn-sm btn-secondary" style="margin-left:10px">
+                    <i class="fa fa-pencil"></i>
+                  </a>
+
+                  <button placement="top" (click)="onStopWithNotes(pendencia.id)" title="Parar" class="pull-right btn btn-sm btn-danger" *ngIf="pendencia.cronometrando" style="margin-left:10px">
+                    <i class="fa fa-stop"></i>
+                  </button>
+
+                  <button placement="top" (click)="onPlay(pendencia.id)" *ngIf="!pendencia.cronometrando" title="iniciar" class="pull-right btn btn-sm btn-success" style="margin-left:10px">
+                    <i class="fa fa-play"></i>
+                  </button>
+
+                  <button placement="top" (click)="onHistorico(pendencia.id)" title="Comentarios" class="pull-right btn btn-sm btn-default" style="margin-left:10px">
+                    <i class="fa fa-comments-o"></i>
+                  </button>
+
+                  <button placement="top" (click)="onDetalhes(pendencia.id)" title="Detalhes" class="pull-right btn btn-sm btn-primary" style="margin-left:10px">
+                    <i class="fa fa-table"></i>
+                  </button>
+
+                </dd>
+              </dl>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card gc-grid">
+        <div class="card-header gc-grid__header">
+          <i class="fa fa-tasks"></i> TimeSheet
+        </div>
+        <div class="card-block gc-grid__body">
+          <div class="list-group">
+            <table class="table table-bordered table-striped table-hover">
+              <thead>
+                <tr>
+                  <th><i class="fa fa-gears"></i></th>
+                  <th>Inicio</th>
+                  <th>Fim</th>
+                  <th>Horas</th>
+                  <th>Nota</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let tempo of vm.reletedViewModel.tempo.tempos">
+                  <td>
+                    <a placement="top" title="Editar" class="btn btn-sm btn-default" (click)="onTimeSheetEdit(tempo.pendenciaTemposId)">
+                      <i class="fa fa-pencil"></i>
+                    </a>
+                  </td>
+                  <td><bind-custom [model]='tempo.inicio' [format]="'Time'" [tag]="'span'"></bind-custom></td>
+                  <td><bind-custom [model]='tempo.fim' [format]="'Time'" [tag]="'span'"></bind-custom></td>
+                  <td><bind-custom [model]='tempo.tempoDecorridoTimeSheet' [format]="'string'" [tag]="'span'"></bind-custom></td>
+                  <td><i class="fa fa-comments-o" title="{{tempo.nota}}"></i></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th></th>
+                  <td></td>
+                  <td></td>
+                  <th><bind-custom [model]='vm.reletedViewModel.tempo.summary.additionalSummary.totalHoras' [format]="'string'" [tag]="'span'"></bind-custom></th>
+                  <td></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<app-comentar-modal [vm]="vm"></app-comentar-modal>
+<app-concluir-modal [vm]="vm"></app-concluir-modal>
+<app-parar-modal [vm]="vm"></app-parar-modal>
+<app-reclassificar-modal [vm]="vm"></app-reclassificar-modal>
+<app-timesheet-modal [vm]="vm"></app-timesheet-modal>
+<app-detalhes-modal></app-detalhes-modal>
+<app-historico-modal></app-historico-modal>

@@ -31,10 +31,10 @@ namespace Sso.Server.Api
                 user = new User();
 
                 if (UserTenant.UsuarioTipoId == (int)EUsuarioTipo.ProductOwner || UserTenant.UsuarioTipoId == (int)EUsuarioTipo.Company)
-                    user.Claims = Config.ClaimsForTenantOwner(UserTenant.UsuarioId, UserTenant.UsuarioDonoId, UserTenant.UsuarioTipo.Nome, UserTenant.Nome, UserTenant.Email);
+                    user.Claims = Config.ClaimsForTenantOwner(UserTenant.UsuarioId, UserTenant.UsuarioDonoId, UserTenant.UsuarioTipo.Nome, UserTenant.Nome, UserTenant.Email, UserTenant.Foto);
 
                 if (UserTenant.UsuarioTipoId == (int)EUsuarioTipo.Team)
-                    user.Claims = Config.ClaimsForTenantTeam(UserTenant.UsuarioId, UserTenant.UsuarioDonoId, UserTenant.UsuarioTipo.Nome, UserTenant.Nome, UserTenant.Email);
+                    user.Claims = Config.ClaimsForTenantTeam(UserTenant.UsuarioId, UserTenant.UsuarioDonoId, UserTenant.UsuarioTipo.Nome, UserTenant.Nome, UserTenant.Email, UserTenant.Foto);
 
                 user.SubjectId = UserTenant.UsuarioId.ToString();
                 user.Username = UserTenant.Nome;

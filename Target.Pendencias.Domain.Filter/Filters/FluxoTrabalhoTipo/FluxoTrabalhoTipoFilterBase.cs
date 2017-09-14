@@ -6,9 +6,9 @@ namespace Target.Pendencias.Domain.Filter
     public class FluxoTrabalhoTipoFilterBase : FilterBase
     {
 
-        public int FluxoTrabalhoTipoId { get; set;} 
-        public string Nome { get; set;} 
-        public string Descricao { get; set;} 
+        public virtual int FluxoTrabalhoTipoId { get; set;} 
+        public virtual string Nome { get; set;} 
+        public virtual string Descricao { get; set;} 
 
 
     }

@@ -18,12 +18,12 @@ namespace Target.Pendencias.Domain.Entitys
 
         }
 
-        public int PendenciaTemposId { get; protected set; }
-        public int PendenciaId { get; protected set; }
-        public int UsuarioId { get; protected set; }
-        public DateTime Inicio { get; protected set; }
-        public DateTime? Fim { get; protected set; }
-        public string Nota { get; protected set; }
+        public virtual int PendenciaTemposId { get; protected set; }
+        public virtual int PendenciaId { get; protected set; }
+        public virtual int UsuarioId { get; protected set; }
+        public virtual DateTime Inicio { get; protected set; }
+        public virtual DateTime? Fim { get; protected set; }
+        public virtual string Nota { get; protected set; }
 
 
 		public virtual void SetarFim(DateTime? fim)

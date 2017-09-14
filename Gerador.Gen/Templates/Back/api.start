@@ -34,6 +34,13 @@ namespace <#namespace#>.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+			//Camelcase para json
+            services.AddMvc()
+			.AddJsonOptions(options =>
+			{
+				options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
+			});
+
             services.AddDbContext<DbContext<#contextName#>>(
              options => options.UseSqlServer(
                  Configuration
@@ -55,7 +62,8 @@ namespace <#namespace#>.Api
             ConfigContainer<#contextName#>.Config(services);			
 
             // Add framework services.
-            services.AddMvc().AddJsonOptions(options =>
+            services.AddMvc(options => { options.ModelBinderProviders.Insert(0, new DateTimePtBrModelBinderProvider()); })
+            .AddJsonOptions(options =>
             {
                 options.SerializerSettings.Converters.Add(new DateTimePtBrConverter());
             });
@@ -95,7 +103,7 @@ namespace <#namespace#>.Api
 
             app.AddTokenMiddleware();
             app.UseMvc();
-	    app.UseCors("AllowAnyOrigin");
+	    	app.UseCors("AllowAnyOrigin");
             AutoMapperConfig<#contextName#>.RegisterMappings();
         }
 

@@ -1,0 +1,42 @@
+﻿<div bsModal #timesheetModal="bs-modal" class="gc-modal modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">{{title}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form (ngSubmit)="onSave(vm.reletedViewModel.timeSheet)" novalidate>
+        <div class="modal-body" [formGroup]="form">
+          <section class="col-md-12">
+            <div class='form-group' >
+              <label>Inicio</label>
+              <input type='text' class='form-control' [(ngModel)]='vm.reletedViewModel.timeSheet.inicio' name='inicio' required formControlName='inicio'datetimepicker />
+            </div>
+          </section>
+          <section class="col-md-12">
+            <div class='form-group'>
+              <label>Fim</label>
+              <input type='text' class='form-control' [(ngModel)]='vm.reletedViewModel.timeSheet.fim' name='fim' formControlName='fim' datetimepicker />
+            </div>
+          </section>
+          <section class="col-md-12">
+            <div class='form-group'>
+              <section class="col-md-12">
+                <div class='form-group'>
+                  <label>Comentário</label>
+                  <textarea class='form-control' [(ngModel)]='vm.reletedViewModel.timeSheet.nota' name='nota' required formControlName='nota' rows=10></textarea>
+                </div>
+              </section>
+            </div>
+          </section>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" type="button" (click)="onCancel()">{{vm.generalInfo.cancelar.label}}</button>
+          <button type="submit" class="btn btn-success" [disabled]="vm != null && form.invalid">{{vm.generalInfo.salvar.label}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

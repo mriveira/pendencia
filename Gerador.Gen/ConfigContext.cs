@@ -25,7 +25,6 @@ namespace Cna.Erp.Gen
                 ContextName = "Target",
                 ShowKeysInFront = false,
                 LengthBigField = 250,
-                OverrideFiles = true,
                 TemplatePathBack = "Templates/Back",
                 TemplatePathFront = "Templates/FrontV4",
 
@@ -43,6 +42,12 @@ namespace Cna.Erp.Gen
                 CamelCasing = true,
                 MakeFront = true,
                 MakeBack = true,
+                OverrideFiles = true,
+
+                Routes = new List<RouteConfig> {
+                    new RouteConfig{ Route = "{ path: 'dashboard/timesheet', loadChildren: './main/timesheet/timesheet.module#TimesheetModule' }" },
+                    new RouteConfig{ Route = "{ path: 'dashboard/burndown', loadChildren: './main/burndown/burndown.module#BurndownModule' }" }
+                },
 
                 TableInfo = new UniqueListTableInfo
                 {
@@ -160,52 +165,13 @@ namespace Cna.Erp.Gen
             };
         }
 
-        private Context ConfigContextTargetPendenciaTransaction()
-        {
-            var contextName = "Target";
-
-            return new Context
-            {
-
-                ConnectionString = ConfigurationManager.ConnectionStrings["Target"].ConnectionString,
-
-                Namespace = "Target.Pendencias",
-                ContextName = "Target",
-                ShowKeysInFront = false,
-                LengthBigField = 250,
-                TemplatePathBack = "Templates/BackTransaction",
-                TemplatePathFront = "Templates/FrontV4",
-
-
-                OutputClassInfra = ConfigurationManager.AppSettings[string.Format("outputClassInfraTransaction{0}", contextName)],
-                OutputClassApi = ConfigurationManager.AppSettings[string.Format("outputClassApiTransaction{0}", contextName)],
-                OutputClassFilter = ConfigurationManager.AppSettings[string.Format("outputClassFilter{0}", contextName)],
-                OutputClassDto = ConfigurationManager.AppSettings[string.Format("outputClassDtoTransaction{0}", contextName)],
-
-                Arquiteture = ArquitetureType.TransactionScript,
-                CamelCasing = true,
-                MakeFront = false,
-                MakeBack = true,
-
-                TableInfo = new UniqueListTableInfo
-                {
-                    new TableInfo { TableName = "UsuarioTipo", MakeCrud = true, MakeApi= true},
-                    new TableInfo { TableName = "PendenciaTipo", MakeCrud = true, MakeApi= true},
-                }
-            };
-        }
-
-
 
         public IEnumerable<Context> GetConfigContext()
         {
 
             return new List<Context>
             {
-
                 ConfigContextTargetPendenciaDDD(),
-                ConfigContextTargetPendenciaTransaction(),
-
             };
 
         }

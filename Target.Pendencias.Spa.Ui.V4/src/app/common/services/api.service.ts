@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Inject, Injectable, OnInit } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 
-
 import { ECacheType } from 'app/common/type-cache.enum';
 import { GlobalService } from 'app/global.service';
 import { CacheService } from 'app/common/services/cache.service';
@@ -14,34 +13,33 @@ export class ApiService<T> {
 
     protected _resource: string;
     private _enableNotifification: boolean;
+    private _enableLoading: boolean;
     private _apiDefault: string;
 
     constructor(private http: Http, private notificationsService: NotificationsService, private router: Router) {
 
         this._apiDefault = GlobalService.getEndPoints().DEFAULT
         this._enableNotifification = true;
+        this._enableLoading = true;
     }
-
+   
     public get(filters?: any, onlyDataResult?: boolean): Observable<T> {
 
         return this.getBase(this.makeBaseUrl(), filters);
 
     }
 
-    public upload(file: File): Observable<T>
-    {
-        let url = this.makeBaseUrl();
-        this.loading(url, true);
+    public uploadCustom(formData: FormData, folder: string, url?: string): Observable<T> {
 
-        let formData: FormData = new FormData();
-        formData.append('uploadFile', file, file.name);
 
+        let _url = url || this.makeBaseUrl();
+               
+        this.loading(_url, true);
         let headers = new Headers();
-        headers.append('Content-Type', 'multipart/form-data');
-        headers.append('Accept', 'application/json');
+        headers.append('Authorization', "Bearer " + CacheService.get('TOKEN_AUTH', ECacheType.COOKIE))
         let options = new RequestOptions({ headers: headers });
 
-        return this.http.post(this.makeBaseUrl(),
+        return this.http.post(_url,
             formData,
             options)
             .map(res => {
@@ -52,9 +50,39 @@ export class ApiService<T> {
                 return this.errorResult(error);
             })
             .finally(() => {
+                this.loading(_url, false);
+            });
+    }
+
+    public upload(file: File, folder: string): Observable<T> {
+
+        let formData: FormData = new FormData();
+        formData.append('files', file, file.name);
+        formData.append('folder', folder);
+        let url = this.makeResourceUpload();
+        return this.uploadCustom(formData, folder, url);
+
+
+    }
+
+    public deleteUpload(folder: string, fileName: string): Observable<T> {
+
+
+        let url = this.makeResourceDeleteUpload(folder, fileName);
+        this.loading(url, true);
+
+        return this.http.delete(url,
+            this.requestOptions())
+            .map(res => {
+                this.notification(res);
+                return this.successResult(res);
+            })
+            .catch(error => {
+                return this.errorResult(error);
+            })
+            .finally(() => {
                 this.loading(url, false);
             });
-
     }
 
     public post(data: any): Observable<T> {
@@ -119,8 +147,31 @@ export class ApiService<T> {
             });
     }
 
+    public export(filters?: any): Observable<T> {
+
+        if (filters == null) filters = {};
+        filters.FilterBehavior = 'Export';
+        var url = this.makeResourceMore();
+
+        this.loading(url, true);
+
+        return this.http.get(url,
+            this.requestOptions().merge(new RequestOptions({
+                search: this.makeSearchParams(filters)
+            })))
+            .map(res => {
+                return res;
+            })
+            .catch(error => {
+                return this.errorResult(error);
+            })
+            .finally(() => {
+                this.loading(url, false);
+            });
+    }
+
     public getDataListCustom(filters?: any): Observable<T> {
-        return this.getMethodCustom('GetDataListCustom');
+        return this.getMethodCustom('GetDataListCustom', filters);
     }
 
     public getDetails(filters?: any): Observable<T> {
@@ -128,10 +179,12 @@ export class ApiService<T> {
     }
 
     public getDataCustom(filters?: any): Observable<T> {
-        return this.getMethodCustom('GetDataCustom');
+        return this.getMethodCustom('GetDataCustom', filters);
     }
 
     public getDataitem(filters?: any): Observable<T> {
+
+        this._enableLoading = false;
         return this.getMethodCustom('GetDataItem', filters);
     }
 
@@ -140,7 +193,7 @@ export class ApiService<T> {
         if (filters == null)
             filters = {};
 
-        filters.AttributeBehavior = method;
+        filters.FilterBehavior = method;
         return this.getBase(this.makeResourceMore(), filters);
 
     }
@@ -149,10 +202,14 @@ export class ApiService<T> {
         this._enableNotifification = enable;
     }
 
+    public enableLoading(enable: boolean) {
+        this._enableLoading = enable;
+    }
+
     public setResource(resource: string, endpoint?: string): ApiService<T> {
 
         this._resource = resource;
-		this._apiDefault = GlobalService.getEndPoints().DEFAULT;
+        this._apiDefault = GlobalService.getEndPoints().DEFAULT;
 
         if (endpoint)
             this._apiDefault = endpoint;
@@ -191,15 +248,41 @@ export class ApiService<T> {
 
     }
 
-    private makeBaseUrl(): string {
-        return `${this._apiDefault}/${this.getResource()}`;
+    private makeResourceUpload(): string {
+
+        return this.makeBaseUrl("document");
+
+    }
+
+    private makeResourceDeleteUpload(folder: string, fileName: string): string {
+
+        return this.makeBaseUrl("document") + "/" + folder + "/" + fileName;
+    }
+
+    private makeBaseUrl(subDominio?: string): string {
+        let url = ``;
+        if (subDominio)
+            url = `${this._apiDefault}/${subDominio}/${this.getResource()}`;
+        else
+            url = `${this._apiDefault}/${this.getResource()}`;
+
+        return url;
     }
 
     private makeSearchParams(filters?: any): URLSearchParams {
         const params = new URLSearchParams();
         if (filters != null) {
             for (const key in filters) {
-                if (filters.hasOwnProperty(key)) {
+
+                if (key.toLowerCase().startsWith("collection")) {
+                    if (filters[key]) {
+                        let values = filters[key].toString().split(",");
+                        for (let value in values) {
+                            params.append(key, values[value]);
+                        }
+                    }
+                }
+                else if (filters.hasOwnProperty(key)) {
                     params.set(key, filters[key]);
                 }
             }
@@ -278,15 +361,14 @@ export class ApiService<T> {
             {
                 timeOut: 1000,
                 showProgressBar: true,
-                pauseOnHover: false,
+                pauseOnHover: true,
                 clickToClose: false,
             }
         )
     }
 
     private loading(url: string, value: boolean) {
-        GlobalService.operationRequesting.emit(value);
+        if (this._enableLoading || value == false)
+          GlobalService.operationRequesting.emit(value);
     }
-
-
 }
