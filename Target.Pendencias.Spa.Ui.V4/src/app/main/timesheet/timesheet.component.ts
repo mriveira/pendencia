@@ -55,13 +55,13 @@ export class TimesheetComponent implements OnInit {
             }
         }
 
-        this._obterPendencias(this.vm.modelFilter);
-        this._obterTempos()
-
         let savedFilters = this._getFilters();
         if (savedFilters)
             this.vm.modelFilter = savedFilters;
 
+        this._obterPendencias(this.vm.modelFilter);
+        this._obterTempos()
+       
         GlobalService.notification.subscribe((not) => {
             if (not.event == "filter") {
                 this._obterPendencias({
@@ -168,6 +168,7 @@ export class TimesheetComponent implements OnInit {
 
     _saveFilters(modelFilter) {
         CacheService.add("filters-dash-timesheet", JSON.stringify(modelFilter), ECacheType.COOKIE);
+        this.vm.modelFilter = modelFilter;
     }
 
     _getFilters() {

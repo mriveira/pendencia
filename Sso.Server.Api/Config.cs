@@ -178,7 +178,8 @@ namespace Sso.Server.Api
                         StandardScopes.Profile,
                         StandardScopes.Email,
                         "ssosa"
-                    }
+                    },
+                    RequireConsent = false
                 }
 
             };
