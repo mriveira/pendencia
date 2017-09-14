@@ -37,7 +37,7 @@ namespace Target.Pendencias.Domain.Entitys
            
             public PendenciaTempos GetPlayInstance(dynamic data, CurrentUser user)
             {
-                var construction = new PendenciaTempos(0, data.PendenciaId, data.UsuarioId, data.Inicio);
+                var construction = new PendenciaTempos(0, data.PendenciaId, user.GetSubjectId<int>(), DateTime.Now.ToTimeZone());
                 construction.SetUserCreate(user.GetSubjectId<int>());
                 return construction;
             }

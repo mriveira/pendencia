@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -14,18 +14,12 @@ import { MainService } from '../main.service';
 @Injectable()
 export class PendenciaService extends ServiceBase {
 
-    private _form: FormGroup;
+	private _form : FormGroup;
 
     constructor(private api: ApiService<any>,private serviceFields: PendenciaServiceFields, private globalServiceCulture: GlobalServiceCulture, private mainService: MainService) {
 
 		super();
-        this._form = this.serviceFields.getFormFields({
-            comentario: new FormControl(),
-            inicio: new FormControl(),
-            fim: new FormControl(),
-            nota: new FormControl(),
-            fluxoTrabalhoStatusId: new FormControl()
-        });
+		this._form = this.serviceFields.getFormFields();
 
     }
 

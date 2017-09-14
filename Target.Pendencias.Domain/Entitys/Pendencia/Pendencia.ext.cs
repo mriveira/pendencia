@@ -42,7 +42,7 @@ namespace Target.Pendencias.Domain.Entitys
                 var construction = new Pendencia(data.PendenciaId,
                                         data.Resumo,
                                         data.ProjetoId,
-                                        data.UsuarioId,
+                                        user.GetSubjectId<int>(),
                                         data.PendenciaTipoId,
                                         data.FluxoTrabalhoStatusId,
                                         data.PendenciaPrioridadeId);
@@ -111,13 +111,7 @@ namespace Target.Pendencias.Domain.Entitys
                 this.CollectionPendenciaTempos.Add(new PendenciaTempos.PendenciaTemposFactory()
                    .GetPlayInstance(new
                    {
-                       AttributeBehavior = "Play",
-                       PendenciaTemposId = 0,
                        PendenciaId = this.PendenciaId,
-                       Inicio = DateTime.Now.ToTimeZone(),
-                       UsuarioId = user.GetSubjectId<int>(),
-                       Fim = default(DateTime),
-                       Nota = default(string)
                    }, user));
             }
 

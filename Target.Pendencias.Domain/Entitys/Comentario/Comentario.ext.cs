@@ -23,7 +23,7 @@ namespace Target.Pendencias.Domain.Entitys
                 var construction = new Comentario(data.ComentarioId,
                                         data.Descricao,
                                         data.Data,
-                                        data.UsuarioId,
+                                        user.GetSubjectId<int>(),
                                         data.PendenciaId);
 
 

@@ -1,10 +1,9 @@
-﻿import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ViewModel } from 'app/common/model/viewmodel';
 import { UsuarioService } from '../usuario.service';
-import { GlobalService, NotificationParameters } from '../../../global.service';
 
 @Component({
     selector: 'app-usuario-edit',
@@ -31,14 +30,7 @@ export class UsuarioEditComponent implements OnInit {
 
 
         this.usuarioService.get({ id: this.id }).subscribe((data) => {
-
             this.vm.model = data.data;
-            setTimeout(() => {
-                GlobalService.notification.emit(new NotificationParameters("edit", {
-                    model: this.vm.model
-                }));
-            }, 250);
-
         })
 
     }

@@ -26,11 +26,7 @@ namespace Target.Pendencias.Domain.Entitys
         {
             public Acompanhadores GetDefaultInstance(dynamic data, CurrentUser user)
             {
-                var construction = new Acompanhadores(data.PendenciaId,
-                                        data.UsuarioId);
-
-
-
+                var construction = new Acompanhadores(data.PendenciaId, user.GetSubjectId<int>());
 				return construction;
             }
 

@@ -110,3 +110,10 @@ width : 100% !important;
   margin-left :30px;
   padding:10px;
 }
+
+.gc-table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}

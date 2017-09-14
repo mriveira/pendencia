@@ -185,7 +185,8 @@ export class ApiService<T> {
     public getDataitem(filters?: any): Observable<T> {
 
         this._enableLoading = false;
-        return this.getMethodCustom('GetDataItem', filters);
+        let result =  this.getMethodCustom('GetDataItem', filters);
+        return result;
     }
 
     public getMethodCustom(method: string, filters?: any): Observable<T> {
@@ -317,6 +318,7 @@ export class ApiService<T> {
     private successResult(response: Response): Observable<T> {
 
         let _response = response.json();
+        this._enableLoading = true;
         return _response;
     }
 

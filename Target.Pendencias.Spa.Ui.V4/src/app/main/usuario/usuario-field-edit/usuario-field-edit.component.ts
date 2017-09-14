@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 
 import { UsuarioService } from '../usuario.service';
 import { ViewModel } from 'app/common/model/viewmodel';
@@ -15,10 +15,11 @@ export class UsuarioFieldEditComponent implements OnInit {
 
     constructor(private usuarioService: UsuarioService, private ref: ChangeDetectorRef) { }
 
-    ngOnInit() {
-        this.usuarioService.detectChanges(this.ref);
-    }
+    ngOnInit() { }
 
+	ngOnChanges() {
+       this.ref.detectChanges()
+	}
 
         
 
