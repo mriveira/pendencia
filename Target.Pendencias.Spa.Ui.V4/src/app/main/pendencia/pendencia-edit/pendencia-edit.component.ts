@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ViewModel } from 'app/common/model/viewmodel';
 import { PendenciaService } from '../pendencia.service';
+import { GlobalService, NotificationParameters} from '../../../global.service';
 
 @Component({
     selector: 'app-pendencia-edit',
@@ -16,13 +17,16 @@ export class PendenciaEditComponent implements OnInit {
     id: number;
     private sub: any;
 
-    constructor(private pendenciaService: PendenciaService, private route: ActivatedRoute, private router: Router) {
+    constructor(private pendenciaService: PendenciaService, private route: ActivatedRoute, private router: Router, private ref: ChangeDetectorRef) {
 
-		this.vm = this.pendenciaService.initVM();
+		 this.vm = null;
 
     }
 
     ngOnInit() {
+
+		this.vm = this.pendenciaService.initVM();
+		this.pendenciaService.detectChanges(this.ref);
 
         this.sub = this.route.params.subscribe(params => {
             this.id = params['id']; 
@@ -31,6 +35,9 @@ export class PendenciaEditComponent implements OnInit {
 
         this.pendenciaService.get({ id: this.id }).subscribe((data) => {
             this.vm.model = data.data;
+			GlobalService.notification.emit(new NotificationParameters("edit", {
+                model: this.vm.model
+            }));
         })
 
     }

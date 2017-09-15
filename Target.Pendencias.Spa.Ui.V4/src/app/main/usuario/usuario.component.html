@@ -88,6 +88,13 @@
         <div class="modal-footer">
           <button class="btn btn-default" type="button" (click)="onCancel()">{{vm.generalInfo.cancelar.label}}</button>
           <button type="submit" class="btn btn-success" [disabled]="vm != null && vm.form.invalid" >{{vm.generalInfo.salvar.label}}</button>
+		  <section class="col-md-4">
+            <div class='checkbox'>
+              <label>
+                <input type='checkbox' [(ngModel)]='vm.manterTelaAberta' name='manterTelaAberta' /> Manter Janela Aberta?
+              </label>
+            </div>
+          </section>
         </div>
       </form>
     </div>
@@ -110,6 +117,13 @@
         <div class="modal-footer">
           <button class="btn btn-default" type="button" (click)="onCancel()">{{vm.generalInfo.cancelar.label}}</button>
           <button type="submit" class="btn btn-success" [disabled]="vm != null && vm.form.invalid">{{vm.generalInfo.salvar.label}}</button>
+		  <section class="col-md-4">
+            <div class='checkbox'>
+              <label>
+                <input type='checkbox' [(ngModel)]='vm.manterTelaAberta' name='manterTelaAberta' /> Manter Janela Aberta?
+              </label>
+            </div>
+          </section>
         </div>
       </form>
     </div>

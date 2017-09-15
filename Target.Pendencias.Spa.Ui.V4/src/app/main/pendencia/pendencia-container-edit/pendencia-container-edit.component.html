@@ -1,5 +1,8 @@
-
+﻿
 
 <app-pendencia-field-edit [(vm)]="vm"></app-pendencia-field-edit>
 
-
+<div class='form-group' [formGroup]="vm.form">
+  <label>{{ vm.infos.usuarioId.label }}</label>
+  <select class='form-control' name='usuarioId' [(ngModel)]='vm.model.usuarioId' required formControlName='usuarioId' datasource [dataitem]="'Usuario'"></select>
+</div>

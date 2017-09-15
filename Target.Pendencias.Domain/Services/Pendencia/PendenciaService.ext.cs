@@ -25,31 +25,7 @@ namespace Target.Pendencias.Domain.Services
             this._repPendenciaEventos = repPendenciaEventos;
         }
 
-        //public async void Play(Pendencia entity)
-        //{
-        //    entity.Play(this._user);
-        //}
-
-        //public void Stop(Pendencia entity, string nota)
-        //{
-        //    entity.Stop(nota);
-        //}
-
-        //public void Concluir(Pendencia entity, string nota, string comentario)
-        //{
-        //    entity.Concluir(nota, comentario, this._user);
-        //}
-
-        //public void Comentar(Pendencia entity, string comentario)
-        //{
-        //    entity.Comentar(comentario, this._user);
-        //}
-
-        //public void Reclassificar(Pendencia entity, string comentario, int fluxoTrabalhoStatusId)
-        //{
-        //    entity.Reclassificar(comentario, fluxoTrabalhoStatusId, this._user);
-        //}
-
+       
         protected override Pendencia UpdateDefault(Pendencia pendencia)
         {
             base.UpdateDefault(pendencia);
@@ -169,11 +145,6 @@ namespace Target.Pendencias.Domain.Services
             return await base.DomainOrchestration(_pendencia, entityOld);
         }
 
-        private void Stop(Pendencia result, object nota)
-        {
-            throw new NotImplementedException();
-        }
-
         private void Reclassificar(Pendencia pendencia, string comentario, int fluxoTrabalhoStatusId)
         {
             pendencia.Reclassificar(comentario, fluxoTrabalhoStatusId, this._user);
@@ -197,6 +168,14 @@ namespace Target.Pendencias.Domain.Services
         private void Play(Pendencia pendencia)
         {
             pendencia.Play(this._user);
+        }
+
+        public async override Task<Pendencia> GetUpdateInstance(dynamic model, CurrentUser user)
+        {
+            return await Task.Run(() =>
+            {
+                return new Pendencia.PendenciaFactory().GetUpdateInstance(model, user);
+            });
         }
 
 

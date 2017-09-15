@@ -101,8 +101,10 @@ export class UsuarioComponent implements OnInit {
             this.vm.filterResult.push(result.data);
             this.vm.summary.total = this.vm.filterResult.length
 
-			this.saveModal.hide();
-	        this.editModal.hide();
+			if (!this.vm.manterTelaAberta) {
+                this.saveModal.hide();
+                this.editModal.hide();
+            }
 
         });
 

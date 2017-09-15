@@ -179,7 +179,8 @@ namespace Sso.Server.Api
                         StandardScopes.Email,
                         "ssosa"
                     },
-                    RequireConsent = false
+                    RequireConsent = false,
+                    AccessTokenLifetime = 43200
                 }
 
             };

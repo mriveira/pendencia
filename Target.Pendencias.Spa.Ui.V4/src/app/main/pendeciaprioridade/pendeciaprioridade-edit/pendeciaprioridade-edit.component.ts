@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ViewModel } from 'app/common/model/viewmodel';
 import { PendeciaPrioridadeService } from '../pendeciaprioridade.service';
+import { GlobalService, NotificationParameters} from '../../../global.service';
 
 @Component({
     selector: 'app-pendeciaprioridade-edit',
@@ -16,13 +17,16 @@ export class PendeciaPrioridadeEditComponent implements OnInit {
     id: number;
     private sub: any;
 
-    constructor(private pendeciaPrioridadeService: PendeciaPrioridadeService, private route: ActivatedRoute, private router: Router) {
+    constructor(private pendeciaPrioridadeService: PendeciaPrioridadeService, private route: ActivatedRoute, private router: Router, private ref: ChangeDetectorRef) {
 
-		this.vm = this.pendeciaPrioridadeService.initVM();
+		 this.vm = null;
 
     }
 
     ngOnInit() {
+
+		this.vm = this.pendeciaPrioridadeService.initVM();
+		this.pendeciaPrioridadeService.detectChanges(this.ref);
 
         this.sub = this.route.params.subscribe(params => {
             this.id = params['id']; 
@@ -31,6 +35,9 @@ export class PendeciaPrioridadeEditComponent implements OnInit {
 
         this.pendeciaPrioridadeService.get({ id: this.id }).subscribe((data) => {
             this.vm.model = data.data;
+			GlobalService.notification.emit(new NotificationParameters("edit", {
+                model: this.vm.model
+            }));
         })
 
     }

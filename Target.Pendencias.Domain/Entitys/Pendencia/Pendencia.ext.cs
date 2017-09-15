@@ -60,6 +60,29 @@ namespace Target.Pendencias.Domain.Entitys
                 return construction;
             }
 
+            public Pendencia GetUpdateInstance(dynamic data, CurrentUser user)
+            {
+                var construction = new Pendencia(data.PendenciaId,
+                                        data.Resumo,
+                                        data.ProjetoId,
+                                        data.UsuarioId,
+                                        data.PendenciaTipoId,
+                                        data.FluxoTrabalhoStatusId,
+                                        data.PendenciaPrioridadeId);
+
+                construction.SetarDescricao(data.Descricao);
+                construction.SetarRequisitadoPor(data.RequisitadoPor);
+                construction.SetarTempoEstimado(data.TempoEstimado);
+                construction.SetarPontosEstimados(data.PontosEstimados);
+                construction.SetarPrazo(data.Prazo);
+                construction.SetarTags(data.Tags);
+                construction.SetarDataConclusao(data.DataConclusao);
+                construction.SetarComentarios(data.CollectionComentarios, user);
+
+                construction.SetAttributeBehavior(data.AttributeBehavior);
+                return construction;
+            }
+
         }
 
         internal void Comentar(string comentario, CurrentUser user)
