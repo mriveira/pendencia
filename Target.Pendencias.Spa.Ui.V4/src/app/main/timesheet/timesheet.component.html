@@ -33,10 +33,10 @@
               <div class="card-header">{{vm.generalInfo.filtro.label}}</div>
               <div class="card-block">
                 <div class="row">
-                  <section class="col-md-6">
+                  <section class="col-md-12" >
                     <div class='form-group'>
                       <label>{{ vm.infos.projetoId.label }}</label>
-                      <select class='form-control' name='projetoId' [(ngModel)]='vm.modelFilter.projetoId' datasource [dataitem]="'Projeto'"></select>
+                      <multiselect [dataitem]="'Projeto'" [ctrlName]="'collectionProjetoId'" [vm]="vm"></multiselect>
                     </div>
                   </section>
                   <section class="col-md-6">
@@ -63,6 +63,13 @@
                       <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.tags' name='tags' />
                     </div>
                   </section>
+                  <section class="col-md-6">
+                    <div class='form-group'>
+                      <label>{{ vm.infos.usuarioId.label }}</label>
+                      <select class='form-control' name='usuarioId' [(ngModel)]='vm.modelFilter.usuarioId' datasource [dataitem]="'Usuario'"></select>
+                    </div>
+                  </section>
+                  
                 </div>
               </div>
               <div class="card-footer d-flex justify-content-end">

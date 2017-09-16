@@ -16,7 +16,7 @@ export class MainComponent implements OnInit {
 
     vm: any;
     menuIsOpen: boolean;
-
+    filter: string;
 
     constructor(private authService: AuthService, private globalServiceCulture: GlobalServiceCulture, private mainService: MainService, private sanitizer: DomSanitizer) {
 
@@ -64,10 +64,7 @@ export class MainComponent implements OnInit {
                 if (result.claims.avatar != null) {
                     this.vm.avatar = result.claims.avatar
                 }
-
-                
             }
-
         });
     }
 

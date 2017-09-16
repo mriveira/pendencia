@@ -12,6 +12,11 @@ namespace Target.Pendencias.Data.Repository
         {
             var queryFilter = queryBase;
 
+            if (filters.CollectionProjetoId.IsAny())
+            {
+                queryFilter = queryFilter.Where(_ => filters.CollectionProjetoId.Contains(_.ProjetoId));
+            }
+
 
             return queryFilter;
         }
