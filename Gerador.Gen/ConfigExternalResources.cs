@@ -1,6 +1,7 @@
 ﻿using Common.Gen;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -83,6 +84,37 @@ namespace Target.Pendencias.Gen
 
         }
 
+        private ExternalResource ConfigExternarResourcesSeedLayoutBs4Angular20OnlyThisFiles(bool replaceLocalFilesApplication)
+        {
+
+            return new ExternalResource
+            {
+                ReplaceLocalFilesApplication = true,
+                ResouceRepositoryName = "Seed-layout-front-bs4-angular2.0",
+                ResourceUrlRepository = "https://github.com/wilsonsantosnet/Seed-layout-front-bs4-angular2.0.git",
+                ResourceLocalPathFolderExecuteCloning = @"C:\Projetos\Outros\Repositorios",
+                ResourceLocalPathDestinationFolrderApplication = @"C:\Projetos\Pendencia2\Target.Pendencias.Spa.Ui.V4",
+                OnlyThisFiles = new List<string> {
+                    "package.json",
+                    "Web.config",
+                    "src\\typings.d.ts",
+                    "src\\app\\app.component.css",
+                    "src\\app\\app.component.html",
+                    "src\\app\\app.component.ts",
+                    "src\\app\\global.service.culture.ts",
+                    "src\\app\\global.service.ts",
+                    "src\\app\\startup.service.ts",
+                    "src\\app\\util\\util-shared.module.ts",
+                    "src\\app\\main\\main.component.css",
+                    "src\\app\\main\\main.component.html",
+                    "src\\app\\main\\main.component.ts",
+                    "src\\app\\main\\main.service.ts",
+                }
+
+            };
+
+        }
+
 
 
         public IEnumerable<ExternalResource> GetConfigExternarReources()
@@ -93,11 +125,11 @@ namespace Target.Pendencias.Gen
             {
 
                ConfigExternarResourcesTemplatesBackDDD(replaceLocalFilesApplication),
-               ConfigExternarResourcesFrameworkCommon(replaceLocalFilesApplication),
                ConfigExternarResourcesTemplatesFrontBs4Angular20(replaceLocalFilesApplication),
                ConfigExternarResourcesFrameworkAngula20Crud(replaceLocalFilesApplication),
                ConfigExternarResourcesSeedLayoutBs4Angular20(replaceLocalFilesApplication),
-
+               ConfigExternarResourcesSeedLayoutBs4Angular20OnlyThisFiles(replaceLocalFilesApplication),
+               ConfigExternarResourcesFrameworkCommon(replaceLocalFilesApplication),
             };
 
         }
