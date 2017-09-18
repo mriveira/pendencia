@@ -160,7 +160,7 @@ namespace Target.Pendencias.Data.Repository
             if (filter.QueryOptimizerBehavior == "Play" || filter.QueryOptimizerBehavior == "Stop" || filter.QueryOptimizerBehavior == "ConcluirPendencia")
                 return includes.Add(_ => _.CollectionPendenciaTempos);
 
-            return base.DataAgregation(includes, filter);
+            return includes.Add(_ => _.Projeto);
         }
 
     }

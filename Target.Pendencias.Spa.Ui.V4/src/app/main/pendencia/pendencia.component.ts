@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, FormGroup, FormControl} from '@angular/forms';
 
@@ -94,12 +94,7 @@ export class PendenciaComponent implements OnInit {
 
         this.pendenciaService.save(model).subscribe((result) => {
 
-            this.vm.filterResult = this.vm.filterResult.filter(function (model) {
-                return  model.pendenciaId != result.data.pendenciaId;
-            });
-
-            this.vm.filterResult.push(result.data);
-            this.vm.summary.total = this.vm.filterResult.length
+            this.onFilter(this.vm.modelFilter);
 
 			if (!this.vm.manterTelaAberta) {
                 this.saveModal.hide();

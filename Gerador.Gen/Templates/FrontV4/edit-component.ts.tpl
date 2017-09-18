@@ -32,13 +32,13 @@ export class <#className#>EditComponent implements OnInit {
             this.id = params['id']; 
         });
 
-
+		setTimeout(() => {
         this.<#classNameInstance#>Service.get({ id: this.id }).subscribe((data) => {
             this.vm.model = data.data;
 			GlobalService.notification.emit(new NotificationParameters("edit", {
                 model: this.vm.model
             }));
-        })
+        })}, 250);
 
     }
 

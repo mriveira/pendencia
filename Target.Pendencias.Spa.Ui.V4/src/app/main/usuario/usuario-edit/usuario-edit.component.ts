@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,ChangeDetectorRef } from '@angular/core';
+﻿import { Component, OnInit, Input, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -11,7 +11,7 @@ import { GlobalService, NotificationParameters} from '../../../global.service';
     templateUrl: './usuario-edit.component.html',
     styleUrls: ['./usuario-edit.component.css'],
 })
-export class UsuarioEditComponent implements OnInit {
+export class UsuarioEditComponent implements OnInit, AfterViewInit{
 
     @Input() vm: ViewModel<any>;
     id: number;
@@ -23,6 +23,8 @@ export class UsuarioEditComponent implements OnInit {
 
     }
 
+   
+
     ngOnInit() {
 
 		this.vm = this.usuarioService.initVM();
@@ -32,14 +34,19 @@ export class UsuarioEditComponent implements OnInit {
             this.id = params['id']; 
         });
 
+        setTimeout(() => {
+            this.usuarioService.get({ id: this.id }).subscribe((data) => {
+                this.vm.model = data.data;
+                GlobalService.notification.emit(new NotificationParameters("edit", {
+                    model: this.vm.model
+                }));
+            })
+        }, 250);
 
-        this.usuarioService.get({ id: this.id }).subscribe((data) => {
-            this.vm.model = data.data;
-			GlobalService.notification.emit(new NotificationParameters("edit", {
-                model: this.vm.model
-            }));
-        })
+    }
 
+     ngAfterViewInit() {
+        
     }
 
     onSave(model) {
