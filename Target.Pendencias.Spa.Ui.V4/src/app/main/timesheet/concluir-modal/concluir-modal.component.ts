@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, ViewChild } from '@angular/core';
+﻿import { Component, OnInit, Input, ViewChild, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -14,7 +14,7 @@ import { GlobalService, NotificationParameters } from '../../../global.service';
     templateUrl: './concluir-modal.component.html',
     styleUrls: ['./concluir-modal.component.css']
 })
-export class ConcluirModalComponent implements OnInit {
+export class ConcluirModalComponent implements OnInit, OnDestroy {
 
     @Input() vm: ViewModel<any>;
     @ViewChild('concluirModal') private concluirModal: ModalDirective;
@@ -22,13 +22,14 @@ export class ConcluirModalComponent implements OnInit {
     _id: number;
     title: string;
     form: FormGroup;
+    subscriptionNotification: EventEmitter<NotificationParameters>;
 
     constructor(private pendenciaService: PendenciaService, private pendenciaTemposService: PendenciaTemposService) {
         this.form = new FormGroup({ comentario: new FormControl() });
     }
 
     ngOnInit() {
-        GlobalService.notification.subscribe((not) => {
+        this.subscriptionNotification = GlobalService.getNotificationEmitter().subscribe((not) => {
             if (not.event == "concluirPendencia") {
                 this.title = "Concluir";
                 this.show(not.data.id);
@@ -77,6 +78,10 @@ export class ConcluirModalComponent implements OnInit {
             this.vm.reletedViewModel.tempo.tempos = response.dataList;
             this.vm.reletedViewModel.tempo.summary = response.summary;
         });
+    }
+
+    ngOnDestroy() {
+        this.subscriptionNotification.unsubscribe();
     }
 
 }

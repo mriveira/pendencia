@@ -80,24 +80,14 @@ export class PendenciaService extends ServiceBase {
         return this.globalServiceCulture.getResource(grupo, culture, this.getInfos(), (culture, infosFields) => {
             return new Promise((resolve, reject) => {
                 var translated = new Translated([]);
-                this.api.getFile(translated.getFileResource(grupo, culture)).subscribe((response) => {
-                    translated.adapterDataForCulture(response, culture, "key", "value");
-                    return resolve(this.globalServiceCulture.setResource(grupo, translated.get(culture), infosFields));
-                });
+                return resolve(this.globalServiceCulture.setResource(grupo, translated.get(culture), infosFields));
             });
         });
     }
 
     get(filters?: any): Observable<any> {
 
-        let newFilters = filters;
-        if (filters) {
-            newFilters = {
-                pendenciaId: filters.pendenciaId
-            }
-        }
-
-        return this.api.setResource('Pendencia').get(newFilters);
+        return this.api.setResource('Pendencia').get(filters);
     }
 
     getDataCustom(filters?: any): Observable<any> {
@@ -118,16 +108,7 @@ export class PendenciaService extends ServiceBase {
     }
 
     delete(model: any): Observable<any> {
-
-        let newModel = model;
-        if (model) {
-            newModel = {
-                pendenciaId: model.pendenciaId
-            }
-        }
-
-        return this.api.setResource('Pendencia').delete(newModel);
-
+        return this.api.setResource('Pendencia').delete(model);
     }
 
     export(filters?: any): Observable<any> {

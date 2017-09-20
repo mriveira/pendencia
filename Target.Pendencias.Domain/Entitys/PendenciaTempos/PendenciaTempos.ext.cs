@@ -22,6 +22,7 @@ namespace Target.Pendencias.Domain.Entitys
         {
             public PendenciaTempos GetDefaultInstance(dynamic data, CurrentUser user)
             {
+
                 var construction = new PendenciaTempos(data.PendenciaTemposId,
                                         data.PendenciaId,
                                         user.GetTenantId<int>(),
@@ -80,7 +81,8 @@ namespace Target.Pendencias.Domain.Entitys
 
         public override void SetarFim(DateTime? fim)
         {
-            this.Fim = fim.IsNotNull() ? fim.Value.ToTimeZone() : fim;
+            //this.Fim = fim.IsNotNull() ? fim.Value.ToTimeZone() : fim;
+            this.Fim =  fim;
         }
 
 

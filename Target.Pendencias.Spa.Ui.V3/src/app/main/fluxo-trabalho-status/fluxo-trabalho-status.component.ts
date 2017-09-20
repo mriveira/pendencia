@@ -124,7 +124,7 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
             this.vm.messageConfirmation
         );
 
-        GlobalService.operationExecuted.emit(conf);
+        GlobalService.getOperationExecutedEmitter().emit(conf);
     }
 
     public onConfimationYes() {

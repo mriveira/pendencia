@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, ViewChild } from '@angular/core';
+﻿import { Component, OnInit, Input, ViewChild, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -14,7 +14,7 @@ import { GlobalService, NotificationParameters } from '../../../global.service';
     templateUrl: './parar-modal.component.html',
     styleUrls: ['./parar-modal.component.css']
 })
-export class PararModalComponent implements OnInit {
+export class PararModalComponent implements OnInit, OnDestroy {
 
     @Input() vm: ViewModel<any>;
     @ViewChild('pararModal') private pararModal: ModalDirective;
@@ -22,13 +22,14 @@ export class PararModalComponent implements OnInit {
     _id: number;
     title: string;
     form: FormGroup;
+    subscriptionNotification: EventEmitter<NotificationParameters>;
 
     constructor(private pendenciaService: PendenciaService, private pendenciaTemposService: PendenciaTemposService) {
-        this.form =  new FormGroup({ nota: new FormControl() });
+        this.form = new FormGroup({ nota: new FormControl() });
     }
 
     ngOnInit() {
-        GlobalService.notification.subscribe((not) => {
+        this.subscriptionNotification = GlobalService.getNotificationEmitter().subscribe((not) => {
             if (not.event == "pararPendencia") {
                 this.title = "Parar";
                 this.show(not.data.id);
@@ -76,4 +77,7 @@ export class PararModalComponent implements OnInit {
         });
     }
 
+    ngOnDestroy() {
+        this.subscriptionNotification.unsubscribe();
+    }
 }

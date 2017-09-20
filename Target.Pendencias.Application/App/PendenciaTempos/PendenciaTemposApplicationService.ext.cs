@@ -26,29 +26,29 @@ namespace Target.Pendencias.Application
             return base.MapperDomainToResult<PendenciaTemposDtoSpecializedResult>(filter, dataList) as IEnumerable<TDS>;
         }
 
-        protected override async Task<PendenciaTempos> AlterDomainWithDto<TDS>(TDS dto)
-        {
-            var _pendenciatempos = dto as PendenciaTemposDto;
-            var resultDefault = await this._serviceBase.GetOne(new PendenciaTemposFilter { PendenciaTemposId = _pendenciatempos.PendenciaTemposId });
+        //protected override async Task<PendenciaTempos> AlterDomainWithDto<TDS>(TDS dto)
+        //{
+        //    var _pendenciatempos = dto as PendenciaTemposDto;
+        //    var resultDefault = await this._serviceBase.GetOne(new PendenciaTemposFilter { PendenciaTemposId = _pendenciatempos.PendenciaTemposId });
 
-            //Inicio da Transferencia dos valores
-            if (_pendenciatempos.AttributeBehavior == "EditarTempo")
-            {
-                var result = await this._serviceBase.GetOne(new PendenciaTemposFilter
-                {
-                    PendenciaTemposId = _pendenciatempos.PendenciaTemposId,
-                    QueryOptimizerBehavior = "EditarTempo"
-                });
-                result.SetAttributeBehavior("EditarTempo");
+        //    //Inicio da Transferencia dos valores
+        //    if (_pendenciatempos.AttributeBehavior == "EditarTempo")
+        //    {
+        //        var result = await this._serviceBase.GetOne(new PendenciaTemposFilter
+        //        {
+        //            PendenciaTemposId = _pendenciatempos.PendenciaTemposId,
+        //            QueryOptimizerBehavior = "EditarTempo"
+        //        });
+        //        result.SetAttributeBehavior("EditarTempo");
 
-                this._service.EditarTempo(result, _pendenciatempos.Inicio, _pendenciatempos.Fim, _pendenciatempos.Nota);
-                return result;
-            }
+        //        this._service.EditarTempo(result, _pendenciatempos.Inicio, _pendenciatempos.Fim, _pendenciatempos.Nota);
+        //        return result;
+        //    }
 
-            //Fim da Transferencia dos valores
+        //    //Fim da Transferencia dos valores
 
-            return resultDefault;
-        }
+        //    return resultDefault;
+        //}
 
     }
 }

@@ -35,7 +35,7 @@ export class ClienteEditComponent implements OnInit {
 
         this.clienteService.get({ id: this.id }).subscribe((data) => {
             this.vm.model = data.data;
-			GlobalService.notification.emit(new NotificationParameters("edit", {
+			GlobalService.getNotificationEmitter().emit(new NotificationParameters("edit", {
                 model: this.vm.model
             }));
         })

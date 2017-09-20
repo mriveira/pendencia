@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input } from '@angular/core';
+﻿import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -14,9 +14,10 @@ export class <#className#>CreateComponent implements OnInit {
 
     @Input() vm: ViewModel<any>;
  
-    constructor(private <#classNameInstance#>Service: <#className#>Service, private route: ActivatedRoute, private router: Router) {
+    constructor(private <#classNameInstance#>Service: <#className#>Service, private route: ActivatedRoute, private router: Router, private ref: ChangeDetectorRef) {
 
         this.vm = this.<#classNameInstance#>Service.initVM();
+		this.<#classNameInstance#>Service.detectChanges(this.ref);
     }
 
     ngOnInit() {

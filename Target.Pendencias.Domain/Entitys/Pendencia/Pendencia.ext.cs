@@ -55,7 +55,6 @@ namespace Target.Pendencias.Domain.Entitys
                 construction.SetarTags(data.Tags);
                 construction.SetarDataConclusao(data.DataConclusao);
                 construction.SetarComentarios(data.CollectionComentarios, user);
-
                 construction.SetAttributeBehavior(data.AttributeBehavior);
                 return construction;
             }
@@ -78,7 +77,7 @@ namespace Target.Pendencias.Domain.Entitys
                 construction.SetarTags(data.Tags);
                 construction.SetarDataConclusao(data.DataConclusao);
                 construction.SetarComentarios(data.CollectionComentarios, user);
-
+                construction.SetarNota(data.Nota);
                 construction.SetAttributeBehavior(data.AttributeBehavior);
                 return construction;
             }
@@ -104,6 +103,10 @@ namespace Target.Pendencias.Domain.Entitys
             }, user));
         }
 
+        internal void SetarNota(string nota)
+        {
+            this.Nota = nota;
+        }
 
         internal void SetarComentarios(IEnumerable<dynamic> comentarios, CurrentUser user)
         {

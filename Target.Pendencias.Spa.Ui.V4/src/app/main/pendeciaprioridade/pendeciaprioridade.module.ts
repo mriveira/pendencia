@@ -26,6 +26,7 @@ import { PendeciaPrioridadeService } from './pendeciaprioridade.service';
 import { PendeciaPrioridadeServiceFields } from './pendeciaprioridade.service.fields';
 
 import { ApiService } from 'app/common/services/api.service';
+import { GlobalService } from '../../global.service';
 import { CommonSharedModule } from 'app/common/common-shared.module';
 
 @NgModule({
@@ -50,7 +51,7 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
 		PendeciaPrioridadeContainerCreateComponent,
 		PendeciaPrioridadeContainerEditComponent
     ],
-    providers: [PendeciaPrioridadeService,PendeciaPrioridadeServiceFields, ApiService],
+    providers: [PendeciaPrioridadeService,PendeciaPrioridadeServiceFields, ApiService, GlobalService],
 })
 export class PendeciaPrioridadeModule {
 

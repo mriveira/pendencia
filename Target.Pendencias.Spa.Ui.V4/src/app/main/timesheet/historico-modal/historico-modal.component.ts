@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, ViewChild } from '@angular/core';
+﻿import { Component, OnInit, Input, ViewChild, EventEmitter, OnDestroy } from '@angular/core';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
@@ -11,13 +11,14 @@ import { GlobalService, NotificationParameters } from '../../../global.service';
     templateUrl: './historico-modal.component.html',
     styleUrls: ['./historico-modal.component.css']
 })
-export class HistoricoModalComponent implements OnInit {
+export class HistoricoModalComponent implements OnInit, OnDestroy {
 
     vm: ViewModel<any>;
     @ViewChild('historicoModal') private historicoModal: ModalDirective;
 
     _pendenciaId: number;
     title: string;
+    subscriptionNotification: EventEmitter<NotificationParameters>;
 
     constructor(private comentarioService: ComentarioService) {
         this.vm = this.comentarioService.initVM();
@@ -29,7 +30,7 @@ export class HistoricoModalComponent implements OnInit {
             comentarios: []
         }
 
-        GlobalService.notification.subscribe((not) => {
+        this.subscriptionNotification =  GlobalService.getNotificationEmitter().subscribe((not) => {
             if (not.event == "historicoPendencia") {
                 this.title = "Histórico";
                 this.show(not.data.id);
@@ -48,6 +49,10 @@ export class HistoricoModalComponent implements OnInit {
 
     onCancel() {
         this.historicoModal.hide();
+    }
+
+    ngOnDestroy() {
+        this.subscriptionNotification.unsubscribe();
     }
 
 }

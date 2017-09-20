@@ -26,6 +26,7 @@ import { ComentarioDocumentoService } from './comentariodocumento.service';
 import { ComentarioDocumentoServiceFields } from './comentariodocumento.service.fields';
 
 import { ApiService } from 'app/common/services/api.service';
+import { GlobalService } from '../../global.service';
 import { CommonSharedModule } from 'app/common/common-shared.module';
 
 @NgModule({
@@ -50,7 +51,7 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
 		ComentarioDocumentoContainerCreateComponent,
 		ComentarioDocumentoContainerEditComponent
     ],
-    providers: [ComentarioDocumentoService,ComentarioDocumentoServiceFields, ApiService],
+    providers: [ComentarioDocumentoService,ComentarioDocumentoServiceFields, ApiService, GlobalService],
 })
 export class ComentarioDocumentoModule {
 

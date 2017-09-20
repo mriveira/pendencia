@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, ViewChild } from '@angular/core';
+﻿import { Component, OnInit, Input, ViewChild, EventEmitter, OnDestroy} from '@angular/core';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
@@ -11,13 +11,14 @@ import { GlobalService, NotificationParameters } from '../../../global.service';
     templateUrl: './detalhes-modal.component.html',
     styleUrls: ['./detalhes-modal.component.css']
 })
-export class DetalhesModalComponent implements OnInit {
+export class DetalhesModalComponent implements OnInit, OnDestroy {
 
     vm: ViewModel<any>;
     @ViewChild('detalhesModal') private detalhesModal: ModalDirective;
 
     _id: number;
     title: string;
+    subscriptionNotification: EventEmitter<NotificationParameters>;
 
     constructor(private pendenciaService : PendenciaService) {
         
@@ -26,7 +27,7 @@ export class DetalhesModalComponent implements OnInit {
 
     ngOnInit() {
         
-        GlobalService.notification.subscribe((not) => {
+        this.subscriptionNotification =  GlobalService.getNotificationEmitter().subscribe((not) => {
             if (not.event == "detalhesPendencia") {
                 this.title = "Detalhes";
                 this.show(not.data.id);
@@ -46,6 +47,10 @@ export class DetalhesModalComponent implements OnInit {
 
     onCancel() {
         this.detalhesModal.hide();
+    }
+
+    ngOnDestroy() {
+        this.subscriptionNotification.unsubscribe();
     }
 
 }

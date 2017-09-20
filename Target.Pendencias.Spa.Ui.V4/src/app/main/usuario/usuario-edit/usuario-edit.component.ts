@@ -37,7 +37,7 @@ export class UsuarioEditComponent implements OnInit, AfterViewInit{
         setTimeout(() => {
             this.usuarioService.get({ id: this.id }).subscribe((data) => {
                 this.vm.model = data.data;
-                GlobalService.notification.emit(new NotificationParameters("edit", {
+                GlobalService.getNotificationEmitter().emit(new NotificationParameters("edit", {
                     model: this.vm.model
                 }));
             })

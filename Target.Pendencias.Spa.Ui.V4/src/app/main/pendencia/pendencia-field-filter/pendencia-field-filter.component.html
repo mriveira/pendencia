@@ -43,6 +43,12 @@
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
+      <label>{{ vm.infos.usuarioId.label }}</label>
+      <select class='form-control'  name='usuarioId' [(ngModel)]='vm.modelFilter.usuarioId' datasource [dataitem]="'Usuario'"></select>
+    </div>
+  </section>
+  <section class="col-md-6">
+	<div class='form-group'>
       <label>{{ vm.infos.pendenciaTipoId.label }}</label>
       <select class='form-control'  name='pendenciaTipoId' [(ngModel)]='vm.modelFilter.pendenciaTipoId' datasource [dataitem]="'PendenciaTipo'"></select>
     </div>

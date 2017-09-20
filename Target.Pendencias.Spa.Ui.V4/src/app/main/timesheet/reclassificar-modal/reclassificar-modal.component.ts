@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, ViewChild } from '@angular/core';
+﻿import { Component, OnInit, Input, ViewChild, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -12,7 +12,7 @@ import { GlobalService, NotificationParameters } from '../../../global.service';
     templateUrl: './reclassificar-modal.component.html',
     styleUrls: ['./reclassificar-modal.component.css']
 })
-export class ReclassificarModalComponent implements OnInit {
+export class ReclassificarModalComponent implements OnInit, OnDestroy {
 
     @Input() vm: ViewModel<any>;
     @ViewChild('reclassificarModal') private reclassificarModal: ModalDirective;
@@ -20,6 +20,7 @@ export class ReclassificarModalComponent implements OnInit {
     _id: number;
     title: string;
     form: FormGroup;
+    subscriptionNotification: EventEmitter<NotificationParameters>;
 
     constructor(private pendenciaService: PendenciaService) {
         this.form = new FormGroup({
@@ -29,7 +30,7 @@ export class ReclassificarModalComponent implements OnInit {
     }
 
     ngOnInit() {
-        GlobalService.notification.subscribe((not) => {
+        this.subscriptionNotification = GlobalService.getNotificationEmitter().subscribe((not) => {
             if (not.event == "reclassificarPendencia") {
                 this.title = "Reclassificar";
                 this.show(not.data.id);
@@ -66,6 +67,10 @@ export class ReclassificarModalComponent implements OnInit {
     }
     onCancel() {
         this.reclassificarModal.hide();
+    }
+
+    ngOnDestroy() {
+        this.subscriptionNotification.unsubscribe();
     }
 
 }

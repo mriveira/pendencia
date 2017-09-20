@@ -26,6 +26,7 @@ import { AcompanhadoresService } from './acompanhadores.service';
 import { AcompanhadoresServiceFields } from './acompanhadores.service.fields';
 
 import { ApiService } from 'app/common/services/api.service';
+import { GlobalService } from '../../global.service';
 import { CommonSharedModule } from 'app/common/common-shared.module';
 
 @NgModule({
@@ -50,7 +51,7 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
 		AcompanhadoresContainerCreateComponent,
 		AcompanhadoresContainerEditComponent
     ],
-    providers: [AcompanhadoresService,AcompanhadoresServiceFields, ApiService],
+    providers: [AcompanhadoresService,AcompanhadoresServiceFields, ApiService, GlobalService],
 })
 export class AcompanhadoresModule {
 

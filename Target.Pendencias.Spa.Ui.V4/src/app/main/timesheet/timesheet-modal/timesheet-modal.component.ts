@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, ViewChild } from '@angular/core';
+﻿import { Component, OnInit, Input, ViewChild, OnDestroy, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -13,7 +13,7 @@ import { GlobalService, NotificationParameters } from '../../../global.service';
     templateUrl: './timesheet-modal.component.html',
     styleUrls: ['./timesheet-modal.component.css']
 })
-export class TimesheetModalComponent implements OnInit {
+export class TimesheetModalComponent implements OnInit, OnDestroy {
 
     @Input() vm: ViewModel<any>;
     @ViewChild('timesheetModal') private timesheetModal: ModalDirective;
@@ -21,6 +21,7 @@ export class TimesheetModalComponent implements OnInit {
     _id: number;
     title: string;
     form: FormGroup;
+    subscriptionNotification: EventEmitter<NotificationParameters>;
 
     constructor(private pendenciaService: PendenciaService, private pendenciaTemposService: PendenciaTemposService) {
         this.form = new FormGroup({
@@ -32,19 +33,20 @@ export class TimesheetModalComponent implements OnInit {
 
     ngOnInit() {
 
-        
         this.vm.reletedViewModel.timeSheet = {};
-        GlobalService.notification.subscribe((not) => {
+        this.subscriptionNotification = GlobalService.getNotificationEmitter().subscribe((not) => {
 
             if (not.event == "timeSheetEdit") {
                 this.title = "Timesheet";
+
+                console.log("Timesheet");
 
                 this.pendenciaTemposService.get({ id: not.data.id }).subscribe((response) => {
 
                     this.vm.reletedViewModel.timeSheet = response.data;
                     this.show(not.data.id);
                 })
-                
+
             }
         });
     }
@@ -89,6 +91,10 @@ export class TimesheetModalComponent implements OnInit {
             this.vm.reletedViewModel.tempo.tempos = response.dataList;
             this.vm.reletedViewModel.tempo.summary = response.summary;
         });
+    }
+
+    ngOnDestroy() {
+        this.subscriptionNotification.unsubscribe();
     }
 
 }

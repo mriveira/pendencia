@@ -52,9 +52,10 @@ namespace Target.Pendencias.Api
             Cors.Enable(services);
 
             // Add application services.
-            ConfigContainerTarget.Config(services);			
+            ConfigContainerTarget.Config(services);
 
             // Add framework services.
+            services.AddMvc(options => { options.ModelBinderProviders.Insert(0, new DateTimePtBrModelBinderProvider()); });
             services.AddMvc().AddJsonOptions(options =>
             {
                 options.SerializerSettings.Converters.Add(new DateTimePtBrConverter());
@@ -66,7 +67,7 @@ namespace Target.Pendencias.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IOptions<ConfigSettingsBase> configSettingsBase)
         {
 
-	    loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
             app.UseDeveloperExceptionPage();
@@ -95,7 +96,7 @@ namespace Target.Pendencias.Api
 
             app.AddTokenMiddleware();
             app.UseMvc();
-	    app.UseCors("AllowAnyOrigin");
+            app.UseCors("AllowAnyOrigin");
             AutoMapperConfigTarget.RegisterMappings();
         }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,ChangeDetectorRef } from '@angular/core';
+﻿import { Component, OnInit, Input,ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -35,7 +35,7 @@ export class PendenciaEditComponent implements OnInit {
 
         this.pendenciaService.get({ id: this.id }).subscribe((data) => {
             this.vm.model = data.data;
-			GlobalService.notification.emit(new NotificationParameters("edit", {
+			GlobalService.getNotificationEmitter().emit(new NotificationParameters("edit", {
                 model: this.vm.model
             }));
         })

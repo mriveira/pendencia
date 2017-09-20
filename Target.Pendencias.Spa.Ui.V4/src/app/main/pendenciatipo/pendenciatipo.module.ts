@@ -26,6 +26,7 @@ import { PendenciaTipoService } from './pendenciatipo.service';
 import { PendenciaTipoServiceFields } from './pendenciatipo.service.fields';
 
 import { ApiService } from 'app/common/services/api.service';
+import { GlobalService } from '../../global.service';
 import { CommonSharedModule } from 'app/common/common-shared.module';
 
 @NgModule({
@@ -50,7 +51,7 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
 		PendenciaTipoContainerCreateComponent,
 		PendenciaTipoContainerEditComponent
     ],
-    providers: [PendenciaTipoService,PendenciaTipoServiceFields, ApiService],
+    providers: [PendenciaTipoService,PendenciaTipoServiceFields, ApiService, GlobalService],
 })
 export class PendenciaTipoModule {
 

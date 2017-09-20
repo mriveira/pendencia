@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+﻿import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -14,9 +14,10 @@ export class PendenciaCreateComponent implements OnInit {
 
     @Input() vm: ViewModel<any>;
  
-    constructor(private pendenciaService: PendenciaService, private route: ActivatedRoute, private router: Router) {
+    constructor(private pendenciaService: PendenciaService, private route: ActivatedRoute, private router: Router, private ref: ChangeDetectorRef) {
 
         this.vm = this.pendenciaService.initVM();
+        this.pendenciaService.detectChanges(this.ref);
     }
 
     ngOnInit() {

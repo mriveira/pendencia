@@ -101,6 +101,7 @@ namespace Target.Pendencias.Gen
                     "src\\app\\app.component.css",
                     "src\\app\\app.component.html",
                     "src\\app\\app.component.ts",
+                    "src\\app\\app.module.ts",
                     "src\\app\\global.service.culture.ts",
                     "src\\app\\global.service.ts",
                     "src\\app\\startup.service.ts",

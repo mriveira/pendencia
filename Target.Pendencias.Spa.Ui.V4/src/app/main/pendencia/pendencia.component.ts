@@ -39,7 +39,7 @@ export class PendenciaComponent implements OnInit {
         });
 
 		this.updateCulture();
-        GlobalService.changeCulture.subscribe((culture) => {
+        GlobalService.getChangeCultureEmitter().subscribe((culture) => {
             this.updateCulture(culture);
         });
 
@@ -75,15 +75,28 @@ export class PendenciaComponent implements OnInit {
 	public onCreate() {
 
         this.vm.model = {};
+        this.saveModal.config = { keyboard : false}
         this.saveModal.show();
+        GlobalService.getNotificationEmitter().emit(new NotificationParameters("create", {
+            model: this.vm.model
+        }));
     }
 
     public onEdit(model) {
 
+        this.saveModal.config = { keyboard: false }
         this.editModal.show();
-        this.pendenciaService.get(model).subscribe((result) => {
+
+        let newModel = model;
+        if (model) {
+            newModel = {
+                pendenciaId: model.pendenciaId
+            }
+        }
+
+        this.pendenciaService.get(newModel).subscribe((result) => {
             this.vm.model = result.dataList[0];
-			 GlobalService.notification.emit(new NotificationParameters("edit", {
+			 GlobalService.getNotificationEmitter().emit(new NotificationParameters("edit", {
                 model: this.vm.model
             }));
         })
@@ -108,7 +121,14 @@ export class PendenciaComponent implements OnInit {
     public onDetails(model) {
 
         this.detailsModal.show();
-        this.pendenciaService.get(model).subscribe((result) => {
+
+        let newModel = model;
+        if (model) {
+            newModel = {
+                pendenciaId: model.pendenciaId
+            }
+        }
+        this.pendenciaService.get(newModel).subscribe((result) => {
             this.vm.details = result.dataList[0];
         })
 
@@ -133,6 +153,14 @@ export class PendenciaComponent implements OnInit {
         var conf = GlobalService.operationExecutedParameters(
             "confirm-modal",
             () => {
+
+                let newModel = model;
+                if (model) {
+                    newModel = {
+                        pendenciaId: model.pendenciaId
+                    }
+                }
+
                 this.pendenciaService.delete(model).subscribe((result) => {
                     this.vm.filterResult = this.vm.filterResult.filter(function (model) {
                         return  model.pendenciaId != result.data.pendenciaId;
@@ -142,7 +170,7 @@ export class PendenciaComponent implements OnInit {
             }
         );
 
-        GlobalService.operationExecuted.emit(conf);
+        GlobalService.getOperationExecutedEmitter().emit(conf);
     }
 
     public onConfimationYes() {

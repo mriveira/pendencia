@@ -26,6 +26,7 @@ import { FluxoTrabalhoStatusService } from './fluxotrabalhostatus.service';
 import { FluxoTrabalhoStatusServiceFields } from './fluxotrabalhostatus.service.fields';
 
 import { ApiService } from 'app/common/services/api.service';
+import { GlobalService } from '../../global.service';
 import { CommonSharedModule } from 'app/common/common-shared.module';
 
 @NgModule({
@@ -50,7 +51,7 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
 		FluxoTrabalhoStatusContainerCreateComponent,
 		FluxoTrabalhoStatusContainerEditComponent
     ],
-    providers: [FluxoTrabalhoStatusService,FluxoTrabalhoStatusServiceFields, ApiService],
+    providers: [FluxoTrabalhoStatusService,FluxoTrabalhoStatusServiceFields, ApiService, GlobalService],
 })
 export class FluxoTrabalhoStatusModule {
 

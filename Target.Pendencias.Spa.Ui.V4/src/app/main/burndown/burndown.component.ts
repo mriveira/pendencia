@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ViewChild } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 
 import { ViewModel } from 'app/common/model/viewmodel';
 import { ProjetoService } from '../projeto/projeto.service';
@@ -10,7 +10,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
     templateUrl: './burndown.component.html',
     styleUrls: ['./burndown.component.css']
 })
-export class BurndownComponent implements OnInit {
+export class BurndownComponent implements OnInit, OnDestroy {
 
     vm: ViewModel<any>;
     @ViewChild('chartModal') private chartModal: ModalDirective;
@@ -37,7 +37,7 @@ export class BurndownComponent implements OnInit {
             buningDown: {
                 pendencias: projeto.buningDown.pendencias,
                 dias: projeto.buningDown.dias,
-                colors: [{ 
+                colors: [{
                     backgroundColor: 'rgba(148,159,177,0.2)',
                     borderColor: projeto.buningDown.colors[0],
                     pointBackgroundColor: 'rgba(148,159,177,1)',
@@ -58,13 +58,15 @@ export class BurndownComponent implements OnInit {
             }
         };
 
-
-        console.log(this.chart.buningDown.pendencias, this.chart.buningDown.dias, this.chart.buningDown.colors);
     }
 
     onCancel() {
         this.chartModal.hide();
         this.chart = null;
+    }
+
+    ngOnDestroy() {
+
     }
 
 }

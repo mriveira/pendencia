@@ -39,7 +39,7 @@ export class <#className#>Component implements OnInit {
         });
 
 		this.updateCulture();
-        GlobalService.changeCulture.subscribe((culture) => {
+        GlobalService.getChangeCultureEmitter().subscribe((culture) => {
             this.updateCulture(culture);
         });
 
@@ -76,6 +76,9 @@ export class <#className#>Component implements OnInit {
 
         this.vm.model = {};
         this.saveModal.show();
+		GlobalService.getNotificationEmitter().emit(new NotificationParameters("create", {
+            model: this.vm.model
+        }));
     }
 
     public onEdit(model) {
@@ -83,7 +86,7 @@ export class <#className#>Component implements OnInit {
         this.editModal.show();
         this.<#classNameInstance#>Service.get(model).subscribe((result) => {
             this.vm.model = result.dataList[0];
-			 GlobalService.notification.emit(new NotificationParameters("edit", {
+			 GlobalService.getNotificationEmitter().emit(new NotificationParameters("edit", {
                 model: this.vm.model
             }));
         })
@@ -147,7 +150,7 @@ export class <#className#>Component implements OnInit {
             }
         );
 
-        GlobalService.operationExecuted.emit(conf);
+        GlobalService.getOperationExecutedEmitter().emit(conf);
     }
 
     public onConfimationYes() {

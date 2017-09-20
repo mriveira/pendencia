@@ -39,7 +39,7 @@ export class UsuarioTipoComponent implements OnInit {
         });
 
 		this.updateCulture();
-        GlobalService.changeCulture.subscribe((culture) => {
+        GlobalService.getChangeCultureEmitter().subscribe((culture) => {
             this.updateCulture(culture);
         });
 
@@ -83,7 +83,7 @@ export class UsuarioTipoComponent implements OnInit {
         this.editModal.show();
         this.usuarioTipoService.get(model).subscribe((result) => {
             this.vm.model = result.dataList[0];
-			 GlobalService.notification.emit(new NotificationParameters("edit", {
+			 GlobalService.getNotificationEmitter().emit(new NotificationParameters("edit", {
                 model: this.vm.model
             }));
         })
@@ -147,7 +147,7 @@ export class UsuarioTipoComponent implements OnInit {
             }
         );
 
-        GlobalService.operationExecuted.emit(conf);
+        GlobalService.getOperationExecutedEmitter().emit(conf);
     }
 
     public onConfimationYes() {

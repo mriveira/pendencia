@@ -8,8 +8,6 @@ namespace Target.Pendencias.Dto
 	public class PendenciaTemposDtoSpecialized : PendenciaTemposDto
 	{
 
-        public  PendenciaDto Pendencia { get; set;} 
 
-		
-	}
+    }
 }

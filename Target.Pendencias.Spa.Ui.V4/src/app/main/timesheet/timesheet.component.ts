@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, SecurityContext } from '@angular/core';
+﻿import { Component, OnInit, SecurityContext, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -16,14 +16,14 @@ import { ECacheType } from 'app/common/type-cache.enum';
     templateUrl: './timesheet.component.html',
     styleUrls: ['./timesheet.component.css']
 })
-export class TimesheetComponent implements OnInit {
+export class TimesheetComponent implements OnInit, OnDestroy {
 
     vm: ViewModel<any>;
     projetoId: number;
     randomDefault: number;
     deveMostrarLogs: boolean;
     sub: any;
-    
+
 
     constructor(private pendenciaService: PendenciaService, private pendenciaTemposService: PendenciaTemposService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {
 
@@ -61,8 +61,8 @@ export class TimesheetComponent implements OnInit {
 
         this._obterPendencias(this.vm.modelFilter);
         this._obterTempos()
-       
-        GlobalService.notification.subscribe((not) => {
+
+        GlobalService.getNotificationEmitter().subscribe((not) => {
             if (not.event == "filter") {
                 this._obterPendencias({
                     resumo: not.data.filter
@@ -89,31 +89,32 @@ export class TimesheetComponent implements OnInit {
     }
 
     onReclassificarWithNotes(id: number) {
-        GlobalService.notification.emit(new NotificationParameters("reclassificarPendencia", {
+        GlobalService.getNotificationEmitter().emit(new NotificationParameters("reclassificarPendencia", {
             id: id,
         }));
     }
 
     onComentar(id: number) {
-        GlobalService.notification.emit(new NotificationParameters("comentarPendencia", {
+        GlobalService.getNotificationEmitter().emit(new NotificationParameters("comentarPendencia", {
             id: id,
         }));
     }
 
     onConcluirWithNotes(id: number) {
-        GlobalService.notification.emit(new NotificationParameters("concluirPendencia", {
+        GlobalService.getNotificationEmitter().emit(new NotificationParameters("concluirPendencia", {
             id: id,
         }));
     }
 
     onStopWithNotes(id: number) {
-        GlobalService.notification.emit(new NotificationParameters("pararPendencia", {
+        GlobalService.getNotificationEmitter().emit(new NotificationParameters("pararPendencia", {
             id: id,
         }));
     }
 
     onTimeSheetEdit(id: number) {
-        GlobalService.notification.emit(new NotificationParameters("timeSheetEdit", {
+        console.log("onTimeSheetEdit")
+        GlobalService.getNotificationEmitter().emit(new NotificationParameters("timeSheetEdit", {
             id: id,
         }));
     }
@@ -135,17 +136,17 @@ export class TimesheetComponent implements OnInit {
                 });
             }, confirm
         );
-        GlobalService.operationExecuted.emit(conf);
+        GlobalService.getOperationExecutedEmitter().emit(conf);
     }
 
     onHistorico(id: number) {
-        GlobalService.notification.emit(new NotificationParameters("historicoPendencia", {
+        GlobalService.getNotificationEmitter().emit(new NotificationParameters("historicoPendencia", {
             id: id,
         }));
     }
 
     onDetalhes(id: number) {
-        GlobalService.notification.emit(new NotificationParameters("detalhesPendencia", {
+        GlobalService.getNotificationEmitter().emit(new NotificationParameters("detalhesPendencia", {
             id: id,
         }));
     }
@@ -173,6 +174,10 @@ export class TimesheetComponent implements OnInit {
 
     _getFilters() {
         return JSON.parse(CacheService.get("filters-dash-timesheet", ECacheType.COOKIE));
+    }
+
+    ngOnDestroy() {
+
     }
 
 }

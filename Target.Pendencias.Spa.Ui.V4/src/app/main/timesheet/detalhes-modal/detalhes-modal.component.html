@@ -46,7 +46,7 @@
 
 
           <dt>{{ vm.infos.usuarioId.label }}:</dt>
-          <dd><bind-custom [model]="vm.details.usuarioId" [format]="'int'" [tag]="'span'"></bind-custom></dd>
+          <dd><bind-custom [model]="vm.details.usuarioId" [format]="'instance'" [tag]="'span'" [instance]="'Usuario'" [key]="'UsuarioId'"></bind-custom></dd>
 
 
           <dt>{{ vm.infos.pendenciaTipoId.label }}:</dt>

@@ -3,11 +3,11 @@
 }
 
 .gc-card button {
-  margin : 5px;
+  margin: 5px;
 }
 
 .gc-header img {
-  width :70px
+  width: 70px
 }
 
 .modal-body {
@@ -61,7 +61,7 @@
 }
 
 dl {
-width : 100% !important;
+  width: 100% !important;
 }
 
 .btn-primary > .fa-reply {
@@ -77,16 +77,16 @@ width : 100% !important;
 }
 
 .ml-auto > li {
-  margin-right :5px;
+  margin-right: 5px;
 }
 
-.list-group{
-  margin-bottom :5px;
+.list-group {
+  margin-bottom: 5px;
 }
 
 .col-lg-12 {
-  padding-right:0;
-  padding-left:0
+  padding-right: 0;
+  padding-left: 0
 }
 
 .col-lg-4 {
@@ -94,8 +94,8 @@ width : 100% !important;
 }
 
 .badge {
-  color : #000;
-  background-color :#dfdfdf;
+  color: #000;
+  background-color: #dfdfdf;
 }
 
 .gc-body {
@@ -103,12 +103,12 @@ width : 100% !important;
 }
 
 .chart-area {
-  margin :10px
+  margin: 10px
 }
 
 .gc-profile__avatar {
-  margin-left :30px;
-  padding:10px;
+  margin-left: 30px;
+  padding: 10px;
 }
 
 .gc-table-responsive {
@@ -124,5 +124,9 @@ width : 100% !important;
   overflow-y: scroll;
   border: 1px solid rgba(0,0,0,.15);
   border-radius: .25rem;
-  padding : 10px;
+  padding: 10px;
+}
+
+.modal-lg {
+  max-width: 1000px
 }

@@ -35,7 +35,7 @@ export class ProjetoFluxoTrabalhoStatusEditComponent implements OnInit {
 
         this.projetoFluxoTrabalhoStatusService.get({ id: this.id }).subscribe((data) => {
             this.vm.model = data.data;
-			GlobalService.notification.emit(new NotificationParameters("edit", {
+			GlobalService.getNotificationEmitter().emit(new NotificationParameters("edit", {
                 model: this.vm.model
             }));
         })

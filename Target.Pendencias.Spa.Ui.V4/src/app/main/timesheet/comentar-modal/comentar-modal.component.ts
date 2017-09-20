@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, ViewChild } from '@angular/core';
+﻿import { Component, OnInit, Input, ViewChild, EventEmitter, OnDestroy} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -21,13 +21,13 @@ export class ComentarModalComponent implements OnInit {
     _id: number;
     title: string;
     form: FormGroup;
-
+    subscriptionNotification: EventEmitter<NotificationParameters>;
     constructor(private pendenciaService: PendenciaService) {
         this.form = new FormGroup({ comentario: new FormControl() });
     }
 
     ngOnInit() {
-        GlobalService.notification.subscribe((not) => {
+        this.subscriptionNotification = GlobalService.getNotificationEmitter().subscribe((not) => {
             if (not.event == "comentarPendencia") {
                 this.title = "Comentar";
                 this.show(not.data.id);
@@ -66,5 +66,7 @@ export class ComentarModalComponent implements OnInit {
             this.vm.reletedViewModel.pendencias = response.dataList;
         });
     }
-
+    ngOnDestroy() {
+        this.subscriptionNotification.unsubscribe();
+    }
 }

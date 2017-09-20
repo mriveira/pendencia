@@ -42,7 +42,7 @@ namespace Cna.Erp.Gen
                 CamelCasing = true,
                 MakeFront = true,
                 MakeBack = true,
-                OverrideFiles = true,
+                OverrideFiles = false,
 
                 Routes = new List<RouteConfig> {
                     new RouteConfig{ Route = "{ path: 'dashboard/timesheet', loadChildren: './main/timesheet/timesheet.module#TimesheetModule' }" },
@@ -56,10 +56,6 @@ namespace Cna.Erp.Gen
                     {
                             new FieldConfig {  Name ="projetoId" , Order=-1},
                             new FieldConfig()
-                            {
-                                Name ="usuarioId", Edit = false, Create = false , Filter=  false, Attributes = new List<string> {"maki='99999-999'"}
-                            },
-                             new FieldConfig()
                             {
                                 Name ="DataConclusao", Edit = false, Create = false , Filter=  false,
                             },

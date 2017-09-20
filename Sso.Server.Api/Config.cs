@@ -47,7 +47,7 @@ namespace Sso.Server.Api
                 new Claim("role","tenant"),
                 new Claim("typerole", type),
                 new Claim("owner",  (tenantOwnerId ?? tenantId).ToString()),
-                new Claim("avatar",  avatar)
+                new Claim("avatar",  avatar ?? string.Empty)
             };
         }
 
@@ -73,7 +73,7 @@ namespace Sso.Server.Api
                 new Claim("role","tenant"),
                 new Claim("typerole", type),
                 new Claim("owner",  (tenantOwnerId ?? tenantId).ToString()),
-                new Claim("avatar",  avatar)
+                new Claim("avatar",  avatar ?? string.Empty)
             };
         }
 
