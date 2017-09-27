@@ -166,6 +166,10 @@
                     <i class="fa fa-table"></i>
                   </button>
 
+                  <button placement="top" (click)="onAttach(pendencia.id)" title="Adicionar arquivos" class="pull-right btn btn-sm btn-secondary" style="margin-left:10px">
+                    <i class="fa fa-file"></i>
+                  </button>
+
                 </dd>
               </dl>
 
@@ -228,5 +232,6 @@
 <app-parar-modal [vm]="vm"></app-parar-modal>
 <app-reclassificar-modal [vm]="vm"></app-reclassificar-modal>
 <app-timesheet-modal [vm]="vm"></app-timesheet-modal>
+<app-documento-attach-modal></app-documento-attach-modal>
 <app-detalhes-modal></app-detalhes-modal>
 <app-historico-modal></app-historico-modal>

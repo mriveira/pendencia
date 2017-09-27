@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, FormGroup, FormControl} from '@angular/forms';
 
@@ -50,6 +50,10 @@ export class ClienteComponent implements OnInit {
         this.clienteService.updateCulture(culture).then(infos => {
             this.vm.infos = infos;
             this.vm.grid = this.clienteService.getInfoGrid(infos);
+        });
+
+        this.clienteService.updateCultureMain(culture).then(infos => {
+            this.vm.generalInfo = infos;
         });
     }
 

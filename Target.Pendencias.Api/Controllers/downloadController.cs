@@ -26,7 +26,7 @@ namespace Target.Pendencias.Api.Controllers
             this._uploadRoot = "upload";
         }
 
-      
+
         [HttpGet("{folder}/{fileName}")]
         public async Task<IActionResult> Get(string folder, string fileName)
         {
@@ -41,7 +41,8 @@ namespace Target.Pendencias.Api.Controllers
                     bytes = new byte[SourceStream.Length];
                     await SourceStream.ReadAsync(bytes, 0, (int)SourceStream.Length);
                 }
-                return File(bytes, "image/png");
+
+                return File(bytes, DefineContentType(fileName));
             }
 
             var fileVazio = $"{uploads}\\vazio.png";
@@ -52,7 +53,21 @@ namespace Target.Pendencias.Api.Controllers
                 await SourceStream.ReadAsync(bytes, 0, (int)SourceStream.Length);
             }
 
-            return File(bytes, "image/png");
+            return File(bytes, DefineContentType(fileName));
+        }
+
+        private static string DefineContentType(string fileName)
+        {
+            var contentType = "application/octet-stream";
+
+            if (Path.GetExtension(fileName) == "jpg")
+                contentType = "image/jpg";
+            if (Path.GetExtension(fileName) == "gif")
+                contentType = "image/gif";
+            if (Path.GetExtension(fileName) == "png")
+                contentType = "image/png";
+
+            return contentType;
         }
     }
 }

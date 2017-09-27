@@ -151,6 +151,12 @@ export class TimesheetComponent implements OnInit, OnDestroy {
         }));
     }
 
+    onAttach(id: number) {
+        GlobalService.getNotificationEmitter().emit(new NotificationParameters("pendenciaDocumento", {
+            id: id,
+        }));
+    }
+
     _obterPendencias(filter) {
 
         this.pendenciaService.getDataListCustom(filter).subscribe((response) => {

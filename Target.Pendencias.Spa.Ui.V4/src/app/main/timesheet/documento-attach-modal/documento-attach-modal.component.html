@@ -1,0 +1,25 @@
+﻿<div bsModal #documentAttachModal="bs-modal" class="gc-modal modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">{{title}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form (ngSubmit)="onSave(vm.model)" novalidate>
+        <div class="modal-body" [formGroup]="form">
+          <section class="col-md-12">
+            <div class='form-group' >
+              <upload-custom [(vm)]='vm' [ctrlName]='"documento"' [label]='vm.infos.documento.label' [folder]='"documento"' [accept]="'*.*'" [rename]="false"></upload-custom>
+            </div>
+          </section>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" type="button" (click)="onCancel()">{{vm.generalInfo.cancelar.label}}</button>
+          <button type="submit" class="btn btn-success" [disabled]="vm != null && form.invalid">{{vm.generalInfo.salvar.label}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -22,7 +22,7 @@ namespace Target.Pendencias.Domain.Entitys
         {
             public Usuario GetDefaultInstance(dynamic data, CurrentUser user)
             {
-                var construction = new Usuario(user.GetSubjectId<int>(),
+                var construction = new Usuario(data.UsuarioId,
                                         data.Nome,
                                         data.Email,
                                         data.Senha,

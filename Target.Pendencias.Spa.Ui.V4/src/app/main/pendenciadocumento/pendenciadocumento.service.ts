@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -19,7 +19,9 @@ export class PendenciaDocumentoService extends ServiceBase {
     constructor(private api: ApiService<any>,private serviceFields: PendenciaDocumentoServiceFields, private globalServiceCulture: GlobalServiceCulture, private mainService: MainService) {
 
 		super();
-		this._form = this.serviceFields.getFormFields();
+        this._form = this.serviceFields.getFormFields({
+            documento: new FormControl(),
+        });
 
     }
 
@@ -44,7 +46,9 @@ export class PendenciaDocumentoService extends ServiceBase {
     }
 
 	getInfos() {
-		return this.serviceFields.getInfosFields();
+        return this.serviceFields.getInfosFields({
+            documento: { label: 'Adicionar Documento', type: 'string', isKey: false, list: false },
+        });
     }
 
 	getInfoGrid(infos : any) {

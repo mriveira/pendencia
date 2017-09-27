@@ -22,7 +22,7 @@ export class MainComponent implements OnInit {
 
         this.vm = {};
         this.menuIsOpen = true;
-        this.vm.generalInfos = this.mainService.getInfosFields();
+        this.vm.generalInfo = this.mainService.getInfosFields();
         this.vm.downloadUri = GlobalService.getEndPoints().DOWNLOAD;
         this.vm.avatar = null;
         

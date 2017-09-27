@@ -56,6 +56,7 @@ namespace Target.Pendencias.Domain.Entitys
                 construction.SetarDataConclusao(data.DataConclusao);
                 construction.SetarComentarios(data.CollectionComentarios, user);
                 construction.SetAttributeBehavior(data.AttributeBehavior);
+
                 return construction;
             }
 
@@ -79,6 +80,7 @@ namespace Target.Pendencias.Domain.Entitys
                 construction.SetarComentarios(data.CollectionComentarios, user);
                 construction.SetarNota(data.Nota);
                 construction.SetAttributeBehavior(data.AttributeBehavior);
+
                 return construction;
             }
 
@@ -152,7 +154,7 @@ namespace Target.Pendencias.Domain.Entitys
 
             if (pendenciaEmAndamento.IsNotNull())
             {
-                pendenciaEmAndamento.SetarFim(DateTime.Now);
+                pendenciaEmAndamento.SetarFim(DateTime.Now.ToTimeZone());
                 pendenciaEmAndamento.SetarNota(nota);
             }
         }

@@ -18,7 +18,9 @@ namespace Target.Pendencias.Domain.Entitys
 
         }
 
-		public class PendenciaDocumentoFactory
+        public virtual Documento Documento { get; set; }
+
+        public class PendenciaDocumentoFactory
         {
             public PendenciaDocumento GetDefaultInstance(dynamic data, CurrentUser user)
             {
@@ -27,7 +29,7 @@ namespace Target.Pendencias.Domain.Entitys
 
 
 
-				return construction;
+                return construction;
             }
 
         }
@@ -38,6 +40,6 @@ namespace Target.Pendencias.Domain.Entitys
             return base._validationResult.IsValid;
 
         }
-        
+
     }
 }

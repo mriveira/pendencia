@@ -19,6 +19,7 @@ import { ViewModel } from '../model/viewmodel';
           </div>
           <br>
           <img *ngIf='fileName' src='{{downloadUri}}{{folder}}/{{fileName}}' />
+          <a *ngIf='fileName' href='{{downloadUri}}{{folder}}/{{fileName}}'>{{fileNameOld}}</a>
       </section>
     </div>`,
     providers: [ApiService],
@@ -34,6 +35,7 @@ export class UploadCustomComponent implements OnInit {
     @Input() vm: ViewModel<any>
     @Input() folder: string;
     @Input() enabledUploadExternal: boolean;
+    @Input() rename: boolean;
 
     fileName: string;
     fileNameOld: string;
@@ -46,6 +48,7 @@ export class UploadCustomComponent implements OnInit {
         this.fileUri = this.downloadUri + this.folder + "/" + this.fileName;
         this.enabledUploadExternal = false;
         this.accept = "image/*";
+        this.rename = true;
 
     }
 
@@ -55,7 +58,7 @@ export class UploadCustomComponent implements OnInit {
         GlobalService.getNotificationEmitter().subscribe((not) => {
             if (not.event == "edit") {
                 console.log("upload")
-                this.fileNameOld = this.vm.model[this.ctrlName];        
+                this.fileNameOld = this.vm.model[this.ctrlName];
                 this.fileName = this.vm.model[this.ctrlName]
             }
         })
@@ -72,11 +75,11 @@ export class UploadCustomComponent implements OnInit {
             return false;
 
         let file: File = event.target.files[0];
-        this.fileNameOld = file.name; 
-        
-        if (this.enabledUploadExternal) 
+        this.fileNameOld = file.name;
+
+        if (this.enabledUploadExternal)
             return this.uploadCustom(file);
-        
+
         return this.uploadDefault(file);
     }
 
@@ -87,7 +90,7 @@ export class UploadCustomComponent implements OnInit {
     }
     uploadDefault(file: File) {
 
-        this.api.setResource('upload').upload(file, this.folder).subscribe(result => {
+        this.api.setResource('upload').upload(file, this.folder, this.rename).subscribe(result => {
             this.vm.model[this.ctrlName] = result.data[0];
             this.fileName = result.data[0]
         });

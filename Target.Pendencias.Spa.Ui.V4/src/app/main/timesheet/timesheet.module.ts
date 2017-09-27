@@ -14,6 +14,9 @@ import { PendenciaTemposService } from '../pendenciatempos/pendenciatempos.servi
 import { PendenciaTemposServiceFields } from '../pendenciatempos/pendenciatempos.service.fields';
 import { ComentarioService } from '../comentario/comentario.service';
 import { ComentarioServiceFields } from '../comentario/comentario.service.fields';
+import { PendenciaDocumentoService } from '../pendenciadocumento/pendenciadocumento.service';
+import { PendenciaDocumentoServiceFields } from '../pendenciadocumento/pendenciadocumento.service.fields';
+
 
 
 import { TimesheetModalComponent } from './timesheet-modal/timesheet-modal.component';
@@ -23,6 +26,7 @@ import { ComentarModalComponent } from './comentar-modal/comentar-modal.componen
 import { HistoricoModalComponent } from './historico-modal/historico-modal.component';
 import { ReclassificarModalComponent } from './reclassificar-modal/reclassificar-modal.component';
 import { DetalhesModalComponent } from './detalhes-modal/detalhes-modal.component';
+import { DocumentAttachModalComponent } from './documento-attach-modal/documento-attach-modal.component';
 
 
 @NgModule({
@@ -42,9 +46,10 @@ import { DetalhesModalComponent } from './detalhes-modal/detalhes-modal.componen
         ComentarModalComponent,
         HistoricoModalComponent,
         ReclassificarModalComponent,
-        DetalhesModalComponent
+        DetalhesModalComponent,
+        DocumentAttachModalComponent
     ],
-    providers: [ApiService, PendenciaService, PendenciaServiceFields, PendenciaTemposService, PendenciaTemposServiceFields, ComentarioService, ComentarioServiceFields],
+    providers: [ApiService, PendenciaService, PendenciaServiceFields, PendenciaTemposService, PendenciaTemposServiceFields, ComentarioService, ComentarioServiceFields, PendenciaDocumentoService, PendenciaDocumentoServiceFields],
 })
 export class TimesheetModule {
 
