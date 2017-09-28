@@ -17,6 +17,10 @@ namespace Target.Pendencias.Data.Map
 
             type.Property(t => t.Arquivo).HasColumnName("Arquivo");
             type.Property(t => t.ext).HasColumnName("ext");
+            type.Property(t => t.UserCreateId).HasColumnName("UserCreateId");
+            type.Property(t => t.UserCreateDate).HasColumnName("UserCreateDate");
+            type.Property(t => t.UserAlterId).HasColumnName("UserAlterId");
+            type.Property(t => t.UserAlterDate).HasColumnName("UserAlterDate");
 
 
             type.HasKey(d => new { d.DocumentoId, }); 

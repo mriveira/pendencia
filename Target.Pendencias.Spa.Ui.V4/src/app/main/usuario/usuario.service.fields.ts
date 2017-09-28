@@ -24,8 +24,10 @@ export class UsuarioServiceFields {
 		return new FormGroup(formControls);
 	}
 
-	getInfosFields() {
-		return {
+
+
+	getInfosFields(moreInfosFields? : any) {
+		var defaultInfosFields = Object.assign(moreInfosFields || {}, {
 			nome: { label: 'nome', type: 'string', isKey: false, list:true   },
 			foto: { label: 'foto', type: 'string', isKey: false, list:false   },
 			email: { label: 'email', type: 'string', isKey: false, list:true   },
@@ -36,9 +38,8 @@ export class UsuarioServiceFields {
 			usuarioDonoId: { label: 'usuarioDonoId', type: 'int?', isKey: false, list:false   },
 			ativo: { label: 'ativo', type: 'bool', isKey: false, list:true   },
 
-        }
+        });
+		return defaultInfosFields;
     }
-
-
 
 }

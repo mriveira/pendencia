@@ -21,8 +21,10 @@ export class ClienteServiceFields {
 		return new FormGroup(formControls);
 	}
 
-	getInfosFields() {
-		return {
+
+
+	getInfosFields(moreInfosFields? : any) {
+		var defaultInfosFields = Object.assign(moreInfosFields || {}, {
 			nome: { label: 'nome', type: 'string', isKey: false, list:true   },
 			telefoneDeContato: { label: 'telefoneDeContato', type: 'string', isKey: false, list:true   },
 			emailDeContato: { label: 'emailDeContato', type: 'string', isKey: false, list:true   },
@@ -30,9 +32,8 @@ export class ClienteServiceFields {
 			clienteId: { label: 'clienteId', type: 'int', isKey: true, list:false   },
 			usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:false   },
 
-        }
+        });
+		return defaultInfosFields;
     }
-
-
 
 }

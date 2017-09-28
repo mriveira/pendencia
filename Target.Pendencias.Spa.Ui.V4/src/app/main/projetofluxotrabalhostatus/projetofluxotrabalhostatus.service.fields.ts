@@ -17,14 +17,15 @@ export class ProjetoFluxoTrabalhoStatusServiceFields {
 		return new FormGroup(formControls);
 	}
 
-	getInfosFields() {
-		return {
+
+
+	getInfosFields(moreInfosFields? : any) {
+		var defaultInfosFields = Object.assign(moreInfosFields || {}, {
 			projetoId: { label: 'projetoId', type: 'int', isKey: true, list:false   },
 			fluxoTrabalhoStatusId: { label: 'fluxoTrabalhoStatusId', type: 'int', isKey: true, list:false   },
 
-        }
+        });
+		return defaultInfosFields;
     }
-
-
 
 }

@@ -20,17 +20,18 @@ export class ComentarioServiceFields {
 		return new FormGroup(formControls);
 	}
 
-	getInfosFields() {
-		return {
+
+
+	getInfosFields(moreInfosFields? : any) {
+		var defaultInfosFields = Object.assign(moreInfosFields || {}, {
 			descricao: { label: 'descricao', type: 'string', isKey: false, list:false   },
 			data: { label: 'data', type: 'DateTime', isKey: false, list:true   },
 			comentarioId: { label: 'comentarioId', type: 'int', isKey: true, list:false   },
 			usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:false   },
 			pendenciaId: { label: 'pendenciaId', type: 'int', isKey: false, list:false   },
 
-        }
+        });
+		return defaultInfosFields;
     }
-
-
 
 }

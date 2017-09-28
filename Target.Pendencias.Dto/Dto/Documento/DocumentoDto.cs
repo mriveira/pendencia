@@ -16,7 +16,7 @@ namespace Target.Pendencias.Dto
         public virtual string Arquivo {get; set;}
 
         [Required(ErrorMessage="Documento - Campo ext é Obrigatório")]
-        [MaxLength(3, ErrorMessage = "Documento - Quantidade de caracteres maior que o permitido para o campo ext")]
+        [MaxLength(4, ErrorMessage = "Documento - Quantidade de caracteres maior que o permitido para o campo ext")]
         public virtual string ext {get; set;}
 
 

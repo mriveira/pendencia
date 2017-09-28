@@ -130,3 +130,7 @@ dl {
 .modal-lg {
   max-width: 1000px
 }
+
+.simple-notification-wrapper {
+  z-index: 999999 !important;
+}

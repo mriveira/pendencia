@@ -3,7 +3,7 @@ using System;
 
 namespace Target.Pendencias.Domain.Entitys
 {
-    public class DocumentoBase : DomainBase
+    public class DocumentoBase : DomainBaseWithUserCreate
     {
         public DocumentoBase()
         {

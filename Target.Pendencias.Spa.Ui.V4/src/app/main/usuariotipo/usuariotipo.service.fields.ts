@@ -17,14 +17,15 @@ export class UsuarioTipoServiceFields {
 		return new FormGroup(formControls);
 	}
 
-	getInfosFields() {
-		return {
+
+
+	getInfosFields(moreInfosFields? : any) {
+		var defaultInfosFields = Object.assign(moreInfosFields || {}, {
 			nome: { label: 'nome', type: 'string', isKey: false, list:true   },
 			usuarioTipoId: { label: 'usuarioTipoId', type: 'int', isKey: true, list:false   },
 
-        }
+        });
+		return defaultInfosFields;
     }
-
-
 
 }

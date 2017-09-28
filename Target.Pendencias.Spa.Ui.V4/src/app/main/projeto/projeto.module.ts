@@ -26,7 +26,6 @@ import { ProjetoService } from './projeto.service';
 import { ProjetoServiceFields } from './projeto.service.fields';
 
 import { ApiService } from 'app/common/services/api.service';
-import { GlobalService } from '../../global.service';
 import { CommonSharedModule } from 'app/common/common-shared.module';
 
 @NgModule({
@@ -51,7 +50,7 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
 		ProjetoContainerCreateComponent,
 		ProjetoContainerEditComponent
     ],
-    providers: [ProjetoService,ProjetoServiceFields, ApiService, GlobalService],
+    providers: [ProjetoService,ProjetoServiceFields, ApiService],
 })
 export class ProjetoModule {
 

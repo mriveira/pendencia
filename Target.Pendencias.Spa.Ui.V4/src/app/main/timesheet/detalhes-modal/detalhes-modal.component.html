@@ -60,8 +60,16 @@
           <dt>{{ vm.infos.pendenciaPrioridadeId.label }}:</dt>
           <dd><bind-custom [model]="vm.details.pendenciaPrioridadeId" [format]="'instance'" [tag]="'span'" [instance]="'PendeciaPrioridade'" [key]="'PendenciaPrioridadeId'"></bind-custom></dd>
 
+          <dt>Arquivos</dt>
+          <dd>
+            <ul *ngFor="let pd of vm.details.collectionPendenciaDocumento">
+              <li><i class="fa fa-file"></i> <a href='{{vm.downloadUri}}documento/{{pd.documento.arquivo}}'>{{pd.documento.arquivo}}</a></li>
+            </ul>
+          </dd>
 
         </dl> 
+
+
       </div>
       <div class="modal-footer">
         <button class="btn btn-default" type="button" (click)="onCancel()">{{vm.generalInfo.cancelar.label}}</button>

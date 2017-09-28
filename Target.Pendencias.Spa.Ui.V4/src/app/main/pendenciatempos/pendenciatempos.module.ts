@@ -26,7 +26,6 @@ import { PendenciaTemposService } from './pendenciatempos.service';
 import { PendenciaTemposServiceFields } from './pendenciatempos.service.fields';
 
 import { ApiService } from 'app/common/services/api.service';
-import { GlobalService } from '../../global.service';
 import { CommonSharedModule } from 'app/common/common-shared.module';
 
 @NgModule({
@@ -51,7 +50,7 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
 		PendenciaTemposContainerCreateComponent,
 		PendenciaTemposContainerEditComponent
     ],
-    providers: [PendenciaTemposService,PendenciaTemposServiceFields, ApiService, GlobalService],
+    providers: [PendenciaTemposService,PendenciaTemposServiceFields, ApiService],
 })
 export class PendenciaTemposModule {
 

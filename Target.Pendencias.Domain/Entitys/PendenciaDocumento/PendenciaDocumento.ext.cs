@@ -24,11 +24,8 @@ namespace Target.Pendencias.Domain.Entitys
         {
             public PendenciaDocumento GetDefaultInstance(dynamic data, CurrentUser user)
             {
-                var construction = new PendenciaDocumento(data.PendenciaId,
-                                        data.DocumentoId);
-
-
-
+                var construction = new PendenciaDocumento(data.PendenciaId, data.DocumentoId);
+                construction.AdicionarDocumento(new Documento(data.Documento.DocumentoId, data.Documento.Arquivo, data.Documento.ext), user);
                 return construction;
             }
 
@@ -39,6 +36,13 @@ namespace Target.Pendencias.Domain.Entitys
             base._validationResult = new PendenciaDocumentoEstaConsistenteValidation().Validate(this);
             return base._validationResult.IsValid;
 
+        }
+
+        public void AdicionarDocumento(Documento documento,CurrentUser user)
+        {
+
+            this.Documento = documento;
+            this.Documento.SetUserCreate(user.GetSubjectId<int>());
         }
 
     }

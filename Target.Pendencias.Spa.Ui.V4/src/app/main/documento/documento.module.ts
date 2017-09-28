@@ -26,7 +26,6 @@ import { DocumentoService } from './documento.service';
 import { DocumentoServiceFields } from './documento.service.fields';
 
 import { ApiService } from 'app/common/services/api.service';
-import { GlobalService } from '../../global.service';
 import { CommonSharedModule } from 'app/common/common-shared.module';
 
 @NgModule({
@@ -51,7 +50,7 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
 		DocumentoContainerCreateComponent,
 		DocumentoContainerEditComponent
     ],
-    providers: [DocumentoService,DocumentoServiceFields, ApiService, GlobalService],
+    providers: [DocumentoService,DocumentoServiceFields, ApiService],
 })
 export class DocumentoModule {
 

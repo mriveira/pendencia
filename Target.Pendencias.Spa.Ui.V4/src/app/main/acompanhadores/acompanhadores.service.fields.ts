@@ -17,14 +17,15 @@ export class AcompanhadoresServiceFields {
 		return new FormGroup(formControls);
 	}
 
-	getInfosFields() {
-		return {
+
+
+	getInfosFields(moreInfosFields? : any) {
+		var defaultInfosFields = Object.assign(moreInfosFields || {}, {
 			pendenciaId: { label: 'pendenciaId', type: 'int', isKey: true, list:false   },
 			usuarioId: { label: 'usuarioId', type: 'int', isKey: true, list:false   },
 
-        }
+        });
+		return defaultInfosFields;
     }
-
-
 
 }

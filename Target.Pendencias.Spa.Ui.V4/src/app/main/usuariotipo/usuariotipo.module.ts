@@ -26,7 +26,6 @@ import { UsuarioTipoService } from './usuariotipo.service';
 import { UsuarioTipoServiceFields } from './usuariotipo.service.fields';
 
 import { ApiService } from 'app/common/services/api.service';
-import { GlobalService } from '../../global.service';
 import { CommonSharedModule } from 'app/common/common-shared.module';
 
 @NgModule({
@@ -51,7 +50,7 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
 		UsuarioTipoContainerCreateComponent,
 		UsuarioTipoContainerEditComponent
     ],
-    providers: [UsuarioTipoService,UsuarioTipoServiceFields, ApiService, GlobalService],
+    providers: [UsuarioTipoService,UsuarioTipoServiceFields, ApiService],
 })
 export class UsuarioTipoModule {
 

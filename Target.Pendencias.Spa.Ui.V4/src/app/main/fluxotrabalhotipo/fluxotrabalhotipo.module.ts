@@ -26,7 +26,6 @@ import { FluxoTrabalhoTipoService } from './fluxotrabalhotipo.service';
 import { FluxoTrabalhoTipoServiceFields } from './fluxotrabalhotipo.service.fields';
 
 import { ApiService } from 'app/common/services/api.service';
-import { GlobalService } from '../../global.service';
 import { CommonSharedModule } from 'app/common/common-shared.module';
 
 @NgModule({
@@ -51,7 +50,7 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
 		FluxoTrabalhoTipoContainerCreateComponent,
 		FluxoTrabalhoTipoContainerEditComponent
     ],
-    providers: [FluxoTrabalhoTipoService,FluxoTrabalhoTipoServiceFields, ApiService, GlobalService],
+    providers: [FluxoTrabalhoTipoService,FluxoTrabalhoTipoServiceFields, ApiService],
 })
 export class FluxoTrabalhoTipoModule {
 

@@ -24,8 +24,10 @@ export class ProjetoServiceFields {
 		return new FormGroup(formControls);
 	}
 
-	getInfosFields() {
-		return {
+
+
+	getInfosFields(moreInfosFields? : any) {
+		var defaultInfosFields = Object.assign(moreInfosFields || {}, {
 			nome: { label: 'nome', type: 'string', isKey: false, list:true   },
 			descricao: { label: 'descricao', type: 'string', isKey: false, list:false   },
 			visao: { label: 'visao', type: 'string', isKey: false, list:false   },
@@ -36,9 +38,8 @@ export class ProjetoServiceFields {
 			clienteId: { label: 'clienteId', type: 'int', isKey: false, list:false   },
 			usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:false   },
 
-        }
+        });
+		return defaultInfosFields;
     }
-
-
 
 }

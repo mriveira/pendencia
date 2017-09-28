@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 
@@ -6,25 +6,26 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class PendenciaDocumentoServiceFields {
 
 
-    constructor() { }
+    constructor() {}
 
-    getFormFields(moreFormControls?: any) {
-        var formControls = Object.assign(moreFormControls || {}, {
-            pendenciaId: new FormControl(),
-            documentoId: new FormControl(),
+	getFormFields(moreFormControls? : any) {
+		var formControls = Object.assign(moreFormControls || {},{
+            pendenciaId : new FormControl(),
+            documentoId : new FormControl(),
 
         });
-        return new FormGroup(formControls);
-    }
+		return new FormGroup(formControls);
+	}
 
-    getInfosFields(moreInfosFields?: any) {
-        var defaultInfosFields = Object.assign(moreInfosFields || {}, {
-            pendenciaId: { label: 'pendenciaId', type: 'int', isKey: true, list: false },
-            documentoId: { label: 'documentoId', type: 'int', isKey: true, list: false },
+
+
+	getInfosFields(moreInfosFields? : any) {
+		var defaultInfosFields = Object.assign(moreInfosFields || {}, {
+			pendenciaId: { label: 'pendenciaId', type: 'int', isKey: true, list:false   },
+			documentoId: { label: 'documentoId', type: 'int', isKey: true, list:false   },
+
         });
-        return defaultInfosFields;
+		return defaultInfosFields;
     }
-
-
 
 }

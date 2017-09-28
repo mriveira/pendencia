@@ -26,7 +26,6 @@ import { PendenciaEventosService } from './pendenciaeventos.service';
 import { PendenciaEventosServiceFields } from './pendenciaeventos.service.fields';
 
 import { ApiService } from 'app/common/services/api.service';
-import { GlobalService } from '../../global.service';
 import { CommonSharedModule } from 'app/common/common-shared.module';
 
 @NgModule({
@@ -51,7 +50,7 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
 		PendenciaEventosContainerCreateComponent,
 		PendenciaEventosContainerEditComponent
     ],
-    providers: [PendenciaEventosService,PendenciaEventosServiceFields, ApiService, GlobalService],
+    providers: [PendenciaEventosService,PendenciaEventosServiceFields, ApiService],
 })
 export class PendenciaEventosModule {
 

@@ -21,8 +21,10 @@ export class FluxoTrabalhoStatusServiceFields {
 		return new FormGroup(formControls);
 	}
 
-	getInfosFields() {
-		return {
+
+
+	getInfosFields(moreInfosFields? : any) {
+		var defaultInfosFields = Object.assign(moreInfosFields || {}, {
 			nome: { label: 'nome', type: 'string', isKey: false, list:true   },
 			corFundo: { label: 'corFundo', type: 'string', isKey: false, list:true   },
 			corFonte: { label: 'corFonte', type: 'string', isKey: false, list:true   },
@@ -30,9 +32,8 @@ export class FluxoTrabalhoStatusServiceFields {
 			fluxoTrabalhoTipoId: { label: 'fluxoTrabalhoTipoId', type: 'int', isKey: false, list:false   },
 			ordem: { label: 'ordem', type: 'int?', isKey: false, list:true   },
 
-        }
+        });
+		return defaultInfosFields;
     }
-
-
 
 }

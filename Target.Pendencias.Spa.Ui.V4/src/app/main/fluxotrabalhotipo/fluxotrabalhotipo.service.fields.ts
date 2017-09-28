@@ -18,15 +18,16 @@ export class FluxoTrabalhoTipoServiceFields {
 		return new FormGroup(formControls);
 	}
 
-	getInfosFields() {
-		return {
+
+
+	getInfosFields(moreInfosFields? : any) {
+		var defaultInfosFields = Object.assign(moreInfosFields || {}, {
 			nome: { label: 'nome', type: 'string', isKey: false, list:true   },
 			descricao: { label: 'descricao', type: 'string', isKey: false, list:false   },
 			fluxoTrabalhoTipoId: { label: 'fluxoTrabalhoTipoId', type: 'int', isKey: true, list:false   },
 
-        }
+        });
+		return defaultInfosFields;
     }
-
-
 
 }

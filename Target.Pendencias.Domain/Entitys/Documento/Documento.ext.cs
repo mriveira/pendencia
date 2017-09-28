@@ -26,9 +26,8 @@ namespace Target.Pendencias.Domain.Entitys
                                         data.Arquivo,
                                         data.ext);
 
-
-
-				return construction;
+                construction.SetUserCreate(user.GetSubjectId<int>());
+                return construction;
             }
 
         }

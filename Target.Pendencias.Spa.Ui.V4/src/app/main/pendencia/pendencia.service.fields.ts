@@ -29,8 +29,10 @@ export class PendenciaServiceFields {
 		return new FormGroup(formControls);
 	}
 
-	getInfosFields() {
-		return {
+
+
+	getInfosFields(moreInfosFields? : any) {
+		var defaultInfosFields = Object.assign(moreInfosFields || {}, {
 			projetoId: { label: 'projetoId', type: 'int', isKey: false, list:false   },
 			resumo: { label: 'resumo', type: 'string', isKey: false, list:true   },
 			descricao: { label: 'descricao', type: 'string', isKey: false, list:false   },
@@ -46,9 +48,8 @@ export class PendenciaServiceFields {
 			fluxoTrabalhoStatusId: { label: 'fluxoTrabalhoStatusId', type: 'int', isKey: false, list:false   },
 			pendenciaPrioridadeId: { label: 'pendenciaPrioridadeId', type: 'int', isKey: false, list:false   },
 
-        }
+        });
+		return defaultInfosFields;
     }
-
-
 
 }

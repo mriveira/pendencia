@@ -21,8 +21,10 @@ export class PendenciaTemposServiceFields {
 		return new FormGroup(formControls);
 	}
 
-	getInfosFields() {
-		return {
+
+
+	getInfosFields(moreInfosFields? : any) {
+		var defaultInfosFields = Object.assign(moreInfosFields || {}, {
 			nota: { label: 'nota', type: 'string', isKey: false, list:false   },
 			inicio: { label: 'inicio', type: 'DateTime', isKey: false, list:true   },
 			fim: { label: 'fim', type: 'DateTime?', isKey: false, list:true   },
@@ -30,9 +32,8 @@ export class PendenciaTemposServiceFields {
 			pendenciaId: { label: 'pendenciaId', type: 'int', isKey: false, list:false   },
 			usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list:false   },
 
-        }
+        });
+		return defaultInfosFields;
     }
-
-
 
 }

@@ -18,15 +18,16 @@ export class DocumentoServiceFields {
 		return new FormGroup(formControls);
 	}
 
-	getInfosFields() {
-		return {
+
+
+	getInfosFields(moreInfosFields? : any) {
+		var defaultInfosFields = Object.assign(moreInfosFields || {}, {
 			arquivo: { label: 'arquivo', type: 'string', isKey: false, list:true   },
 			ext: { label: 'ext', type: 'string', isKey: false, list:true   },
 			documentoId: { label: 'documentoId', type: 'int', isKey: true, list:false   },
 
-        }
+        });
+		return defaultInfosFields;
     }
-
-
 
 }

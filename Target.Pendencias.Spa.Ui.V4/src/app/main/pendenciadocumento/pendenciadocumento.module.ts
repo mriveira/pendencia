@@ -26,7 +26,6 @@ import { PendenciaDocumentoService } from './pendenciadocumento.service';
 import { PendenciaDocumentoServiceFields } from './pendenciadocumento.service.fields';
 
 import { ApiService } from 'app/common/services/api.service';
-import { GlobalService } from '../../global.service';
 import { CommonSharedModule } from 'app/common/common-shared.module';
 
 @NgModule({
@@ -51,7 +50,7 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
 		PendenciaDocumentoContainerCreateComponent,
 		PendenciaDocumentoContainerEditComponent
     ],
-    providers: [PendenciaDocumentoService,PendenciaDocumentoServiceFields, ApiService, GlobalService],
+    providers: [PendenciaDocumentoService,PendenciaDocumentoServiceFields, ApiService],
 })
 export class PendenciaDocumentoModule {
 

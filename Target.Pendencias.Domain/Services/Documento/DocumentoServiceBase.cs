@@ -145,7 +145,7 @@ namespace Target.Pendencias.Domain.Services
 
         protected virtual Documento SaveDefault(Documento documento, Documento documentoOld)
         {
-			
+			documento = this.AuditDefault(documento, documentoOld);
 
             var isNew = documentoOld.IsNull();			
             if (isNew)

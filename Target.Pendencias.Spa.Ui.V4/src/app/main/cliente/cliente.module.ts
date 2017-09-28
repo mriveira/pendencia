@@ -26,7 +26,6 @@ import { ClienteService } from './cliente.service';
 import { ClienteServiceFields } from './cliente.service.fields';
 
 import { ApiService } from 'app/common/services/api.service';
-import { GlobalService } from '../../global.service';
 import { CommonSharedModule } from 'app/common/common-shared.module';
 
 @NgModule({
@@ -51,7 +50,7 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
 		ClienteContainerCreateComponent,
 		ClienteContainerEditComponent
     ],
-    providers: [ClienteService,ClienteServiceFields, ApiService, GlobalService],
+    providers: [ClienteService,ClienteServiceFields, ApiService],
 })
 export class ClienteModule {
 

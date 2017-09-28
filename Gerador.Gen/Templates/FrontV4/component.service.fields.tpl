@@ -17,10 +17,10 @@ export class <#className#>ServiceFields {
 
 
 
-	getInfosFields() (moreInfosFields? : any) {
+	getInfosFields(moreInfosFields? : any) {
 		var defaultInfosFields = Object.assign(moreInfosFields || {}, {
 <#infos#>
-        }
+        });
 		return defaultInfosFields;
     }
 

@@ -4,6 +4,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { ViewModel } from 'app/common/model/viewmodel';
 import { PendenciaService } from '../../pendencia/pendencia.service';
+import { PendenciaDocumentoService } from '../../pendenciadocumento/pendenciadocumento.service';
 import { GlobalService, NotificationParameters } from '../../../global.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class DetalhesModalComponent implements OnInit, OnDestroy {
     title: string;
     subscriptionNotification: EventEmitter<NotificationParameters>;
 
-    constructor(private pendenciaService : PendenciaService) {
+    constructor(private pendenciaService: PendenciaService,private pendenciaDocumentoService: PendenciaDocumentoService) {
         
         this.vm = this.pendenciaService.initVM();
     }
@@ -41,6 +42,11 @@ export class DetalhesModalComponent implements OnInit, OnDestroy {
         this._id = id;
         this.pendenciaService.get({ id: this._id }).subscribe((response) => {
             this.vm.details = response.data;
+
+            this.pendenciaDocumentoService.get({ pendenciaId: this._id }).subscribe((responsependenciaDocumento) => {
+                this.vm.details.collectionPendenciaDocumento = responsependenciaDocumento.dataList;
+            })
+
         });
         this.detalhesModal.show();
     }

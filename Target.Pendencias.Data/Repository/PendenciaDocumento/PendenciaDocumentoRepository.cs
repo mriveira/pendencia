@@ -136,7 +136,7 @@ namespace Target.Pendencias.Data.Repository
 
 		protected override Expression<Func<PendenciaDocumento, object>>[] DataAgregation(Expression<Func<PendenciaDocumento, object>>[] includes, FilterBase filter)
         {
-            return base.DataAgregation(includes, filter);
+            return includes.Add(_ => _.Documento);
         }
 
     }

@@ -17,14 +17,15 @@ export class ComentarioDocumentoServiceFields {
 		return new FormGroup(formControls);
 	}
 
-	getInfosFields() {
-		return {
+
+
+	getInfosFields(moreInfosFields? : any) {
+		var defaultInfosFields = Object.assign(moreInfosFields || {}, {
 			documentoId: { label: 'documentoId', type: 'int', isKey: true, list:false   },
 			comentarioId: { label: 'comentarioId', type: 'int', isKey: true, list:false   },
 
-        }
+        });
+		return defaultInfosFields;
     }
-
-
 
 }
