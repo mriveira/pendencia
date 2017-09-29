@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
@@ -28,6 +28,10 @@ import { ProjetoServiceFields } from './projeto.service.fields';
 import { ApiService } from 'app/common/services/api.service';
 import { CommonSharedModule } from 'app/common/common-shared.module';
 
+import { DocumentAttachModalComponent } from './documento-attach-modal/documento-attach-modal.component';
+import { ProjetoDocumentoService } from '../projetodocumento/projetodocumento.service';
+import { ProjetoDocumentoServiceFields } from '../projetodocumento/projetodocumento.service.fields';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -48,9 +52,10 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
 		ProjetoFieldCreateComponent,
 		ProjetoFieldEditComponent,
 		ProjetoContainerCreateComponent,
-		ProjetoContainerEditComponent
+        ProjetoContainerEditComponent,
+        DocumentAttachModalComponent
     ],
-    providers: [ProjetoService,ProjetoServiceFields, ApiService],
+    providers: [ProjetoService, ProjetoServiceFields, ApiService, ProjetoDocumentoService, ProjetoDocumentoServiceFields],
 })
 export class ProjetoModule {
 

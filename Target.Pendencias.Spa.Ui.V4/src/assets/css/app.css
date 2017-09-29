@@ -134,3 +134,13 @@ dl {
 .simple-notification-wrapper {
   z-index: 999999 !important;
 }
+
+.upload-component-paste-area {
+  width: 100%;
+  height: 200px;
+  background: #dfdfdf;
+  border:dashed;
+  border-width :5px;
+  text-align : center;
+
+}

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -19,7 +19,7 @@ export class ProjetoService extends ServiceBase {
     constructor(private api: ApiService<any>,private serviceFields: ProjetoServiceFields, private globalServiceCulture: GlobalServiceCulture, private mainService: MainService) {
 
 		super();
-		this._form = this.serviceFields.getFormFields();
+        this._form = this.serviceFields.getFormFields();
 
     }
 
@@ -44,7 +44,7 @@ export class ProjetoService extends ServiceBase {
     }
 
 	getInfos() {
-		return this.serviceFields.getInfosFields();
+        return this.serviceFields.getInfosFields();
     }
 
 	getInfoGrid(infos : any) {

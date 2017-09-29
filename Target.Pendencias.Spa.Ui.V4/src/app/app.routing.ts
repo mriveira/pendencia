@@ -20,12 +20,13 @@ const APP_ROUTES_DEFAULT: Routes = [
             { path: 'fluxotrabalhotipo', loadChildren: './main/fluxotrabalhotipo/fluxotrabalhotipo.module#FluxoTrabalhoTipoModule' },
             { path: 'pendeciaprioridade', loadChildren: './main/pendeciaprioridade/pendeciaprioridade.module#PendeciaPrioridadeModule' },
             { path: 'pendenciaeventos', loadChildren: './main/pendenciaeventos/pendenciaeventos.module#PendenciaEventosModule' },
-            { path: 'pendenciadocumento', loadChildren: './main/pendenciadocumento/pendenciadocumento.module#PendenciaDocumentoModule' },
             { path: 'pendenciatipo', loadChildren: './main/pendenciatipo/pendenciatipo.module#PendenciaTipoModule' },
             { path: 'projeto', loadChildren: './main/projeto/projeto.module#ProjetoModule' },
             { path: 'projetofluxotrabalhostatus', loadChildren: './main/projetofluxotrabalhostatus/projetofluxotrabalhostatus.module#ProjetoFluxoTrabalhoStatusModule' },
             { path: 'pendenciatempos', loadChildren: './main/pendenciatempos/pendenciatempos.module#PendenciaTemposModule' },
             { path: 'usuariotipo', loadChildren: './main/usuariotipo/usuariotipo.module#UsuarioTipoModule' },
+            { path: 'projetodocumento', loadChildren: './main/projetodocumento/projetodocumento.module#ProjetoDocumentoModule' },
+            { path: 'pendenciadocumento', loadChildren: './main/pendenciadocumento/pendenciadocumento.module#PendenciaDocumentoModule' },
             { path: 'dashboard/timesheet', loadChildren: './main/timesheet/timesheet.module#TimesheetModule' },
             { path: 'dashboard/burndown', loadChildren: './main/burndown/burndown.module#BurndownModule' }
 
@@ -43,12 +44,13 @@ const APP_ROUTES_DEFAULT: Routes = [
     { path: 'fluxotrabalhotipo/print/:id', loadChildren: './main/fluxotrabalhotipo/fluxotrabalhotipo-print/fluxotrabalhotipo-print.module#FluxoTrabalhoTipoPrintModule' },
     { path: 'pendeciaprioridade/print/:id', loadChildren: './main/pendeciaprioridade/pendeciaprioridade-print/pendeciaprioridade-print.module#PendeciaPrioridadePrintModule' },
     { path: 'pendenciaeventos/print/:id', loadChildren: './main/pendenciaeventos/pendenciaeventos-print/pendenciaeventos-print.module#PendenciaEventosPrintModule' },
-    { path: 'pendenciadocumento/print/:id', loadChildren: './main/pendenciadocumento/pendenciadocumento-print/pendenciadocumento-print.module#PendenciaDocumentoPrintModule' },
     { path: 'pendenciatipo/print/:id', loadChildren: './main/pendenciatipo/pendenciatipo-print/pendenciatipo-print.module#PendenciaTipoPrintModule' },
     { path: 'projeto/print/:id', loadChildren: './main/projeto/projeto-print/projeto-print.module#ProjetoPrintModule' },
     { path: 'projetofluxotrabalhostatus/print/:id', loadChildren: './main/projetofluxotrabalhostatus/projetofluxotrabalhostatus-print/projetofluxotrabalhostatus-print.module#ProjetoFluxoTrabalhoStatusPrintModule' },
     { path: 'pendenciatempos/print/:id', loadChildren: './main/pendenciatempos/pendenciatempos-print/pendenciatempos-print.module#PendenciaTemposPrintModule' },
     { path: 'usuariotipo/print/:id', loadChildren: './main/usuariotipo/usuariotipo-print/usuariotipo-print.module#UsuarioTipoPrintModule' },
+    { path: 'projetodocumento/print/:id', loadChildren: './main/projetodocumento/projetodocumento-print/projetodocumento-print.module#ProjetoDocumentoPrintModule' },
+    { path: 'pendenciadocumento/print/:id', loadChildren: './main/pendenciadocumento/pendenciadocumento-print/pendenciadocumento-print.module#PendenciaDocumentoPrintModule' },
 
 ]
 

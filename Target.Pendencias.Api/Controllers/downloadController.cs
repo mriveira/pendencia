@@ -60,11 +60,11 @@ namespace Target.Pendencias.Api.Controllers
         {
             var contentType = "application/octet-stream";
 
-            if (Path.GetExtension(fileName) == "jpg")
+            if (Path.GetExtension(fileName) == ".jpg")
                 contentType = "image/jpg";
-            if (Path.GetExtension(fileName) == "gif")
+            if (Path.GetExtension(fileName) == ".gif")
                 contentType = "image/gif";
-            if (Path.GetExtension(fileName) == "png")
+            if (Path.GetExtension(fileName) == ".png")
                 contentType = "image/png";
 
             return contentType;

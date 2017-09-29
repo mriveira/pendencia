@@ -64,10 +64,6 @@ namespace Target.Pendencias.Api
 			services.AddScoped<IPendenciaEventosService, PendenciaEventosService>();
 			services.AddScoped<IPendenciaEventosRepository, PendenciaEventosRepository>();
 
-			services.AddScoped<IPendenciaDocumentoApplicationService, PendenciaDocumentoApplicationService>();
-			services.AddScoped<IPendenciaDocumentoService, PendenciaDocumentoService>();
-			services.AddScoped<IPendenciaDocumentoRepository, PendenciaDocumentoRepository>();
-
 			services.AddScoped<IPendenciaTipoApplicationService, PendenciaTipoApplicationService>();
 			services.AddScoped<IPendenciaTipoService, PendenciaTipoService>();
 			services.AddScoped<IPendenciaTipoRepository, PendenciaTipoRepository>();
@@ -87,6 +83,14 @@ namespace Target.Pendencias.Api
 			services.AddScoped<IUsuarioTipoApplicationService, UsuarioTipoApplicationService>();
 			services.AddScoped<IUsuarioTipoService, UsuarioTipoService>();
 			services.AddScoped<IUsuarioTipoRepository, UsuarioTipoRepository>();
+
+			services.AddScoped<IProjetoDocumentoApplicationService, ProjetoDocumentoApplicationService>();
+			services.AddScoped<IProjetoDocumentoService, ProjetoDocumentoService>();
+			services.AddScoped<IProjetoDocumentoRepository, ProjetoDocumentoRepository>();
+
+			services.AddScoped<IPendenciaDocumentoApplicationService, PendenciaDocumentoApplicationService>();
+			services.AddScoped<IPendenciaDocumentoService, PendenciaDocumentoService>();
+			services.AddScoped<IPendenciaDocumentoRepository, PendenciaDocumentoRepository>();
 
 
 

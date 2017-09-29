@@ -63,11 +63,6 @@ namespace Target.Pendencias.Application.Config
             CreateMap(typeof(PendenciaEventos), typeof(PendenciaEventosDtoSpecializedResult));
             CreateMap(typeof(PendenciaEventos), typeof(PendenciaEventosDtoSpecializedReport));
             CreateMap(typeof(PendenciaEventos), typeof(PendenciaEventosDtoSpecializedDetails));
-            CreateMap(typeof(PendenciaDocumento), typeof(PendenciaDocumentoDto)).ReverseMap();
-            CreateMap(typeof(PendenciaDocumento), typeof(PendenciaDocumentoDtoSpecialized));
-            CreateMap(typeof(PendenciaDocumento), typeof(PendenciaDocumentoDtoSpecializedResult));
-            CreateMap(typeof(PendenciaDocumento), typeof(PendenciaDocumentoDtoSpecializedReport));
-            CreateMap(typeof(PendenciaDocumento), typeof(PendenciaDocumentoDtoSpecializedDetails));
             CreateMap(typeof(PendenciaTipo), typeof(PendenciaTipoDto)).ReverseMap();
             CreateMap(typeof(PendenciaTipo), typeof(PendenciaTipoDtoSpecialized));
             CreateMap(typeof(PendenciaTipo), typeof(PendenciaTipoDtoSpecializedResult));
@@ -93,6 +88,16 @@ namespace Target.Pendencias.Application.Config
             CreateMap(typeof(UsuarioTipo), typeof(UsuarioTipoDtoSpecializedResult));
             CreateMap(typeof(UsuarioTipo), typeof(UsuarioTipoDtoSpecializedReport));
             CreateMap(typeof(UsuarioTipo), typeof(UsuarioTipoDtoSpecializedDetails));
+            CreateMap(typeof(ProjetoDocumento), typeof(ProjetoDocumentoDto)).ReverseMap();
+            CreateMap(typeof(ProjetoDocumento), typeof(ProjetoDocumentoDtoSpecialized));
+            CreateMap(typeof(ProjetoDocumento), typeof(ProjetoDocumentoDtoSpecializedResult));
+            CreateMap(typeof(ProjetoDocumento), typeof(ProjetoDocumentoDtoSpecializedReport));
+            CreateMap(typeof(ProjetoDocumento), typeof(ProjetoDocumentoDtoSpecializedDetails));
+            CreateMap(typeof(PendenciaDocumento), typeof(PendenciaDocumentoDto)).ReverseMap();
+            CreateMap(typeof(PendenciaDocumento), typeof(PendenciaDocumentoDtoSpecialized));
+            CreateMap(typeof(PendenciaDocumento), typeof(PendenciaDocumentoDtoSpecializedResult));
+            CreateMap(typeof(PendenciaDocumento), typeof(PendenciaDocumentoDtoSpecializedReport));
+            CreateMap(typeof(PendenciaDocumento), typeof(PendenciaDocumentoDtoSpecializedDetails));
 
         }
 

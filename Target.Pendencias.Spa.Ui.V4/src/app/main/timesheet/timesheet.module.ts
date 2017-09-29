@@ -16,7 +16,8 @@ import { ComentarioService } from '../comentario/comentario.service';
 import { ComentarioServiceFields } from '../comentario/comentario.service.fields';
 import { PendenciaDocumentoService } from '../pendenciadocumento/pendenciadocumento.service';
 import { PendenciaDocumentoServiceFields } from '../pendenciadocumento/pendenciadocumento.service.fields';
-
+import { ProjetoDocumentoService } from '../projetodocumento/projetodocumento.service';
+import { ProjetoDocumentoServiceFields } from '../projetodocumento/projetodocumento.service.fields';
 
 
 import { TimesheetModalComponent } from './timesheet-modal/timesheet-modal.component';
@@ -49,7 +50,7 @@ import { DocumentAttachModalComponent } from './documento-attach-modal/documento
         DetalhesModalComponent,
         DocumentAttachModalComponent
     ],
-    providers: [ApiService, PendenciaService, PendenciaServiceFields, PendenciaTemposService, PendenciaTemposServiceFields, ComentarioService, ComentarioServiceFields, PendenciaDocumentoService, PendenciaDocumentoServiceFields],
+    providers: [ApiService, PendenciaService, PendenciaServiceFields, PendenciaTemposService, PendenciaTemposServiceFields, ComentarioService, ComentarioServiceFields, PendenciaDocumentoService, PendenciaDocumentoServiceFields, ProjetoDocumentoService, ProjetoDocumentoServiceFields],
 })
 export class TimesheetModule {
 

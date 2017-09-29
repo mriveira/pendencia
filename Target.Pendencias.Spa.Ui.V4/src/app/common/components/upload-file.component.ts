@@ -18,8 +18,11 @@ import { ViewModel } from '../model/viewmodel';
             </span>
           </div>
           <br>
-          <img *ngIf='fileName' src='{{downloadUri}}{{folder}}/{{fileName}}' />
           <a *ngIf='fileName' href='{{downloadUri}}{{folder}}/{{fileName}}'>{{fileNameOld}}</a>
+          <br>
+          <img *ngIf='fileName' src='{{downloadUri}}{{folder}}/{{fileName}}' />
+          <div *ngIf='pasteArea' class='upload-component-paste-area' id='upload-component-paste-area'>
+          </div>
       </section>
     </div>`,
     providers: [ApiService],
@@ -36,6 +39,7 @@ export class UploadCustomComponent implements OnInit {
     @Input() folder: string;
     @Input() enabledUploadExternal: boolean;
     @Input() rename: boolean;
+    @Input() pasteArea: boolean;
 
     fileName: string;
     fileNameOld: string;
@@ -49,19 +53,45 @@ export class UploadCustomComponent implements OnInit {
         this.enabledUploadExternal = false;
         this.accept = "image/*";
         this.rename = true;
+        this.pasteArea = false;
 
     }
 
 
     ngOnInit(): void {
-        console.log("upload");
+
         GlobalService.getNotificationEmitter().subscribe((not) => {
             if (not.event == "edit") {
-                console.log("upload")
                 this.fileNameOld = this.vm.model[this.ctrlName];
                 this.fileName = this.vm.model[this.ctrlName]
             }
         })
+
+        if (this.pasteArea)
+          document.getElementById("upload-component-paste-area").addEventListener("paste", (e) => this.handlePaste(e));
+
+    }
+
+    handlePaste(e) {
+
+        for (var i = 0; i < e.clipboardData.items.length; i++) {
+            var item = e.clipboardData.items[i];
+            if (item.type.indexOf("image") != -1) {
+                this.uploadFileOnPrint(item.getAsFile());
+            } else {
+                console.log("Discardingimage paste data");
+            }
+        }
+    }
+
+    uploadFileOnPrint(file) {
+
+        this.fileNameOld = file.name;
+
+        if (this.enabledUploadExternal)
+            this.uploadCustom(file, true);
+        else
+            this.uploadDefault(file, true);
 
     }
 
@@ -78,19 +108,20 @@ export class UploadCustomComponent implements OnInit {
         this.fileNameOld = file.name;
 
         if (this.enabledUploadExternal)
-            return this.uploadCustom(file);
+            return this.uploadCustom(file, this.rename);
 
-        return this.uploadDefault(file);
+        return this.uploadDefault(file, this.rename);
     }
 
-    uploadCustom(event) {
+    uploadCustom(event, rename) {
         this.onChangeUploadExternal.emit(event)
         this.reset();
         return true;
     }
-    uploadDefault(file: File) {
 
-        this.api.setResource('upload').upload(file, this.folder, this.rename).subscribe(result => {
+    uploadDefault(file: File, rename: boolean) {
+
+        this.api.setResource('upload').upload(file, this.folder, rename).subscribe(result => {
             this.vm.model[this.ctrlName] = result.data[0];
             this.fileName = result.data[0]
         });

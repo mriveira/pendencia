@@ -26,12 +26,13 @@ namespace Target.Pendencias.Data.Context
             new FluxoTrabalhoTipoMap(modelBuilder.Entity<FluxoTrabalhoTipo>());
             new PendeciaPrioridadeMap(modelBuilder.Entity<PendeciaPrioridade>());
             new PendenciaEventosMap(modelBuilder.Entity<PendenciaEventos>());
-            new PendenciaDocumentoMap(modelBuilder.Entity<PendenciaDocumento>());
             new PendenciaTipoMap(modelBuilder.Entity<PendenciaTipo>());
             new ProjetoMap(modelBuilder.Entity<Projeto>());
             new ProjetoFluxoTrabalhoStatusMap(modelBuilder.Entity<ProjetoFluxoTrabalhoStatus>());
             new PendenciaTemposMap(modelBuilder.Entity<PendenciaTempos>());
             new UsuarioTipoMap(modelBuilder.Entity<UsuarioTipo>());
+            new ProjetoDocumentoMap(modelBuilder.Entity<ProjetoDocumento>());
+            new PendenciaDocumentoMap(modelBuilder.Entity<PendenciaDocumento>());
 
         }
 

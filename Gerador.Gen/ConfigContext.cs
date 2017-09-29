@@ -139,7 +139,6 @@ namespace Cna.Erp.Gen
                     },
                     new TableInfo { TableName = "PendeciaPrioridade", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true},
                     new TableInfo { TableName = "PendenciaEventos", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true },
-                    new TableInfo { TableName = "PendenciaDocumento", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true},
                     new TableInfo { TableName = "PendenciaTipo", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true},
                     new TableInfo { TableName = "Projeto", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true,
                     FieldsConfig = new List<FieldConfig>
@@ -157,6 +156,8 @@ namespace Cna.Erp.Gen
                     new TableInfo { TableName = "ProjetoFluxoTrabalhoStatus", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true},
                     new TableInfo { TableName = "PendenciaTempos", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true},
                     new TableInfo { TableName = "UsuarioTipo", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true},
+                    new TableInfo { TableName = "ProjetoDocumento", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true},
+                    new TableInfo { TableName = "PendenciaDocumento", MakeDomain = true, MakeApp = true, MakeDto = true, MakeCrud = true, MakeApi= true, MakeSummary = true , MakeFront= true},
                 }
             };
         }

@@ -60,12 +60,21 @@
           <dt>{{ vm.infos.pendenciaPrioridadeId.label }}:</dt>
           <dd><bind-custom [model]="vm.details.pendenciaPrioridadeId" [format]="'instance'" [tag]="'span'" [instance]="'PendeciaPrioridade'" [key]="'PendenciaPrioridadeId'"></bind-custom></dd>
 
-          <dt>Arquivos</dt>
+
+          <dt>Arquivos do Projeto</dt>
+          <dd>
+            <ul *ngFor="let pd of vm.details.collectionProjetoDocumento">
+              <li><i class="fa fa-file"></i> <a href='{{vm.downloadUri}}documento/{{pd.documento.arquivo}}'>{{pd.documento.arquivo}}</a></li>
+            </ul>
+          </dd>
+
+          <dt>Arquivos da Pendencia</dt>
           <dd>
             <ul *ngFor="let pd of vm.details.collectionPendenciaDocumento">
               <li><i class="fa fa-file"></i> <a href='{{vm.downloadUri}}documento/{{pd.documento.arquivo}}'>{{pd.documento.arquivo}}</a></li>
             </ul>
           </dd>
+
 
         </dl> 
 
