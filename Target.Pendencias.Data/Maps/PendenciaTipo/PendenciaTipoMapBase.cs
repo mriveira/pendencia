@@ -15,7 +15,7 @@ namespace Target.Pendencias.Data.Map
             type.Property(t => t.PendenciaTipoId).HasColumnName("Id");
            
 
-            type.Property(t => t.Nome).HasColumnName("Nome");
+            type.Property(t => t.Nome).HasColumnName("Nome").HasColumnType("varchar(1)");
 
 
             type.HasKey(d => new { d.PendenciaTipoId, }); 

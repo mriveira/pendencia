@@ -27,7 +27,6 @@ import { ProjetoServiceFields } from './projeto.service.fields';
 
 import { ApiService } from 'app/common/services/api.service';
 import { CommonSharedModule } from 'app/common/common-shared.module';
-
 import { DocumentAttachModalComponent } from './documento-attach-modal/documento-attach-modal.component';
 import { ProjetoDocumentoService } from '../projetodocumento/projetodocumento.service';
 import { ProjetoDocumentoServiceFields } from '../projetodocumento/projetodocumento.service.fields';

@@ -95,6 +95,7 @@ export class AuthService {
 
     public logout() {
 
+        console.log("logout", this._typeLogin);
         this._reset();
          
         if (this._typeLogin == "SSO") {
@@ -139,13 +140,14 @@ export class AuthService {
     }
 
     public getCurrentUser(callback) {
+
         var currentUser = this.currentUser();
         if (currentUser.isAuth)
-            callback(currentUser)
+            callback(currentUser, false);
         else {
             this.api.setResource('CurrentUser').get().subscribe(data => {
                 CacheService.add(this._nameCurrentUser, JSON.stringify(data.data), this._type);
-                callback(this.currentUser())
+                callback(this.currentUser(), true);
             }, err => {
                 this.loginSso();
             });
@@ -177,7 +179,7 @@ export class AuthService {
     }
 
     private _reset() {
-        CacheService.reset();
+        CacheService.reset(this._type);
     }
 
     private makeUrl(url, noCache = false) {

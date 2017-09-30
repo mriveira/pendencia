@@ -4,6 +4,7 @@ import { FormsModule, FormGroup, FormControl } from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ProjetoService } from './projeto.service';
+import { ProjetoDocumentoService } from '../projetodocumento/projetodocumento.service';
 import { ViewModel } from 'app/common/model/viewmodel';
 import { GlobalService, NotificationParameters } from '../../global.service';
 
@@ -25,7 +26,7 @@ export class ProjetoComponent implements OnInit {
 
     customButton: any[];
 
-    constructor(private projetoService: ProjetoService, private router: Router, private ref: ChangeDetectorRef) {
+    constructor(private projetoService: ProjetoService, private router: Router, private ref: ChangeDetectorRef, private projetoDocumentoService: ProjetoDocumentoService) {
 
         this.vm = null;
         this.customButton = [{ class: 'btn-secondary', title: 'adicionar documentos', icon: 'fa-file', click: (model) => this.onAttach(model) }]
@@ -85,6 +86,7 @@ export class ProjetoComponent implements OnInit {
         this.editModal.show();
         this.projetoService.get(model).subscribe((result) => {
             this.vm.model = result.dataList[0];
+
             GlobalService.getNotificationEmitter().emit(new NotificationParameters("edit", {
                 model: this.vm.model
             }));
@@ -117,6 +119,11 @@ export class ProjetoComponent implements OnInit {
         this.detailsModal.show();
         this.projetoService.get(model).subscribe((result) => {
             this.vm.details = result.dataList[0];
+
+
+            this.projetoDocumentoService.get({ projetoId: this.vm.details.projetoId }).subscribe((responseProjetoDocumento) => {
+                this.vm.details.collectionProjetoDocumento = responseProjetoDocumento.dataList;
+            })
         })
 
     }
@@ -173,8 +180,7 @@ export class ProjetoComponent implements OnInit {
     public onAttach(model) {
         GlobalService.getNotificationEmitter().emit(new NotificationParameters("projetoDocumento", {
             id: model.projetoId,
-        }));
-        console.log("onAttach", model.projetoId);
+        }, ["init"]));
     }
 
 }

@@ -30,13 +30,16 @@ export class TimesheetComponent implements OnInit, OnDestroy {
         this.vm = this.pendenciaService.initVM();
         this.projetoId = 0;
         this.randomDefault = Math.random();
-
+        CacheService.add("lasted-url", "/dashboard/timesheet", ECacheType.LOCAL);
     }
 
     san(fileName) {
         var _url = "url('" + this.vm.downloadUri + "/usuario/" + fileName + "')";
         return this.sanitizer.sanitize(SecurityContext.HTML, _url)
     }
+
+
+
     ngOnInit() {
 
         this.sub = this.route.params.subscribe(params => {
@@ -53,6 +56,11 @@ export class TimesheetComponent implements OnInit, OnDestroy {
                     }
                 }
             }
+        }
+
+        this.vm.modelFilter = {
+            AttributeBehavior: "MinhasPendencias",
+
         }
 
         let savedFilters = this._getFilters();
@@ -154,7 +162,7 @@ export class TimesheetComponent implements OnInit, OnDestroy {
     onAttach(id: number) {
         GlobalService.getNotificationEmitter().emit(new NotificationParameters("pendenciaDocumento", {
             id: id,
-        }));
+        }, ["init"]));
     }
 
     _obterPendencias(filter) {
@@ -174,7 +182,7 @@ export class TimesheetComponent implements OnInit, OnDestroy {
     }
 
     _saveFilters(modelFilter) {
-        CacheService.add("filters-dash-timesheet", JSON.stringify(modelFilter), ECacheType.COOKIE);
+        CacheService.add("filters-dash-timesheet", JSON.stringify(modelFilter), ECacheType.LOCAL);
         this.vm.modelFilter = modelFilter;
     }
 

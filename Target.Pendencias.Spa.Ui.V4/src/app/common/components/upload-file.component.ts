@@ -20,7 +20,7 @@ import { ViewModel } from '../model/viewmodel';
           <br>
           <a *ngIf='fileName' href='{{downloadUri}}{{folder}}/{{fileName}}'>{{fileNameOld}}</a>
           <br>
-          <img *ngIf='fileName' src='{{downloadUri}}{{folder}}/{{fileName}}' />
+          <img *ngIf='fileName' src='{{downloadUri}}{{folder}}/{{fileName}}' style='max-width:100%' />
           <div *ngIf='pasteArea' class='upload-component-paste-area' id='upload-component-paste-area'>
           </div>
       </section>
@@ -65,10 +65,15 @@ export class UploadCustomComponent implements OnInit {
                 this.fileNameOld = this.vm.model[this.ctrlName];
                 this.fileName = this.vm.model[this.ctrlName]
             }
+            console.log("UploadCustomComponent", not.otherEvents)
+            if (not.event == "init" || not.otherEvents.filter((event) => event == "init").length > 0) {
+                this.fileNameOld = null;
+                this.fileName = null;
+            }
         })
 
         if (this.pasteArea)
-          document.getElementById("upload-component-paste-area").addEventListener("paste", (e) => this.handlePaste(e));
+            document.getElementById("upload-component-paste-area").addEventListener("paste", (e) => this.handlePaste(e));
 
     }
 

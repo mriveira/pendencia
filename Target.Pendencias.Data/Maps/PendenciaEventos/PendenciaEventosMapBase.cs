@@ -16,7 +16,7 @@ namespace Target.Pendencias.Data.Map
            
 
             type.Property(t => t.PendenciaId).HasColumnName("PendenciaId");
-            type.Property(t => t.Descricao).HasColumnName("Descricao");
+            type.Property(t => t.Descricao).HasColumnName("Descricao").HasColumnType("varchar(1)");
             type.Property(t => t.Data).HasColumnName("Data");
             type.Property(t => t.UserCreateId).HasColumnName("UserCreateId");
             type.Property(t => t.UserCreateDate).HasColumnName("UserCreateDate");

@@ -15,10 +15,10 @@ namespace Target.Pendencias.Data.Map
             type.Property(t => t.UsuarioId).HasColumnName("Id");
            
 
-            type.Property(t => t.Nome).HasColumnName("Nome");
-            type.Property(t => t.Foto).HasColumnName("Foto");
-            type.Property(t => t.Email).HasColumnName("Email");
-            type.Property(t => t.Senha).HasColumnName("Senha");
+            type.Property(t => t.Nome).HasColumnName("Nome").HasColumnType("varchar(1)");
+            type.Property(t => t.Foto).HasColumnName("Foto").HasColumnType("varchar(1)");
+            type.Property(t => t.Email).HasColumnName("Email").HasColumnType("varchar(1)");
+            type.Property(t => t.Senha).HasColumnName("Senha").HasColumnType("varchar(1)");
             type.Property(t => t.UsuarioTipoId).HasColumnName("UsuarioTipoId");
             type.Property(t => t.Ativo).HasColumnName("Ativo");
             type.Property(t => t.UsuarioDonoId).HasColumnName("UsuarioDonoId");

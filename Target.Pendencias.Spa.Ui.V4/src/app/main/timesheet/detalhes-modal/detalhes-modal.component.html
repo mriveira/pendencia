@@ -64,14 +64,16 @@
           <dt>Arquivos do Projeto</dt>
           <dd>
             <ul *ngFor="let pd of vm.details.collectionProjetoDocumento">
-              <li><i class="fa fa-file"></i> <a href='{{vm.downloadUri}}documento/{{pd.documento.arquivo}}'>{{pd.documento.arquivo}}</a></li>
+              <li *ngIf='pd.documento.ext=="jpg" || pd.documento.ext=="png" || pd.documento.ext=="jpeg"'><a href='{{vm.downloadUri}}documento/{{pd.documento.arquivo}}' target="_blank"><img src="{{vm.downloadUri}}documento/{{pd.documento.arquivo}}" style="width:150px" /></a></li>
+              <li *ngIf='pd.documento.ext!="jpg" && pd.documento.ext!="png" && pd.documento.ext!="jpeg"'><i class="fa fa-file"></i> <a href='{{vm.downloadUri}}documento/{{pd.documento.arquivo}}' target="_blank">{{pd.documento.arquivo}}</a></li>
             </ul>
           </dd>
 
           <dt>Arquivos da Pendencia</dt>
           <dd>
             <ul *ngFor="let pd of vm.details.collectionPendenciaDocumento">
-              <li><i class="fa fa-file"></i> <a href='{{vm.downloadUri}}documento/{{pd.documento.arquivo}}'>{{pd.documento.arquivo}}</a></li>
+              <li *ngIf='pd.documento.ext=="jpg" || pd.documento.ext=="png" || pd.documento.ext=="jpeg"'><a href='{{vm.downloadUri}}documento/{{pd.documento.arquivo}}' target="_blank"><img src="{{vm.downloadUri}}documento/{{pd.documento.arquivo}}" style="width:150px" /></a></li>
+              <li *ngIf='pd.documento.ext!="jpg" && pd.documento.ext!="png" && pd.documento.ext!="jpeg"'><i class="fa fa-file"></i> <a href='{{vm.downloadUri}}documento/{{pd.documento.arquivo}}' target="_blank">{{pd.documento.arquivo}}</a></li>
             </ul>
           </dd>
 

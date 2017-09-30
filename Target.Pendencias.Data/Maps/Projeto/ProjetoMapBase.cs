@@ -15,12 +15,12 @@ namespace Target.Pendencias.Data.Map
             type.Property(t => t.ProjetoId).HasColumnName("Id");
            
 
-            type.Property(t => t.Nome).HasColumnName("Nome");
-            type.Property(t => t.Descricao).HasColumnName("Descricao");
-            type.Property(t => t.Visao).HasColumnName("Visao");
+            type.Property(t => t.Nome).HasColumnName("Nome").HasColumnType("varchar(1)");
+            type.Property(t => t.Descricao).HasColumnName("Descricao").HasColumnType("varchar(max)");
+            type.Property(t => t.Visao).HasColumnName("Visao").HasColumnType("varchar(max)");
             type.Property(t => t.ClienteId).HasColumnName("ClienteId");
             type.Property(t => t.UsuarioId).HasColumnName("UsuarioId");
-            type.Property(t => t.ChaveUnica).HasColumnName("ChaveUnica");
+            type.Property(t => t.ChaveUnica).HasColumnName("ChaveUnica").HasColumnType("varchar(1)");
             type.Property(t => t.Inicio).HasColumnName("Inicio");
             type.Property(t => t.Fim).HasColumnName("Fim");
             type.Property(t => t.UserCreateId).HasColumnName("UserCreateId");

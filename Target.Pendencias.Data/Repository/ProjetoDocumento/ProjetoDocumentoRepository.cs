@@ -33,7 +33,7 @@ namespace Target.Pendencias.Data.Repository
         public async Task<ProjetoDocumento> GetById(ProjetoDocumentoFilter model)
         {
             var _projetodocumento = await this.SingleOrDefaultAsync(this.GetAll(this.DataAgregation(model))
-               );
+                .Where(_ => _.ProjetoId == model.ProjetoId).Where(_ => _.DocumentoId == model.DocumentoId));
 
             return _projetodocumento;
         }

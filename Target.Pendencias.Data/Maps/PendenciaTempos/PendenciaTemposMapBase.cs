@@ -19,7 +19,7 @@ namespace Target.Pendencias.Data.Map
             type.Property(t => t.UsuarioId).HasColumnName("UsuarioId");
             type.Property(t => t.Inicio).HasColumnName("Inicio");
             type.Property(t => t.Fim).HasColumnName("Fim");
-            type.Property(t => t.Nota).HasColumnName("Nota");
+            type.Property(t => t.Nota).HasColumnName("Nota").HasColumnType("varchar(max)");
             type.Property(t => t.UserCreateId).HasColumnName("UserCreateId");
             type.Property(t => t.UserCreateDate).HasColumnName("UserCreateDate");
             type.Property(t => t.UserAlterId).HasColumnName("UserAlterId");

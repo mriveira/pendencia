@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Linq.Expressions;
 using System;
 using Common.Domain.Model;
+using Target.Pendencias.Enums;
 
 namespace Target.Pendencias.Data.Repository
 {
@@ -56,7 +57,13 @@ namespace Target.Pendencias.Data.Repository
             if (filters.AttributeBehavior == "MinhasPendencias")
                 filters.UsuarioId = this._user.GetTenantId<int>();
 
-            var querybase = await this.ToListAsync(this.GetBySimplefilters(filters).Select(_ => new
+            var query = this.GetBySimplefilters(filters);
+
+            if (filters.AttributeBehavior == "MinhasPendencias")
+                query = query.Where(_ => _.FluxoTrabalhoStatusId != (int)EFluxoTrabalhoStatus.Pronto);
+
+
+            var querybase = await this.ToListAsync(query.Select(_ => new
             {
                 Id = _.PendenciaId,
                 Codigo = _.Projeto.ChaveUnica + "-" + _.PendenciaId,
@@ -72,7 +79,7 @@ namespace Target.Pendencias.Data.Repository
                 CorFundo = _.FluxoTrabalhoStatus.CorFundo,
                 CorFonte = _.FluxoTrabalhoStatus.CorFonte,
                 Ordem = _.FluxoTrabalhoStatus.Ordem,
-                Cronometrando = _.CollectionPendenciaTempos.Where(__=>__.Fim == null).Any()
+                Cronometrando = _.CollectionPendenciaTempos.Where(__ => __.Fim == null).Any()
 
             }));
 

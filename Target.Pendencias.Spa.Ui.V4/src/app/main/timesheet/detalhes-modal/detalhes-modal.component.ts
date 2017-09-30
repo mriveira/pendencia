@@ -49,7 +49,7 @@ export class DetalhesModalComponent implements OnInit, OnDestroy {
                 this.vm.details.collectionPendenciaDocumento = responsePendenciaDocumento.dataList;
             })
 
-            this.projetoDocumentoService.get({ pendenciaId: this._id }).subscribe((responseProjetoDocumento) => {
+            this.projetoDocumentoService.get({ projetoId: this._id }).subscribe((responseProjetoDocumento) => {
                 this.vm.details.collectionProjetoDocumento = responseProjetoDocumento.dataList;
             })
 
