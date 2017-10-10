@@ -173,8 +173,9 @@ export class ProjetoComponent implements OnInit {
         });
     }
 
-    public onOrderBy(field) {
+    public onOrderBy(order) {
 
+        
     }
 
     public onAttach(model) {

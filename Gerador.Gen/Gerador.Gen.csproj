@@ -527,6 +527,7 @@
     <None Include="Templates\FrontV4\component.html.tpl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Templates\FrontV4\README.md" />
     <None Include="Templates\Front\app">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

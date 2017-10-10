@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, FormGroup, FormControl} from '@angular/forms';
 
@@ -164,8 +164,17 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
         });
     }
 
-    public onOrderBy(field) {
-        
+    public onOrderBy(order) {
+
+        var filter = Object.assign(this.vm.modelFilter, {
+            OrderByType: order.asc ? "OrderBy" : "OrderByDescending",
+            OrderFields: [order.field]
+        });
+
+        this.fluxoTrabalhoStatusService.get(filter).subscribe((result) => {
+            this.vm.filterResult = result.dataList;
+            this.vm.summary = result.summary;
+        });
     }
 
 }

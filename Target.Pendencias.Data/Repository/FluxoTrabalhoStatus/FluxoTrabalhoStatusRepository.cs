@@ -20,31 +20,32 @@ namespace Target.Pendencias.Data.Repository
 
         }
 
-      
+
         public IQueryable<FluxoTrabalhoStatus> GetBySimplefilters(FluxoTrabalhoStatusFilter filters)
         {
             var querybase = this.GetAll(this.DataAgregation(filters))
-								.WithBasicFilters(filters)
-								.WithCustomFilters(filters);
+                                .WithBasicFilters(filters)
+                                .WithCustomFilters(filters)
+                                .OrderByProperty(filters.OrderByType, filters.OrderFields);
             return querybase;
         }
 
         public async Task<FluxoTrabalhoStatus> GetById(FluxoTrabalhoStatusFilter model)
         {
             var _fluxotrabalhostatus = await this.SingleOrDefaultAsync(this.GetAll(this.DataAgregation(model))
-               .Where(_=>_.FluxoTrabalhoStatusId == model.FluxoTrabalhoStatusId));
+               .Where(_ => _.FluxoTrabalhoStatusId == model.FluxoTrabalhoStatusId));
 
             return _fluxotrabalhostatus;
         }
 
-		 public async Task<IEnumerable<dynamic>> GetDataItem(FluxoTrabalhoStatusFilter filters)
+        public async Task<IEnumerable<dynamic>> GetDataItem(FluxoTrabalhoStatusFilter filters)
         {
             var querybase = await this.ToListAsync(this.GetBySimplefilters(filters).Select(_ => new
             {
                 Id = _.FluxoTrabalhoStatusId,
                 Name = _.Nome,
 
-            })); 
+            }));
 
             return querybase;
         }
@@ -135,7 +136,7 @@ namespace Target.Pendencias.Data.Repository
             return source.SingleOrDefault();
         }
 
-		protected override Expression<Func<FluxoTrabalhoStatus, object>>[] DataAgregation(Expression<Func<FluxoTrabalhoStatus, object>>[] includes, FilterBase filter)
+        protected override Expression<Func<FluxoTrabalhoStatus, object>>[] DataAgregation(Expression<Func<FluxoTrabalhoStatus, object>>[] includes, FilterBase filter)
         {
             return base.DataAgregation(includes, filter);
         }

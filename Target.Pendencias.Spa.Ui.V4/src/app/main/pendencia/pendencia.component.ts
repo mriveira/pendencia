@@ -1,11 +1,11 @@
 ﻿import { Component, OnInit, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule, FormGroup, FormControl} from '@angular/forms';
+import { FormsModule, FormGroup, FormControl } from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { PendenciaService } from './pendencia.service';
 import { ViewModel } from 'app/common/model/viewmodel';
-import { GlobalService, NotificationParameters} from '../../global.service';
+import { GlobalService, NotificationParameters } from '../../global.service';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class PendenciaComponent implements OnInit {
     @ViewChild('saveModal') private saveModal: ModalDirective;
     @ViewChild('editModal') private editModal: ModalDirective;
     @ViewChild('detailsModal') private detailsModal: ModalDirective;
-	
+
     constructor(private pendenciaService: PendenciaService, private router: Router, private ref: ChangeDetectorRef) {
 
         this.vm = null;
@@ -30,23 +30,22 @@ export class PendenciaComponent implements OnInit {
 
     ngOnInit() {
 
-		this.vm = this.pendenciaService.initVM();
-		this.pendenciaService.detectChanges(this.ref);
+        this.vm = this.pendenciaService.initVM();
+        this.pendenciaService.detectChanges(this.ref);
 
         this.pendenciaService.get().subscribe((result) => {
             this.vm.filterResult = result.dataList;
             this.vm.summary = result.summary;
         });
 
-		this.updateCulture();
+        this.updateCulture();
         GlobalService.getChangeCultureEmitter().subscribe((culture) => {
             this.updateCulture(culture);
         });
 
     }
 
-	updateCulture(culture: string = null)
-    {
+    updateCulture(culture: string = null) {
         this.pendenciaService.updateCulture(culture).then(infos => {
             this.vm.infos = infos;
             this.vm.grid = this.pendenciaService.getInfoGrid(infos);
@@ -72,10 +71,10 @@ export class PendenciaComponent implements OnInit {
         })
     }
 
-	public onCreate() {
+    public onCreate() {
 
         this.vm.model = {};
-        this.saveModal.config = { keyboard : false}
+        this.saveModal.config = { keyboard: false }
         this.saveModal.show();
         GlobalService.getNotificationEmitter().emit(new NotificationParameters("create", {
             model: this.vm.model
@@ -96,7 +95,7 @@ export class PendenciaComponent implements OnInit {
 
         this.pendenciaService.get(newModel).subscribe((result) => {
             this.vm.model = result.dataList[0];
-			 GlobalService.getNotificationEmitter().emit(new NotificationParameters("edit", {
+            GlobalService.getNotificationEmitter().emit(new NotificationParameters("edit", {
                 model: this.vm.model
             }));
         })
@@ -109,7 +108,7 @@ export class PendenciaComponent implements OnInit {
 
             this.onFilter(this.vm.modelFilter);
 
-			if (!this.vm.manterTelaAberta) {
+            if (!this.vm.manterTelaAberta) {
                 this.saveModal.hide();
                 this.editModal.hide();
             }
@@ -163,7 +162,7 @@ export class PendenciaComponent implements OnInit {
 
                 this.pendenciaService.delete(model).subscribe((result) => {
                     this.vm.filterResult = this.vm.filterResult.filter(function (model) {
-                        return  model.pendenciaId != result.data.pendenciaId;
+                        return model.pendenciaId != result.data.pendenciaId;
                     });
                     this.vm.summary.total = this.vm.filterResult.length
                 });
@@ -177,18 +176,23 @@ export class PendenciaComponent implements OnInit {
         this.operationConfimationYes();
     }
 
-    public onPageChanged(e) {
+    public onPageChanged(pageConfig) {
 
-        let modelFilter = this.pendenciaService.pagingConfig(this.vm.modelFilter, e);
-
+        let modelFilter = this.pendenciaService.pagingConfig(this.vm.modelFilter, pageConfig);
         this.pendenciaService.get(modelFilter).subscribe((result) => {
             this.vm.filterResult = result.dataList;
             this.vm.summary = result.summary;
         });
     }
 
-    public onOrderBy(field) {
-        
+    public onOrderBy(order) {
+       
+        let modelFilter = this.pendenciaService.orderByConfig(this.vm.modelFilter, order);
+        this.pendenciaService.get(modelFilter).subscribe((result) => {
+            this.vm.filterResult = result.dataList;
+            this.vm.summary = result.summary;
+        });
+
     }
 
 }

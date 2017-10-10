@@ -129,6 +129,9 @@ export class <#className#>Component implements OnInit {
         this.detailsModal.hide();
     }
 
+	onClearFilter() {
+        this.vm.modelFilter = {};
+    }
 
     public onPrint(model) {
         this.router.navigate(['/<#classNameLower#>/print', model.<#KeyNameCamelCase#>]);
@@ -157,18 +160,22 @@ export class <#className#>Component implements OnInit {
         this.operationConfimationYes();
     }
 
-    public onPageChanged(e) {
+    public onPageChanged(pageConfig) {
 
-        let modelFilter = this.<#classNameInstance#>Service.pagingConfig(this.vm.modelFilter, e);
-
+        let modelFilter = this.<#classNameInstance#>Service.pagingConfig(this.vm.modelFilter, pageConfig);
         this.<#classNameInstance#>Service.get(modelFilter).subscribe((result) => {
             this.vm.filterResult = result.dataList;
             this.vm.summary = result.summary;
         });
     }
 
-    public onOrderBy(field) {
-        
+    public onOrderBy(order) {
+
+        let modelFilter = this.<#classNameInstance#>Service.orderByConfig(this.vm.modelFilter, order);
+        this.<#classNameInstance#>Service.get(modelFilter).subscribe((result) => {
+            this.vm.filterResult = result.dataList;
+            this.vm.summary = result.summary;
+        });
     }
 
 }

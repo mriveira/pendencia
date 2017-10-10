@@ -42,11 +42,12 @@
               <app-<#classNameLowerAndSeparator#>-container-filter [(vm)]="vm"></app-<#classNameLowerAndSeparator#>-container-filter>
             </div>
             <div class="card-footer d-flex justify-content-end">
-              <button class="btn btn-primary" type="submit">
+              <button class="btn btn-success" type="submit">
                 <span class="fa fa-search"></span>
                 {{vm.generalInfo.filtrar.label}}
               </button>
-			  <button class="btn btn-default" type="button" (click)="vm.mostrarFiltros =! vm.mostrarFiltros">Cancelar</button>
+			  <button class="btn btn-primary" type="button" (click)="vm.mostrarFiltros =! vm.mostrarFiltros">Fechar</button>
+			  <button class="btn btn-default" type="button" (click)="onClearFilter()">Limpar</button>
             </div>
           </div>
         </form>

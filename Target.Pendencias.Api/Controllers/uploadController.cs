@@ -80,7 +80,7 @@ namespace Target.Pendencias.Api.Controllers
             }
             catch (Exception ex)
             {
-                return result.ReturnCustomException(ex, "SmartSecretary - upload");
+                return result.ReturnCustomException(ex, "Target.Pendencias - upload");
             }
         }
     }

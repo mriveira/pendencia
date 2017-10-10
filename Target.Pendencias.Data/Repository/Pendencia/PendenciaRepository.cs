@@ -22,32 +22,33 @@ namespace Target.Pendencias.Data.Repository
             this._user = user;
         }
 
-      
+
         public IQueryable<Pendencia> GetBySimplefilters(PendenciaFilter filters)
         {
             var querybase = this.GetAll(this.DataAgregation(filters))
                                 .WithBasicFilters(filters)
                                 .WithCustomFilters(filters)
-                                .WithLimitTenant(this._user);
+                                .WithLimitTenant(this._user)
+                                .OrderByProperty(filters.OrderByType, filters.OrderFields);
             return querybase;
         }
 
         public async Task<Pendencia> GetById(PendenciaFilter model)
         {
             var _pendencia = await this.SingleOrDefaultAsync(this.GetAll(this.DataAgregation(model))
-               .Where(_=>_.PendenciaId == model.PendenciaId));
+               .Where(_ => _.PendenciaId == model.PendenciaId));
 
             return _pendencia;
         }
 
-		 public async Task<IEnumerable<dynamic>> GetDataItem(PendenciaFilter filters)
+        public async Task<IEnumerable<dynamic>> GetDataItem(PendenciaFilter filters)
         {
             var querybase = await this.ToListAsync(this.GetBySimplefilters(filters).Select(_ => new
             {
                 Id = _.PendenciaId,
                 Name = _.Resumo
 
-            })); 
+            }));
 
             return querybase;
         }
@@ -161,7 +162,7 @@ namespace Target.Pendencias.Data.Repository
             return source.SingleOrDefault();
         }
 
-		protected override Expression<Func<Pendencia, object>>[] DataAgregation(Expression<Func<Pendencia, object>>[] includes, FilterBase filter)
+        protected override Expression<Func<Pendencia, object>>[] DataAgregation(Expression<Func<Pendencia, object>>[] includes, FilterBase filter)
         {
 
             if (filter.QueryOptimizerBehavior == "Play" || filter.QueryOptimizerBehavior == "Stop" || filter.QueryOptimizerBehavior == "ConcluirPendencia")
