@@ -1,8 +1,9 @@
-﻿import { Component, OnInit, SecurityContext, OnDestroy } from '@angular/core';
+﻿import { Component, ViewChild, OnInit, SecurityContext, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ViewModel } from 'app/common/model/viewmodel';
 import { PendenciaService } from '../pendencia/pendencia.service';
 import { PendenciaTemposService } from '../pendenciatempos/pendenciatempos.service';
@@ -24,6 +25,7 @@ export class TimesheetComponent implements OnInit, OnDestroy {
     deveMostrarLogs: boolean;
     sub: any;
 
+    @ViewChild('filterModal') private filterModal: ModalDirective;
 
     constructor(private pendenciaService: PendenciaService, private pendenciaTemposService: PendenciaTemposService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {
 
@@ -80,6 +82,14 @@ export class TimesheetComponent implements OnInit, OnDestroy {
         })
     }
 
+    onShowFilter() {
+        this.filterModal.show();
+    }
+
+    onCancel() {
+        this.filterModal.hide();
+    }
+
     onMinhasPendencias() {
         this.onFilter({
             AttributeBehavior: "MinhasPendencias"
@@ -94,6 +104,11 @@ export class TimesheetComponent implements OnInit, OnDestroy {
 
         this._obterPendencias(modelFilter);
         this._saveFilters(modelFilter)
+        this.filterModal.hide();
+    }
+
+    onClearFilter() {
+        this.vm.modelFilter = {};
     }
 
     onReclassificarWithNotes(id: number) {

@@ -91,9 +91,12 @@ export class MainComponent implements OnInit {
     }
 
     onFilter(filter) {
+
         GlobalService.getNotificationEmitter().emit(new NotificationParameters("filter", {
             filter: filter
         }));
+
+        this.router.navigate(["/dashboard/timesheet"]);
     }
 
 }

@@ -29,7 +29,8 @@ namespace Target.Pendencias.Data.Repository
                                 .WithBasicFilters(filters)
                                 .WithCustomFilters(filters)
                                 .WithLimitTenant(this._user)
-                                .OrderByProperty(filters.OrderByType, filters.OrderFields);
+                                .OrderByDomain(filters)
+                                .OrderByProperty(filters);
             return querybase;
         }
 

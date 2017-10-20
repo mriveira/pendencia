@@ -2,6 +2,7 @@
 using Common.API.Extensions;
 using Common.Domain.Base;
 using Common.Domain.Model;
+using IdentityServer4;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.Validation;
@@ -89,11 +90,18 @@ namespace Sso.Server.Api
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            loggerFactory.AddFile("Logs/sm-sso-server-api-{Date}.log");
+            loggerFactory.AddFile("Logs/target-sso-server-api-{Date}.log");
 
             app.UseCors("AllowAnyOrigin");
 
             app.UseIdentityServer();
+            app.UseGoogleAuthentication(new GoogleOptions
+            {
+                AuthenticationScheme = "Google",
+                SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme,
+                ClientId = "857854978384-01bbb7uem1vhpq3m05h28bvva0cl8237.apps.googleusercontent.com",
+                ClientSecret = "rMrnh6m12iOuxXtb85tiCyAC"
+            });
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
         }

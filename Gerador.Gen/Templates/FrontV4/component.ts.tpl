@@ -19,6 +19,7 @@ export class <#className#>Component implements OnInit {
 
     operationConfimationYes: any;
 
+	@ViewChild('filterModal') private filterModal: ModalDirective;
     @ViewChild('saveModal') private saveModal: ModalDirective;
     @ViewChild('editModal') private editModal: ModalDirective;
     @ViewChild('detailsModal') private detailsModal: ModalDirective;
@@ -59,6 +60,7 @@ export class <#className#>Component implements OnInit {
         this.<#classNameInstance#>Service.get(modelFilter).subscribe((result) => {
             this.vm.filterResult = result.dataList;
             this.vm.summary = result.summary;
+			this.filterModal.hide();
         })
     }
 
@@ -127,6 +129,11 @@ export class <#className#>Component implements OnInit {
         this.saveModal.hide();
         this.editModal.hide();
         this.detailsModal.hide();
+		this.filterModal.hide();
+    }
+
+	public onClearFilter() {
+        this.vm.modelFilter = {};
     }
 
 	onClearFilter() {

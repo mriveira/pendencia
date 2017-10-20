@@ -13,6 +13,9 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Common.API.Extensions;
 using System.Collections.Generic;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.Extensions.PlatformAbstractions;
+using System.IO;
 
 namespace Target.Pendencias.Api
 {
@@ -61,6 +64,55 @@ namespace Target.Pendencias.Api
                 options.SerializerSettings.Converters.Add(new DateTimePtBrConverter());
             });
 
+            // Configurando o serviço de documentação do Swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1",
+                    new Info
+                    {
+                        Title = "Target Pendencias",
+                        Version = "v1",
+                        Description = "API Target Pendencias",
+                        Contact = new Contact
+                        {
+                            Name = "Wilson Santos",
+                            Url = "http://targetsoftware.com.br"
+                        },
+
+                    });
+
+                var caminhoAplicacao = PlatformServices.Default.Application.ApplicationBasePath;
+                var nomeAplicacao = PlatformServices.Default.Application.ApplicationName;
+                var caminhoXmlDoc = Path.Combine(caminhoAplicacao, $"{nomeAplicacao}.xml");
+
+                c.IncludeXmlComments(caminhoXmlDoc);
+
+
+                //c.AddSecurityDefinition("oauth2", new OAuth2Scheme
+                //{
+                //    Type = "oauth2",
+                //    Flow = "implicit",
+                //    AuthorizationUrl = "http://localhost:4000/connect/authorize",
+                //    Scopes = new Dictionary<string, string>
+                //    {
+                //        { "ssosa", "ssosa" },
+                //    }
+                //});
+                //c.OperationFilter<SecurityRequirementsOperationFilter>();
+
+
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme()
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\"",
+                    Name = "Authorization",
+                    In = "header",
+                    Type = "apiKey"
+                });
+
+            });
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,6 +123,10 @@ namespace Target.Pendencias.Api
             loggerFactory.AddDebug();
 
             app.UseDeveloperExceptionPage();
+
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+            loggerFactory.AddFile("Logs/target-server-api-{Date}.log");
 
 
             app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
@@ -96,6 +152,16 @@ namespace Target.Pendencias.Api
 
             app.AddTokenMiddleware();
             app.UseMvc();
+
+            //Ativando middlewares para uso do Swagger
+
+           app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Target Pendencias");
+                //c.ConfigureOAuth2("swagger-ui", "swagger-ui-secret", "swagger-ui-realm", "Swagger UI");
+            });
+
             app.UseCors("AllowAnyOrigin");
             AutoMapperConfigTarget.RegisterMappings();
         }

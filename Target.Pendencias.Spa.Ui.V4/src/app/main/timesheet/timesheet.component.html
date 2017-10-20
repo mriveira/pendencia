@@ -9,7 +9,7 @@
           <a class="pull-right btn btn-sm btn-primary" placement="top" href="/pendencia/create" title="Nova" style="margin-left:10px;margin-right:10px">
             <i class="fa fa-tasks"></i>
           </a>
-          <button class="pull-right btn btn-sm btn-success" (click)="vm.mostrarFiltros =! vm.mostrarFiltros" style="margin-left:10px" placement="top" title="Filtros">
+          <button class="pull-right btn btn-sm btn-success" (click)="onShowFilter()" style="margin-left:10px" placement="top" title="Filtros">
             <i class="fa fa-search"></i>
           </button>
           <button class="pull-right btn btn-sm btn-default" (click)="onMinhasPendencias()" style="margin-left:10px" placement="top" title="Minhas Pendências">
@@ -25,65 +25,71 @@
   </div>
 
   <div class="container-fluid">
-    <div class="row" *ngIf="vm.mostrarFiltros">
-      <div class="col">
-        <div class="gc-filter">
-          <form #formFilter="ngForm" (ngSubmit)="onFilter(vm.modelFilter)">
-            <div class="card gc-card card-primary">
-              <div class="card-header">{{vm.generalInfo.filtro.label}}</div>
-              <div class="card-block">
-                <div class="row">
-                  <section class="col-md-12" >
-                    <div class='form-group'>
-                      <label>{{ vm.infos.projetoId.label }}</label>
-                      <multiselect [dataitem]="'Projeto'" [ctrlName]="'collectionProjetoId'" [vm]="vm"></multiselect>
-                    </div>
-                  </section>
-                  <section class="col-md-6">
-                    <div class='form-group'>
-                      <label>{{ vm.infos.pendenciaTipoId.label }}</label>
-                      <select class='form-control' name='pendenciaTipoId' [(ngModel)]='vm.modelFilter.pendenciaTipoId' datasource [dataitem]="'PendenciaTipo'"></select>
-                    </div>
-                  </section>
-                  <section class="col-md-6">
-                    <div class='form-group'>
-                      <label>{{ vm.infos.fluxoTrabalhoStatusId.label }}</label>
-                      <select class='form-control' name='fluxoTrabalhoStatusId' [(ngModel)]='vm.modelFilter.fluxoTrabalhoStatusId' datasource [dataitem]="'FluxoTrabalhoStatus'"></select>
-                    </div>
-                  </section>
-                  <section class="col-md-6">
-                    <div class='form-group'>
-                      <label>{{ vm.infos.pendenciaPrioridadeId.label }}</label>
-                      <select class='form-control' name='pendenciaPrioridadeId' [(ngModel)]='vm.modelFilter.pendenciaPrioridadeId' datasource [dataitem]="'PendeciaPrioridade'"></select>
-                    </div>
-                  </section>
-                  <section class="col-md-6">
-                    <div class='form-group'>
-                      <label>{{ vm.infos.tags.label }}</label>
-                      <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.tags' name='tags' />
-                    </div>
-                  </section>
-                  <section class="col-md-6">
-                    <div class='form-group'>
-                      <label>{{ vm.infos.usuarioId.label }}</label>
-                      <select class='form-control' name='usuarioId' [(ngModel)]='vm.modelFilter.usuarioId' datasource [dataitem]="'Usuario'"></select>
-                    </div>
-                  </section>
-                  
-                </div>
-              </div>
-              <div class="card-footer d-flex justify-content-end">
-                <button class="btn btn-primary" type="submit">
-                  <span class="fa fa-search"></span>
-                  {{vm.generalInfo.filtrar.label}}
-                </button>
-                <button class="btn btn-default" type="button" (click)="vm.mostrarFiltros =! vm.mostrarFiltros">Cancelar</button>
+
+    <div bsModal #filterModal="bs-modal" class="gc-modal modal fade">
+      <div class="modal-dialog modal-lg">
+        <form #formFilter="ngForm" (ngSubmit)="onFilter(vm.modelFilter)">
+          <div class="modal-content">
+            <div class="modal-header">
+              {{vm.generalInfo.filtro.label}}
+              <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <section class="col-md-12">
+                  <div class='form-group'>
+                    <label>{{ vm.infos.projetoId.label }}</label>
+                    <multiselect [dataitem]="'Projeto'" [ctrlName]="'collectionProjetoId'" [vm]="vm"></multiselect>
+                  </div>
+                </section>
+                <section class="col-md-6">
+                  <div class='form-group'>
+                    <label>{{ vm.infos.pendenciaTipoId.label }}</label>
+                    <select class='form-control' name='pendenciaTipoId' [(ngModel)]='vm.modelFilter.pendenciaTipoId' datasource [dataitem]="'PendenciaTipo'"></select>
+                  </div>
+                </section>
+                <section class="col-md-6">
+                  <div class='form-group'>
+                    <label>{{ vm.infos.fluxoTrabalhoStatusId.label }}</label>
+                    <select class='form-control' name='fluxoTrabalhoStatusId' [(ngModel)]='vm.modelFilter.fluxoTrabalhoStatusId' datasource [dataitem]="'FluxoTrabalhoStatus'"></select>
+                  </div>
+                </section>
+                <section class="col-md-6">
+                  <div class='form-group'>
+                    <label>{{ vm.infos.pendenciaPrioridadeId.label }}</label>
+                    <select class='form-control' name='pendenciaPrioridadeId' [(ngModel)]='vm.modelFilter.pendenciaPrioridadeId' datasource [dataitem]="'PendeciaPrioridade'"></select>
+                  </div>
+                </section>
+                <section class="col-md-6">
+                  <div class='form-group'>
+                    <label>{{ vm.infos.tags.label }}</label>
+                    <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.tags' name='tags' />
+                  </div>
+                </section>
+                <section class="col-md-6">
+                  <div class='form-group'>
+                    <label>{{ vm.infos.usuarioId.label }}</label>
+                    <select class='form-control' name='usuarioId' [(ngModel)]='vm.modelFilter.usuarioId' datasource [dataitem]="'Usuario'"></select>
+                  </div>
+                </section>
+
               </div>
             </div>
-          </form>
-        </div>
+            <div class="modal-footer">
+              <button class="btn btn-success" type="submit">
+                <span class="fa fa-search"></span>
+                {{vm.generalInfo.filtrar.label}}
+              </button>
+              <button class="btn btn-primary" type="button" (click)="onCancel()">Fechar</button>
+              <button class="btn btn-default" type="button" (click)="onClearFilter()">Limpar</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
+
     <div class="row">
       <div class="col">
         <h2 class="title--main">

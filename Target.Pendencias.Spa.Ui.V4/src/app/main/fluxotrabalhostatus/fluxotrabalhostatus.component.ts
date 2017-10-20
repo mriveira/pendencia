@@ -19,6 +19,7 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
 
     operationConfimationYes: any;
 
+    @ViewChild('filterModal') private filterModal: ModalDirective;
     @ViewChild('saveModal') private saveModal: ModalDirective;
     @ViewChild('editModal') private editModal: ModalDirective;
     @ViewChild('detailsModal') private detailsModal: ModalDirective;
@@ -59,6 +60,7 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
         this.fluxoTrabalhoStatusService.get(modelFilter).subscribe((result) => {
             this.vm.filterResult = result.dataList;
             this.vm.summary = result.summary;
+            this.filterModal.hide();
         })
     }
 
@@ -124,8 +126,16 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
         this.saveModal.hide();
         this.editModal.hide();
         this.detailsModal.hide();
+        this.filterModal.hide();
     }
 
+    public onShowFilter() {
+        this.filterModal.show();
+    }
+
+    public onClearFilter() {
+        this.vm.modelFilter = {};
+    }
 
     public onPrint(model) {
         this.router.navigate(['/fluxotrabalhostatus/print', model.fluxoTrabalhoStatusId]);
@@ -166,12 +176,8 @@ export class FluxoTrabalhoStatusComponent implements OnInit {
 
     public onOrderBy(order) {
 
-        var filter = Object.assign(this.vm.modelFilter, {
-            OrderByType: order.asc ? "OrderBy" : "OrderByDescending",
-            OrderFields: [order.field]
-        });
-
-        this.fluxoTrabalhoStatusService.get(filter).subscribe((result) => {
+        let modelFilter = this.fluxoTrabalhoStatusService.orderByConfig(this.vm.modelFilter, order);
+        this.fluxoTrabalhoStatusService.get(modelFilter).subscribe((result) => {
             this.vm.filterResult = result.dataList;
             this.vm.summary = result.summary;
         });

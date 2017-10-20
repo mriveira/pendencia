@@ -26,7 +26,10 @@ namespace Target.Pendencias.Data.Repository
         {
             var querybase = this.GetAll(this.DataAgregation(filters))
 								.WithBasicFilters(filters)
-								.WithCustomFilters(filters);
+                                .WithCustomFilters(filters)
+                                .OrderByDomain(filters)
+                                .OrderByProperty(filters);
+
             return querybase;
         }
 

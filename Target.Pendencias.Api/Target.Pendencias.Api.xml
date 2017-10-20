@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Target.Pendencias.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Target.Pendencias.Api.Controllers.AcompanhadoresController.Get(Target.Pendencias.Domain.Filter.AcompanhadoresFilter)">
+            <summary>
+            Pessoas que serão notificadas em processos de alteração de pendência
+            </summary>
+            <param name="filters"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -21,6 +21,7 @@ namespace Target.Pendencias.Api.Controllers
 		private readonly ILogger _logger;
 		private readonly IHostingEnvironment _env;
       
+      
         public AcompanhadoresController(IAcompanhadoresApplicationService app, ILoggerFactory logger, IHostingEnvironment env)
         {
             this._app = app;
@@ -28,6 +29,11 @@ namespace Target.Pendencias.Api.Controllers
 			this._env = env;
         }
 
+        /// <summary>
+        /// Pessoas que serão notificadas em processos de alteração de pendência
+        /// </summary>
+        /// <param name="filters"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery]AcompanhadoresFilter filters)
         {

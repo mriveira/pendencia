@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, FormGroup, FormControl} from '@angular/forms';
 
@@ -19,6 +19,7 @@ export class ProjetoFluxoTrabalhoStatusComponent implements OnInit {
 
     operationConfimationYes: any;
 
+    @ViewChild('filterModal') private filterModal: ModalDirective;
     @ViewChild('saveModal') private saveModal: ModalDirective;
     @ViewChild('editModal') private editModal: ModalDirective;
     @ViewChild('detailsModal') private detailsModal: ModalDirective;
@@ -59,6 +60,7 @@ export class ProjetoFluxoTrabalhoStatusComponent implements OnInit {
         this.projetoFluxoTrabalhoStatusService.get(modelFilter).subscribe((result) => {
             this.vm.filterResult = result.dataList;
             this.vm.summary = result.summary;
+            this.filterModal.hide();
         })
     }
 
@@ -124,8 +126,16 @@ export class ProjetoFluxoTrabalhoStatusComponent implements OnInit {
         this.saveModal.hide();
         this.editModal.hide();
         this.detailsModal.hide();
+        this.filterModal.hide();
     }
 
+    public onShowFilter() {
+        this.filterModal.show();
+    }
+
+    public onClearFilter() {
+        this.vm.modelFilter = {};
+    }
 
     public onPrint(model) {
         this.router.navigate(['/projetofluxotrabalhostatus/print', model.projetoId]);
@@ -164,8 +174,13 @@ export class ProjetoFluxoTrabalhoStatusComponent implements OnInit {
         });
     }
 
-    public onOrderBy(field) {
-        
+    public onOrderBy(order) {
+
+        let modelFilter = this.projetoFluxoTrabalhoStatusService.orderByConfig(this.vm.modelFilter, order);
+        this.projetoFluxoTrabalhoStatusService.get(modelFilter).subscribe((result) => {
+            this.vm.filterResult = result.dataList;
+            this.vm.summary = result.summary;
+        });
     }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule, FormGroup, FormControl} from '@angular/forms';
 
@@ -19,6 +19,7 @@ export class PendenciaTemposComponent implements OnInit {
 
     operationConfimationYes: any;
 
+    @ViewChild('filterModal') private filterModal: ModalDirective;
     @ViewChild('saveModal') private saveModal: ModalDirective;
     @ViewChild('editModal') private editModal: ModalDirective;
     @ViewChild('detailsModal') private detailsModal: ModalDirective;
@@ -59,6 +60,7 @@ export class PendenciaTemposComponent implements OnInit {
         this.pendenciaTemposService.get(modelFilter).subscribe((result) => {
             this.vm.filterResult = result.dataList;
             this.vm.summary = result.summary;
+            this.filterModal.hide();
         })
     }
 
@@ -76,6 +78,14 @@ export class PendenciaTemposComponent implements OnInit {
 
         this.vm.model = {};
         this.saveModal.show();
+    }
+
+    public onShowFilter() {
+        this.filterModal.show();
+    }
+
+    public onClearFilter() {
+        this.vm.modelFilter = {};
     }
 
     public onEdit(model) {
@@ -124,6 +134,7 @@ export class PendenciaTemposComponent implements OnInit {
         this.saveModal.hide();
         this.editModal.hide();
         this.detailsModal.hide();
+        this.filterModal.hide();
     }
 
 
@@ -164,8 +175,13 @@ export class PendenciaTemposComponent implements OnInit {
         });
     }
 
-    public onOrderBy(field) {
-        
+    public onOrderBy(order) {
+
+        let modelFilter = this.pendenciaTemposService.orderByConfig(this.vm.modelFilter, order);
+        this.pendenciaTemposService.get(modelFilter).subscribe((result) => {
+            this.vm.filterResult = result.dataList;
+            this.vm.summary = result.summary;
+        });
     }
 
 }

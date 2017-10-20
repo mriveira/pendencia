@@ -19,6 +19,7 @@ export class PendenciaComponent implements OnInit {
 
     operationConfimationYes: any;
 
+    @ViewChild('filterModal') private filterModal: ModalDirective;
     @ViewChild('saveModal') private saveModal: ModalDirective;
     @ViewChild('editModal') private editModal: ModalDirective;
     @ViewChild('detailsModal') private detailsModal: ModalDirective;
@@ -52,12 +53,13 @@ export class PendenciaComponent implements OnInit {
         });
     }
 
-
     public onFilter(modelFilter) {
 
         this.pendenciaService.get(modelFilter).subscribe((result) => {
             this.vm.filterResult = result.dataList;
             this.vm.summary = result.summary;
+            this.filterModal.hide();
+
         })
     }
 
@@ -135,11 +137,19 @@ export class PendenciaComponent implements OnInit {
 
     public onCancel() {
 
+        this.filterModal.hide();
         this.saveModal.hide();
         this.editModal.hide();
         this.detailsModal.hide();
     }
 
+    public onShowFilter() {
+        this.filterModal.show();
+    }
+
+    public onClearFilter() {
+        this.vm.modelFilter = {};
+    }
 
     public onPrint(model) {
         this.router.navigate(['/pendencia/print', model.pendenciaId]);

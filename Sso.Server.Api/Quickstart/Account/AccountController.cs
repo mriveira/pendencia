@@ -207,15 +207,26 @@ namespace IdentityServer4.Quickstart.UI
             var userId = userIdClaim.Value;
 
             // check if the external user is already provisioned
-            var user = _users.FindByExternalProvider(provider, userId);
-            if (user == null)
+            var _user = _users.FindByExternalProvider(provider, userId);
+            if (_user == null)
             {
                 // this sample simply auto-provisions new external user
                 // another common approach is to start a registrations workflow first
-                user = _users.AutoProvisionUser(provider, userId, claims);
+                _user = _users.AutoProvisionUser(provider, userId, claims);
             }
 
+            var user = new User() { Username = _user.Username, SubjectId = _user.SubjectId };
+            //External 
             var additionalClaims = new List<Claim>();
+            var tenant = await this._usersServices.AuthByExternalLogin(claims);
+            if (tenant.Claims.IsAny())
+            {
+                foreach (var item in tenant.Claims)
+                    additionalClaims.Add(new Claim(item.Type, item.Value));
+
+                user.Username = tenant.Username;
+                user.SubjectId = tenant.SubjectId;
+            }
 
             // if the external system sent a session id claim, copy it over
             var sid = claims.FirstOrDefault(x => x.Type == JwtClaimTypes.SessionId);
