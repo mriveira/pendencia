@@ -132,11 +132,11 @@ export class <#className#>Component implements OnInit {
 		this.filterModal.hide();
     }
 
-	public onClearFilter() {
-        this.vm.modelFilter = {};
+	public onShowFilter() {
+        this.filterModal.show();
     }
 
-	onClearFilter() {
+    public onClearFilter() {
         this.vm.modelFilter = {};
     }
 

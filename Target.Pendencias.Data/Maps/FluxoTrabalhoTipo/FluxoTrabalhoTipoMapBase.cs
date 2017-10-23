@@ -15,7 +15,7 @@ namespace Target.Pendencias.Data.Map
             type.Property(t => t.FluxoTrabalhoTipoId).HasColumnName("Id");
            
 
-            type.Property(t => t.Nome).HasColumnName("Nome").HasColumnType("varchar(1)");
+            type.Property(t => t.Nome).HasColumnName("Nome").HasColumnType("varchar(100)");
             type.Property(t => t.Descricao).HasColumnName("Descricao").HasColumnType("varchar(max)");
 
 

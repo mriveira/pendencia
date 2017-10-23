@@ -129,15 +129,19 @@ export class ComentarioDocumentoComponent implements OnInit {
         this.filterModal.hide();
     }
 
+    public onShowFilter() {
+        this.filterModal.show();
+    }
+
+    public onClearFilter() {
+        this.vm.modelFilter = {};
+    }
 
     public onPrint(model) {
         this.router.navigate(['/comentariodocumento/print', model.documentoId]);
     }
 
     public onDeleteConfimation(model) {
-
-
-
         var conf = GlobalService.operationExecutedParameters(
             "confirm-modal",
             () => {

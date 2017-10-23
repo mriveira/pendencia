@@ -2,7 +2,6 @@
 import { CookieService } from './cookie.service';
 import { LocalStorageService } from './local-storage.service';
 
-
 import { ECacheType } from 'app/common/type-cache.enum';
 
 @Injectable()

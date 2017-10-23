@@ -19,6 +19,7 @@ namespace Target.Pendencias.Domain.Entitys
         public virtual ICollection<PendenciaTempos> CollectionPendenciaTempos { get; set; }
         public virtual ICollection<Comentario> CollectionComentarios { get; private set; }
         public virtual ICollection<PendenciaEventos> CollectionPendenciaEventos { get; private set; }
+        public virtual ICollection<PendenciaDocumento> CollectionPendenciaDocumento { get; private set; }
 
         [NotMapped]
         public string Nota { get; private set; }
@@ -56,6 +57,7 @@ namespace Target.Pendencias.Domain.Entitys
                 construction.SetarDataConclusao(data.DataConclusao);
                 construction.SetarComentarios(data.CollectionComentarios, user);
                 construction.SetAttributeBehavior(data.AttributeBehavior);
+                construction.SetarDocumento(data.Documento, user);
 
                 return construction;
             }
@@ -79,6 +81,7 @@ namespace Target.Pendencias.Domain.Entitys
                 construction.SetarDataConclusao(data.DataConclusao);
                 construction.SetarComentarios(data.CollectionComentarios, user);
                 construction.SetarNota(data.Nota);
+                construction.SetarDocumento(data.Documento, user);
                 construction.SetAttributeBehavior(data.AttributeBehavior);
 
                 return construction;
@@ -108,6 +111,25 @@ namespace Target.Pendencias.Domain.Entitys
         internal void SetarNota(string nota)
         {
             this.Nota = nota;
+        }
+
+        internal void SetarDocumento(dynamic documento, CurrentUser user)
+        {
+
+            if (documento == null)
+                return;
+
+            if (this.CollectionPendenciaDocumento.IsNull())
+                this.CollectionPendenciaDocumento = new List<PendenciaDocumento>();
+
+            var _documento = new Documento(0, documento.Arquivo, documento.ext);
+            _documento.SetUserCreate(user.GetSubjectId<int>());
+
+            this.CollectionPendenciaDocumento.Add(new PendenciaDocumento
+            {
+                Documento = _documento
+            });
+
         }
 
         internal void SetarComentarios(IEnumerable<dynamic> comentarios, CurrentUser user)

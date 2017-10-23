@@ -10,7 +10,7 @@ namespace Target.Pendencias.Dto
 
         public IEnumerable<ComentarioDto> CollectionComentarios { get; set;}
         public string Nota { get; set; }
-
+        public DocumentoDto Documento { get; set; }
 
     }
 }

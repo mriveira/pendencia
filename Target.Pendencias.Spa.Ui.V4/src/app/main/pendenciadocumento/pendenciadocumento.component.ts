@@ -129,6 +129,13 @@ export class PendenciaDocumentoComponent implements OnInit {
         this.filterModal.hide();
     }
 
+    public onShowFilter() {
+        this.filterModal.show();
+    }
+
+    public onClearFilter() {
+        this.vm.modelFilter = {};
+    }
 
     public onPrint(model) {
         this.router.navigate(['/pendenciadocumento/print', model.pendenciaId]);

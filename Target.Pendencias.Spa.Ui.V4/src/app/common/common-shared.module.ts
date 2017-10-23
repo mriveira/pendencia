@@ -19,6 +19,7 @@ import { MaskFormatPipe } from './pipes/mask.pipe';
 import { DataSourceDirective } from './directives/select-datasource.directive';
 import { MaskInputDirective } from './directives/mask-input.directive';
 import { DateDirective } from './directives/date.directive';
+import { DateTimeDirective } from './directives/date.time.directive';
 import { EditorHtmlDiretive } from './directives/editor-html.directive';
 
 import { TextMaskModule } from 'angular2-text-mask';
@@ -39,6 +40,7 @@ import { TextMaskModule } from 'angular2-text-mask';
         DataSourceDirective,
         MaskInputDirective,
         DateDirective,
+        DateTimeDirective,
         EditorHtmlDiretive,
         MakeGridComponent,
         CepComponent,
@@ -58,6 +60,7 @@ import { TextMaskModule } from 'angular2-text-mask';
         DataSourceDirective,
         MaskInputDirective,
         DateDirective,
+        DateTimeDirective,
         EditorHtmlDiretive,
         MultiSelectComponent,
 		TextMaskModule

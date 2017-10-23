@@ -19,7 +19,7 @@ export class PendenciaService extends ServiceBase {
     constructor(private api: ApiService<any>, private serviceFields: PendenciaServiceFields, private globalServiceCulture: GlobalServiceCulture, private mainService: MainService) {
 
         super();
-        this._form = this.serviceFields.getFormFields();
+        this._form = this.serviceFields.getFormFields({ documento: new FormControl() });
 
     }
 
@@ -60,7 +60,9 @@ export class PendenciaService extends ServiceBase {
             pendenciaTipoId: { label: 'pendenciaTipoId', type: 'int', isKey: false, list: false },
             fluxoTrabalhoStatusId: { label: 'fluxoTrabalhoStatusId', type: 'int', isKey: false, list: false },
             pendenciaPrioridadeId: { label: 'pendenciaPrioridadeId', type: 'int', isKey: false, list: false },
+            documento: { label: 'documento', type: 'string', isKey: false, list: false },
         }
+
     }
 
     getInfoGrid(infos: any) {
@@ -100,11 +102,19 @@ export class PendenciaService extends ServiceBase {
 
     save(model: any): Observable<any> {
 
-        if (model.pendenciaId != undefined) {
-            return this.api.setResource('Pendencia').put(model);
+        var extIndex = model.documento.split('.').length - 1;
+        var newModel = Object.assign(model, {
+            documento: {
+                arquivo: model.documento,
+                ext: model.documento.split('.')[extIndex]
+            }
+        });
+
+        if (newModel.pendenciaId != undefined) {
+            return this.api.setResource('Pendencia').put(newModel);
         }
 
-        return this.api.setResource('Pendencia').post(model);
+        return this.api.setResource('Pendencia').post(newModel);
     }
 
     delete(model: any): Observable<any> {

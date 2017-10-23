@@ -132,15 +132,19 @@ export class ProjetoDocumentoComponent implements OnInit {
         this.filterModal.hide();
     }
 
+    public onShowFilter() {
+        this.filterModal.show();
+    }
+
+    public onClearFilter() {
+        this.vm.modelFilter = {};
+    }
 
     public onPrint(model) {
         this.router.navigate(['/projetodocumento/print', model.projetoId]);
     }
 
     public onDeleteConfimation(model) {
-
-
-
         var conf = GlobalService.operationExecutedParameters(
             "confirm-modal",
             () => {

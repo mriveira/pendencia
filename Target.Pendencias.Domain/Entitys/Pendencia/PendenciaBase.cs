@@ -64,6 +64,7 @@ namespace Target.Pendencias.Domain.Entitys
 		public virtual void SetarDataConclusao(DateTime? dataconclusao)
 		{
 			this.DataConclusao = dataconclusao;
+
 		}
 
 
