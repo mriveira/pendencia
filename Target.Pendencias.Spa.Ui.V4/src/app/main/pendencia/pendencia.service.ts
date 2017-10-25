@@ -102,13 +102,16 @@ export class PendenciaService extends ServiceBase {
 
     save(model: any): Observable<any> {
 
-        var extIndex = model.documento.split('.').length - 1;
-        var newModel = Object.assign(model, {
-            documento: {
-                arquivo: model.documento,
-                ext: model.documento.split('.')[extIndex]
-            }
-        });
+        var newModel = model;
+        if (model.documento) {
+            var extIndex = model.documento.split('.').length - 1;
+            newModel = Object.assign(model, {
+                documento: {
+                    arquivo: model.documento,
+                    ext: model.documento.split('.')[extIndex]
+                }
+            });
+        }
 
         if (newModel.pendenciaId != undefined) {
             return this.api.setResource('Pendencia').put(newModel);

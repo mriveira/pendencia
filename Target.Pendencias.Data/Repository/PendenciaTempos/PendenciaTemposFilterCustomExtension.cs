@@ -16,16 +16,15 @@ namespace Target.Pendencias.Data.Repository
 
             if (filters.AttributeBehavior == "TimeSheet")
             {
-               
-                    queryFilter = queryFilter.Where(_ => _.Inicio >= DateTime.Now.TodayZeroHours());
-                    queryFilter = queryFilter.Where(_ => _.Inicio <= DateTime.Now.TomorrowZeroHours());
+                queryFilter = queryFilter.Where(_ => _.Inicio >= DateTime.Now.TodayZeroHours());
+                queryFilter = queryFilter.Where(_ => _.Inicio <= DateTime.Now.TomorrowZeroHours());
 
             }
 
             return queryFilter;
         }
 
-		public static IQueryable<PendenciaTempos> WithLimitTenant(this IQueryable<PendenciaTempos> queryBase, CurrentUser user)
+        public static IQueryable<PendenciaTempos> WithLimitTenant(this IQueryable<PendenciaTempos> queryBase, CurrentUser user)
         {
             var queryFilter = queryBase;
             if (user.IsTenant())
@@ -34,7 +33,7 @@ namespace Target.Pendencias.Data.Repository
                 queryFilter = queryFilter.Where(_ => _.UsuarioId == tenantId);
 
             }
-			
+
             return queryFilter;
         }
 

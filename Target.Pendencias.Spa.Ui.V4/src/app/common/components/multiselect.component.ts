@@ -42,7 +42,8 @@ export class MultiSelectComponent implements OnInit {
         this._getInstance();
 
         GlobalService.getNotificationEmitter().subscribe((not) => {
-            if (not.event == "edit" || not.event == "create") {
+            console.log("MultiSelectComponent");
+            if (not.event == "edit" || not.event == "create" || not.event == "init") {
                 this.init();
                 if (not.data)
                     this._getInstance(not.data.parentId);
@@ -55,6 +56,7 @@ export class MultiSelectComponent implements OnInit {
         this._datasource = [];
         this._modelInput = this.vm.model[this.ctrlName];
         this._collectionjsonTemplate = "";
+        console.log("init");
     }
 
     onChange(e) {

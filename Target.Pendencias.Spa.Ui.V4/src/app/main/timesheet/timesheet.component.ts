@@ -40,8 +40,6 @@ export class TimesheetComponent implements OnInit, OnDestroy {
         return this.sanitizer.sanitize(SecurityContext.HTML, _url)
     }
 
-
-
     ngOnInit() {
 
         this.sub = this.route.params.subscribe(params => {
@@ -78,7 +76,6 @@ export class TimesheetComponent implements OnInit, OnDestroy {
                     resumo: not.data.filter
                 });
             }
-
         })
     }
 
@@ -91,17 +88,21 @@ export class TimesheetComponent implements OnInit, OnDestroy {
     }
 
     onMinhasPendencias() {
-        this.onFilter({
+        this.filter({
             AttributeBehavior: "MinhasPendencias"
         })
     }
 
     onTodasPendencias() {
-        this.onFilter({})
+        this.filter({})
     }
 
     onFilter(modelFilter) {
+        modelFilter.AttributeBehavior = "";
+        this.filter(modelFilter);
+    }
 
+    filter(modelFilter) {
         this._obterPendencias(modelFilter);
         this._saveFilters(modelFilter)
         this.filterModal.hide();
@@ -109,6 +110,10 @@ export class TimesheetComponent implements OnInit, OnDestroy {
 
     onClearFilter() {
         this.vm.modelFilter = {};
+        console.log("onClearFilter")
+        GlobalService.getNotificationEmitter().emit(new NotificationParameters("init", {
+            model: {}
+        }));
     }
 
     onReclassificarWithNotes(id: number) {

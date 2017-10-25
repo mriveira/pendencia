@@ -22,8 +22,7 @@ export class DataSourceDirective implements OnInit {
     private accessor: any;
 
     constructor(private _elemetRef: ElementRef, private _renderer: Renderer, private api: ApiService<any>, private ngModel: NgModel) {
-
-
+        this.options = [];
     }
 
     ngOnInit() {
@@ -45,9 +44,13 @@ export class DataSourceDirective implements OnInit {
         option.text = text;
         option.value = value;
         el.add(option);
+        this.options.push(value);
     }
 
     private datasource(el, parentFilter?: any) {
+
+        if (this.options.length > 0)
+            return; 
 
         var filters = Object.assign(this.datafilters || {}, parentFilter || {});
 

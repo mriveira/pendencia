@@ -43,7 +43,7 @@ namespace Target.Pendencias.Domain.Entitys
                 var construction = new Pendencia(data.PendenciaId,
                                         data.Resumo,
                                         data.ProjetoId,
-                                        user.GetSubjectId<int>(),
+                                        data.UsuarioId,
                                         data.PendenciaTipoId,
                                         data.FluxoTrabalhoStatusId,
                                         data.PendenciaPrioridadeId);
