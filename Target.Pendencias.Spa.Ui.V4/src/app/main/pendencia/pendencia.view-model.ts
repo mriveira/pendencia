@@ -6,6 +6,7 @@ export class Pendencia {
 	tags : string;
 	prazo : string;
 	dataConclusao : string;
+	pendenciaIdPai : number;
 	tempoEstimado : number;
 	pontosEstimados : number;
 	usuarioId : number;

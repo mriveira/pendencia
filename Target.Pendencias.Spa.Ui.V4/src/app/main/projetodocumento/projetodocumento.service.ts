@@ -46,7 +46,10 @@ export class ProjetoDocumentoService extends ServiceBase {
     }
 
 	getInfos() {
-        return this.serviceFields.getInfosFields({ documento: { label: 'documento', type: 'file', isKey: false, list: false } });
+        return this.serviceFields.getInfosFields({
+            tags: { label: 'Tags', type: 'file', isKey: false, list: false },
+            documento: { label: 'documento', type: 'file', isKey: false, list: false }
+        });
     }
 
 	getInfoGrid(infos : any) {

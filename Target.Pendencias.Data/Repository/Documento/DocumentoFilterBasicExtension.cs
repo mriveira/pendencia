@@ -26,6 +26,11 @@ namespace Target.Pendencias.Data.Repository
 				
 				queryFilter = queryFilter.Where(_=>_.ext.Contains(filters.ext));
 			}
+            if (filters.Tags.IsSent()) 
+			{ 
+				
+				queryFilter = queryFilter.Where(_=>_.Tags.Contains(filters.Tags));
+			}
             if (filters.UserCreateId.IsSent()) 
 			{ 
 				

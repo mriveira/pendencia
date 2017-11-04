@@ -27,6 +27,7 @@ export class ProjetoComponent implements OnInit {
 
     customButton: any[];
 
+
     constructor(private projetoService: ProjetoService, private router: Router, private ref: ChangeDetectorRef, private projetoDocumentoService: ProjetoDocumentoService) {
 
         this.vm = null;
@@ -122,10 +123,16 @@ export class ProjetoComponent implements OnInit {
         this.projetoService.get(model).subscribe((result) => {
             this.vm.details = result.dataList[0];
 
-
-            this.projetoDocumentoService.get({ projetoId: this.vm.details.projetoId }).subscribe((responseProjetoDocumento) => {
-                this.vm.details.collectionProjetoDocumento = responseProjetoDocumento.dataList;
-            })
+            this.projetoDocumentoService.get({ projetoId: this.vm.details.projetoId })
+                .map((response) => {
+                    return response.dataList.map((item) => {
+                        item.documento.tags = this.projetoDocumentoService.tagTransformToShow(item.documento.tags);
+                        return item;
+                    })
+                })
+                .subscribe((responseProjetoDocumento) => {
+                    this.vm.details.collectionProjetoDocumento = responseProjetoDocumento;
+                })
         })
 
     }

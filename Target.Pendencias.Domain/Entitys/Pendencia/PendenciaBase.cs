@@ -22,6 +22,7 @@ namespace Target.Pendencias.Domain.Entitys
         }
 
         public virtual int PendenciaId { get; protected set; }
+        public virtual int? PendenciaIdPai { get; protected set; }
         public virtual string Resumo { get; protected set; }
         public virtual string Descricao { get; protected set; }
         public virtual string RequisitadoPor { get; protected set; }
@@ -37,6 +38,10 @@ namespace Target.Pendencias.Domain.Entitys
         public virtual DateTime? DataConclusao { get; protected set; }
 
 
+		public virtual void SetarPendenciaIdPai(int? pendenciaidpai)
+		{
+			this.PendenciaIdPai = pendenciaidpai;
+		}
 		public virtual void SetarDescricao(string descricao)
 		{
 			this.Descricao = descricao;
@@ -64,7 +69,6 @@ namespace Target.Pendencias.Domain.Entitys
 		public virtual void SetarDataConclusao(DateTime? dataconclusao)
 		{
 			this.DataConclusao = dataconclusao;
-
 		}
 
 

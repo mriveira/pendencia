@@ -22,10 +22,12 @@ export class DataSourceDirective implements OnInit {
     private accessor: any;
 
     constructor(private _elemetRef: ElementRef, private _renderer: Renderer, private api: ApiService<any>, private ngModel: NgModel) {
+
         this.options = [];
     }
 
     ngOnInit() {
+
         this.datasource(this._elemetRef.nativeElement);
 
         GlobalService.notification.subscribe((not) => {

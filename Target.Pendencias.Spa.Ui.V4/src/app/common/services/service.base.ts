@@ -79,4 +79,27 @@ export class ServiceBase {
         }
 
     }
+
+    public tagTransformToShow(value) {
+        var tagItems = value ? value.split(',') : value;
+        var tags = [];
+        if (tagItems) {
+            for (var i = 0; i < tagItems.length; i++) {
+                tags.push({
+                    display: tagItems[i],
+                    value: tagItems[i],
+                    readonly: true
+                })
+            }
+        }
+        return tags;
+    }
+
+    public tagTransformToSave(value)
+    {
+        return value.map((item) => {
+            return item.value
+        }).toString();
+    }
+    
 }

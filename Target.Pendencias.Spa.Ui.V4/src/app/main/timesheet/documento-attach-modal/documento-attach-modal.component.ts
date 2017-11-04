@@ -1,4 +1,5 @@
-﻿import { Component, OnInit, Input, ViewChild, EventEmitter, OnDestroy } from '@angular/core';
+﻿
+import { Component, OnInit, Input, ViewChild, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { ModalDirective } from 'ngx-bootstrap/modal';
@@ -25,7 +26,9 @@ export class DocumentAttachModalComponent implements OnInit, OnDestroy {
     subscriptionNotification: EventEmitter<NotificationParameters>;
 
     constructor(private pendenciaDocumentoService: PendenciaDocumentoService) {
-        this.form = new FormGroup({ nota: new FormControl() });
+        this.form = new FormGroup({
+            tags: new FormControl()
+        });
         this.vm = null;
     }
 
@@ -47,13 +50,15 @@ export class DocumentAttachModalComponent implements OnInit, OnDestroy {
     onSave(model) {
 
         var extIndex = model.documento.split('.').length - 1;
+        var tags = this.pendenciaDocumentoService.tagTransformToSave(model.tagitems);
 
         var newModel = Object.assign(model, {
             pendenciaId: this._id,
             attributeBehavior: "PendenciaDocumento",
             documento: {
                 arquivo: model.documento,
-                ext: model.documento.split('.')[extIndex]
+                ext: model.documento.split('.')[extIndex],
+                tags: tags
             }
         })
 

@@ -5,7 +5,6 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { ViewModel } from 'app/common/model/viewmodel';
 import { ProjetoDocumentoService } from '../../projetodocumento/projetodocumento.service';
-
 import { GlobalService, NotificationParameters } from '../../../global.service';
 
 @Component({
@@ -24,7 +23,9 @@ export class DocumentAttachModalComponent implements OnInit, OnDestroy {
     subscriptionNotification: EventEmitter<NotificationParameters>;
 
     constructor(private projetoDocumentoService: ProjetoDocumentoService) {
-        this.form = new FormGroup({ nota: new FormControl() });
+        this.form = new FormGroup({
+            tags: new FormControl()
+        });
         this.vm = null;
     }
 
@@ -47,13 +48,15 @@ export class DocumentAttachModalComponent implements OnInit, OnDestroy {
     onSave(model) {
 
         var extIndex = model.documento.split('.').length - 1;
+        var tags = this.projetoDocumentoService.tagTransformToSave(model.tagitems);
 
         var newModel = Object.assign(model, {
             projetoId: this._id,
             attributeBehavior: "ProjetoDocumento",
             documento: {
                 arquivo: model.documento,
-                ext: model.documento.split('.')[extIndex]
+                ext: model.documento.split('.')[extIndex],
+                tags: tags
             }
         })
 

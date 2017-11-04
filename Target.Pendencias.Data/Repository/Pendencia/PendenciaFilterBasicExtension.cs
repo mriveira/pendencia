@@ -16,6 +16,11 @@ namespace Target.Pendencias.Data.Repository
 				
 				queryFilter = queryFilter.Where(_=>_.PendenciaId == filters.PendenciaId);
 			}
+            if (filters.PendenciaIdPai.IsSent()) 
+			{ 
+				
+				queryFilter = queryFilter.Where(_=>_.PendenciaIdPai != null && _.PendenciaIdPai.Value == filters.PendenciaIdPai);
+			}
             if (filters.Resumo.IsSent()) 
 			{ 
 				

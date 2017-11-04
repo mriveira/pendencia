@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ProjetoPrintComponent } from './projeto-print.component';
 import { ProjetoPrintRoutingModule } from './projeto-print.routing.module';
@@ -15,6 +16,7 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
 @NgModule({
     imports: [
         CommonModule,
+        FormsModule,
 		CommonSharedModule,
         ProjetoPrintRoutingModule,
     ],
@@ -24,7 +26,7 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
 		ProjetoFieldDetailsComponent
     ],
     providers: [ProjetoService, ApiService, ProjetoServiceFields],
-    exports: [ProjetoContainerDetailsComponent,ProjetoFieldDetailsComponent]
+    exports: [ProjetoContainerDetailsComponent, ProjetoFieldDetailsComponent]
 })
 export class ProjetoPrintModule {
 

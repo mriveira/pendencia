@@ -15,6 +15,7 @@ namespace Target.Pendencias.Data.Map
             type.Property(t => t.PendenciaId).HasColumnName("Id");
            
 
+            type.Property(t => t.PendenciaIdPai).HasColumnName("PendenciaIdPai");
             type.Property(t => t.Resumo).HasColumnName("Resumo").HasColumnType("varchar(250)");
             type.Property(t => t.Descricao).HasColumnName("Descricao").HasColumnType("varchar(max)");
             type.Property(t => t.RequisitadoPor).HasColumnName("RequisitadoPor").HasColumnType("varchar(250)");
@@ -26,7 +27,7 @@ namespace Target.Pendencias.Data.Map
             type.Property(t => t.PendenciaTipoId).HasColumnName("PendenciaTipoId");
             type.Property(t => t.FluxoTrabalhoStatusId).HasColumnName("FluxoTrabalhoStatusId");
             type.Property(t => t.PendenciaPrioridadeId).HasColumnName("PendenciaPrioridadeId");
-            type.Property(t => t.Tags).HasColumnName("Tags").HasColumnType("varchar(250)");
+            type.Property(t => t.Tags).HasColumnName("Tags").HasColumnType("varchar(1000)");
             type.Property(t => t.DataConclusao).HasColumnName("DataConclusao");
             type.Property(t => t.UserCreateId).HasColumnName("UserCreateId");
             type.Property(t => t.UserCreateDate).HasColumnName("UserCreateDate");

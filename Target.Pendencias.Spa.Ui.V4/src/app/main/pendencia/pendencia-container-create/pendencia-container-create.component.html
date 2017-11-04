@@ -3,9 +3,17 @@
 <app-pendencia-field-create [(vm)]="vm"></app-pendencia-field-create>
 
 <div class="row" [formGroup]="vm.form">
+
   <section class="col-md-12">
     <div class='form-group'>
       <upload-custom [(vm)]='vm' [ctrlName]='"documento"' [label]='vm.infos.documento.label' [folder]='"documento"' [accept]="'*.*'" [rename]="false" [pasteArea]="true"></upload-custom>
+    </div>
+  </section>
+
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.tags.label }}</label>
+      <input type="text" class='form-control' [(ngModel)]='vm.model.tags' name='tags' formControlName='tags' />
     </div>
   </section>
 </div>

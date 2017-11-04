@@ -1,7 +1,7 @@
-﻿import { BrowserModule } from '@angular/platform-browser';
+﻿import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule, APP_INITIALIZER  } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { ModalModule } from 'ngx-bootstrap/modal';

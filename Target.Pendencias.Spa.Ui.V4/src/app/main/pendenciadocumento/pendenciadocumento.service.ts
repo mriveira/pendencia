@@ -21,8 +21,9 @@ export class PendenciaDocumentoService extends ServiceBase {
 		super();
         this._form = this.serviceFields.getFormFields({
             documento: new FormControl(),
+            tags: new FormControl(),
         });
-
+        console.log(this._form);
     }
 
     initVM(): ViewModel<any> {
@@ -48,6 +49,7 @@ export class PendenciaDocumentoService extends ServiceBase {
 	getInfos() {
         return this.serviceFields.getInfosFields({
             documento: { label: 'Adicionar Documento', type: 'string', isKey: false, list: false },
+            tags: { label: 'Tags', type: 'string', isKey: false, list: false },
         });
     }
 

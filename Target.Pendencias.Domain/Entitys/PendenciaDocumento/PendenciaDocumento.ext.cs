@@ -25,7 +25,10 @@ namespace Target.Pendencias.Domain.Entitys
             public PendenciaDocumento GetDefaultInstance(dynamic data, CurrentUser user)
             {
                 var construction = new PendenciaDocumento(data.PendenciaId, data.DocumentoId);
-                construction.AdicionarDocumento(new Documento(data.Documento.DocumentoId, data.Documento.Arquivo, data.Documento.ext), user);
+                var documento = new Documento(data.Documento.DocumentoId, data.Documento.Arquivo, data.Documento.ext);
+                documento.SetarTags(data.Documento.Tags);
+
+                construction.AdicionarDocumento(documento, user);
                 return construction;
             }
 

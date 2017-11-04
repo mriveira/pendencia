@@ -14,7 +14,7 @@
   <section class="col-md-12">
     <div class='form-group'>
       <label>{{ vm.infos.descricao.label }}</label>
-      <textarea class='form-control'  [(ngModel)]='vm.model.descricao' name='descricao'  rows='10' formControlName='descricao' id='descricao201710201113353833' editorhtml='descricao201710201113353833' (editorKeyup)='onEditorKeyupdescricao($event)'></textarea>
+      <textarea class='form-control'  [(ngModel)]='vm.model.descricao' name='descricao'  rows='10' formControlName='descricao' id='descricao201711011304072523' editorhtml='descricao201711011304072523' (editorKeyup)='onEditorKeyupdescricao($event)'></textarea>
     </div>
   </section>
   <section class="col-md-12">
@@ -26,13 +26,19 @@
   <section class="col-md-12">
     <div class='form-group'>
       <label>{{ vm.infos.tags.label }}</label>
-      <input type='text' class='form-control' [(ngModel)]='vm.model.tags' name='tags'  formControlName='tags'  />
+      <textarea class='form-control'  [(ngModel)]='vm.model.tags' name='tags'  rows='10' formControlName='tags' ></textarea>
     </div>
   </section>
   <section class="col-md-12">
     <div class='form-group'>
       <label>{{ vm.infos.prazo.label }}</label>
       <input type='text' class='form-control' [(ngModel)]='vm.model.prazo' name='prazo'  formControlName='prazo' datetimepicker />
+    </div>
+  </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.pendenciaIdPai.label }}</label>
+      <input type='text' class='form-control' [(ngModel)]='vm.model.pendenciaIdPai' name='pendenciaIdPai'  formControlName='pendenciaIdPai' maski='9999999999' />
     </div>
   </section>
   <section class="col-md-12">
@@ -44,7 +50,7 @@
   <section class="col-md-12">
     <div class='form-group'>
       <label>{{ vm.infos.pontosEstimados.label }}</label>
-      <div class='radio'><label><input type='radio' name='pontosEstimados' value='0' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]='vm.model.pontosEstimados == 0'/> 0 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='1' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]='vm.model.pontosEstimados == 1'/> 1 Ponto</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='2' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]='vm.model.pontosEstimados == 2'/> 2 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='3' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]='vm.model.pontosEstimados == 3'/> 3 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='5' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]='vm.model.pontosEstimados == 5'/> 5 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='8' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]='vm.model.pontosEstimados == 8'/> 8 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='13' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]='vm.model.pontosEstimados == 13'/> 13 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='20' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]='vm.model.pontosEstimados == 20'/> 20 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='40' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]='vm.model.pontosEstimados == 40'/> 40 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='100' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]='vm.model.pontosEstimados == 100'/> 100 Pontos</label></div>
+      <div class='radio'><label><input type='radio' name='pontosEstimados' value='0' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]="vm.model.pontosEstimados == '0'"/> 0 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='1' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]="vm.model.pontosEstimados == '1'"/> 1 Ponto</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='2' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]="vm.model.pontosEstimados == '2'"/> 2 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='3' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]="vm.model.pontosEstimados == '3'"/> 3 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='5' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]="vm.model.pontosEstimados == '5'"/> 5 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='8' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]="vm.model.pontosEstimados == '8'"/> 8 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='13' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]="vm.model.pontosEstimados == '13'"/> 13 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='20' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]="vm.model.pontosEstimados == '20'"/> 20 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='40' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]="vm.model.pontosEstimados == '40'"/> 40 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='100' [(ngModel)]='vm.model.pontosEstimados' formControlName='pontosEstimados' [checked]="vm.model.pontosEstimados == '100'"/> 100 Pontos</label></div>
     </div>
   </section>
   <section class="col-md-12">

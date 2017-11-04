@@ -34,13 +34,13 @@
 <div class="container-fluid">
   
   <div bsModal #filterModal="bs-modal" class="gc-modal modal fade">
-	  <div class="modal-dialog modal-lg">
+		<div class="modal-dialog modal-lg">
 		<form #formFilter="ngForm" (ngSubmit)="onFilter(vm.modelFilter)">
 			<div class="modal-content">
 				<div class="modal-header">
 				{{vm.generalInfo.filtro.label}}
 				<button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
-				  <span aria-hidden="true">&times;</span>
+					<span aria-hidden="true">&times;</span>
 				</button>
 				</div>
 				<div class="modal-body">
@@ -56,8 +56,8 @@
 				</div>
 			</div>
 		</form>
-	  </div>
-	</div>
+		</div>
+  </div>
 
   <div class="row">
     <div class="col">

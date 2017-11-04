@@ -1,8 +1,8 @@
 ﻿import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, SecurityContext  } from '@angular/core';
-import { DatePipe, DecimalPipe, PercentPipe, CurrencyPipe } from '@angular/common';
+import { DatePipe, DecimalPipe, PercentPipe, CurrencyPipe } from "@angular/common";
 import { DomSanitizer } from '@angular/platform-browser';
-import { ApiService } from 'app/common/services/api.service';
-import { MaskFormatPipe } from '../pipes/mask.pipe';
+import { ApiService } from "app/common/services/api.service";
+import { MaskFormatPipe } from "../pipes/mask.pipe";
 
 @Component({
     selector: 'bind-custom',
@@ -61,11 +61,11 @@ export class BindCustomComponent implements OnInit, OnChanges {
         else if (this.format.toLocaleLowerCase() === 'datetime' || this.format.toLocaleLowerCase() === 'datetime?') {
             this.value = this.datePipe.transform(this.convertDate(this.model), 'dd/MM/yyyy HH:mm');
         }
+        else if ((this.format.toLocaleLowerCase() === 'integer' || this.format.toLocaleLowerCase() === 'int' || this.format.toLocaleLowerCase() === 'int?') && !isNaN(this.model)) {
+            this.value =  this.model;
+        }
         else if (this.format.toLocaleLowerCase() === 'decimal' && !isNaN(this.model)) {
             this.value = this.decimalPipe.transform(this.model, '1.2-2');
-        }
-        else if ((this.format.toLocaleLowerCase() === 'integer' || this.format.toLocaleLowerCase() === 'int' || this.format.toLocaleLowerCase() === 'int?') && !isNaN(this.model)) {
-            this.value = this.decimalPipe.transform(this.model, '1.0-0');
         }
         else if (this.format.toLocaleLowerCase() === 'percent' && !isNaN(this.model)) {
             this.value = this.percentPipe.transform(this.model, '1.2-2');
@@ -101,6 +101,7 @@ export class BindCustomComponent implements OnInit, OnChanges {
     ngOnInit(): void { }
 
     private _getInDataItem(model, dataitem) {
+
 
         if (dataitem) {
             var result = dataitem.filter(function (item) {

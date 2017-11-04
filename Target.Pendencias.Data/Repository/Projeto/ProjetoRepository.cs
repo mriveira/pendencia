@@ -12,6 +12,7 @@ using System;
 using Common.Domain.Model;
 using Target.Pendencias.Enums;
 using Common.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Target.Pendencias.Data.Repository
 {
@@ -59,29 +60,41 @@ namespace Target.Pendencias.Data.Repository
 
         public async Task<IEnumerable<dynamic>> GetDataListCustom(ProjetoFilter filters)
         {
+            var queryPendenciaBase = this.ctx.Set<Pendencia>().AsQueryable();
+            if (filters.Tags.IsNotNullOrEmpty())
+                queryPendenciaBase = queryPendenciaBase.Where(_ => _.Tags.Contains(filters.Tags));
 
-            var pendencias = await this.ToListAsync(this.ctx.Set<Pendencia>()
+            var pendencias = await this.ToListAsync(queryPendenciaBase
+                .Include(_ => _.Usuario)
+                .Include(_ => _.CollectionPendenciaTempos)
                 .Select(_ => new
                 {
                     projetoId = _.ProjetoId,
                     Pontos = _.PontosEstimados,
                     Horas = _.TempoEstimado,
                     DataConclusao = _.DataConclusao,
-                    FluxoTrabalhoTipoId = _.FluxoTrabalhoStatus.FluxoTrabalhoTipoId
+                    FluxoTrabalhoTipoId = _.FluxoTrabalhoStatus.FluxoTrabalhoTipoId,
+                    UsuarioNome = _.Usuario.Nome,
+                    CollectionPendenciaTempos = _.CollectionPendenciaTempos
                 }));
 
-            var querybase = await this.ToListAsync(this.GetBySimplefilters(filters).Select(_ => new
-            {
-                Id = _.ProjetoId,
-                Nome = _.Nome,
-                Descricao = _.Descricao,
-                Visao = _.Visao,
-                Inicio = _.Inicio,
-                Fim = _.Fim,
-                Time = _.CollectionPendencia.Select(__ => __.Usuario.Nome).Distinct(),
-                HorasReais = _.CollectionPendencia.SelectMany(__ => __.CollectionPendenciaTempos)
+            var projetoQueryBase = this.GetBySimplefilters(filters);
+            if (filters.CollectionProjetoId.IsAny())
+                projetoQueryBase = projetoQueryBase.Where(_ => filters.CollectionProjetoId.Contains(_.ProjetoId));
 
-            }));
+            var querybase = await this.ToListAsync(projetoQueryBase
+                .Select(_ => new
+                {
+                    Id = _.ProjetoId,
+                    Nome = _.Nome,
+                    Descricao = _.Descricao,
+                    Visao = _.Visao,
+                    Inicio = _.Inicio,
+                    Fim = _.Fim,
+
+                }));
+
+           
 
             var temp = querybase.Select(_ => new
             {
@@ -92,13 +105,16 @@ namespace Target.Pendencias.Data.Repository
                 Visao = _.Visao,
                 Inicio = _.Inicio,
                 Fim = _.Fim,
-                Time = _.Time,
+                Time = pendencias.Where(__ => __.projetoId == _.Id).Select(__ => __.UsuarioNome).Distinct(),
                 TotalPendencias = pendencias.Where(__ => __.projetoId == _.Id).Where(__ => __.FluxoTrabalhoTipoId == (int)EFluxoTrabalhoTipo.Aberto).Count(),
                 TotalConcluidas = pendencias.Where(__ => __.projetoId == _.Id).Where(__ => __.FluxoTrabalhoTipoId == (int)EFluxoTrabalhoTipo.Concluido).Count(),
                 TotalPontos = pendencias.Where(__ => __.projetoId == _.Id).Select(__ => __.Pontos).Sum(),
                 TotalHoras = pendencias.Where(__ => __.projetoId == _.Id).Select(__ => __.Horas).Sum(),
-                TotalHorasReais = _.HorasReais.Sum(__ => __.TempoDecorrido),
+                TotalHorasReais = pendencias.Where(__ => __.projetoId == _.Id).SelectMany(__ => __.CollectionPendenciaTempos.Select(___ => ___.TempoDecorrido)).Sum(),
             });
+
+            if (filters.Tags.IsNotNullOrEmpty())
+                temp = temp.Where(_ => _.TotalPendencias > 0);
 
             return temp.Select(_ => new
             {
@@ -184,7 +200,7 @@ namespace Target.Pendencias.Data.Repository
                         eixoDePendencias.ToArray(),
                         eixoDeTempoPendenciasRestantes.ToArray()
                     }.ToArray(),
-                    Colors = new string[] { "#003300" , "#FF0000" },
+                    Colors = new string[] { "#003300", "#FF0000" },
                     Dias = eixoDeTempo,
                 };
 

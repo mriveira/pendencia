@@ -64,6 +64,14 @@ namespace Target.Pendencias.Data.Repository
             if (filters.AttributeBehavior == "MinhasPendencias")
                 query = query.Where(_ => _.FluxoTrabalhoStatusId != (int)EFluxoTrabalhoStatus.Pronto);
 
+            if (filters.SearchFilter.IsSent())
+            {
+                query = query.Where(_ => _.Resumo.Contains(filters.SearchFilter) ||
+                _.Tags.Contains(filters.SearchFilter) ||
+                _.Projeto.CollectionProjetoDocumento.Where(__ => __.Documento.Tags.Contains(filters.SearchFilter)).Any() ||
+                _.CollectionPendenciaDocumento.Where(__ => __.Documento.Tags.Contains(filters.SearchFilter)).Any());
+            }
+
 
             var querybase = await this.ToListAsync(query.Select(_ => new
             {

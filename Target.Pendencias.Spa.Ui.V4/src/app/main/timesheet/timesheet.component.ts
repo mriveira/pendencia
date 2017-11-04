@@ -73,7 +73,7 @@ export class TimesheetComponent implements OnInit, OnDestroy {
         GlobalService.getNotificationEmitter().subscribe((not) => {
             if (not.event == "filter") {
                 this._obterPendencias({
-                    resumo: not.data.filter
+                    searchFilter : not.data.filter
                 });
             }
         })

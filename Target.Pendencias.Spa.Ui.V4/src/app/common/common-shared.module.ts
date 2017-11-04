@@ -4,26 +4,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PaginationModule } from 'ngx-bootstrap/pagination'
 import { ModalModule } from 'ngx-bootstrap/modal';
-
-import { BindCustomComponent } from './components/bind-custom.component';
-import { MakeGridComponent } from './components/grid.component'
-import { MakePaginationComponent } from 'app/common/components/pagination.component';
-
-import { CepComponent } from 'app/common/components/cep.component';
-import { UploadCustomComponent } from 'app/common/components/upload-file.component';
-import { MultiSelectComponent } from 'app/common/components/multiselect.component';
-
-import { DateFormatPipe } from './pipes/date-format.pipe';
-import { MaskFormatPipe } from './pipes/mask.pipe';
+import { TagInputModule } from 'ngx-chips';
+import { TextMaskModule } from 'angular2-text-mask';
 
 import { DataSourceDirective } from './directives/select-datasource.directive';
 import { MaskInputDirective } from './directives/mask-input.directive';
 import { DateDirective } from './directives/date.directive';
 import { DateTimeDirective } from './directives/date.time.directive';
+import { BindCustomComponent } from './components/bind-custom.component';
+import { MakeGridComponent } from './components/grid.component'
+import { MakePaginationComponent } from 'app/common/components/pagination.component';
+import { CepComponent } from 'app/common/components/cep.component';
+import { UploadCustomComponent } from 'app/common/components/upload-file.component';
+import { MultiSelectComponent } from 'app/common/components/multiselect.component';
+import { DateFormatPipe } from './pipes/date-format.pipe';
+import { MaskFormatPipe } from './pipes/mask.pipe';
 import { EditorHtmlDiretive } from './directives/editor-html.directive';
-
-import { TextMaskModule } from 'angular2-text-mask';
-
 
 @NgModule({
     imports: [
@@ -32,7 +28,8 @@ import { TextMaskModule } from 'angular2-text-mask';
         PaginationModule.forRoot(),
         ModalModule.forRoot(),
         FormsModule,
-        TextMaskModule
+        TextMaskModule,
+        TagInputModule,
     ],
     declarations: [
         BindCustomComponent,
@@ -63,7 +60,8 @@ import { TextMaskModule } from 'angular2-text-mask';
         DateTimeDirective,
         EditorHtmlDiretive,
         MultiSelectComponent,
-		TextMaskModule
+        TextMaskModule,
+        TagInputModule
 	]
 })
 export class CommonSharedModule {

@@ -11,6 +11,10 @@ namespace Target.Pendencias.Dto
 
         public virtual int PendenciaId {get; set;}
 
+        
+
+        public virtual int? PendenciaIdPai {get; set;}
+
         [Required(ErrorMessage="Pendencia - Campo Resumo é Obrigatório")]
         [MaxLength(250, ErrorMessage = "Pendencia - Quantidade de caracteres maior que o permitido para o campo Resumo")]
         public virtual string Resumo {get; set;}

@@ -19,14 +19,14 @@
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-      <label>{{ vm.infos.tags.label }}</label>
-      <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.tags' name='tags' />
+      <label>{{ vm.infos.prazo.label }}</label>
+      <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.prazo' name='prazo'datepicker />
     </div>
   </section>
   <section class="col-md-6">
 	<div class='form-group'>
-      <label>{{ vm.infos.prazo.label }}</label>
-      <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.prazo' name='prazo'datepicker />
+      <label>{{ vm.infos.pendenciaIdPai.label }}</label>
+      <input type='text' class='form-control'  [(ngModel)]='vm.modelFilter.pendenciaIdPai' name='pendenciaIdPai' />
     </div>
   </section>
   <section class="col-md-6">
@@ -38,7 +38,7 @@
   <section class="col-md-6">
 	    <div class='form-group'>
       <label>{{ vm.infos.pontosEstimados.label }}</label>
-      <div class='radio'><label><input type='radio' name='pontosEstimados' value='0' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]='vm.modelFilter.pontosEstimados == 0'/> 0 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='1' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]='vm.modelFilter.pontosEstimados == 1'/> 1 Ponto</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='2' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]='vm.modelFilter.pontosEstimados == 2'/> 2 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='3' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]='vm.modelFilter.pontosEstimados == 3'/> 3 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='5' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]='vm.modelFilter.pontosEstimados == 5'/> 5 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='8' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]='vm.modelFilter.pontosEstimados == 8'/> 8 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='13' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]='vm.modelFilter.pontosEstimados == 13'/> 13 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='20' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]='vm.modelFilter.pontosEstimados == 20'/> 20 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='40' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]='vm.modelFilter.pontosEstimados == 40'/> 40 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='100' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]='vm.modelFilter.pontosEstimados == 100'/> 100 Pontos</label></div>
+      <div class='radio'><label><input type='radio' name='pontosEstimados' value='0' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]="vm.modelFilter.pontosEstimados == '0'"/> 0 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='1' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]="vm.modelFilter.pontosEstimados == '1'"/> 1 Ponto</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='2' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]="vm.modelFilter.pontosEstimados == '2'"/> 2 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='3' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]="vm.modelFilter.pontosEstimados == '3'"/> 3 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='5' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]="vm.modelFilter.pontosEstimados == '5'"/> 5 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='8' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]="vm.modelFilter.pontosEstimados == '8'"/> 8 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='13' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]="vm.modelFilter.pontosEstimados == '13'"/> 13 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='20' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]="vm.modelFilter.pontosEstimados == '20'"/> 20 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='40' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]="vm.modelFilter.pontosEstimados == '40'"/> 40 Pontos</label></div><div class='radio'><label><input type='radio' name='pontosEstimados' value='100' [(ngModel)]='vm.modelFilter.pontosEstimados' [checked]="vm.modelFilter.pontosEstimados == '100'"/> 100 Pontos</label></div>
     </div>
   </section>
   <section class="col-md-6">

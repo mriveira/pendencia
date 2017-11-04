@@ -20,8 +20,13 @@ namespace Target.Pendencias.Domain.Entitys
         public virtual int DocumentoId { get; protected set; }
         public virtual string Arquivo { get; protected set; }
         public virtual string ext { get; protected set; }
+        public virtual string Tags { get; protected set; }
 
 
+		public virtual void SetarTags(string tags)
+		{
+			this.Tags = tags;
+		}
 
 
     }

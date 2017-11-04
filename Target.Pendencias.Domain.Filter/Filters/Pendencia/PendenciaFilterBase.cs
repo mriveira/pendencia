@@ -7,6 +7,7 @@ namespace Target.Pendencias.Domain.Filter
     {
 
         public virtual int PendenciaId { get; set;} 
+        public virtual int? PendenciaIdPai { get; set;} 
         public virtual string Resumo { get; set;} 
         public virtual string Descricao { get; set;} 
         public virtual string RequisitadoPor { get; set;} 

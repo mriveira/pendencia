@@ -11,5 +11,11 @@
       <input type='text' class='form-control' [(ngModel)]='vm.model.ext' name='ext' required formControlName='ext'  />
     </div>
   </section>
+  <section class="col-md-12">
+    <div class='form-group'>
+      <label>{{ vm.infos.tags.label }}</label>
+      <textarea class='form-control'  [(ngModel)]='vm.model.tags' name='tags'  rows='10' formControlName='tags' ></textarea>
+    </div>
+  </section>
 </div>
 

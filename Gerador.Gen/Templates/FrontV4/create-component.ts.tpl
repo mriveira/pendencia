@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ViewModel } from 'app/common/model/viewmodel';
 import { <#className#>Service } from '../<#classNameLowerAndSeparator#>.service';
+import { LocationHistoryService } from 'app/common/services/location.history';
 
 @Component({
     selector: 'app-<#classNameLowerAndSeparator#>-create',
@@ -28,7 +29,7 @@ export class <#className#>CreateComponent implements OnInit {
     onSave(model) {
 
         this.<#classNameInstance#>Service.save(model).subscribe((result) => {
-            this.router.navigate(["/<#classNameLower#>"])
+            this.router.navigate([LocationHistoryService.getLastNavigation()])
         });
     }
 

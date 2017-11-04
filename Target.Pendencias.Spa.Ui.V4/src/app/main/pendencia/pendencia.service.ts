@@ -44,25 +44,12 @@ export class PendenciaService extends ServiceBase {
     }
 
     getInfos() {
-        return {
-            projetoId: { label: 'ProjetoId', type: 'int', isKey: false, list: false },
+        return this.serviceFields.getInfosFields({
+            pendenciaIdPai: { label: 'pendenciaIdPai', type: 'int?', isKey: false, list: false },
             "projeto.nome": { label: 'Projeto', type: 'string', isKey: false, list: true },
-            resumo: { label: 'Resumo', type: 'string', isKey: false, list: true },
-            descricao: { label: 'Descricao', type: 'string', isKey: false, list: false },
-            requisitadoPor: { label: 'Requisitor', type: 'string', isKey: false, list: false },
-            tags: { label: 'Tags', type: 'string', isKey: false, list: false },
-            prazo: { label: 'Prazo', type: 'DateTime?', isKey: false, list: true },
-            dataConclusao: { label: 'DataConclusao', type: 'DateTime?', isKey: false, list: false },
-            pendenciaId: { label: 'PendenciaId', type: 'int', isKey: true, list: false },
-            tempoEstimado: { label: 'Horas', type: 'int?', isKey: false, list: true },
-            pontosEstimados: { label: 'pontosEstimados', type: 'dataitem', isKey: false, list: false, aux: [{ id: 0, name: '0 Pontos' }, { id: 1, name: '1 Ponto' }, { id: 2, name: '2 Pontos' }, { id: 3, name: '3 Pontos' }, { id: 5, name: '5 Pontos' }, { id: 8, name: '8 Pontos' }, { id: 13, name: '13 Pontos' }, { id: 20, name: '20 Pontos' }, { id: 40, name: '40 Pontos' }, { id: 100, name: '100 Pontos' }] },
-            usuarioId: { label: 'usuarioId', type: 'int', isKey: false, list: false },
-            pendenciaTipoId: { label: 'pendenciaTipoId', type: 'int', isKey: false, list: false },
-            fluxoTrabalhoStatusId: { label: 'fluxoTrabalhoStatusId', type: 'int', isKey: false, list: false },
-            pendenciaPrioridadeId: { label: 'pendenciaPrioridadeId', type: 'int', isKey: false, list: false },
-            documento: { label: 'documento', type: 'string', isKey: false, list: false },
-        }
-
+            tags: { label: 'Tags', type: 'string', isKey: false, list: true },
+            documento: { label: 'Documento', type: 'string', isKey: false, list: true }
+        });
     }
 
     getInfoGrid(infos: any) {
@@ -108,7 +95,8 @@ export class PendenciaService extends ServiceBase {
             newModel = Object.assign(model, {
                 documento: {
                     arquivo: model.documento,
-                    ext: model.documento.split('.')[extIndex]
+                    ext: model.documento.split('.')[extIndex],
+                    tags: model.tags
                 }
             });
         }

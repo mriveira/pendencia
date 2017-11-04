@@ -47,6 +47,7 @@ namespace Target.Pendencias.Domain.Entitys
 
         public virtual Usuario Usuario { get; protected set; }
         public virtual ICollection<Pendencia> CollectionPendencia { get; protected set; }
+        public virtual ICollection<ProjetoDocumento> CollectionProjetoDocumento { get; protected set; }
 
 
         public override void SetarInicio(DateTime? inicio)

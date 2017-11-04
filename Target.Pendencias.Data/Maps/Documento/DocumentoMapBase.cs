@@ -17,6 +17,7 @@ namespace Target.Pendencias.Data.Map
 
             type.Property(t => t.Arquivo).HasColumnName("Arquivo").HasColumnType("varchar(200)");
             type.Property(t => t.ext).HasColumnName("ext").HasColumnType("varchar(4)");
+            type.Property(t => t.Tags).HasColumnName("Tags").HasColumnType("varchar(1000)");
             type.Property(t => t.UserCreateId).HasColumnName("UserCreateId");
             type.Property(t => t.UserCreateDate).HasColumnName("UserCreateDate");
             type.Property(t => t.UserAlterId).HasColumnName("UserAlterId");

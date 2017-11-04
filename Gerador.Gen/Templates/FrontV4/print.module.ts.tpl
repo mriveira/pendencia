@@ -1,5 +1,6 @@
 ﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { <#className#>PrintComponent } from './<#classNameLowerAndSeparator#>-print.component';
 import { <#className#>PrintRoutingModule } from './<#classNameLowerAndSeparator#>-print.routing.module';
@@ -17,6 +18,7 @@ import { CommonSharedModule } from 'app/common/common-shared.module';
         CommonModule,
 		CommonSharedModule,
         <#className#>PrintRoutingModule,
+		FormsModule
     ],
     declarations: [
         <#className#>PrintComponent,

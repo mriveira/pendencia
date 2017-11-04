@@ -19,6 +19,10 @@ namespace Target.Pendencias.Dto
         [MaxLength(4, ErrorMessage = "Documento - Quantidade de caracteres maior que o permitido para o campo ext")]
         public virtual string ext {get; set;}
 
+        
+
+        public virtual string Tags {get; set;}
+
 
 		
 	}

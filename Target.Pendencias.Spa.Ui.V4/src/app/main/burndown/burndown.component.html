@@ -1,4 +1,89 @@
-﻿<div class="col-lg-12">
+﻿<div class="gc-heading__controls">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col d-flex justify-content-end">
+        <a href="javascript:history.back()" class="btn btn-sm btn-outline-secondary mr-auto p-2">
+          <span class="fa fa-arrow-left" aria-hidden="true"></span> {{vm.generalInfo.voltar.label}}
+        </a>
+        <button type="button" class="btn btn-sm btn-primary p-2" (click)="onShowFilter()">
+          <span class="fa fa-filter" aria-hidden="true"></span> {{vm.generalInfo.filtro.label}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #filterModal="bs-modal" class="gc-modal modal fade">
+  <div class="modal-dialog modal-lg">
+    <form #formFilter="ngForm" (ngSubmit)="onFilter(vm.modelFilter)">
+      <div class="modal-content">
+        <div class="modal-header">
+          {{vm.generalInfo.filtro.label}}
+          <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <section class="col-md-12">
+              <div class='form-group'>
+                <label>{{ vm.infos.projetoId.label }}</label>
+                <multiselect [dataitem]="'Projeto'" [ctrlName]="'collectionProjetoId'" [vm]="vm"></multiselect>
+              </div>
+            </section>
+            <section class="col-md-6">
+              <div class='form-group'>
+                <label>{{ vm.infos.clienteId.label }}</label>
+                <select class='form-control' name='clienteId' [(ngModel)]='vm.modelFilter.clienteId' datasource [dataitem]="'Cliente'"></select>
+              </div>
+            </section>
+            <section class="col-md-6">
+              <div class='form-group'>
+                <label>{{ vm.infos.tags.label }}</label>
+                <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.tags' name='tags' />
+              </div>
+            </section>
+            <section class="col-md-6">
+              <div class='form-group'>
+                <label>{{ vm.infos.nome.label }}</label>
+                <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.nome' name='nome' />
+              </div>
+            </section>
+            <section class="col-md-6">
+              <div class='form-group'>
+                <label>{{ vm.infos.chaveUnica.label }}</label>
+                <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.chaveUnica' name='chaveUnica' />
+              </div>
+            </section>
+            <section class="col-md-6">
+              <div class='form-group'>
+                <label>{{ vm.infos.inicio.label }}</label>
+                <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.inicio' name='inicio' datepicker />
+              </div>
+            </section>
+            <section class="col-md-6">
+              <div class='form-group'>
+                <label>{{ vm.infos.fim.label }}</label>
+                <input type='text' class='form-control' [(ngModel)]='vm.modelFilter.fim' name='fim' datepicker />
+              </div>
+            </section>
+           
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" type="submit">
+            <span class="fa fa-search"></span>
+            {{vm.generalInfo.filtrar.label}}
+          </button>
+          <button class="btn btn-primary" type="button" (click)="onCancel()">Fechar</button>
+          <button class="btn btn-default" type="button" (click)="onClearFilter()">Limpar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="col-lg-12">
   <div class="card gc-grid">
     <div class="card-header gc-grid__header">
       <i class="fa fa-tasks"></i> Projetos

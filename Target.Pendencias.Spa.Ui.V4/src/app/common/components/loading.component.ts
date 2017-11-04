@@ -33,7 +33,7 @@ export class LoadingComponent implements OnInit {
             this.requesting = _requesting;
         })
     }
-    
+
 
     constructor() { }
 

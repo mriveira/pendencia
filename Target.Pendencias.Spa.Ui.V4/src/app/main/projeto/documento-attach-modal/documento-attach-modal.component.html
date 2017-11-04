@@ -14,6 +14,14 @@
               <upload-custom [(vm)]='vm' [ctrlName]='"documento"' [label]='vm.infos.documento.label' [folder]='"documento"' [accept]="'*.*'" [rename]="false" [pasteArea]="true"></upload-custom>
             </div>
           </section>
+
+          <section class="col-md-12">
+            <div class='form-group'>
+              <label>{{ vm.infos.tags.label }}</label>
+              <!--<input type="text" class='form-control' [(ngModel)]='vm.model.tags' name='tags' formControlName='tags' />-->
+              <tag-input [(ngModel)]='vm.model.tagitems' formControlName='tags'></tag-input>
+            </div>
+          </section>
         </div>
         <div class="modal-footer">
           <button class="btn btn-default" type="button" (click)="onCancel()">{{vm.generalInfo.cancelar.label}}</button>

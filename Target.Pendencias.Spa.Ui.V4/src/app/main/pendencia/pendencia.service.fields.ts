@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 
@@ -18,6 +18,7 @@ export class PendenciaServiceFields {
             prazo : new FormControl(),
             dataConclusao : new FormControl(),
             pendenciaId : new FormControl(),
+            pendenciaIdPai : new FormControl(),
             tempoEstimado : new FormControl(),
             pontosEstimados : new FormControl(),
             usuarioId : new FormControl(),
@@ -32,12 +33,12 @@ export class PendenciaServiceFields {
 
 
 	getInfosFields(moreInfosFields? : any) {
-		var defaultInfosFields = Object.assign(moreInfosFields || {}, {
+		var defaultInfosFields = Object.assign({
 			projetoId: { label: 'projetoId', type: 'int', isKey: false, list:false   },
 			resumo: { label: 'resumo', type: 'string', isKey: false, list:true   },
 			descricao: { label: 'descricao', type: 'string', isKey: false, list:false   },
 			requisitadoPor: { label: 'requisitadoPor', type: 'string', isKey: false, list:true   },
-			tags: { label: 'tags', type: 'string', isKey: false, list:true   },
+			tags: { label: 'tags', type: 'string', isKey: false, list:false   },
 			prazo: { label: 'prazo', type: 'DateTime?', isKey: false, list:true   },
 			dataConclusao: { label: 'dataConclusao', type: 'DateTime?', isKey: false, list:true   },
 			pendenciaId: { label: 'pendenciaId', type: 'int', isKey: true, list:false   },
@@ -48,7 +49,7 @@ export class PendenciaServiceFields {
 			fluxoTrabalhoStatusId: { label: 'fluxoTrabalhoStatusId', type: 'int', isKey: false, list:false   },
 			pendenciaPrioridadeId: { label: 'pendenciaPrioridadeId', type: 'int', isKey: false, list:false   },
 
-        });
+        }, moreInfosFields || {});
 		return defaultInfosFields;
     }
 

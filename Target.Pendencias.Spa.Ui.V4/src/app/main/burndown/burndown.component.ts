@@ -14,6 +14,8 @@ export class BurndownComponent implements OnInit, OnDestroy {
 
     vm: ViewModel<any>;
     @ViewChild('chartModal') private chartModal: ModalDirective;
+    @ViewChild('filterModal') private filterModal: ModalDirective;
+
     chart: any;
 
     constructor(private projetoService: ProjetoService) {
@@ -25,13 +27,21 @@ export class BurndownComponent implements OnInit, OnDestroy {
         this.vm.reletedViewModel = {
             projetos: []
         }
+        this.obterDados(this.vm.modelFilter);
+    }
 
-        this.projetoService.getDataListCustom({}).subscribe((response) => {
+    obterDados(filter) {
+        this.projetoService.getDataListCustom(filter).subscribe((response) => {
             this.vm.reletedViewModel.projetos = response.dataList;
         });
     }
 
-    onChart(projeto) {
+    public onFilter(modelFilter) {
+        this.obterDados(modelFilter);
+        this.filterModal.hide();
+    }
+
+    public onChart(projeto) {
         this.chartModal.show();
         this.chart = {
             buningDown: {
@@ -60,8 +70,17 @@ export class BurndownComponent implements OnInit, OnDestroy {
 
     }
 
-    onCancel() {
+    public onShowFilter() {
+        this.filterModal.show();
+    }
+
+    public onClearFilter() {
+        this.vm.modelFilter = {};
+    }
+
+    public onCancel() {
         this.chartModal.hide();
+        this.filterModal.hide();
         this.chart = null;
     }
 

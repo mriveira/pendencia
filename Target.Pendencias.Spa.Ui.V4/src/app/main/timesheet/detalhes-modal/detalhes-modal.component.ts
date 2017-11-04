@@ -21,7 +21,7 @@ export class DetalhesModalComponent implements OnInit, OnDestroy {
     _id: number;
     title: string;
     subscriptionNotification: EventEmitter<NotificationParameters>;
-
+    tags: any;
 
     constructor(private pendenciaService: PendenciaService, private pendenciaDocumentoService: PendenciaDocumentoService, private projetoDocumentoService: ProjetoDocumentoService) {
 
@@ -39,23 +39,40 @@ export class DetalhesModalComponent implements OnInit, OnDestroy {
 
     }
 
+    
+
     show(id: number) {
 
         this._id = id;
         this.pendenciaService.get({ id: this._id }).subscribe((response) => {
             this.vm.details = response.data;
 
-            this.pendenciaDocumentoService.get({ pendenciaId: this._id }).subscribe((responsePendenciaDocumento) => {
-                this.vm.details.collectionPendenciaDocumento = responsePendenciaDocumento.dataList;
-            })
+            this.pendenciaDocumentoService.get({ pendenciaId: this.vm.details.pendenciaId })
+                .map((response) => {
+                    return response.dataList.map((item) => {
+                        item.documento.tags = this.pendenciaService.tagTransformToShow(item.documento.tags);
+                        return item;
+                    })
+                })
+                .subscribe((responsePendenciaDocumento) => {
+                    this.vm.details.collectionPendenciaDocumento = responsePendenciaDocumento;
+                })
 
-            this.projetoDocumentoService.get({ projetoId: this._id }).subscribe((responseProjetoDocumento) => {
-                this.vm.details.collectionProjetoDocumento = responseProjetoDocumento.dataList;
-            })
+            this.projetoDocumentoService.get({ projetoId: this.vm.details.projetoId })
+                .map((response) => {
+                    return response.dataList.map((item) => {
+                        item.documento.tags = this.pendenciaService.tagTransformToShow(item.documento.tags);
+                        return item;
+                    })
+                })
+                .subscribe((responseProjetoDocumento) => {
+                    this.vm.details.collectionProjetoDocumento = responseProjetoDocumento;
+                })
 
         });
         this.detalhesModal.show();
     }
+
 
     onCancel() {
         this.detalhesModal.hide();

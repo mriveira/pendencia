@@ -124,6 +124,7 @@ namespace Target.Pendencias.Domain.Entitys
 
             var _documento = new Documento(0, documento.Arquivo, documento.ext);
             _documento.SetUserCreate(user.GetSubjectId<int>());
+            _documento.SetarTags(documento.Tags);
 
             this.CollectionPendenciaDocumento.Add(new PendenciaDocumento
             {

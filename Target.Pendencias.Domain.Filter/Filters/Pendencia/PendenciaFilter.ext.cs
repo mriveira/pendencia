@@ -5,5 +5,6 @@ namespace Target.Pendencias.Domain.Filter
     public class PendenciaFilter : PendenciaFilterBase
     {
         public IEnumerable<int> CollectionProjetoId { get; set; }
+        public string SearchFilter { get; set; }
     }
 }

@@ -10,7 +10,7 @@ export class LocationHistoryService {
         CacheService.add("lastNavigation", resourceName, ECacheType.COOKIE, 1);
     }
 
-    public static getLastNavigation(key: string) {
+    public static getLastNavigation() {
         return CacheService.get("lastNavigation", ECacheType.COOKIE)
     }
 }

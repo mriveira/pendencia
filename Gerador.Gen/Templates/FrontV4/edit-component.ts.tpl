@@ -5,6 +5,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ViewModel } from 'app/common/model/viewmodel';
 import { <#className#>Service } from '../<#classNameLowerAndSeparator#>.service';
 import { GlobalService, NotificationParameters} from '../../../global.service';
+import { LocationHistoryService } from 'app/common/services/location.history';
 
 @Component({
     selector: 'app-<#classNameLowerAndSeparator#>-edit',
@@ -45,7 +46,7 @@ export class <#className#>EditComponent implements OnInit {
     onSave(model) {
 
         this.<#classNameInstance#>Service.save(model).subscribe((result) => {
-            this.router.navigate(["/<#classNameLower#>"])
+            this.router.navigate([LocationHistoryService.getLastNavigation()])
         });
     }
 
